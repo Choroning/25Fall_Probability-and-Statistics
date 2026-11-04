@@ -65,9 +65,9 @@
 
 **예: 동전을 세 번 던지는 실험.** 동전을 차례로 세 번 던지면 표본공간은 다음과 같다. H는 앞면(head), T는 뒷면(tail)이다.
 
-$$
+```math
 \mathcal{S} = \lbrace HHH,\ HHT,\ HTH,\ HTT,\ THH,\ THT,\ TTH,\ TTT\rbrace
-$$
+```
 
 이 하나의 표본공간 위에 여러 확률변수를 정의할 수 있다.
 
@@ -137,29 +137,29 @@ graph LR
 
 일반적으로 실수의 집합 $A$에 대해 $\lbrace X \in A\rbrace$는 다음 사건을 줄여 쓴 것이다.
 
-$$
+```math
 \lbrace X \in A\rbrace = X^{-1}(A) = \lbrace\, s \in \mathcal{S} : X(s) \in A \,\rbrace
-$$
+```
 
 여기서 $X^{-1}(A)$는 역함수가 아니라 **역상(inverse image)**, 즉 함숫값이 $A$에 들어가는 결과 전체의 집합이다. $X$가 일대일 함수가 아니어도 역상은 항상 정의된다. 사건에는 확률이 있으므로 값의 범위에도 확률이 있다.
 
-$$
+```math
 P(X \in A) = P(\lbrace\, s \in \mathcal{S} : X(s) \in A \,\rbrace)
-$$
+```
 
 공정한 동전을 독립적으로 세 번 던지면 여덟 결과의 확률은 각각 $1/8$이다(2강). 따라서 범위 $0 < X \le 2$의 확률은 그 범위에 대응하는 여섯 결과 $\lbrace HHT, HTH, HTT, THH, THT, TTH\rbrace$의 확률을 더한 값이다.
 
-$$
+```math
 P(0 < X \le 2) = \frac{6}{8}
-$$
+```
 
 같은 방법으로 $P(X \le -1)$, $P(X \le 0)$, $P(X \le 1)$, $P(X \le 2)$, $P(X \le 3)$, $P(X \le 4)$를 구할 수 있으며, 그 값은 2.2절의 표 2에 정리한다.
 
 그림 1에서 같은 값으로 가는 결과를 묶으면 네 사건이 생긴다.
 
-$$
+```math
 E_0 = \lbrace TTT\rbrace, \quad E_1 = \lbrace HTT, THT, TTH\rbrace, \quad E_2 = \lbrace HHT, HTH, THH\rbrace, \quad E_3 = \lbrace HHH\rbrace
-$$
+```
 
 > **핵심:** $X$가 **함수**이므로 사건 $E_0, E_1, E_2, E_3$은 서로 배반이고 합집합은 $\mathcal{S}$이다. 함수는 모든 $s \in \mathcal{S}$에서 정의되어야 하므로 어떤 결과도 빠지지 않고, 하나의 $s$에 값을 하나만 주므로(single-valued) 한 결과가 두 사건에 동시에 들어가지 않는다. 즉 $\lbrace X = x\rbrace$ 꼴의 사건들은 표본공간의 **분할(partition)** 을 이룬다.
 
@@ -175,14 +175,14 @@ $$
 
 "질량"이라는 이름은 전체 확률 1이 확률변수가 취하는 점들에 덩어리처럼 나뉘어 놓여 있다는 비유에서 왔다. 동전을 세 번 던져 앞면의 개수를 $X$라 하면 다음과 같다.
 
-$$
+```math
 \begin{aligned}
 p_X(0) &\equiv P(\lbrace TTT\rbrace) = \tfrac{1}{8} \\
 p_X(1) &\equiv P(\lbrace HTT, THT, TTH\rbrace) = \tfrac{3}{8} \\
 p_X(2) &\equiv P(\lbrace HHT, HTH, THH\rbrace) = \tfrac{3}{8} \\
 p_X(3) &\equiv P(\lbrace HHH\rbrace) = \tfrac{1}{8}
 \end{aligned}
-$$
+```
 
 이 값들을 모두 더하면 $p_X(0) + p_X(1) + p_X(2) + p_X(3) = 1$이다. 그 이유는 1.3절의 핵심에 있다. 네 사건 $\lbrace X = 0\rbrace, \dots, \lbrace X = 3\rbrace$이 표본공간의 분할이므로, 확률의 공리에 따라 확률의 합은 $P(\mathcal{S}) = 1$이다.
 
@@ -210,16 +210,16 @@ $$
 | $0$ | $\lbrace TTT\rbrace$ | $1/8$ |
 | $1$ | $\lbrace TTT, HTT, THT, TTH\rbrace$ | $4/8$ |
 | $2$ | $HHH$를 뺀 일곱 결과 | $7/8$ |
-| $3$ | 여덟 결과 모두 ($\mathcal{S}$) | $1$ |
-| $4$ | 여덟 결과 모두 ($\mathcal{S}$) | $1$ |
+| $3$ | 여덟 결과 모두 ($`\mathcal{S}`$) | $1$ |
+| $4$ | 여덟 결과 모두 ($`\mathcal{S}`$) | $1$ |
 
 *표 2. 앞면의 개수 X에 대한 사건 {X ≤ x}와 누적분포함수의 값*
 
 예를 들어 1.3절의 확률은 누적분포함수의 차로 구할 수 있다.
 
-$$
+```math
 P(0 < X \le 2) = P(X = 1) + P(X = 2) = F(2) - F(0) = \frac{7}{8} - \frac{1}{8} = \frac{6}{8}
-$$
+```
 
 누적분포함수는 다음 성질을 가진다.
 
@@ -239,8 +239,8 @@ $$
 | 구분 | 이산확률변수 | 연속확률변수 |
 |:-----|:-----|:-----|
 | 분포를 나타내는 함수 | 확률질량함수 $p_X(x) = P(X = x)$ | 확률밀도함수 $f_X(x)$ |
-| 누적분포함수 | $F_X(x) = \sum_{t \le x} p_X(t)$ | $F_X(x) = \int_{-\infty}^{x} f_X(t)\, dt$ |
-| 구간 $(a, b]$의 확률 | $\sum_{a < t \le b} p_X(t)$ | $\int_{a}^{b} f_X(t)\, dt$ |
+| 누적분포함수 | $F_X(x) = \sum_{t \le x} p_X(t)$ | $`F_X(x) = \int_{-\infty}^{x} f_X(t)\, dt`$ |
+| 구간 $(a, b]$의 확률 | $\sum_{a < t \le b} p_X(t)$ | $`\int_{a}^{b} f_X(t)\, dt`$ |
 | 한 점의 확률 $P(X = x)$ | 0보다 클 수 있다 | 항상 0이다 |
 | 누적분포함수의 모양 | 계단함수 | 연속함수 |
 
@@ -288,13 +288,13 @@ X
 
 확률질량함수와 누적분포함수는 **둘 이상의 변수**의 함수일 수도 있다. 같은 표본공간 위에 정의된 두 확률변수를 함께 다루려면 두 값이 동시에 나타날 확률이 필요하다.
 
-> **용어 정의:** 두 이산확률변수 $X$, $Y$에 대해 $p_{X,Y}(x, y) \equiv P(X = x,\ Y = y) = P(\lbrace X = x\rbrace \cap \lbrace Y = y\rbrace)$를 **결합확률질량함수(joint probability mass function)** 라고 한다.
+> **용어 정의:** 두 이산확률변수 $X$, $Y$에 대해 $`p_{X,Y}(x, y) \equiv P(X = x,\ Y = y) = P(\lbrace X = x\rbrace \cap \lbrace Y = y\rbrace)`$를 **결합확률질량함수(joint probability mass function)** 라고 한다.
 
 **예.** 동전을 세 번 던져 $X$는 앞면의 개수, $Y$는 처음 앞면이 나온 시행의 번호($TTT$이면 0)라 하자. 예를 들어 $p_{X,Y}(2, 1)$은 앞면이 두 개이고 첫 앞면이 첫 번째 시행에서 나올 확률, 즉 앞면이 두 개이면서 첫 시행이 앞면일 확률이다.
 
-$$
+```math
 p_{X,Y}(2, 1) = P(X = 2,\ Y = 1) = P(\lbrace HHT, HTH\rbrace) = \frac{2}{8} = \frac{1}{4}
-$$
+```
 
 결합확률질량함수 전체를 구하려면 먼저 결과마다 두 확률변수의 값을 적는다.
 
@@ -319,9 +319,9 @@ $$
 
 표의 오른쪽 열과 아래쪽 행은 각 행과 각 열의 합이다.
 
-$$
+```math
 p_X(x) = \sum_{y} p_{X,Y}(x, y), \qquad p_Y(y) = \sum_{x} p_{X,Y}(x, y)
-$$
+```
 
 표의 가장자리(margin)에 적힌다는 뜻에서 이를 **주변확률(marginal probability)** 이라 하고, $p_X$를 $X$의 **주변확률질량함수(marginal PMF)**, $p_Y$를 $Y$의 주변확률질량함수라고 한다. 주변확률질량함수는 각 확률변수를 따로 보았을 때의 확률질량함수와 같다. 사건 $\lbrace X = x\rbrace$는 서로 배반인 사건들 $\lbrace X = x, Y = y\rbrace$($y$는 $Y$가 취하는 모든 값)의 합집합이므로, 2강의 전확률 공식에 따라 그 확률은 결합확률의 합이다. 실제로 표 5의 $p_X$는 2.1절에서 구한 $1/8, 3/8, 3/8, 1/8$과 같다.
 
@@ -331,15 +331,15 @@ $$
 
 누적분포함수도 두 변수로 확장된다.
 
-$$
+```math
 F_{X,Y}(x, y) \equiv P(X \le x,\ Y \le y) = \sum_{x_i \le x} \sum_{y_j \le y} p_{X,Y}(x_i, y_j)
-$$
+```
 
 이를 **결합누적분포함수(joint cumulative distribution function)** 또는 결합분포함수라고 한다. $x$ 이하, $y$ 이하인 모든 칸의 결합확률을 더한 값이다. 표 5에서 예를 들면 다음과 같다.
 
-$$
+```math
 F_{X,Y}(1, 1) = p(0, 0) + p(0, 1) + p(1, 0) + p(1, 1) = \frac{1}{8} + 0 + 0 + \frac{1}{8} = \frac{2}{8}
-$$
+```
 
 $y$를 한없이 크게 하면 $F_{X,Y}(x, \infty) = P(X \le x) = F_X(x)$가 되므로, 결합누적분포함수에서도 각 확률변수의 누적분포함수를 얻을 수 있다.
 
@@ -351,14 +351,14 @@ $y$를 한없이 크게 하면 $F_{X,Y}(x, \infty) = P(X \le x) = F_X(x)$가 되
 
 ### 4.1 독립의 정의
 
-> **용어 정의:** 두 이산확률변수 $X$, $Y$는 모든 $x$와 $y$에 대해 $P(X = x,\ Y = y) = P(X = x) \cdot P(Y = y)$일 때 **독립(independent)** 이라고 한다.
+> **용어 정의:** 두 이산확률변수 $X$, $Y$는 모든 $x$와 $y$에 대해 $`P(X = x,\ Y = y) = P(X = x) \cdot P(Y = y)`$일 때 **독립(independent)** 이라고 한다.
 
 같은 조건을 다음 두 가지로도 쓸 수 있다.
 
 1. 확률질량함수로 쓰면, 모든 $x$와 $y$에 대해 $p_{X,Y}(x, y) = p_X(x) \cdot p_Y(y)$이다.
 2. 사건으로 쓰면, $E_x \equiv X^{-1}(\lbrace x\rbrace)$와 $E_y \equiv Y^{-1}(\lbrace y\rbrace)$가 표본공간 $\mathcal{S}$에서 독립인 사건이다. 즉 모든 $x$와 $y$에 대해 $P(E_x \cap E_y) = P(E_x) \cdot P(E_y)$이다.
 
-두 번째 형태는 확률변수의 독립이 2강에서 다룬 사건의 독립으로 정의됨을 보여 준다. 여기서 $X^{-1}(\lbrace x\rbrace) = \lbrace\, s \in \mathcal{S} : X(s) = x \,\rbrace$이며, 이산의 경우 $x$와 $y$는 대개 정수이다.
+두 번째 형태는 확률변수의 독립이 2강에서 다룬 사건의 독립으로 정의됨을 보여 준다. 여기서 $`X^{-1}(\lbrace x\rbrace) = \lbrace\, s \in \mathcal{S} : X(s) = x \,\rbrace`$이며, 이산의 경우 $x$와 $y$는 대개 정수이다.
 
 독립의 의미는 조건부 확률로 보면 분명하다. $P(X = x) > 0$이면 독립은 $P(Y = y \mid X = x) = P(Y = y)$와 같다. 즉 $X$의 값을 알아도 $Y$의 분포가 바뀌지 않는다.
 
@@ -368,11 +368,11 @@ $y$를 한없이 크게 하면 $F_{X,Y}(x, \infty) = P(X \le x) = F_X(x)$가 되
 
 표 5의 $X$(앞면의 개수)와 $Y$(첫 앞면의 위치)는 독립인가? $(x, y) = (0, 1)$에서 결합확률과 주변확률의 곱을 비교한다.
 
-$$
+```math
 p_{X,Y}(0, 1) = 0, \qquad p_X(0) \cdot p_Y(1) = \frac{1}{8} \cdot \frac{4}{8} = \frac{1}{16}
-$$
+```
 
-두 값이 다르므로 $p_{X,Y}(x, y) \ne p_X(x) \cdot p_Y(y)$인 쌍이 있고, $X$와 $Y$는 **독립이 아니다**. 직관적으로도 앞면이 하나도 없다($X = 0$)는 정보를 알면 $Y$는 반드시 0이므로, $X$의 값이 $Y$의 분포를 바꾼다.
+두 값이 다르므로 $p_{X,Y}(x, y) \ne p_X(x) \cdot p_Y(y)$인 쌍이 있고, $X$와 $Y$는 **독립이 아니다**. 직관적으로도 앞면이 하나도 없다($`X = 0`$)는 정보를 알면 $Y$는 반드시 0이므로, $X$의 값이 $Y$의 분포를 바꾼다.
 
 ### 4.3 독립인 예와 누적분포함수
 
@@ -406,14 +406,14 @@ $$
 
 **증명.** $X$가 취하는 값을 $x_1 < x_2 < \cdots$, $Y$가 취하는 값을 $y_1 < y_2 < \cdots$라 하면 다음과 같다.
 
-$$
+```math
 \begin{aligned}
 F_{X,Y}(x_k, y_\ell) &= P(X \le x_k,\ Y \le y_\ell) = \sum_{i \le k} \sum_{j \le \ell} p_{X,Y}(x_i, y_j) \\
 &= \sum_{i \le k} \sum_{j \le \ell} p_X(x_i) \cdot p_Y(y_j) && \text{(독립)} \\
 &= \sum_{i \le k} \Big\lbrace p_X(x_i) \sum_{j \le \ell} p_Y(y_j) \Big\rbrace \\
 &= \Big\lbrace \sum_{i \le k} p_X(x_i) \Big\rbrace \cdot \Big\lbrace \sum_{j \le \ell} p_Y(y_j) \Big\rbrace = F_X(x_k) \cdot F_Y(y_\ell)
 \end{aligned}
-$$
+```
 
 세 번째 줄에서는 $p_X(x_i)$가 $j$에 관한 합과 무관하므로 안쪽 합 밖으로 꺼냈다.
 
@@ -433,43 +433,43 @@ $$
 
 **예: 주사위 한 번.** 공정한 주사위를 한 번 던져 나온 눈을 $X$라 하면 각 눈의 확률은 $1/6$이다.
 
-$$
+```math
 E(X) = 1 \cdot \frac{1}{6} + 2 \cdot \frac{1}{6} + \cdots + 6 \cdot \frac{1}{6} = \frac{1}{6} \sum_{k=1}^{6} k = \frac{1}{6} \cdot 21 = \frac{7}{2}
-$$
+```
 
 $7/2 = 3.5$는 주사위에서 나올 수 없는 값이다. 기댓값은 분포의 무게중심이며, 확률변수가 실제로 취하는 값일 필요는 없다.
 
 **함수의 기댓값.** 확률변수의 함수 $g(X)$도 확률변수이며, 그 기댓값은 $g(X)$의 분포를 따로 구하지 않고 $X$의 분포로 바로 계산할 수 있다.
 
-$$
+```math
 E[g(X)] = \sum_k g(x_k) \cdot p_X(x_k)
-$$
+```
 
 예를 들어 주사위에서 $E(X^2) = \frac{1}{6}(1^2 + 2^2 + \cdots + 6^2) = \frac{91}{6}$이다. 이 식은 6절의 분산 계산에 쓰인다. 기댓값 표기는 괄호가 겹치지 않도록 인수가 간단하면 $E(X)$, 인수에 괄호가 있으면 $E[(X - \mu)^2]$처럼 대괄호를 쓴다.
 
-> **참고:** $X$가 무한히 많은 값을 취할 때는 합이 수렴해야 기댓값이 정의된다. 정확히는 $\sum_k |x_k|\, p_X(x_k) < \infty$일 때 기댓값이 존재한다고 한다 [1]. 3~4강에서 다루는 분포는 모두 이 조건을 만족한다.
+> **참고:** $X$가 무한히 많은 값을 취할 때는 합이 수렴해야 기댓값이 정의된다. 정확히는 $`\sum_k |x_k|\, p_X(x_k) < \infty`$일 때 기댓값이 존재한다고 한다 [1]. 3~4강에서 다루는 분포는 모두 이 조건을 만족한다.
 
 ### 5.2 기댓값의 선형성
 
 상수 $a$, $b$에 대해 다음이 성립한다.
 
-$$
+```math
 E(aX) = a\,E(X), \qquad E(aX + b) = a\,E(X) + b
-$$
+```
 
 **증명(이산확률변수).** 함수의 기댓값 공식에 $g(x) = ax + b$를 넣는다.
 
-$$
+```math
 E(aX + b) = \sum_k (a x_k + b)\, p_X(x_k) = a \sum_k x_k\, p_X(x_k) + b \sum_k p_X(x_k) = a\,E(X) + b \cdot 1
-$$
+```
 
-마지막 단계에서 확률질량함수의 합이 1임을 썼다. $b = 0$으로 두면 $E(aX) = a\,E(X)$이다.
+마지막 단계에서 확률질량함수의 합이 1임을 썼다. $b = 0$으로 두면 $`E(aX) = a\,E(X)`$이다.
 
-**증명(연속확률변수).** 확률밀도함수 $f(x)$를 갖는 연속확률변수에서는 합 대신 적분을 쓴다(5강). 기댓값은 $E(X) = \int_{-\infty}^{\infty} x f(x)\, dx$이고, $\int_{-\infty}^{\infty} f(x)\, dx = 1$이다.
+**증명(연속확률변수).** 확률밀도함수 $f(x)$를 갖는 연속확률변수에서는 합 대신 적분을 쓴다(5강). 기댓값은 $`E(X) = \int_{-\infty}^{\infty} x f(x)\, dx`$이고, $`\int_{-\infty}^{\infty} f(x)\, dx = 1`$이다.
 
-$$
+```math
 E(aX + b) = \int_{-\infty}^{\infty} (ax + b) f(x)\, dx = a \int_{-\infty}^{\infty} x f(x)\, dx + b \int_{-\infty}^{\infty} f(x)\, dx = a\,E(X) + b
-$$
+```
 
 예를 들어 주사위의 눈 $X$에 100을 곱하고 400을 뺀 $Y = 100X - 400$의 기댓값은 $100 \cdot \frac{7}{2} - 400 = -50$이다. $Y$의 분포를 따로 구할 필요가 없다.
 
@@ -477,26 +477,26 @@ $$
 
 두 확률변수의 함수 $g(X, Y)$의 기댓값은 결합확률질량함수로 가중한 합이다.
 
-$$
+```math
 E[g(X, Y)] \equiv \sum_k \sum_\ell g(x_k, y_\ell)\, p_{X,Y}(x_k, y_\ell)
-$$
+```
 
 **예.** 표 6의 분포에서 $E(X)$, $E(Y)$, $E(XY)$를 구한다. $E(X)$와 $E(Y)$는 주변확률질량함수로 계산한다.
 
-$$
+```math
 E(X) = 1 \cdot \frac{1}{2} + 2 \cdot \frac{1}{3} + 3 \cdot \frac{1}{6} = \frac{5}{3}, \qquad E(Y) = 1 \cdot \frac{2}{3} + 2 \cdot \frac{1}{6} + 3 \cdot \frac{1}{6} = \frac{3}{2}
-$$
+```
 
 $E(XY)$는 $g(x, y) = xy$로 두고 아홉 칸을 모두 더한다. 각 항은 $xy$와 그 칸의 확률의 곱이다.
 
-$$
+```math
 \begin{aligned}
 E(XY) &= 1 \cdot \frac{1}{3} + 2 \cdot \frac{1}{12} + 3 \cdot \frac{1}{12} \\
 &\quad + 2 \cdot \frac{2}{9} + 4 \cdot \frac{1}{18} + 6 \cdot \frac{1}{18} \\
 &\quad + 3 \cdot \frac{1}{9} + 6 \cdot \frac{1}{36} + 9 \cdot \frac{1}{36} \\
 &= \frac{12 + 6 + 9 + 16 + 8 + 12 + 12 + 6 + 9}{36} = \frac{90}{36} = \frac{5}{2}
 \end{aligned}
-$$
+```
 
 이 값은 $E(X) \cdot E(Y) = \frac{5}{3} \cdot \frac{3}{2} = \frac{5}{2}$와 같다. 이렇게 되는 이유는 4.3절에서 보인 대로 $X$와 $Y$가 독립이기 때문이며, 5.4절의 성질 2가 이를 일반적으로 보장한다.
 
@@ -506,7 +506,7 @@ $$
 
 **증명.** $g(x, y) = x + y$로 두고 합을 둘로 나눈 뒤, 각 합에서 다른 변수에 관한 합을 먼저 계산한다.
 
-$$
+```math
 \begin{aligned}
 E(X + Y) &= \sum_k \sum_\ell (x_k + y_\ell)\, p_{X,Y}(x_k, y_\ell) \\
 &= \sum_k \sum_\ell x_k\, p_{X,Y}(x_k, y_\ell) + \sum_k \sum_\ell y_\ell\, p_{X,Y}(x_k, y_\ell) \\
@@ -514,7 +514,7 @@ E(X + Y) &= \sum_k \sum_\ell (x_k + y_\ell)\, p_{X,Y}(x_k, y_\ell) \\
 &= \sum_k \Big\lbrace x_k \sum_\ell p_{X,Y}(x_k, y_\ell) \Big\rbrace + \sum_\ell \Big\lbrace y_\ell \sum_k p_{X,Y}(x_k, y_\ell) \Big\rbrace \\
 &= \sum_k x_k\, p_X(x_k) + \sum_\ell y_\ell\, p_Y(y_\ell) = E(X) + E(Y)
 \end{aligned}
-$$
+```
 
 세 번째 줄에서는 두 번째 합의 합산 순서를 바꾸었고, 다섯 번째 줄에서는 3.1절의 주변확률질량함수 공식을 썼다. 어디에서도 독립을 쓰지 않았다.
 
@@ -522,14 +522,14 @@ $$
 
 **증명.** 독립이면 결합확률질량함수가 주변확률질량함수의 곱으로 나뉘므로 이중합이 두 합의 곱이 된다.
 
-$$
+```math
 \begin{aligned}
 E(XY) &= \sum_k \sum_\ell x_k\, y_\ell\, p_{X,Y}(x_k, y_\ell) \\
 &= \sum_k \sum_\ell x_k\, y_\ell\, p_X(x_k)\, p_Y(y_\ell) && \text{(독립)} \\
 &= \sum_k \Big\lbrace x_k\, p_X(x_k) \sum_\ell y_\ell\, p_Y(y_\ell) \Big\rbrace \\
 &= \Big\lbrace \sum_k x_k\, p_X(x_k) \Big\rbrace \cdot \Big\lbrace \sum_\ell y_\ell\, p_Y(y_\ell) \Big\rbrace = E(X) \cdot E(Y)
 \end{aligned}
-$$
+```
 
 **역은 성립하지 않는다.** 다음 분포가 그 예이다.
 
@@ -544,13 +544,13 @@ $$
 
 기댓값을 계산하면 다음과 같다.
 
-$$
+```math
 E(X) = 1 \cdot \frac{2}{5} + 2 \cdot \frac{1}{5} + 3 \cdot \frac{2}{5} = \frac{10}{5} = 2, \qquad E(Y) = 6 \cdot \frac{2}{5} + 8 \cdot \frac{1}{5} + 10 \cdot \frac{2}{5} = \frac{40}{5} = 8
-$$
+```
 
-$$
+```math
 E(XY) = (1 \cdot 6) \cdot \frac{1}{5} + (1 \cdot 10) \cdot \frac{1}{5} + (2 \cdot 8) \cdot \frac{1}{5} + (3 \cdot 6) \cdot \frac{1}{5} + (3 \cdot 10) \cdot \frac{1}{5} = \frac{6 + 10 + 16 + 18 + 30}{5} = 16
-$$
+```
 
 따라서 $E(XY) = 16 = 2 \cdot 8 = E(X) \cdot E(Y)$이다. 그러나 $p_{X,Y}(1, 6) = \frac{1}{5}$인데 $p_X(1) \cdot p_Y(6) = \frac{2}{5} \cdot \frac{2}{5} = \frac{4}{25}$이므로 $X$와 $Y$는 독립이 아니다. $p_{X,Y}(1, 8) = 0 \ne \frac{2}{5} \cdot \frac{1}{5}$인 칸도 있다.
 
@@ -566,28 +566,28 @@ $$
 
 기댓값은 분포의 중심을 나타내지만 값이 얼마나 퍼져 있는지는 알려 주지 않는다. 퍼진 정도는 분산으로 잰다.
 
-> **용어 정의:** 평균이 $\mu = E(X)$인 확률변수 $X$의 **분산(variance)** 은 $\mathrm{Var}(X) \equiv E[(X - \mu)^2] = \sum_k (x_k - \mu)^2\, p_X(x_k)$이다.
+> **용어 정의:** 평균이 $\mu = E(X)$인 확률변수 $X$의 **분산(variance)** 은 $`\mathrm{Var}(X) \equiv E[(X - \mu)^2] = \sum_k (x_k - \mu)^2\, p_X(x_k)`$이다.
 
 분산은 각 값이 평균에서 떨어진 거리의 제곱을 확률로 가중한 평균, 즉 **평균 가중 제곱 거리**이다. 거리를 제곱하는 이유는 편차 $x_k - \mu$를 그대로 평균하면 항상 0이 되기 때문이다. 실제로 선형성에 의해 $E(X - \mu) = E(X) - \mu = 0$이다. 제곱하면 양과 음의 편차가 상쇄되지 않고, 먼 값에 더 큰 무게가 실린다. 분산은 항상 0 이상이며, $X$가 확률 1로 한 값만 취할 때만 0이다.
 
 분산은 다음과 같이 더 간단한 식으로 바꿀 수 있다. 제곱을 전개하고 5.2절의 선형성을 쓴다($\mu$는 상수이다).
 
-$$
+```math
 \begin{aligned}
 \mathrm{Var}(X) &= E[X^2 - 2\mu X + \mu^2] \\
 &= E(X^2) - 2\mu\, E(X) + \mu^2 \\
 &= E(X^2) - 2\mu^2 + \mu^2 \\
 &= E(X^2) - \mu^2
 \end{aligned}
-$$
+```
 
 즉 분산은 "제곱의 평균에서 평균의 제곱을 뺀 값"이며, 계산에는 대개 이 식이 편하다.
 
 **예: 주사위 한 번.** $\mu = 7/2$이고 $E(X^2) = \frac{1}{6}\sum_{k=1}^{6} k^2$이다. 자연수의 제곱의 합 공식 $\sum_{k=1}^{n} k^2 = \frac{n(n+1)(2n+1)}{6}$에 $n = 6$을 넣으면 $\frac{6 \cdot 7 \cdot 13}{6} = 91$이다.
 
-$$
+```math
 \mathrm{Var}(X) = \sum_{k=1}^{6} \Big[ k^2 \cdot \frac{1}{6} \Big] - \mu^2 = \frac{1}{6} \cdot \frac{6(6+1)(2 \cdot 6+1)}{6} - \Big(\frac{7}{2}\Big)^2 = \frac{91}{6} - \frac{49}{4} = \frac{182 - 147}{12} = \frac{35}{12}
-$$
+```
 
 정의대로 계산해도 같다. 편차 $k - 3.5$는 $-2.5, -1.5, -0.5, 0.5, 1.5, 2.5$이고 그 제곱의 합은 $6.25 + 2.25 + 0.25 + 0.25 + 2.25 + 6.25 = 17.5$이므로 $\mathrm{Var}(X) = 17.5 / 6 = 35/12 \approx 2.917$이다.
 
@@ -597,35 +597,35 @@ $$
 
 분산은 제곱한 단위(예: cm²)를 가지므로 원래 값과 직접 비교하기 어렵다. 표준편차는 $X$와 같은 단위를 가지며, 값이 평균에서 떨어진 전형적인 거리로 해석한다. 주사위의 표준편차는 다음과 같다.
 
-$$
+```math
 \sigma = \sqrt{\frac{35}{12}} \approx 1.708
-$$
+```
 
 ### 6.3 선형변환의 기댓값과 분산
 
 상수 $a$, $b$에 대해 $aX + b$의 기댓값과 분산은 다음과 같다.
 
-$$
+```math
 E(aX + b) = a\,E(X) + b, \qquad \mathrm{Var}(aX + b) = a^2\, \mathrm{Var}(X)
-$$
+```
 
 첫 식은 5.2절에서 증명하였다. 둘째 식은 $aX + b$의 평균이 $a\mu_X + b$임을 이용한다.
 
-$$
+```math
 \begin{aligned}
 \mathrm{Var}(aX + b) &= E\big[\lbrace(aX + b) - (a\mu_X + b)\rbrace^2\big] \\
 &= E\big[a^2 (X - \mu_X)^2\big] \\
 &= a^2\, E\big[(X - \mu_X)^2\big] = a^2\, \mathrm{Var}(X)
 \end{aligned}
-$$
+```
 
-둘째 줄에서 $b$가 상쇄되므로, 모든 값에 같은 상수를 더해 위치를 옮겨도 퍼진 정도는 변하지 않는다. 모든 값을 $a$배 하면 편차도 $a$배가 되므로 분산은 $a^2$배, 표준편차는 $|a|$배가 된다: $\sigma(aX + b) = |a|\, \sigma(X)$.
+둘째 줄에서 $b$가 상쇄되므로, 모든 값에 같은 상수를 더해 위치를 옮겨도 퍼진 정도는 변하지 않는다. 모든 값을 $a$배 하면 편차도 $a$배가 되므로 분산은 $a^2$배, 표준편차는 $|a|$배가 된다: $`\sigma(aX + b) = |a|\, \sigma(X)`$.
 
 **예.** 주사위의 눈 $X$에 대해 $Y = 100X - 400$이면 $\mu_X = 7/2$, $\sigma_X^2 = 35/12$이므로 다음과 같다.
 
-$$
+```math
 \mu_Y = 100 \cdot \frac{7}{2} - 400 = 350 - 400 = -50, \qquad \sigma_Y^2 = 100^2 \cdot \frac{35}{12} = \frac{350{,}000}{12} \approx 29{,}166.67
-$$
+```
 
 표준편차는 $\sigma_Y = 100 \cdot \sigma_X \approx 170.78$이다.
 
@@ -639,20 +639,20 @@ $$
 
 ### 7.1 공분산의 정의와 의미
 
-> **용어 정의:** 평균이 $E(X) = \mu_X$, $E(Y) = \mu_Y$인 두 확률변수 $X$, $Y$의 **공분산(covariance)** 은 $\mathrm{Cov}(X, Y) \equiv E[(X - \mu_X)(Y - \mu_Y)] = \sum_{k, \ell} (x_k - \mu_X)(y_\ell - \mu_Y)\, p_{X,Y}(x_k, y_\ell)$이다.
+> **용어 정의:** 평균이 $E(X) = \mu_X$, $E(Y) = \mu_Y$인 두 확률변수 $X$, $Y$의 **공분산(covariance)** 은 $`\mathrm{Cov}(X, Y) \equiv E[(X - \mu_X)(Y - \mu_Y)] = \sum_{k, \ell} (x_k - \mu_X)(y_\ell - \mu_Y)\, p_{X,Y}(x_k, y_\ell)`$이다.
 
 분산처럼 공분산도 곱을 전개하여 간단한 식으로 바꿀 수 있다.
 
-$$
+```math
 \begin{aligned}
 \mathrm{Cov}(X, Y) &= E[(X - \mu_X)(Y - \mu_Y)] \\
 &= E[XY - \mu_X Y - \mu_Y X + \mu_X \mu_Y] \\
 &= E(XY) - \mu_X \mu_Y - \mu_Y \mu_X + \mu_X \mu_Y \\
 &= E(XY) - E(X)\,E(Y)
 \end{aligned}
-$$
+```
 
-셋째 줄에서 선형성으로 $E(\mu_X Y) = \mu_X\, E(Y) = \mu_X \mu_Y$를 썼다. $Y = X$로 두면 $\mathrm{Cov}(X, X) = E(X^2) - \mu_X^2 = \mathrm{Var}(X)$이므로 분산은 자기 자신과의 공분산이다.
+셋째 줄에서 선형성으로 $`E(\mu_X Y) = \mu_X\, E(Y) = \mu_X \mu_Y`$를 썼다. $Y = X$로 두면 $\mathrm{Cov}(X, X) = E(X^2) - \mu_X^2 = \mathrm{Var}(X)$이므로 분산은 자기 자신과의 공분산이다.
 
 공분산은 두 확률변수가 함께 움직이는 방향, 즉 **일치도(concordance)** 또는 **동조성(coherence)** 을 잰다.
 
@@ -675,9 +675,9 @@ $$
 
 독립, 곱의 기댓값, 공분산 사이의 관계는 다음과 같다.
 
-$$
+```math
 X, Y \text{ 독립} \ \Longrightarrow\ E(XY) = E(X)\,E(Y) \ \Longleftrightarrow\ \mathrm{Cov}(X, Y) = 0
-$$
+```
 
 왼쪽의 화살표는 한 방향으로만 성립하고, 오른쪽의 두 조건은 서로 같은 조건이다.
 
@@ -685,23 +685,23 @@ $$
 
 두 확률변수의 합의 분산은 각 분산의 합에 공분산 항이 더해진다. $X + Y$의 평균이 $\mu_X + \mu_Y$임(5.4절의 성질 1)을 이용한다.
 
-$$
+```math
 \begin{aligned}
 \mathrm{Var}(X + Y) &= E\big[\lbrace(X + Y) - (\mu_X + \mu_Y)\rbrace^2\big] = E\big[\lbrace(X - \mu_X) + (Y - \mu_Y)\rbrace^2\big] \\
 &= E\big[(X - \mu_X)^2\big] + E\big[(Y - \mu_Y)^2\big] + 2\,E\big[(X - \mu_X)(Y - \mu_Y)\big] \\
 &= \mathrm{Var}(X) + \mathrm{Var}(Y) + 2\,\mathrm{Cov}(X, Y)
 \end{aligned}
-$$
+```
 
 **성질.** $X$와 $Y$가 독립이면 $\mathrm{Cov}(X, Y) = 0$이므로 $\mathrm{Var}(X + Y) = \mathrm{Var}(X) + \mathrm{Var}(Y)$이다.
 
-같은 방법으로 $\mathrm{Var}(X - Y) = \mathrm{Var}(X) + \mathrm{Var}(Y) - 2\,\mathrm{Cov}(X, Y)$이고, 독립이면 차의 분산도 각 분산의 **합**이다. 서로 독립인 $n$개의 확률변수에 대해서는 $\mathrm{Var}(X_1 + \cdots + X_n) = \mathrm{Var}(X_1) + \cdots + \mathrm{Var}(X_n)$이 성립하며, 4강에서 이항분포의 분산을 구할 때 이 성질을 쓴다.
+같은 방법으로 $`\mathrm{Var}(X - Y) = \mathrm{Var}(X) + \mathrm{Var}(Y) - 2\,\mathrm{Cov}(X, Y)`$이고, 독립이면 차의 분산도 각 분산의 **합**이다. 서로 독립인 $n$개의 확률변수에 대해서는 $\mathrm{Var}(X_1 + \cdots + X_n) = \mathrm{Var}(X_1) + \cdots + \mathrm{Var}(X_n)$이 성립하며, 4강에서 이항분포의 분산을 구할 때 이 성질을 쓴다.
 
 **예.** 주사위 네 개를 독립적으로 던질 때 눈의 합 $X_1 + X_2 + X_3 + X_4$의 평균과 분산은 다음과 같다.
 
-$$
+```math
 E\Big(\sum_{i=1}^{4} X_i\Big) = 4 \cdot \frac{7}{2} = 14, \qquad \mathrm{Var}\Big(\sum_{i=1}^{4} X_i\Big) = 4 \cdot \frac{35}{12} = \frac{35}{3} \approx 11.667
-$$
+```
 
 표준편차는 $\sqrt{35/3} \approx 3.4157$이다. 1296개의 결과를 모두 나열하여 같은 값을 얻는 과정은 [연습 문제 2](Exercises.ko.md#연습-문제-2-주사위-네-번의-눈의-합의-확률분포)에서 다룬다.
 
@@ -723,7 +723,7 @@ $$
 | $E(XY) = E(X)E(Y)$이면 $X$와 $Y$는 독립이다. | **F.** 표 8의 분포가 반례이다. 이 식은 독립의 필요조건일 뿐이다. |
 | $X$와 $Y$가 독립이 아니어도 $E(X + Y) = E(X) + E(Y)$이다. | **T.** 기댓값의 덧셈 성질은 독립과 관계없이 항상 성립한다. |
 | $\mathrm{Var}(X + 3) = \mathrm{Var}(X) + 9$이다. | **F.** 상수를 더해도 퍼진 정도는 변하지 않으므로 $\mathrm{Var}(X + 3) = \mathrm{Var}(X)$이다. |
-| $\mathrm{Var}(-2X) = -2\,\mathrm{Var}(X)$이다. | **F.** $\mathrm{Var}(aX) = a^2\,\mathrm{Var}(X)$이므로 $4\,\mathrm{Var}(X)$이다. 분산은 음수가 될 수 없다. |
+| $`\mathrm{Var}(-2X) = -2\,\mathrm{Var}(X)`$이다. | **F.** $`\mathrm{Var}(aX) = a^2\,\mathrm{Var}(X)`$이므로 $`4\,\mathrm{Var}(X)`$이다. 분산은 음수가 될 수 없다. |
 | 공분산이 0이면 두 확률변수는 독립이다. | **F.** $Y = X^2$($X$는 $-1, 0, 1$ 균등) 같은 반례가 있다. 독립이면 공분산이 0이지만 역은 성립하지 않는다. |
 
 ---
@@ -741,13 +741,13 @@ $$
 | 누적분포함수 | $F_X(x) = P(X \le x)$이다. 비감소, 오른쪽 연속이고 $F(-\infty) = 0$, $F(\infty) = 1$이며 $P(a < X \le b) = F(b) - F(a)$이다. 이산이면 계단함수이다. |
 | 결합분포와 주변분포 | $p_{X,Y}(x, y) = P(X = x, Y = y)$이다. 주변확률질량함수는 결합확률의 행 합과 열 합이다. |
 | 독립 | 모든 $(x, y)$에서 $p_{X,Y} = p_X \cdot p_Y$이다. 누적분포함수의 곱으로 판정해도 같다. 반례 하나로 독립이 아님을 보일 수 있다. |
-| 기댓값 | $E(X) = \sum_k x_k\, p_X(x_k)$는 가중 평균이다. $E(aX + b) = aE(X) + b$이고 $E(X + Y) = E(X) + E(Y)$는 항상 성립한다. |
+| 기댓값 | $`E(X) = \sum_k x_k\, p_X(x_k)`$는 가중 평균이다. $E(aX + b) = aE(X) + b$이고 $E(X + Y) = E(X) + E(Y)$는 항상 성립한다. |
 | 곱의 기댓값 | 독립이면 $E(XY) = E(X)E(Y)$이다. 역은 성립하지 않는다. |
 | 분산과 표준편차 | $\mathrm{Var}(X) = E[(X - \mu)^2] = E(X^2) - \mu^2$이고 $\sigma = \sqrt{\mathrm{Var}(X)}$이다. 주사위 한 번은 $\mu = 7/2$, $\sigma^2 = 35/12$이다. |
-| 선형변환 | $\mathrm{Var}(aX + b) = a^2\,\mathrm{Var}(X)$, $\sigma(aX + b) = \vert a \vert\,\sigma(X)$이다. 더한 상수는 분산에 영향을 주지 않는다. |
+| 선형변환 | $`\mathrm{Var}(aX + b) = a^2\,\mathrm{Var}(X)`$, $`\sigma(aX + b) = \vert a \vert\,\sigma(X)`$이다. 더한 상수는 분산에 영향을 주지 않는다. |
 | 공분산 | $\mathrm{Cov}(X, Y) = E[(X - \mu_X)(Y - \mu_Y)] = E(XY) - E(X)E(Y)$이다. 범위는 $(-\infty, \infty)$이며 부호가 함께 움직이는 방향을 나타낸다. |
 | 독립과 공분산 | 독립이면 공분산이 0이지만, 공분산이 0이어도 독립이 아닐 수 있다. |
-| 합의 분산 | $\mathrm{Var}(X + Y) = \mathrm{Var}(X) + \mathrm{Var}(Y) + 2\,\mathrm{Cov}(X, Y)$이고, 독립이면 분산의 합이다. |
+| 합의 분산 | $`\mathrm{Var}(X + Y) = \mathrm{Var}(X) + \mathrm{Var}(Y) + 2\,\mathrm{Cov}(X, Y)`$이고, 독립이면 분산의 합이다. |
 
 ---
 

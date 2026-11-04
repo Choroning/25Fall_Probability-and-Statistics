@@ -87,9 +87,13 @@ The computer scientist group has both the larger mean and the larger median. The
 
 With $\mu_{CS}$ and $\mu_{ST}$ the population means of the two groups, the null hypothesis is $H_0: \mu_{CS} = \mu_{ST}$ (the two groups have the same mean number of cases) and the alternative is $H_1: \mu_{CS} \ne \mu_{ST}$ (they differ). The **independent two-sample t-test**, which assumes normal populations with equal variances, uses the **pooled variance** that combines the two sample variances.
 
-$$s_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2} = \frac{8 \times 3.3611 + 8 \times 1.6944}{16} = 2.5278$$
+```math
+s_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2} = \frac{8 \times 3.3611 + 8 \times 1.6944}{16} = 2.5278
+```
 
-$$t = \frac{\bar{x}_1 - \bar{x}_2}{s_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}} = \frac{5.1111 - 3.2222}{\sqrt{2.5278}\sqrt{\frac{2}{9}}} = \frac{1.8889}{0.74949} = 2.520$$
+```math
+t = \frac{\bar{x}_1 - \bar{x}_2}{s_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}} = \frac{5.1111 - 3.2222}{\sqrt{2.5278}\sqrt{\frac{2}{9}}} = \frac{1.8889}{0.74949} = 2.520
+```
 
 Under the null hypothesis, $t$ follows the t distribution with $n_1 + n_2 - 2 = 16$ degrees of freedom, and the two-sided p-value is $2P(T_{16} \ge 2.520) = 0.0227$. The p-value 0.0227 is smaller than the significance level 0.05, so the null hypothesis is rejected and the alternative that the mean numbers of cases of the two occupation groups differ is selected. The 95% confidence interval for the difference in means is (0.300, 3.478). The Welch t-test, which does not assume equal variances, gives the same conclusion with $t = 2.520$, 14.43 degrees of freedom, and a p-value of 0.0241.
 
@@ -107,15 +111,19 @@ The 18 values are ranked from the smallest, and tied values receive the **midran
 
 *Table 2. Midranks of the case counts (CS: ComputerScientist, ST: Statistician)*
 
-The rank sum of the computer scientist group is $R_{CS} = 3 \times 5.5 + 10 + 2 \times 14.5 + 3 \times 17 = 106.5$, and that of the statistician group is $R_{ST} = 171 - 106.5 = 64.5$ (the total rank sum is $18 \times 19 / 2 = 171$). The statistic reported by R is $W = R_{CS} - \frac{n_1(n_1 + 1)}{2} = 106.5 - 45 = 61.5$. Under the null hypothesis $E[W] = \frac{n_1 n_2}{2} = 40.5$, and the variance corrected for ties is as follows. $t_j$ is the size of each group of tied values, and in these data $\sum(t_j^3 - t_j) = 6 + 60 + 120 + 6 + 24 = 216$.
+The rank sum of the computer scientist group is $R_{CS} = 3 \times 5.5 + 10 + 2 \times 14.5 + 3 \times 17 = 106.5$, and that of the statistician group is $R_{ST} = 171 - 106.5 = 64.5$ (the total rank sum is $`18 \times 19 / 2 = 171`$). The statistic reported by R is $W = R_{CS} - \frac{n_1(n_1 + 1)}{2} = 106.5 - 45 = 61.5$. Under the null hypothesis $E[W] = \frac{n_1 n_2}{2} = 40.5$, and the variance corrected for ties is as follows. $t_j$ is the size of each group of tied values, and in these data $\sum(t_j^3 - t_j) = 6 + 60 + 120 + 6 + 24 = 216$.
 
-$$\mathrm{Var}(W) = \frac{n_1 n_2}{12}\left[(N + 1) - \frac{\sum_j (t_j^3 - t_j)}{N(N - 1)}\right] = \frac{81}{12}\left[19 - \frac{216}{306}\right] = 123.49$$
+```math
+\mathrm{Var}(W) = \frac{n_1 n_2}{12}\left[(N + 1) - \frac{\sum_j (t_j^3 - t_j)}{N(N - 1)}\right] = \frac{81}{12}\left[19 - \frac{216}{306}\right] = 123.49
+```
 
-$$z = \frac{W - E[W]}{\sqrt{\mathrm{Var}(W)}} = \frac{61.5 - 40.5}{11.112} = 1.890, \qquad p = 2\lbrace1 - \Phi(1.890)\rbrace = 0.0588$$
+```math
+z = \frac{W - E[W]}{\sqrt{\mathrm{Var}(W)}} = \frac{61.5 - 40.5}{11.112} = 1.890, \qquad p = 2\lbrace1 - \Phi(1.890)\rbrace = 0.0588
+```
 
 The p-value 0.0588 is larger than the significance level 0.05, so the null hypothesis is not rejected, and there is insufficient ground to select the alternative that the distributions of case counts of the two occupation groups differ.
 
-> **Note:** With a **continuity correction** in the normal approximation ($z = 20.5/11.112 = 1.845$) the p-value is 0.0651, and the p-value from the exact permutation distribution that accounts for ties is 0.0712. Depending on the computation the value lies between 0.06 and 0.07, but the conclusion of not rejecting at the 5% significance level is the same. When there are ties, R's `wilcox.test()` cannot compute the exact p-value and uses the normal approximation.
+> **Note:** With a **continuity correction** in the normal approximation ($`z = 20.5/11.112 = 1.845`$) the p-value is 0.0651, and the p-value from the exact permutation distribution that accounts for ties is 0.0712. Depending on the computation the value lies between 0.06 and 0.07, but the conclusion of not rejecting at the 5% significance level is the same. When there are ties, R's `wilcox.test()` cannot compute the exact p-value and uses the normal approximation.
 
 ---
 
@@ -179,7 +187,9 @@ flowchart TD
 
 **p-value and conclusion.** The p-value is the probability in the null distribution of a statistic at least as large as the observed one.
 
-$$p = P(T \ge 2) = \frac{3{,}340 + 940}{48{,}620} = \frac{4{,}280}{48{,}620} = 0.0880$$
+```math
+p = P(T \ge 2) = \frac{3{,}340 + 940}{48{,}620} = \frac{4{,}280}{48{,}620} = 0.0880
+```
 
 The p-value 0.0880 is smaller than the significance level 0.10, so the null hypothesis is rejected and the alternative that the distributions of case counts of the two occupation groups differ is selected. The observed median is larger for the computer scientist group, so at the 10% significance level its location is judged to be shifted toward more cases.
 
@@ -195,7 +205,9 @@ The p-value 0.0880 is smaller than the significance level 0.10, so the null hypo
 
 The two established statistics for comparison are the following.
 
-$$t = \frac{\bar{x}_1 - \bar{x}_2}{s_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}, \qquad W = \sum_{i \in \text{group 1}} \mathrm{rank}(x_i) - \frac{n_1(n_1 + 1)}{2}$$
+```math
+t = \frac{\bar{x}_1 - \bar{x}_2}{s_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}, \qquad W = \sum_{i \in \text{group 1}} \mathrm{rank}(x_i) - \frac{n_1(n_1 + 1)}{2}
+```
 
 | Criterion | t Statistic | Wilcoxon $W$ | Seo Statistic |
 |:-----|:-----|:-----|:-----|
@@ -226,7 +238,9 @@ $$t = \frac{\bar{x}_1 - \bar{x}_2}{s_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}, \qq
 
 **Method.** For each gene, set the null hypothesis $H_0$: the cancer and healthy groups have the same mean expression, and the alternative $H_1$: the mean expressions differ, and apply **Welch's t-test**. The two groups have different sizes, 25 and 47, and equal variances cannot be guaranteed for every gene, so Welch's test, which uses the two variances separately instead of a pooled variance, is appropriate.
 
-$$t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}, \qquad \nu = \frac{\left(\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}\right)^2}{\frac{(s_1^2/n_1)^2}{n_1 - 1} + \frac{(s_2^2/n_2)^2}{n_2 - 1}}$$
+```math
+t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}, \qquad \nu = \frac{\left(\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}\right)^2}{\frac{(s_1^2/n_1)^2}{n_1 - 1} + \frac{(s_2^2/n_2)^2}{n_2 - 1}}
+```
 
 Under the null hypothesis, $t$ approximately follows the t distribution with $\nu$ degrees of freedom.
 
@@ -255,7 +269,9 @@ Some expression values are negative, but that does not affect the comparison of 
 
 **Method.** Height and gene expression are both continuous, so for each gene the **Pearson correlation coefficient** $r$ is computed and a correlation test is applied. The null hypothesis is $H_0: \rho = 0$ (no linear correlation between the gene and height), and the alternative is $H_1: \rho \ne 0$ (correlated). Under the null hypothesis, the following statistic follows the t distribution with $n - 2 = 70$ degrees of freedom.
 
-$$t = \frac{r\sqrt{n - 2}}{\sqrt{1 - r^2}}$$
+```math
+t = \frac{r\sqrt{n - 2}}{\sqrt{1 - r^2}}
+```
 
 For a two-sided test at the 1% significance level this criterion is equivalent to $\lvert r \rvert > 0.302$.
 
@@ -288,7 +304,9 @@ The other six are Gene_382, Gene_1019, Gene_1130, Gene_1265, Gene_321, and Gene_
 
 A significance level of 1% means that a single test wrongly rejects a true null hypothesis with probability 1%. Q5 performed $m = 1{,}274$ such tests. Even if the null hypothesis were true for every gene, on average $1{,}274 \times 0.01 = 12.74$ genes would come out significant by chance. If the tests are independent, the probability of at least one wrong rejection, the **family-wise error rate (FWER)**, is as follows.
 
-$$\text{FWER} = 1 - (1 - 0.01)^{1274} \approx 0.999997$$
+```math
+\text{FWER} = 1 - (1 - 0.01)^{1274} \approx 0.999997
+```
 
 That is, without correction it is almost certain that at least one false positive is included. The 315 genes of Q5 mix genes with real differences and **false positives** that came out significant by chance, and the individual tests alone cannot tell them apart. This is the **multiple testing problem**.
 
@@ -296,7 +314,9 @@ That is, without correction it is almost certain that at least one false positiv
 
 The **Bonferroni correction** divides the significance level of each test by the number of tests and bounds the FWER by $\alpha$. It rejects only when a p-value is below $\alpha/m$, or equivalently it compares the adjusted p-value $\min(m p_i, 1)$ with $\alpha$.
 
-$$p_i < \frac{\alpha}{m} = \frac{0.01}{1274} = 7.85 \times 10^{-6}$$
+```math
+p_i < \frac{\alpha}{m} = \frac{0.01}{1274} = 7.85 \times 10^{-6}
+```
 
 Since FWER $\le \sum_i P(\text{test } i \text{ wrongly rejects}) \le m \cdot \frac{\alpha}{m} = \alpha$, the bound holds regardless of the correlation between tests. Applied to Q5, **56** genes remain. It is very strict, so false positives are almost absent, but many genes with real differences are missed.
 

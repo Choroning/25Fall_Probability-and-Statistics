@@ -35,21 +35,21 @@
 
 **Approach:** The 20 balls look identical, so every number is equally likely. Hence $X$ follows the discrete uniform distribution with $n = 20$ ([Lecture 4, Section 2](Concepts_Lecture.md#2-discrete-uniform-distribution)).
 
-$$
+```math
 f(x) = \frac{1}{20}, \qquad x = 1, 2, \dots, 20
-$$
+```
 
 Substitute $n = 20$ into the discrete uniform formulas $E(X) = \frac{n+1}{2}$ and $\mathrm{Var}(X) = \frac{(n+1)(n-1)}{12}$.
 
-$$
+```math
 E(X) = \frac{20 + 1}{2} = 10.5, \qquad \mathrm{Var}(X) = \frac{(20 + 1)(20 - 1)}{12} = \frac{399}{12} = 33.25
-$$
+```
 
 The numbers of 15 or more are the six numbers 15, 16, 17, 18, 19, 20, so:
 
-$$
+```math
 P(X \ge 15) = \sum_{x=15}^{20} \frac{1}{20} = \frac{6}{20} = 0.3
-$$
+```
 
 **Code:**
 
@@ -94,14 +94,14 @@ The standard deviation is $\sqrt{33.25} \approx 5.766$.
 
 **Approach:** Sampling from an infinite population means that earlier results do not change later success probabilities. Each draw is an independent Bernoulli trial with constant success probability, and the number of successes follows the binomial distribution $B(10, p)$ ([Lecture 4, Section 4](Concepts_Lecture.md#4-binomial-distribution)).
 
-$$
+```math
 \begin{aligned}
 p = 0.2:&\quad X \sim B(10, 0.2), \quad f(x) = \binom{10}{x} (0.2)^x (0.8)^{10 - x} \\
 p = 0.5:&\quad X \sim B(10, 0.5), \quad f(x) = \binom{10}{x} (0.5)^x (0.5)^{10 - x} \\
 p = 0.8:&\quad X \sim B(10, 0.8), \quad f(x) = \binom{10}{x} (0.8)^x (0.2)^{10 - x}
 \end{aligned}
 \qquad (x = 0, 1, \dots, 10)
-$$
+```
 
 The expected values $np$ are 2, 5, 8, and the variances $np(1 - p)$ are $10 \times 0.2 \times 0.8 = 1.6$, $10 \times 0.5 \times 0.5 = 2.5$, and $10 \times 0.8 \times 0.2 = 1.6$.
 
@@ -181,30 +181,30 @@ $B(10, 0.2)$ peaks at $x = 2$ with a long right tail, $B(10, 0.5)$ is symmetric 
 
 **Approach:** If each product from the process is defective with constant probability 0.03, independently of the others, then $X \sim B(20, 0.03)$.
 
-$$
+```math
 f(x) = \binom{20}{x} (0.03)^x (0.97)^{20 - x}, \qquad x = 0, 1, 2, \dots, 20
-$$
+```
 
-$$
+```math
 E(X) = 20 \times 0.03 = 0.6, \qquad \mathrm{Var}(X) = 20 \times 0.03 \times 0.97 = 0.582
-$$
+```
 
 Since $\binom{20}{2} = \frac{20 \times 19}{2} = 190$, the probability of exactly 2 defectives is:
 
-$$
+```math
 f(2) = \binom{20}{2} (0.03)^2 (0.97)^{20 - 2} = 190 \times (0.03)^2 \times (0.97)^{18} \approx 190 \times 0.0009 \times 0.5780 \approx 0.0988
-$$
+```
 
 The probability of 3 or more is found by subtracting the probability of the complement $\lbrace X \le 2\rbrace$ from 1, which takes far less computation than adding the cases of 3 or more one by one.
 
-$$
+```math
 \begin{aligned}
 P(X \ge 3) &= 1 - P(X \le 2) = 1 - [f(0) + f(1) + f(2)] \\
 &= 1 - \big[{}_{20}C_0 (0.03)^0 (0.97)^{20} + {}_{20}C_1 (0.03)^1 (0.97)^{19} + {}_{20}C_2 (0.03)^2 (0.97)^{18}\big] \\
 &= 1 - \big[(0.97)^{20} + 20 \times 0.03 \times (0.97)^{19} + 190 \times (0.03)^2 (0.97)^{18}\big] \\
 &\approx 1 - (0.5438 + 0.3364 + 0.0988) = 1 - 0.9790 = 0.0210
 \end{aligned}
-$$
+```
 
 **Code:**
 
@@ -222,7 +222,7 @@ dbinom(2, 20, 0.03)                # P(X = 2)
 pbinom(2, 20, 0.03, lower.tail = FALSE)   # P(X > 2) = P(X >= 3), method 2
 ```
 
-- `dbinom(x, 20, 0.03)` holds all probabilities for $x = 0, \dots, 20$, from which the expected value and variance are computed. `fx[1:6]` is $f(0), \dots, f(5)$ (R indices start at 1, so `fx[1]` is $f(0)$).
+- `dbinom(x, 20, 0.03)` holds all probabilities for $x = 0, \dots, 20$, from which the expected value and variance are computed. `fx[1:6]` is $f(0), \dots, f(5)$ (R indices start at 1, so `fx[1]` is $`f(0)`$).
 - `1 - sum(dbinom(0:2, 20, 0.03))` is the first method, using the complement.
 - `pbinom(2, 20, 0.03, lower.tail = FALSE)` is the second method, computing $P(X > 2)$ directly. For a discrete distribution, $P(X > 2) = P(X \ge 3)$.
 
@@ -237,7 +237,7 @@ E(X) = 0.6  Var(X) = 0.582
 [1] 0.02100836
 ```
 
-The probability of finding 3 or more defectives is about 2.1%. The mean is 0.6, so most samples contain 0 or 1 defective ($f(0) + f(1) \approx 0.880$).
+The probability of finding 3 or more defectives is about 2.1%. The mean is 0.6, so most samples contain 0 or 1 defective ($`f(0) + f(1) \approx 0.880`$).
 
 ---
 
@@ -251,20 +251,20 @@ The probability of finding 3 or more defectives is about 2.1%. The mean is 0.6, 
 
 **Approach:** Sampling without replacement from a finite population makes the number of successes follow the hypergeometric distribution $HG(n, N, r)$, with $n = 10$, $N = 50$, and $r$ equal to 10, 25, 40 ([Lecture 4, Section 5](Concepts_Lecture.md#5-hypergeometric-distribution)).
 
-$$
+```math
 \begin{aligned}
 X \sim HG(10, 50, 10):&\quad f(x) = \binom{10}{x}\binom{40}{10 - x} \Big/ \binom{50}{10} \\
 X \sim HG(10, 50, 25):&\quad f(x) = \binom{25}{x}\binom{25}{10 - x} \Big/ \binom{50}{10} \\
 X \sim HG(10, 50, 40):&\quad f(x) = \binom{40}{x}\binom{10}{10 - x} \Big/ \binom{50}{10}
 \end{aligned}
 \qquad (x = 0, 1, \dots, 10)
-$$
+```
 
 The support is $\max(0, n - N + r) \le x \le \min(n, r)$. In all three cases $n - N + r = r - 40 \le 0$ and $\min(10, r) = 10$, so it is all of $x = 0, \dots, 10$. The success proportions are $p = r/N = 0.2, 0.5, 0.8$, so the expected values $np$ are 2, 5, 8. The variances are the binomial variances $np(1 - p)$ multiplied by the finite population correction factor $\frac{N - n}{N - 1} = \frac{40}{49} \approx 0.8163$.
 
-$$
+```math
 1.6 \times \frac{40}{49} \approx 1.3061, \qquad 2.5 \times \frac{40}{49} \approx 2.0408, \qquad 1.6 \times \frac{40}{49} \approx 1.3061
-$$
+```
 
 **Code:**
 
@@ -327,7 +327,7 @@ max |HG - B| for each r: 0.0349 0.0287 0.0349
 
 *Figure 2. Comparison of the hypergeometric distribution HG(10, 50, r) and the binomial distribution B(10, r/50) (r = 10, 25, 40)*
 
-The expected values equal the binomial ones, while the variances are smaller, about 82%. The hypergeometric distribution therefore puts more probability near the mean (for example, $f(2)$ is 0.3369 versus 0.3020 for $r = 10$) and less in the tails. The probabilities differ by at most about 0.035. The population of 50 is only five times the sample size of 10, which is why the difference is this large.
+The expected values equal the binomial ones, while the variances are smaller, about 82%. The hypergeometric distribution therefore puts more probability near the mean (for example, $f(2)$ is 0.3369 versus 0.3020 for $`r = 10`$) and less in the tails. The probabilities differ by at most about 0.035. The population of 50 is only five times the sample size of 10, which is why the difference is this large.
 
 ---
 
@@ -341,21 +341,21 @@ The expected values equal the binomial ones, while the variances are smaller, ab
 
 **Approach:** Of the 1000 products, $1000 \times 0.05 = 50$ are defective and 950 are good. Drawing 30 without replacement gives $X \sim HG(30, 1000, 50)$.
 
-$$
+```math
 f(x) = \frac{\dbinom{50}{x}\dbinom{950}{30 - x}}{\dbinom{1000}{30}}, \qquad x = 0, 1, 2, \dots, 30
-$$
+```
 
 With $p = r/N = 0.05$, the expected value and variance are:
 
-$$
+```math
 E(X) = np = 30 \times 0.05 = 1.5, \qquad \mathrm{Var}(X) = np(1 - p)\Big(\frac{N - n}{N - 1}\Big) = 30 \times 0.05 \times 0.95 \times \frac{970}{999} \approx 1.384
-$$
+```
 
 $P(X = 3)$ and $P(X \le 3)$ are computed by substituting into the probability mass function. The binomial coefficients become very large, so R does the computation.
 
-$$
+```math
 f(3) = \frac{\dbinom{50}{3}\dbinom{950}{27}}{\dbinom{1000}{30}} \approx 0.1277, \qquad P(X \le 3) = \sum_{x=0}^{3} \frac{\dbinom{50}{x}\dbinom{950}{30 - x}}{\dbinom{1000}{30}} \approx 0.2097 + 0.3415 + 0.2632 + 0.1277 = 0.9421
-$$
+```
 
 **Code:**
 
@@ -404,9 +404,9 @@ The binomial approximation gives $P(X \le 3) \approx 0.9392$, about 0.003 away f
 
 **Approach:** The number of occurrences in a fixed unit follows a Poisson distribution ([Lecture 4, Section 6](Concepts_Lecture.md#6-poisson-distribution)).
 
-$$
+```math
 X \sim Poi(2): f(x) = 2^x \frac{e^{-2}}{x!}, \qquad X \sim Poi(5): f(x) = 5^x \frac{e^{-5}}{x!}, \qquad X \sim Poi(8): f(x) = 8^x \frac{e^{-8}}{x!} \qquad (x = 0, 1, 2, \dots)
-$$
+```
 
 The expected value and variance of a Poisson distribution are both $\lambda$, so they are 2, 5, and 8. These means equal the means $10p$ of the binomial distributions $B(10, p)$ of Exercise 2 and the hypergeometric distributions $HG(10, 50, r)$ of Exercise 4, so the three families can be compared side by side.
 
@@ -478,13 +478,13 @@ lambda = 8  max|B - Poi| = 0.1624  max|HG - Poi| = 0.1973  P(Poi > 10) = 0.1841
 
 *Figure 3. Probability mass functions of the Poisson distributions Poi(2), Poi(5), and Poi(8)*
 
-The printed modes are 1, 4, 7, but when $\lambda$ is an integer, $f(\lambda - 1) = f(\lambda)$, so 2, 5, 8 are also modes (in the table, $f(1) = f(2) = 0.2707$, $f(4) = f(5) = 0.1755$, and $f(7) = f(8) = 0.1396$). This happens because `which.max()` returns only the first of tied values.
+The printed modes are 1, 4, 7, but when $\lambda$ is an integer, $f(\lambda - 1) = f(\lambda)$, so 2, 5, 8 are also modes (in the table, $f(1) = f(2) = 0.2707$, $f(4) = f(5) = 0.1755$, and $`f(7) = f(8) = 0.1396`$). This happens because `which.max()` returns only the first of tied values.
 
 ![Figure 4. Comparison of the hypergeometric HG(10, 50, r), binomial B(10, r/50), and Poisson Poi(10r/50) distributions (r = 10, 25, 40)](../../images/Lec04_HG-Binomial-Poisson.png)
 
 *Figure 4. Comparison of the hypergeometric HG(10, 50, r), binomial B(10, r/50), and Poisson Poi(10r/50) distributions (r = 10, 25, 40)*
 
-For $\lambda = 2$ ($p = 0.2$) the binomial and Poisson differ by at most 0.031, but for $\lambda = 5$ ($p = 0.5$) the difference grows to 0.071 and for $\lambda = 8$ ($p = 0.8$) to 0.162. The Poisson distribution with $\lambda = 8$ gives 18% probability to values above 10, which cannot occur in the binomial and hypergeometric distributions with only 10 samples. The Poisson approximation works only for small success probabilities; its variance $\lambda$ exceeds the binomial variance $np(1 - p)$, so it spreads more widely.
+For $\lambda = 2$ ($`p = 0.2`$) the binomial and Poisson differ by at most 0.031, but for $\lambda = 5$ ($`p = 0.5`$) the difference grows to 0.071 and for $\lambda = 8$ ($`p = 0.8`$) to 0.162. The Poisson distribution with $\lambda = 8$ gives 18% probability to values above 10, which cannot occur in the binomial and hypergeometric distributions with only 10 samples. The Poisson approximation works only for small success probabilities; its variance $\lambda$ exceeds the binomial variance $np(1 - p)$, so it spreads more widely.
 
 ---
 
@@ -498,21 +498,21 @@ For $\lambda = 2$ ($p = 0.2$) the binomial and Poisson differ by at most 0.031, 
 
 **Approach:** The number of defects that occur rarely in one unit gives $X \sim Poi(1.5)$.
 
-$$
+```math
 f(x) = (1.5)^x \frac{e^{-1.5}}{x!}, \quad x = 0, 1, 2, \dots, \qquad E(X) = \lambda = 1.5, \qquad \mathrm{Var}(X) = \lambda = 1.5
-$$
+```
 
 Since $e^{-1.5} \approx 0.2231$, the probability of exactly two defects is:
 
-$$
+```math
 f(2) = \frac{1.5^2}{2!} e^{-1.5} = 1.125 \times 0.2231 \approx 0.2510
-$$
+```
 
 The probability of three or more uses the complement.
 
-$$
+```math
 P(X \ge 3) = 1 - P(X \le 2) = 1 - e^{-1.5} \times \Big(1 + 1.5 + \frac{1.5^2}{2}\Big) = 1 - 3.625\, e^{-1.5} \approx 1 - 0.8088 = 0.1912
-$$
+```
 
 **Code:**
 
@@ -555,9 +555,9 @@ The probability of exactly two defects is about 25.1%, and of three or more abou
 
 **Approach:** The number of trials until the first success follows the geometric distribution $G(p)$ ([Lecture 4, Section 7](Concepts_Lecture.md#7-geometric-distribution)).
 
-$$
+```math
 G(0.1): f(x) = 0.1 \times 0.9^{x - 1}, \qquad G(0.3): f(x) = 0.3 \times 0.7^{x - 1}, \qquad G(0.5): f(x) = 0.5 \times 0.5^{x - 1} \qquad (x = 1, 2, 3, \dots)
-$$
+```
 
 The expected values $1/p$ are $10$, $10/3 \approx 3.333$, and $2$, and the variances $(1 - p)/p^2$ are $0.9/0.01 = 90$, $0.7/0.09 \approx 7.778$, and $0.5/0.25 = 2$.
 
@@ -626,15 +626,15 @@ All three distributions are largest at $x = 1$, with probability $p$, and then s
 
 **Approach:** Each roll shows a 6 with probability $1/6$, independently of the other rolls, so $X \sim G(1/6)$ with $q = 5/6$.
 
-$$
+```math
 f(x) = \frac{1}{6}\Big(\frac{5}{6}\Big)^{x - 1}, \quad x = 1, 2, 3, \dots, \qquad E(X) = \frac{1}{p} = 6, \qquad \mathrm{Var}(X) = \frac{q}{p^2} = \frac{5/6}{(1/6)^2} = 30
-$$
+```
 
 The probability of a 6 within 3 rolls comes from the CDF $F(x) = 1 - q^x$, which equals 1 minus the probability $(5/6)^3$ that none of the first three rolls is a 6.
 
-$$
+```math
 F(3) = 1 - q^3 = 1 - \Big(\frac{5}{6}\Big)^3 = 1 - \frac{125}{216} = \frac{91}{216} \approx 0.421
-$$
+```
 
 **Code:**
 
@@ -675,15 +675,15 @@ On average it takes 6 rolls to see the first 6, yet the probability of seeing it
 
 ### Solution
 
-**Approach:** The number of trials until the $r$th success follows the negative binomial distribution $NB(0.4, r)$ ([Lecture 4, Section 8](Concepts_Lecture.md#8-negative-binomial-distribution)).
+**Approach:** The number of trials until the $`r`$th success follows the negative binomial distribution $NB(0.4, r)$ ([Lecture 4, Section 8](Concepts_Lecture.md#8-negative-binomial-distribution)).
 
-$$
+```math
 \begin{aligned}
 r = 1:&\quad X \sim NB(0.4, 1) \equiv G(0.4), \quad f(x) = \binom{x - 1}{0} (0.4)(0.6)^{x - 1}, \quad x = 1, 2, 3, \dots \\
 r = 2:&\quad X \sim NB(0.4, 2), \quad f(x) = \binom{x - 1}{1} (0.4)^2 (0.6)^{x - 2}, \quad x = 2, 3, 4, \dots \\
 r = 4:&\quad X \sim NB(0.4, 4), \quad f(x) = \binom{x - 1}{3} (0.4)^4 (0.6)^{x - 4}, \quad x = 4, 5, 6, \dots
 \end{aligned}
-$$
+```
 
 For $r = 1$, $\binom{x - 1}{0} = 1$, so the distribution equals the geometric distribution $G(0.4)$. The expected values $r/p$ are 2.5, 5, 10, and the variances $r(1 - p)/p^2$ are $0.6/0.16 = 3.75$, $7.5$, and $15$.
 
@@ -752,19 +752,19 @@ In the probability table, the $r = 2$ column is 0 at $x = 1$ and the $r = 4$ col
 
 **Approach:** The songs are independent with the same success probability 0.1, so the number of trials until the third success is $X \sim NB(0.1, 3)$.
 
-$$
+```math
 f(x) = \binom{x - 1}{2} (0.1)^3 (0.9)^{x - 3}, \quad x = 3, 4, 5, \dots
-$$
+```
 
-$$
+```math
 E(X) = \frac{r}{p} = \frac{3}{0.1} = 30, \qquad \mathrm{Var}(X) = \frac{rq}{p^2} = \frac{3 \times 0.9}{0.1^2} = 270
-$$
+```
 
 For the third hit to come exactly on the 10th project, exactly 2 of the first 9 songs must be hits and the 10th song must be a hit. Here $\binom{9}{2} = 36$.
 
-$$
+```math
 f(10) = \binom{10 - 1}{2} (0.1)^3 (0.9)^{10 - 3} = 36 \times 0.001 \times 0.4783 \approx 0.0172
-$$
+```
 
 **Code:**
 

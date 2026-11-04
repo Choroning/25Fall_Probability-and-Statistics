@@ -66,13 +66,13 @@ Lecture 3 defined a random variable as a function that assigns a real number to 
 
 Whether a random variable is discrete or continuous depends less on the phenomenon itself than on how its outcomes are mapped to real numbers. If a person's height is recorded as the measured real value, it is a continuous random variable; if it is rounded to the nearest centimeter and recorded as an integer, its possible values can be counted and it becomes a discrete random variable.
 
-> **Note:** An uncountably infinite sample space alone does not make a random variable continuous. For a number $\theta$ chosen from $(0, 1]$, define $X(\theta) = 1$ if $\theta > 1/2$ and $X(\theta) = 0$ otherwise; then $X$ is a discrete random variable with only two values. Strictly, $X$ is called continuous when there is a function $f \geq 0$ with $P(X \leq x) = \int_{-\infty}^{x} f(t)\,dt$ for every $x$ [1], and the random variables with the uniform, normal, chi-square, t, and F distributions treated from Section 3 on all satisfy this condition.
+> **Note:** An uncountably infinite sample space alone does not make a random variable continuous. For a number $\theta$ chosen from $(0, 1]$, define $X(\theta) = 1$ if $\theta > 1/2$ and $X(\theta) = 0$ otherwise; then $X$ is a discrete random variable with only two values. Strictly, $X$ is called continuous when there is a function $f \geq 0$ with $`P(X \leq x) = \int_{-\infty}^{x} f(t)\,dt`$ for every $x$ [1], and the random variables with the uniform, normal, chi-square, t, and F distributions treated from Section 3 on all satisfy this condition.
 
 The simplest example chooses a number $\theta$ from the interval $(0, 1]$ and sets $X(\theta) = \theta$. Suppose any value of $\theta$ is equally likely. Then the probability that $\theta$ falls in an interval is proportional to the length of that interval, and since the whole interval has length 1, the probability equals the length.
 
-$$
+```math
 P\left(0 < \theta \leq \tfrac{1}{2}\right) = \tfrac{1}{2}, \qquad P\left(\tfrac{1}{3} < \theta \leq \tfrac{1}{2}\right) = \tfrac{1}{2} - \tfrac{1}{3} = \tfrac{1}{6}, \qquad P\left(\theta = \tfrac{1}{\sqrt{2}}\right) = 0
-$$
+```
 
 The single point $\theta = 1/\sqrt{2}$ is an interval of length 0, so its probability is 0. Probability 0 does not mean that the outcome is impossible. $\theta$ always takes some value, but the probability that it equals one particular value fixed in advance is exactly 0. For this reason, continuous random variables are described through **probabilities of intervals** rather than probabilities of points.
 
@@ -82,9 +82,9 @@ The single point $\theta = 1/\sqrt{2}$ is an interval of length 0, so its probab
 
 For $a < b$, the event $\lbrace X \leq b\rbrace$ is the union of the disjoint events $\lbrace X \leq a\rbrace$ and $\lbrace a < X \leq b\rbrace$, so the addition rule of probability gives the following.
 
-$$
+```math
 F_X(b) - F_X(a) = P(a < X \leq b)
-$$
+```
 
 A CDF has the following properties.
 
@@ -100,39 +100,39 @@ These properties hold equally for the discrete random variables of Lecture 3. Th
 
 From $f = F'$, $F(-\infty) = 0$, and $F(\infty) = 1$ we obtain the following basic identities. The subscript $X$ is dropped below.
 
-$$
+```math
 \int_{-\infty}^{\infty} f(x)\,dx = \int_{-\infty}^{\infty} F'(x)\,dx = F(\infty) - F(-\infty) = 1
-$$
+```
 
-$$
+```math
 \int_{-\infty}^{x} f(t)\,dt = F(x) - F(-\infty) = F(x) = P(X \leq x)
-$$
+```
 
-$$
+```math
 \int_{a}^{b} f(x)\,dx = F(b) - F(a) = P(a < X \leq b)
-$$
+```
 
-$$
+```math
 \int_{a}^{a} f(x)\,dx = F(a) - F(a) = 0 = P(X = a)
-$$
+```
 
-> **[Calculus]** The fundamental theorem of calculus states that if $F' = f$ and $f$ is continuous, then $\int_a^b f(x)\,dx = F(b) - F(a)$. The identities above apply this theorem to the CDF, and they say that the probability of an interval equals the area under the PDF curve over that interval.
+> **[Calculus]** The fundamental theorem of calculus states that if $F' = f$ and $f$ is continuous, then $`\int_a^b f(x)\,dx = F(b) - F(a)`$. The identities above apply this theorem to the CDF, and they say that the probability of an interval equals the area under the PDF curve over that interval.
 
 As the last identity shows, a single point has probability 0 for a continuous random variable, so whether an interval includes its endpoints does not affect its probability. That is, $P(a < X < b) = P(a \leq X < b) = P(a < X \leq b) = P(a \leq X \leq b)$. For a discrete random variable an endpoint can carry positive probability, so these equalities do not hold in general.
 
-> **Caution:** The value $f(x)$ of a PDF is not itself a probability. For a sufficiently small width $\Delta x$, $P(x < X \leq x + \Delta x) \approx f(x)\,\Delta x$, so $f(x)$ is probability per unit length, that is, a probability density. Hence $f(x)$ can exceed 1. For example, the uniform distribution on $(0, 0.5]$ has $f(x) = 2$ on that interval.
+> **Caution:** The value $f(x)$ of a PDF is not itself a probability. For a sufficiently small width $\Delta x$, $`P(x < X \leq x + \Delta x) \approx f(x)\,\Delta x`$, so $f(x)$ is probability per unit length, that is, a probability density. Hence $f(x)$ can exceed 1. For example, the uniform distribution on $(0, 0.5]$ has $f(x) = 2$ on that interval.
 
 For the example $X(\theta) = \theta$ of Section 1.1, the CDF and PDF are as follows.
 
-$$
+```math
 F(x) = \begin{cases} 0, & x \leq 0 \\ x, & 0 < x \leq 1 \\ 1, & 1 < x \end{cases} \qquad\qquad f(x) = \begin{cases} 0, & x \leq 0 \\ 1, & 0 < x \leq 1 \\ 0, & 1 < x \end{cases}
-$$
+```
 
 $F$ has corners at $x = 0$ and $x = 1$, so its derivative does not exist at those two points. However, the value at a single point does not affect any integral, so $f$ may be defined there for convenience. In Figure 1, the left panel is $F$ and the right panel is $f$. $P(1/3 < X \leq 1/2)$ appears as the difference of two heights $F(1/2) - F(1/3)$ on the left, and as the area of the shaded rectangle on the right.
 
-$$
+```math
 P\left(\tfrac{1}{3} < X \leq \tfrac{1}{2}\right) = \int_{1/3}^{1/2} f(x)\,dx = \int_{1/3}^{1/2} 1\,dx = \tfrac{1}{2} - \tfrac{1}{3} = \tfrac{1}{6}
-$$
+```
 
 ![Figure 1. CDF and PDF of a number chosen between 0 and 1, with the shaded area being the probability 1/6 between 1/3 and 1/2](../../images/Lec05_Uniform-Example.png)
 
@@ -140,18 +140,18 @@ $$
 
 ### 1.4 Expected Value and Variance
 
-The expected value defined in Lecture 3 is a sum for a discrete random variable and an integral for a continuous one. The continuous formula replaces the probability $f(x)$ in the discrete sum with the probability element $f(x)\,dx$ and the sum with an integral.
+The expected value defined in Lecture 3 is a sum for a discrete random variable and an integral for a continuous one. The continuous formula replaces the probability $f(x)$ in the discrete sum with the probability element $`f(x)\,dx`$ and the sum with an integral.
 
 | Random variable | Expected value $\mu_X = E(X)$ |
 |:-----|:-----|
-| Discrete | $\sum_x x\,f(x)$ |
-| Continuous | $\int_{-\infty}^{\infty} x\,f(x)\,dx$ |
+| Discrete | $`\sum_x x\,f(x)`$ |
+| Continuous | $`\int_{-\infty}^{\infty} x\,f(x)\,dx`$ |
 
 *Table 1. Expected value of discrete and continuous random variables*
 
-For a function $g$, $E[g(X)] = \int_{-\infty}^{\infty} g(x)\,f(x)\,dx$. Hence the variance is, as in the discrete case, $Var(X) = E[(X - \mu)^2] = E(X^2) - \mu^2$, with $E(X^2) = \int_{-\infty}^{\infty} x^2 f(x)\,dx$ for a continuous random variable. The standard deviation is $\sigma_X = \sqrt{Var(X)}$.
+For a function $g$, $`E[g(X)] = \int_{-\infty}^{\infty} g(x)\,f(x)\,dx`$. Hence the variance is, as in the discrete case, $Var(X) = E[(X - \mu)^2] = E(X^2) - \mu^2$, with $`E(X^2) = \int_{-\infty}^{\infty} x^2 f(x)\,dx`$ for a continuous random variable. The standard deviation is $\sigma_X = \sqrt{Var(X)}$.
 
-> **Caution:** The expected value is defined only when $\int_{-\infty}^{\infty} |x|\,f(x)\,dx < \infty$. The t distribution with 1 degree of freedom (the Cauchy distribution) in Section 7.3 has a divergent integral of this kind, so its expected value does not exist.
+> **Caution:** The expected value is defined only when $`\int_{-\infty}^{\infty} |x|\,f(x)\,dx < \infty`$. The t distribution with 1 degree of freedom (the Cauchy distribution) in Section 7.3 has a divergent integral of this kind, so its expected value does not exist.
 
 ---
 
@@ -165,18 +165,18 @@ Table 2 lists frequently used continuous distributions and their notation. The n
 |:-----|:-----|:-----|:-----|:-----|
 | Uniform | $X \sim U(a, b)$ | $\frac{1}{b-a}$, $a < x \leq b$ | $\frac{a+b}{2}$ | $\frac{(b-a)^2}{12}$ |
 | Exponential | $X \sim Exp(\lambda)$ | $\lambda e^{-\lambda x}$, $x > 0$ | $\frac{1}{\lambda}$ | $\frac{1}{\lambda^2}$ |
-| Gamma | $X \sim \Gamma(\alpha, \beta)$ | $\frac{x^{\alpha-1} e^{-x/\beta}}{\Gamma(\alpha)\,\beta^{\alpha}}$, $x > 0$ | $\alpha\beta$ | $\alpha\beta^2$ |
+| Gamma | $X \sim \Gamma(\alpha, \beta)$ | $`\frac{x^{\alpha-1} e^{-x/\beta}}{\Gamma(\alpha)\,\beta^{\alpha}}`$, $x > 0$ | $\alpha\beta$ | $\alpha\beta^2$ |
 | Beta | $X \sim Beta(\alpha, \beta)$ | $\frac{x^{\alpha-1}(1-x)^{\beta-1}}{B(\alpha, \beta)}$, $0 < x < 1$ | $\frac{\alpha}{\alpha+\beta}$ | $\frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$ |
 | Standard normal | $Z \sim N(0, 1)$ | $\frac{1}{\sqrt{2\pi}} e^{-z^2/2}$ | $0$ | $1$ |
-| Normal | $X \sim N(\mu, \sigma^2)$ | $\frac{1}{\sqrt{2\pi}\,\sigma} e^{-(x-\mu)^2/(2\sigma^2)}$ | $\mu$ | $\sigma^2$ |
+| Normal | $X \sim N(\mu, \sigma^2)$ | $`\frac{1}{\sqrt{2\pi}\,\sigma} e^{-(x-\mu)^2/(2\sigma^2)}`$ | $\mu$ | $\sigma^2$ |
 | Chi-square | $\sum_{i=1}^{n} Z_i^2 \sim \chi^2(n)$ | Sum of squares of $n$ independent standard normal variables | $n$ | $2n$ |
-| t | $T \equiv \frac{Z}{\sqrt{Y/\nu}} \sim t(\nu)$ | Ratio built from $Z \sim N(0,1)$ and an independent $Y \sim \chi^2(\nu)$ | $0$ ($\nu > 1$) | $\frac{\nu}{\nu-2}$ ($\nu > 2$) |
-| F | $F \equiv \frac{U/\nu_1}{V/\nu_2} \sim F(\nu_1, \nu_2)$ | Ratio built from independent $U \sim \chi^2(\nu_1)$ and $V \sim \chi^2(\nu_2)$ | $\frac{\nu_2}{\nu_2-2}$ ($\nu_2 > 2$) | $\frac{2\nu_2^2(\nu_1+\nu_2-2)}{\nu_1(\nu_2-2)^2(\nu_2-4)}$ ($\nu_2 > 4$) |
+| t | $T \equiv \frac{Z}{\sqrt{Y/\nu}} \sim t(\nu)$ | Ratio built from $Z \sim N(0,1)$ and an independent $Y \sim \chi^2(\nu)$ | $0$ ($`\nu > 1`$) | $\frac{\nu}{\nu-2}$ ($`\nu > 2`$) |
+| F | $F \equiv \frac{U/\nu_1}{V/\nu_2} \sim F(\nu_1, \nu_2)$ | Ratio built from independent $U \sim \chi^2(\nu_1)$ and $V \sim \chi^2(\nu_2)$ | $\frac{\nu_2}{\nu_2-2}$ ($`\nu_2 > 2`$) | $\frac{2\nu_2^2(\nu_1+\nu_2-2)}{\nu_1(\nu_2-2)^2(\nu_2-4)}$ ($`\nu_2 > 4`$) |
 
 *Table 2. Notation, PDF or definition, expected value, and variance of common continuous distributions*
 
 - **Exponential distribution:** For events that occur at random with an average of $\lambda$ per unit time, as in the Poisson distribution of Lecture 4, it models the waiting time from one event to the next. It has the memoryless property $P(X > s + t \mid X > s) = P(X > t)$: having already waited $s$ does not change the distribution of the remaining wait.
-- **Gamma distribution:** It has a shape parameter $\alpha$ and a scale parameter $\beta$. When $\alpha$ is a natural number, it is the distribution of the sum of $\alpha$ independent exponential random variables with mean $\beta$. $\Gamma(\alpha) = \int_0^\infty t^{\alpha-1} e^{-t}\,dt$ is the gamma function, and $\Gamma(n) = (n-1)!$ for a natural number $n$.
+- **Gamma distribution:** It has a shape parameter $\alpha$ and a scale parameter $\beta$. When $\alpha$ is a natural number, it is the distribution of the sum of $\alpha$ independent exponential random variables with mean $\beta$. $`\Gamma(\alpha) = \int_0^\infty t^{\alpha-1} e^{-t}\,dt`$ is the gamma function, and $\Gamma(n) = (n-1)!$ for a natural number $n$.
 - **Beta distribution:** Its values lie between $0$ and $1$, so it models proportions or probabilities themselves. $B(\alpha, \beta) = \Gamma(\alpha)\Gamma(\beta)/\Gamma(\alpha+\beta)$ is the beta function, and $\alpha = \beta = 1$ gives $U(0, 1)$.
 
 > **Caution:** Some texts write the second parameter of the gamma distribution as the scale $\beta$ and others as the rate $1/\beta$. Table 2 uses the scale. In R, the third positional argument of `dgamma(x, shape, rate)` is the rate, so to supply a scale, name the argument as in `dgamma(x, shape = 2, scale = 3)`.
@@ -191,15 +191,15 @@ Table 2 lists frequently used continuous distributions and their notation. The n
 
 The **continuous uniform distribution** makes every value in the interval $(a, b]$ equally likely and is written $X \sim U(a, b)$. Hereafter it is called the uniform distribution for short. The example of Section 1.1 is the case $a = 0$, $b = 1$.
 
-$$
+```math
 f(x) = \begin{cases} \dfrac{1}{b-a}, & a < x \leq b \\ 0, & \text{otherwise} \end{cases} \qquad\qquad F(x) = \begin{cases} 0, & x \leq a \\ \dfrac{x-a}{b-a}, & a < x \leq b \\ 1, & x > b \end{cases}
-$$
+```
 
 The height $1/(b-a)$ of the PDF is chosen so that the total area is $(b-a) \times \frac{1}{b-a} = 1$. The CDF is a straight line with slope $1/(b-a)$ from $a$ to $b$. For two points $x_1 < x_2$ inside the interval,
 
-$$
+```math
 P(x_1 < X \leq x_2) = F(x_2) - F(x_1) = \frac{x_2 - x_1}{b - a}
-$$
+```
 
 so the probability is proportional to the length of the subinterval, regardless of its position. Whether the endpoints are included does not affect any probability, so defining $U(a, b)$ on $a < x < b$ gives the same distribution.
 
@@ -209,21 +209,21 @@ For example, if buses arrive exactly every 10 minutes and a passenger reaches th
 
 We show that $X \sim U(a, b)$ has mean $\mu = (a+b)/2$ and standard deviation $\sigma = (b-a)/(2\sqrt{3})$. First, the expected value is as follows.
 
-$$
+```math
 E(X) = \int_a^b \frac{x}{b-a}\,dx = \frac{1}{b-a}\left[\frac{x^2}{2}\right]_a^b = \frac{b^2 - a^2}{2(b-a)} = \frac{(b-a)(b+a)}{2(b-a)} = \frac{a+b}{2}
-$$
+```
 
 $E(X^2)$ is obtained in the same way using $b^3 - a^3 = (b-a)(b^2 + ab + a^2)$.
 
-$$
+```math
 E(X^2) = \int_a^b \frac{x^2}{b-a}\,dx = \frac{b^3 - a^3}{3(b-a)} = \frac{b^2 + ab + a^2}{3}
-$$
+```
 
 The variance follows. Bringing the two fractions to a common denominator gives the numerator $4(b^2 + ab + a^2) - 3(a^2 + 2ab + b^2) = b^2 - 2ab + a^2$.
 
-$$
+```math
 Var(X) = E(X^2) - E(X)^2 = \frac{b^2 + ab + a^2}{3} - \left(\frac{a+b}{2}\right)^2 = \frac{b^2 - 2ab + a^2}{12} = \frac{(b-a)^2}{12}
-$$
+```
 
 The standard deviation is $\sigma = \sqrt{(b-a)^2/12} = (b-a)/\sqrt{12} = (b-a)/(2\sqrt{3})$. The mean is the midpoint of the interval, and the variance depends only on the length of the interval, not on its position. In the bus example, $E(X) = 5$ minutes and $\sigma = 10/(2\sqrt{3}) \approx 2.887$ minutes.
 
@@ -237,33 +237,33 @@ The standard deviation is $\sigma = \sqrt{(b-a)^2/12} = (b-a)/\sqrt{12} = (b-a)/
 
 A random variable with the **standard normal distribution** is usually written $Z$, with $Z \sim N(0, 1)$. Its PDF is commonly denoted by $\phi$.
 
-$$
+```math
 \phi(z) = \frac{1}{\sqrt{2\pi}}\,e^{-\frac{1}{2}z^2}, \qquad -\infty < z < \infty
-$$
+```
 
-The curve is highest at $z = 0$ ($\phi(0) = 1/\sqrt{2\pi} \approx 0.3989$), is a bell shape symmetric about $0$, and changes the direction of its bending at $z = \pm 1$ (inflection points). As $|z|$ grows, $e^{-z^2/2}$ approaches 0 quickly, so most of the probability lies between $-3$ and $3$.
+The curve is highest at $z = 0$ ($`\phi(0) = 1/\sqrt{2\pi} \approx 0.3989`$), is a bell shape symmetric about $0$, and changes the direction of its bending at $z = \pm 1$ (inflection points). As $|z|$ grows, $e^{-z^2/2}$ approaches 0 quickly, so most of the probability lies between $-3$ and $3$.
 
-That the total area is 1 is shown as follows. Let $I = \int_{-\infty}^{\infty} e^{-z^2/2}\,dz$, multiply $I$ by itself to form a double integral, and change to polar coordinates $x = r\cos\theta$, $y = r\sin\theta$ ($dx\,dy = r\,dr\,d\theta$).
+That the total area is 1 is shown as follows. Let $`I = \int_{-\infty}^{\infty} e^{-z^2/2}\,dz`$, multiply $I$ by itself to form a double integral, and change to polar coordinates $x = r\cos\theta$, $y = r\sin\theta$ ($`dx\,dy = r\,dr\,d\theta`$).
 
-$$
+```math
 I^2 = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{-(x^2 + y^2)/2}\,dx\,dy = \int_0^{2\pi}\int_0^{\infty} e^{-r^2/2}\,r\,dr\,d\theta = 2\pi\left[-e^{-r^2/2}\right]_0^{\infty} = 2\pi
-$$
+```
 
-Hence $I = \sqrt{2\pi}$ and $\int_{-\infty}^{\infty}\phi(z)\,dz = I/\sqrt{2\pi} = 1$. This integral is called the Gaussian integral.
+Hence $I = \sqrt{2\pi}$ and $`\int_{-\infty}^{\infty}\phi(z)\,dz = I/\sqrt{2\pi} = 1`$. This integral is called the Gaussian integral.
 
 ### 4.2 Expected Value and Variance
 
-$z\,\phi(z)$ is an odd function, whose sign flips when the sign of $z$ flips, and its integral converges, so the areas on the two sides cancel and the mean is 0.
+$`z\,\phi(z)`$ is an odd function, whose sign flips when the sign of $z$ flips, and its integral converges, so the areas on the two sides cancel and the mean is 0.
 
-$$
+```math
 \mu = E(Z) = \int_{-\infty}^{\infty} z\,\phi(z)\,dz = 0
-$$
+```
 
-$E(Z^2)$ is obtained by integration by parts. Since $\phi'(z) = -z\,\phi(z)$, setting $u = z$ and $dv = z\,\phi(z)\,dz$ gives $v = -\phi(z)$. Because $z\,\phi(z) \to 0$ as $|z| \to \infty$, the boundary term is 0.
+$E(Z^2)$ is obtained by integration by parts. Since $`\phi'(z) = -z\,\phi(z)`$, setting $u = z$ and $`dv = z\,\phi(z)\,dz`$ gives $v = -\phi(z)$. Because $`z\,\phi(z) \to 0`$ as $|z| \to \infty$, the boundary term is 0.
 
-$$
+```math
 E(Z^2) = \int_{-\infty}^{\infty} z \cdot z\,\phi(z)\,dz = \Big[-z\,\phi(z)\Big]_{-\infty}^{\infty} + \int_{-\infty}^{\infty} \phi(z)\,dz = 0 + 1 = 1
-$$
+```
 
 Therefore $Var(Z) = E(Z^2) - \mu^2 = 1$ and $\sigma(Z) = 1$. Applying the same integration by parts once more with $u = z^3$ gives $E(Z^4) = 3E(Z^2) = 3$, a value used in Section 7.1.
 
@@ -271,9 +271,9 @@ Therefore $Var(Z) = E(Z^2) - \mu^2 = 1$ and $\sigma(Z) = 1$. Applying the same i
 
 The CDF of the standard normal distribution is denoted by $\Phi$.
 
-$$
+```math
 \Phi(z) = P(Z \leq z) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{z} e^{-\frac{1}{2}t^2}\,dt
-$$
+```
 
 ![Figure 2. PDF and CDF of the standard normal distribution](../../images/Lec05_Standard-Normal.png)
 
@@ -287,13 +287,13 @@ $\Phi$ has the following properties.
 
 The antiderivative of $e^{-t^2/2}$ cannot be written with elementary functions, so $\Phi(z)$ has no closed form and its values are computed numerically. For example, integrating $e^{-t^2/2} = \sum_{k=0}^{\infty} (-t^2/2)^k/k!$ term by term from $0$ to $z$ gives the following series.
 
-$$
+```math
 \Phi(z) = \frac{1}{2} + \frac{1}{\sqrt{2\pi}}\sum_{k=0}^{\infty} \frac{(-1)^k\,z^{2k+1}}{2^k\,k!\,(2k+1)}
-$$
+```
 
 Summing the first 21 terms of this series at $z = 1$ gives $\Phi(1) = 0.8413447$. The normal tables printed at the back of statistics textbooks were produced by numerical computations of this kind, and in R the function `pnorm()` computes the same values.
 
-The **standard normal table** lists $\Phi(z)$ for nonnegative $z$ (for example, $0.00$ to $3.89$), with $z$ up to the first decimal place in the rows and the second decimal place in the columns. Table 3 shows some of its rows.
+The **standard normal table** lists $\Phi(z)$ for nonnegative $z$ (for example, $0.00$ to $`3.89`$), with $z$ up to the first decimal place in the rows and the second decimal place in the columns. Table 3 shows some of its rows.
 
 | $z$ | 0.00 | 0.01 | 0.02 | 0.03 | 0.04 | 0.05 | 0.06 | 0.07 | 0.08 | 0.09 |
 |:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
@@ -339,12 +339,12 @@ Table 4 lists values often used in tests and interval estimation. The point with
 
 The **normal distribution** is determined by two parameters, the mean $\mu$ and the variance $\sigma^2$, and is written $X \sim N(\mu, \sigma^2)$. It is also called the Gaussian distribution.
 
-$$
+```math
 f(x) = \frac{1}{\sqrt{2\pi}\,\sigma}\exp\left[-\frac{(x-\mu)^2}{2\sigma^2}\right], \qquad -\infty < x < \infty
-$$
+```
 
 - **$\mu$ is a location parameter.** It is the axis of symmetry and the position of the peak; changing $\mu$ shifts the curve left or right without changing its shape.
-- **$\sigma$ is a scale parameter.** The inflection points are at $\mu \pm \sigma$ and the peak height is $1/(\sqrt{2\pi}\,\sigma)$. Doubling $\sigma$ doubles the width and halves the height of the curve, so the area stays 1.
+- **$\sigma$ is a scale parameter.** The inflection points are at $\mu \pm \sigma$ and the peak height is $`1/(\sqrt{2\pi}\,\sigma)`$. Doubling $\sigma$ doubles the width and halves the height of the curve, so the area stays 1.
 
 ![Figure 3. Location and spread of normal PDFs for different means and standard deviations](../../images/Lec05_Normal-Parameters.png)
 
@@ -356,59 +356,59 @@ Quantities determined by the sum of many small independent factors, such as meas
 
 ### 5.2 Expected Value and Variance
 
-To show that the mean is $\mu$, it suffices to show $E[X - \mu] = 0$. An antiderivative of $(x - \mu)\,e^{-\frac{1}{2}(x-\mu)^2/\sigma^2}$ is $-\sigma^2 e^{-\frac{1}{2}(x-\mu)^2/\sigma^2}$ (this can be checked by differentiation).
+To show that the mean is $\mu$, it suffices to show $E[X - \mu] = 0$. An antiderivative of $`(x - \mu)\,e^{-\frac{1}{2}(x-\mu)^2/\sigma^2}`$ is $-\sigma^2 e^{-\frac{1}{2}(x-\mu)^2/\sigma^2}$ (this can be checked by differentiation).
 
-$$
+```math
 E[X - \mu] = \int_{-\infty}^{\infty}(x - \mu)f(x)\,dx = \frac{1}{\sqrt{2\pi}\,\sigma}\int_{-\infty}^{\infty}(x-\mu)\,e^{-\frac{1}{2}(x-\mu)^2/\sigma^2}\,dx = \frac{-\sigma^2}{\sqrt{2\pi}\,\sigma}\,e^{-\frac{1}{2}(x-\mu)^2/\sigma^2}\,\Bigg|_{-\infty}^{\infty} = 0
-$$
+```
 
 The exponential vanishes at both ends, so the result is 0, and therefore $E(X) = \mu$.
 
-The variance is reduced to the result of Section 4.2 by the substitution $z = (x - \mu)/\sigma$, $dx = \sigma\,dz$.
+The variance is reduced to the result of Section 4.2 by the substitution $z = (x - \mu)/\sigma$, $`dx = \sigma\,dz`$.
 
-$$
+```math
 Var(X) = \int_{-\infty}^{\infty}(x-\mu)^2 f(x)\,dx = \int_{-\infty}^{\infty}\sigma^2 z^2\,\frac{1}{\sqrt{2\pi}\,\sigma}\,e^{-z^2/2}\,\sigma\,dz = \sigma^2\int_{-\infty}^{\infty} z^2\phi(z)\,dz = \sigma^2
-$$
+```
 
-That is, $Var(X) \equiv E[(X - \mu)^2] = \sigma^2$, so the parameter $\sigma$ is indeed the standard deviation. The same substitution also confirms $\int f(x)\,dx = \int \phi(z)\,dz = 1$.
+That is, $Var(X) \equiv E[(X - \mu)^2] = \sigma^2$, so the parameter $\sigma$ is indeed the standard deviation. The same substitution also confirms $`\int f(x)\,dx = \int \phi(z)\,dz = 1`$.
 
 ### 5.3 Linear Transformation and Standardization
 
 Multiplying a normal random variable by a constant and adding a constant again gives a normal random variable. For $d \neq 0$, the following holds.
 
-$$
+```math
 X \sim N(\mu, \sigma^2),\quad Y = c + dX \quad\Rightarrow\quad Y \sim N(c + d\mu,\ d^2\sigma^2)
-$$
+```
 
-The mean and variance follow directly from the Lecture 3 properties $E(c + dX) = c + d\,E(X)$ and $Var(c + dX) = d^2\,Var(X)$. That the shape stays normal is shown through the CDF. If $d > 0$,
+The mean and variance follow directly from the Lecture 3 properties $`E(c + dX) = c + d\,E(X)`$ and $`Var(c + dX) = d^2\,Var(X)`$. That the shape stays normal is shown through the CDF. If $d > 0$,
 
-$$
+```math
 F_Y(y) = P(c + dX \leq y) = P\left(X \leq \frac{y - c}{d}\right) = F_X\left(\frac{y - c}{d}\right)
-$$
+```
 
 and differentiating both sides with respect to $y$ by the chain rule gives
 
-$$
+```math
 f_Y(y) = \frac{1}{d}\,f_X\left(\frac{y - c}{d}\right) = \frac{1}{\sqrt{2\pi}\,d\sigma}\exp\left[-\frac{(y - c - d\mu)^2}{2d^2\sigma^2}\right]
-$$
+```
 
 which is the PDF of $N(c + d\mu, d^2\sigma^2)$. If $d < 0$, the inequality reverses, so $F_Y(y) = 1 - F_X((y-c)/d)$, and differentiation produces $1/|d|$ instead of $1/d$, leading to the same conclusion.
 
 In particular, setting $c = -\mu/\sigma$ and $d = 1/\sigma$ gives **standardization**.
 
-$$
+```math
 X \sim N(\mu, \sigma^2),\quad Z = \frac{X - \mu}{\sigma} \quad\Rightarrow\quad Z \sim N(0, 1)
-$$
+```
 
-$$
+```math
 E(Z) = E\left(\frac{X - \mu}{\sigma}\right) = \frac{1}{\sigma}E(X - \mu) = \frac{1}{\sigma}(\mu - \mu) = 0, \qquad Var(Z) = Var\left(\frac{X - \mu}{\sigma}\right) = \frac{1}{\sigma^2}Var(X - \mu) = \frac{\sigma^2}{\sigma^2} = 1
-$$
+```
 
 The value $z = (x - \mu)/\sigma$ tells how many standard deviations $x$ lies from the mean and is called the **standard score** or z-score. Thanks to standardization, the probabilities of every normal distribution can be computed with the single function $\Phi$.
 
-$$
+```math
 P(a < X < b) = P\left(\frac{a - \mu}{\sigma} < Z < \frac{b - \mu}{\sigma}\right) = \Phi\left(\frac{b - \mu}{\sigma}\right) - \Phi\left(\frac{a - \mu}{\sigma}\right)
-$$
+```
 
 > **Key Point:** A normal probability is always computed in the same two steps. Standardize the endpoints of the interval as $z = (x - \mu)/\sigma$, then take the difference of the standard normal CDF $\Phi$ at those points.
 
@@ -416,9 +416,9 @@ $$
 
 **Example 1 (probability).** Suppose the scores of an intelligence test follow $X \sim N(100, 15^2)$. The probability of a score between 85 and 130 is found as follows. Standardizing the endpoints gives $(85 - 100)/15 = -1$ and $(130 - 100)/15 = 2$.
 
-$$
+```math
 P(85 < X < 130) = P(-1 < Z < 2) = \Phi(2) - \Phi(-1) = \Phi(2) - \lbrace1 - \Phi(1)\rbrace = 0.9772 - (1 - 0.8413) = 0.8185
-$$
+```
 
 Without rounding the table values the result is 0.8186. As Figure 4 shows, the area on the left equals the standardized area on the right.
 
@@ -428,11 +428,11 @@ Without rounding the table values the result is 0.8186. As Figure 4 shows, the a
 
 **Example 2 (quantile).** On the same test, what score is needed to be in the top 5%? The required score $x$ satisfies $P(X > x) = 0.05$. Standardizing gives $P(Z > (x - 100)/15) = 0.05$, so $(x - 100)/15 = z_{0.05} = 1.645$.
 
-$$
+```math
 x = \mu + z_{0.05}\,\sigma = 100 + 1.645 \times 15 = 124.7
-$$
+```
 
-In general, the value with cumulative probability $p$ is $x = \mu + z\,\sigma$, where $z$ satisfies $\Phi(z) = p$. Recovering a value from a probability in this way is called computing a quantile, and in R it is done by `qnorm()` (Section 9).
+In general, the value with cumulative probability $p$ is $`x = \mu + z\,\sigma`$, where $z$ satisfies $\Phi(z) = p$. Recovering a value from a probability in this way is called computing a quantile, and in R it is done by `qnorm()` (Section 9).
 
 ---
 
@@ -444,9 +444,9 @@ In general, the value with cumulative probability $p$ is $x = \mu + z\,\sigma$, 
 
 The binomial distribution $X \sim B(n, p)$ of Lecture 4 counts the successes in $n$ independent trials with success probability $p$, with $E(X) = np$ and $Var(X) = np(1-p)$. For large $n$, adding binomial probabilities directly is tedious, but the standardized binomial variable approaches the normal distribution. This fact is the de Moivre-Laplace theorem.
 
-$$
+```math
 X \sim B(n, p) \quad\Rightarrow\quad Z \equiv \frac{X - np}{\sqrt{np(1-p)}} \xrightarrow{d} N(0, 1) \qquad (n \to \infty,\ 0 < p < 1\ \text{fixed})
-$$
+```
 
 The arrow $\xrightarrow{d}$ denotes **convergence in distribution**: $P(Z \leq z)$ converges to $\Phi(z)$ at every $z$. A binomial variable is the sum of $n$ independent Bernoulli variables, so this theorem is a special case of the central limit theorem of Section 8.
 
@@ -473,7 +473,7 @@ The binomial distribution is discrete, with probability only on integers, while 
 
 - With the continuity correction, $P(X \leq 20) \approx \Phi\left(\frac{20.5 - 15}{3.240}\right) = \Phi(1.697) \approx 0.9552$.
 - Without it, $\Phi\left(\frac{20 - 15}{3.240}\right) = \Phi(1.543) \approx 0.9386$.
-- The exact binomial value is $\sum_{x=0}^{20}\binom{50}{x}0.3^x\,0.7^{50-x} \approx 0.9522$.
+- The exact binomial value is $`\sum_{x=0}^{20}\binom{50}{x}0.3^x\,0.7^{50-x} \approx 0.9522`$.
 
 The error of the corrected approximation is about 0.003, much smaller than the error of about 0.014 without the correction. In Figure 5, the total area of the orange bars is the exact probability, and the approximation is the area under the normal curve up to 20.5.
 
@@ -495,23 +495,23 @@ The three distributions of this section appear less as direct models of natural 
 
 When $Z_1, Z_2, \ldots, Z_n \overset{iid}{\sim} N(0, 1)$, the distribution of their sum of squares is the **chi-square distribution** with $n$ degrees of freedom.
 
-$$
+```math
 Z_1, Z_2, \ldots, Z_n \overset{iid}{\sim} N(0, 1) \quad\Rightarrow\quad \chi_n^2 \equiv Z_1^2 + Z_2^2 + \cdots + Z_n^2 \sim \chi^2(n)
-$$
+```
 
 Note that the superscript 2 in the symbol $\chi_n^2$ is part of its name, while the superscript 2 in $Z_1^2$ is a square. With 1 degree of freedom, $\chi_1^2 = Z_1^2$, the square of a single standard normal variable.
 
 The PDF is as follows; it coincides with the gamma distribution $\Gamma(n/2, 2)$.
 
-$$
+```math
 f(x) = \frac{1}{2^{n/2}\,\Gamma(n/2)}\,x^{n/2 - 1}\,e^{-x/2}, \qquad x > 0
-$$
+```
 
 In practice, the following three values are used more often than this formula.
 
-$$
+```math
 E[\chi_n^2] = n, \qquad Var(\chi_n^2) = 2n, \qquad \sigma(\chi_n^2) = \sqrt{2n}
-$$
+```
 
 These follow directly from the definition. By Section 4.2, $E(Z_i^2) = 1$, so the sum of $n$ terms has mean $n$. Also $Var(Z_i^2) = E(Z_i^4) - \lbrace E(Z_i^2)\rbrace^2 = 3 - 1 = 2$, and the variance of a sum of independent variables is the sum of their variances, so $Var(\chi_n^2) = 2n$.
 
@@ -531,27 +531,27 @@ The chi-square distribution is closely related to the chi-square test used to an
 
 A sum of independent chi-square random variables again follows a chi-square distribution, and the degrees of freedom add. This is called **additivity**.
 
-$$
+```math
 X_1, X_2, \ldots, X_k\ \text{independent},\quad X_i \sim \chi^2(\nu_i) \quad\Rightarrow\quad \sum_{i=1}^{k} X_i \sim \chi^2(\nu_1 + \nu_2 + \cdots + \nu_k)
-$$
+```
 
 The property is natural given the definition. Each $X_i$ is the sum of squares of $\nu_i$ independent standard normal variables, and since the $X_i$ are independent of one another, their sum is the sum of squares of $\nu_1 + \cdots + \nu_k$ independent standard normal variables.
 
 The **degrees of freedom** are the number of independent sources (data) that give information about the population. Once the sample mean $\bar{X}$ of $n$ observations is computed, the deviations $X_i - \bar{X}$ always sum to 0, so knowing $n - 1$ of them determines the last one. That is why the sample variance $S^2 = \frac{1}{n-1}\sum (X_i - \bar{X})^2$, computed from the deviations, has $n - 1$ degrees of freedom. Indeed, if $X_1, \ldots, X_n \overset{iid}{\sim} N(\mu, \sigma^2)$, the following holds, and this statistic is independent of $\bar{X}$ [1].
 
-$$
+```math
 \frac{(n-1)S^2}{\sigma^2} = \sum_{i=1}^{n}\left(\frac{X_i - \bar{X}}{\sigma}\right)^2 \sim \chi^2(n-1)
-$$
+```
 
 If $\mu$ were known, $\sum (X_i - \mu)^2/\sigma^2$ would be $\chi^2(n)$ by definition. Estimating $\mu$ by $\bar{X}$ uses up one piece of information, so one degree of freedom is lost.
 
 ### 7.3 The t Distribution
 
-> **Definition:** If $Z \sim N(0, 1)$ and $Y \sim \chi^2(\nu)$ are independent ($Y \perp Z$), the distribution of $T \equiv Z / \sqrt{Y/\nu}$ is the **t distribution** with $\nu$ degrees of freedom, written $T \sim t(\nu)$.
+> **Definition:** If $Z \sim N(0, 1)$ and $Y \sim \chi^2(\nu)$ are independent ($`Y \perp Z`$), the distribution of $T \equiv Z / \sqrt{Y/\nu}$ is the **t distribution** with $\nu$ degrees of freedom, written $T \sim t(\nu)$.
 
-$$
+```math
 T \equiv \frac{Z}{\sqrt{Y/\nu}} \sim t(\nu), \qquad f(t) = \frac{\Gamma\left(\frac{\nu+1}{2}\right)}{\sqrt{\nu\pi}\,\Gamma\left(\frac{\nu}{2}\right)}\left(1 + \frac{t^2}{\nu}\right)^{-(\nu+1)/2}
-$$
+```
 
 The t distribution has the following properties.
 
@@ -565,7 +565,7 @@ The t distribution has the following properties.
 | 5 | 0.3796 | 2.571 | 0.0510 |
 | 10 | 0.3891 | 2.228 | 0.0367 |
 | 30 | 0.3956 | 2.042 | 0.0273 |
-| $\infty$ ($N(0,1)$) | 0.3989 | 1.960 | 0.0228 |
+| $\infty$ ($`N(0,1)`$) | 0.3989 | 1.960 | 0.0228 |
 
 *Table 6. Peak height, upper 2.5% point, and tail probability of t distributions by degrees of freedom*
 
@@ -573,9 +573,9 @@ Table 6 shows that the fewer the degrees of freedom, the farther out one must go
 
 The t distribution matters because it appears when the unknown $\sigma$ in the standardized sample mean of a normal population is replaced by the sample standard deviation $S$. If $X_1, \ldots, X_n \overset{iid}{\sim} N(\mu, \sigma^2)$, the numerator $(\bar{X} - \mu)/(\sigma/\sqrt{n}) \sim N(0, 1)$, and by Section 7.2, $(n-1)S^2/\sigma^2 \sim \chi^2(n-1)$ is independent of the numerator, so the following holds.
 
-$$
+```math
 \frac{\bar{X} - \mu}{S/\sqrt{n}} = \frac{(\bar{X} - \mu)/(\sigma/\sqrt{n})}{\sqrt{\dfrac{(n-1)S^2/\sigma^2}{n-1}}} \sim t(n-1)
-$$
+```
 
 W. S. Gosset published this result in 1908 under the pen name "Student", which is why the distribution is also called Student's t distribution [2].
 
@@ -583,9 +583,9 @@ W. S. Gosset published this result in 1908 under the pen name "Student", which i
 
 > **Definition:** If $U \sim \chi^2(\nu_1)$ and $V \sim \chi^2(\nu_2)$ are independent, the distribution of the ratio $F \equiv (U/\nu_1)/(V/\nu_2)$, each divided by its degrees of freedom, is the **F distribution** with $(\nu_1, \nu_2)$ degrees of freedom, written $F \sim F(\nu_1, \nu_2)$. $\nu_1$ is the numerator and $\nu_2$ the denominator degrees of freedom.
 
-$$
+```math
 U \sim \chi^2(\nu_1) \perp V \sim \chi^2(\nu_2) \quad\Rightarrow\quad F \equiv \frac{U/\nu_1}{V/\nu_2} \sim F(\nu_1, \nu_2)
-$$
+```
 
 The F distribution has the following properties.
 
@@ -600,7 +600,7 @@ Figure 7 shows a histogram of 10,000 generated values of $(\chi_8^2/8)/(\chi_5^2
 
 *Figure 7. Histogram of 10,000 generated chi-square ratios and the PDF of F(8, 5)*
 
-> **Note:** The simulated mean is close to the theoretical value, but the standard deviation differs considerably, and with other random numbers it can come out below the theoretical value. $F(8, 5)$ has a finite variance ($\nu_2 = 5 > 4$), so the sample variance eventually converges to the theoretical value, but the variance of the sample variance itself is finite only when the fourth moment is finite, and the fourth moment of the F distribution exists only when $\nu_2 > 8$. Occasional very large values therefore shake the sample standard deviation strongly. This must be kept in mind when estimating a variance by simulation from a heavy-tailed distribution.
+> **Note:** The simulated mean is close to the theoretical value, but the standard deviation differs considerably, and with other random numbers it can come out below the theoretical value. $F(8, 5)$ has a finite variance ($`\nu_2 = 5 > 4`$), so the sample variance eventually converges to the theoretical value, but the variance of the sample variance itself is finite only when the fourth moment is finite, and the fourth moment of the F distribution exists only when $\nu_2 > 8$. Occasional very large values therefore shake the sample standard deviation strongly. This must be kept in mind when estimating a variance by simulation from a heavy-tailed distribution.
 
 ---
 
@@ -612,17 +612,17 @@ Figure 7 shows a histogram of 10,000 generated values of $(\chi_8^2/8)/(\chi_5^2
 
 The central limit theorem states that, whatever the shape of the population distribution, the distribution of the sample mean approaches the normal as the sample grows; it is one of the most important results in statistics. Introductory textbooks often phrase it as follows: if a simple random sample (SRS) of size $n$ is drawn from any population with mean $\mu$ and finite standard deviation $\sigma$, then for large $n$ the sampling distribution of the sample mean $\bar{x}$ is approximately normal with mean $\mu$ and standard deviation $\sigma/\sqrt{n}$. Stated precisely in terms of random variables, it reads as follows [1].
 
-> **Definition:** The **central limit theorem (CLT)** states that if $X_1, \ldots, X_n$ are iid random variables from a distribution with mean $\mu$ and variance $\sigma^2$ ($0 < \sigma^2 < \infty$), then the distribution of the standardized sample mean converges to the standard normal distribution as $n \to \infty$.
+> **Definition:** The **central limit theorem (CLT)** states that if $X_1, \ldots, X_n$ are iid random variables from a distribution with mean $\mu$ and variance $\sigma^2$ ($`0 < \sigma^2 < \infty`$), then the distribution of the standardized sample mean converges to the standard normal distribution as $n \to \infty$.
 
-$$
+```math
 \frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \xrightarrow{d} N(0, 1), \qquad \bar{X}_n = \frac{1}{n}\sum_{i=1}^{n} X_i
-$$
+```
 
 For sufficiently large $n$, this can be restated as approximate distributions of the sum $S_n$ and the mean $\bar{X}$. The symbol $\overset{a}{\sim}$ means "approximately distributed as".
 
-$$
+```math
 S_n = X_1 + X_2 + \cdots + X_n \overset{a}{\sim} N(n\mu,\ n\sigma^2), \qquad \bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i \overset{a}{\sim} N\left(\mu,\ \frac{\sigma^2}{n}\right)
-$$
+```
 
 The means and variances $E(S_n) = n\mu$, $Var(S_n) = n\sigma^2$, $E(\bar{X}) = \mu$, and $Var(\bar{X}) = \sigma^2/n$ hold exactly by linearity of expectation and independence alone (Lecture 6, Section 1). What the central limit theorem adds is that the **shape** of the distribution approaches the normal.
 
@@ -635,7 +635,7 @@ Before applying the central limit theorem, check the following conditions.
 - **Independence:** The observations must be independent, which a random sample satisfies. Sampling without replacement from a finite population is not strictly independent, but a common rule of thumb treats it as independent when the sample is at most about 10% of the population.
 - **Identical distribution:** The basic form above assumes that every $X_i$ has the same distribution. Generalizations (such as the Lindeberg condition) allow the distributions to differ, but they require that no single term dominate the sum.
 - **Finite variance:** $\sigma^2 < \infty$ is required. For a distribution without a variance (or mean), such as the Cauchy distribution, the mean of $n$ independent variables again follows the same Cauchy distribution, so it never approaches the normal however large $n$ becomes [1].
-- **Sufficiently large $n$:** How large depends on the shape of the population. If the population has skewness (degree of asymmetry) $\gamma$, then $\bar{X}$ has skewness $\gamma/\sqrt{n}$. For example, for the exponential distribution with skewness 2 and $n = 30$, the skewness of $\bar{X}$ is still $2/\sqrt{30} \approx 0.37$. "$n \geq 30$" is only a rough rule of thumb, and strongly skewed or heavy-tailed populations need a larger $n$.
+- **Sufficiently large $n$:** How large depends on the shape of the population. If the population has skewness (degree of asymmetry) $\gamma$, then $\bar{X}$ has skewness $\gamma/\sqrt{n}$. For example, for the exponential distribution with skewness 2 and $n = 30$, the skewness of $\bar{X}$ is still $2/\sqrt{30} \approx 0.37$. "$`n \geq 30`$" is only a rough rule of thumb, and strongly skewed or heavy-tailed populations need a larger $n$.
 
 If the population itself is normal, $\bar{X}$ follows $N(\mu, \sigma^2/n)$ exactly for every $n$ (Lecture 6, Section 2). In that case the central limit theorem is not needed.
 
@@ -651,9 +651,9 @@ The histogram for $n = 1$ is the shape of the population itself. For $n = 2$ and
 
 The accuracy can be checked numerically. For $n = 30$, the normal approximation of $P(\bar{X} > 1.2)$ is
 
-$$
+```math
 P(\bar{X} > 1.2) \approx P\left(Z > \frac{1.2 - 1}{1/\sqrt{30}}\right) = P(Z > 1.095) = 1 - \Phi(1.095) \approx 0.1367
-$$
+```
 
 The sum of 30 exponential variables follows the gamma distribution $\Gamma(30, 1)$, so the exact value is $P(S_{30} > 36) \approx 0.1379$, and the error of the approximation is about 0.001.
 
@@ -732,7 +732,7 @@ pbinom(20, size = 50, prob = 0.3)                                  # P(X <= 20) 
 | Continuous random variable | A random variable whose values are spread continuously over an interval of real numbers. A single point has probability 0, so probabilities are assigned to intervals, and including endpoints does not change them. |
 | CDF | $F(x) = P(X \leq x)$. It is non-decreasing with $F(-\infty) = 0$, $F(\infty) = 1$, and $P(a < X \leq b) = F(b) - F(a)$. |
 | PDF | $f = F'$, and the probability of an interval is the area under $f$. $f(x)$ is a density, not a probability, so it can exceed 1. |
-| Expected value and variance | $E(X) = \int x f(x)\,dx$ and $Var(X) = E(X^2) - \mu^2$. If the integral diverges, the expected value does not exist. |
+| Expected value and variance | $`E(X) = \int x f(x)\,dx`$ and $Var(X) = E(X^2) - \mu^2$. If the integral diverges, the expected value does not exist. |
 | Uniform distribution | $U(a, b)$ has a flat density of height $1/(b-a)$, mean $(a+b)/2$, and variance $(b-a)^2/12$. |
 | Standard normal distribution | $\phi(z) = e^{-z^2/2}/\sqrt{2\pi}$, with mean 0 and variance 1. $\Phi$ has no closed form and is found from the standard normal table or `pnorm()`, with $\Phi(-z) = 1 - \Phi(z)$. |
 | Normal distribution | In $N(\mu, \sigma^2)$, $\mu$ sets the location and $\sigma$ the spread. A linear transformation stays normal, and $Z = (X-\mu)/\sigma \sim N(0, 1)$ standardizes it. |
@@ -763,7 +763,7 @@ pbinom(20, size = 50, prob = 0.3)                                  # P(X <= 20) 
    <details>
    <summary>Answer</summary>
 
-   $f \geq 0$ and $\int_0^1 3x^2\,dx = [x^3]_0^1 = 1$, so it is a PDF. $P(X \leq 0.5) = [x^3]_0^{0.5} = 0.125$. $f(x)$ is a probability per unit length, not a probability, so it may exceed 1. Probabilities are areas, which always lie between 0 and 1.
+   $f \geq 0$ and $`\int_0^1 3x^2\,dx = [x^3]_0^1 = 1`$, so it is a PDF. $`P(X \leq 0.5) = [x^3]_0^{0.5} = 0.125`$. $f(x)$ is a probability per unit length, not a probability, so it may exceed 1. Probabilities are areas, which always lie between 0 and 1.
 
    </details>
 
@@ -790,7 +790,7 @@ pbinom(20, size = 50, prob = 0.3)                                  # P(X <= 20) 
    <details>
    <summary>Answer</summary>
 
-   With $c = 3$ and $d = -2$, $Y \sim N(3 - 2 \cdot 1,\ (-2)^2 \cdot 4) = N(1, 16)$. That is, $Y$ is normal with mean 1 and standard deviation 4. Even with a negative $d$, the variance is multiplied by $d^2$.
+   With $c = 3$ and $d = -2$, $`Y \sim N(3 - 2 \cdot 1,\ (-2)^2 \cdot 4) = N(1, 16)`$. That is, $Y$ is normal with mean 1 and standard deviation 4. Even with a negative $d$, the variance is multiplied by $d^2$.
 
    </details>
 

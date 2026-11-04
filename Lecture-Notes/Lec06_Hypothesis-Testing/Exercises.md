@@ -24,9 +24,9 @@ Exercises 1-3 check the sampling distribution of the sample mean by simulation a
 
 **Problem:** From a normal population with mean 100 and variance 100, repeat 10,000 times the task of randomly drawing 10 observations and computing their sample mean, and find the distribution of the sample mean. In theory, the following holds.
 
-$$
+```math
 \bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i \sim N\left(100, \frac{100}{10}\right), \qquad \frac{\bar{X} - 100}{10/\sqrt{10}} \sim N(0, 1)
-$$
+```
 
 Write an R function `testSampleMeanDist()` that takes the sample size `ns`, population mean `mu`, population standard deviation `sig`, number of repetitions `N`, number of histogram bars `ng`, random seed `seed`, and number of printed digits `dig` as arguments. The function should do the following.
 
@@ -53,9 +53,9 @@ Height_2020yr <- c(178.4, 168.0, 173.0, 174.4, 173.2, 170.4, 179.2, 170.5, 181.9
 
 The hypotheses are as follows. Assume that the population standard deviation is known to be the 1998 value, 5.4 cm.
 
-$$
+```math
 H_0:\ \mu_{2020} = 169.3 \qquad \text{vs} \qquad H_1:\ \mu_{2020} \neq 169.3,\quad H_1:\ \mu_{2020} > 169.3,\quad H_1:\ \mu_{2020} < 169.3
-$$
+```
 
 1. Implement the Z statistic formula directly as an R function `z.test()` that takes a data vector `input`, the null mean `mu`, and the population variance `var` and returns the Z statistic.
 2. Compute the Z statistic with this function. What does its value mean?
@@ -83,9 +83,9 @@ dim(Data)
 
 We want to test with these data whether the heights of men and women differ.
 
-$$
+```math
 H_0:\ \mu_{\text{Male}} = \mu_{\text{Female}} \qquad \text{vs} \qquad H_1:\ \mu_{\text{Male}} \neq \mu_{\text{Female}}
-$$
+```
 
 1. Perform the two-sided test with `t.test()` and interpret the result.
 2. Also test with `alternative = "less"` and `alternative = "greater"`, and state precisely what each alternative hypothesis is.

@@ -108,11 +108,11 @@ The results are interpreted as follows.
 
 ## Exercise 2: A One-Sample Z-Test of Men's Heights
 
-**Problem:** Using the heights of 30 men in 2020, Z-test $H_0: \mu_{2020} = 169.3$ against three alternatives ($\sigma = 5.4$). The problem is in [Exercise 2](Exercises.md#exercise-2-a-one-sample-z-test-of-mens-heights).
+**Problem:** Using the heights of 30 men in 2020, Z-test $H_0: \mu_{2020} = 169.3$ against three alternatives ($`\sigma = 5.4`$). The problem is in [Exercise 2](Exercises.md#exercise-2-a-one-sample-z-test-of-mens-heights).
 
 ### Solution
 
-**Answer:** $z_{\text{stat}} = 2.103$. The p-values are 0.0355 (two-sided), 0.0177 (right-sided, $>$), and 0.9823 (left-sided, $<$), so at significance level 0.05 the two-sided and right-sided tests reject $H_0$ and the left-sided test does not.
+**Answer:** $z_{\text{stat}} = 2.103$. The p-values are 0.0355 (two-sided), 0.0177 (right-sided, $`>`$), and 0.9823 (left-sided, $`<`$), so at significance level 0.05 the two-sided and right-sided tests reject $H_0$ and the left-sided test does not.
 
 **1. Writing the function.** Translate the Z statistic $z_{\text{stat}} = (\bar{x} - \mu_0)/(\sigma/\sqrt{n})$ of [Lecture 6, Section 6.2](Concepts_Lecture.md#62-test-statistic) directly.
 
@@ -144,9 +144,9 @@ mean(Height_2020yr)
 
 By hand, $\bar{x} = 171.373$ and $SE = 5.4/\sqrt{30} = 0.9859$, so
 
-$$
+```math
 z_{\text{stat}} = \frac{171.373 - 169.3}{0.9859} = \frac{2.073}{0.9859} = 2.103
-$$
+```
 
 This value means that the mean height of the 2020 sample exceeds the 1998 mean by about 2.1 standard errors. If $H_0$ is true, $Z \sim N(0, 1)$, so values more than 2 standard errors from the mean occur only rarely.
 
@@ -244,7 +244,7 @@ mean in group Female   mean in group Male
 - `tapply(Data$Height, Data$Gender, mean)` computes the mean of `Height` for each level of `Gender`. The values, 162.32 for women and 172.99 for men, are close to the generating values 162.3 and 173.
 - The formula in `t.test(Height ~ Gender, Data, ...)` means "compare `Height` split into the two groups of `Gender`", and the second positional argument `Data` is the data frame in which to find the variables.
 
-In the output, the negative sign of $t = -37.997$ means that the mean of the first group (women) is smaller than that of the second group (men). `p-value < 2.2e-16` means that the p-value is below the lower limit R prints (the machine epsilon of double-precision numbers, about $2.2 \times 10^{-16}$); it does not mean that the p-value is exactly 0. The 95% confidence interval for the mean difference (female − male), $(-11.23, -10.12)$, lies far from 0. Therefore $H_0: \mu_{\text{Male}} = \mu_{\text{Female}}$ is rejected, and we conclude that the mean height of men exceeds that of women by about 10.7 cm. The simulated data were set up with a difference of 10.7 cm between the population means, very large relative to the standard deviation of 2, so the test statistic is also very large.
+In the output, the negative sign of $t = -37.997$ means that the mean of the first group (women) is smaller than that of the second group (men). `p-value < 2.2e-16` means that the p-value is below the lower limit R prints (the machine epsilon of double-precision numbers, about $`2.2 \times 10^{-16}`$); it does not mean that the p-value is exactly 0. The 95% confidence interval for the mean difference (female − male), $(-11.23, -10.12)$, lies far from 0. Therefore $H_0: \mu_{\text{Male}} = \mu_{\text{Female}}$ is rejected, and we conclude that the mean height of men exceeds that of women by about 10.7 cm. The simulated data were set up with a difference of 10.7 cm between the population means, very large relative to the standard deviation of 2, so the test statistic is also very large.
 
 **2. One-sided tests and the direction of the alternative.**
 

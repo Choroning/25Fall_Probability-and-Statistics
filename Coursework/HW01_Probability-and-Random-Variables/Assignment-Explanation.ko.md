@@ -86,15 +86,21 @@ Coursework/HW01_Probability-and-Random-Variables/
 
 **풀이.** 미지수가 두 개이므로 식이 두 개 필요하다. 첫째 식은 **확률분포의 성질**, 즉 모든 확률의 합이 1이라는 조건에서 얻는다.
 
-$$a + (a + b) + b = 2a + 2b = 1 \quad\Rightarrow\quad a + b = \frac{1}{2}$$
+```math
+a + (a + b) + b = 2a + 2b = 1 \quad\Rightarrow\quad a + b = \frac{1}{2}
+```
 
 둘째 식은 주어진 기댓값 조건에서 얻는다. 확률변수의 함수 $g(X) = X^2$의 기댓값은 각 값 $x$에 대해 $g(x)$에 확률을 곱해 더한 것이다.
 
-$$E(X^2) = 1^2 \cdot a + 2^2 \cdot (a + b) + 3^2 \cdot b = a + 4a + 4b + 9b = 5a + 13b$$
+```math
+E(X^2) = 1^2 \cdot a + 2^2 \cdot (a + b) + 3^2 \cdot b = a + 4a + 4b + 9b = 5a + 13b
+```
 
 $5a + 13b = a + 5$이므로 $4a + 13b = 5$이다. 첫째 식에서 $a = \frac{1}{2} - b$를 대입하면 다음과 같다.
 
-$$4\left(\frac{1}{2} - b\right) + 13b = 2 + 9b = 5 \quad\Rightarrow\quad b = \frac{1}{3}, \quad a = \frac{1}{2} - \frac{1}{3} = \frac{1}{6}$$
+```math
+4\left(\frac{1}{2} - b\right) + 13b = 2 + 9b = 5 \quad\Rightarrow\quad b = \frac{1}{3}, \quad a = \frac{1}{2} - \frac{1}{3} = \frac{1}{6}
+```
 
 따라서 $b - a = \frac{1}{3} - \frac{1}{6} = \frac{1}{6}$이다. 구한 값으로 확률은 $\frac{1}{6}, \frac{1}{2}, \frac{1}{3}$이 되어 모두 0 이상이고 합이 1이므로 올바른 확률분포이다.
 
@@ -106,7 +112,9 @@ $$4\left(\frac{1}{2} - b\right) + 13b = 2 + 9b = 5 \quad\Rightarrow\quad b = \fr
 
 **풀이.** 각 동전이 서로 독립이고 앞면의 확률이 $\frac{1}{2}$이면 $X$는 이항분포 $B(4, \frac{1}{2})$를 따른다.
 
-$$P(X = k) = \binom{4}{k}\left(\frac{1}{2}\right)^k\left(\frac{1}{2}\right)^{4-k} = \frac{\binom{4}{k}}{16}, \quad k = 0, 1, 2, 3, 4$$
+```math
+P(X = k) = \binom{4}{k}\left(\frac{1}{2}\right)^k\left(\frac{1}{2}\right)^{4-k} = \frac{\binom{4}{k}}{16}, \quad k = 0, 1, 2, 3, 4
+```
 
 이 식으로 $X$의 분포를 구하고, $Y$의 각 값에 대응하는 $X$의 확률을 모은다. $Y = 2$에는 $X = 2, 3, 4$가 모두 대응한다.
 
@@ -119,7 +127,9 @@ $$P(X = k) = \binom{4}{k}\left(\frac{1}{2}\right)^k\left(\frac{1}{2}\right)^{4-k
 
 따라서 $P(Y = 0) = \frac{1}{16}$, $P(Y = 1) = \frac{4}{16}$, $P(Y = 2) = \frac{6 + 4 + 1}{16} = \frac{11}{16}$이고, 기댓값은 다음과 같다.
 
-$$E(Y) = 0 \cdot \frac{1}{16} + 1 \cdot \frac{4}{16} + 2 \cdot \frac{11}{16} = \frac{26}{16} = \frac{13}{8} = 1.625$$
+```math
+E(Y) = 0 \cdot \frac{1}{16} + 1 \cdot \frac{4}{16} + 2 \cdot \frac{11}{16} = \frac{26}{16} = \frac{13}{8} = 1.625
+```
 
 $Y$의 분포를 따로 만들지 않고 $E[g(X)] = \sum_x g(x) P(X = x)$로 바로 계산해도 결과가 같다. $Y = \min(X, 2)$이므로 $E(Y)$는 $E(X) = 2$보다 작다.
 
@@ -129,7 +139,9 @@ $Y$의 분포를 따로 만들지 않고 $E[g(X)] = \sum_x g(x) P(X = x)$로 바
 
 **풀이.** 3개를 동시에 꺼내는 방법은 $\binom{5}{3} = 10$가지이고 모두 같은 확률이다. 최댓값이 $k$이려면 $k$가 적힌 공을 반드시 꺼내고, 나머지 2개를 $1, \dots, k-1$ 중에서 골라야 한다. 따라서 $X$가 가질 수 있는 값은 3, 4, 5이고 확률은 다음과 같다.
 
-$$P(X = k) = \frac{\binom{k-1}{2}}{\binom{5}{3}}, \quad k = 3, 4, 5$$
+```math
+P(X = k) = \frac{\binom{k-1}{2}}{\binom{5}{3}}, \quad k = 3, 4, 5
+```
 
 | $X$ | 3 | 4 | 5 |
 |:-----:|:-----:|:-----:|:-----:|
@@ -140,15 +152,23 @@ $$P(X = k) = \frac{\binom{k-1}{2}}{\binom{5}{3}}, \quad k = 3, 4, 5$$
 
 기댓값과 제곱의 기댓값은 다음과 같다.
 
-$$E(X) = 3 \cdot \frac{1}{10} + 4 \cdot \frac{3}{10} + 5 \cdot \frac{6}{10} = \frac{3 + 12 + 30}{10} = \frac{9}{2}$$
+```math
+E(X) = 3 \cdot \frac{1}{10} + 4 \cdot \frac{3}{10} + 5 \cdot \frac{6}{10} = \frac{3 + 12 + 30}{10} = \frac{9}{2}
+```
 
-$$E(X^2) = 9 \cdot \frac{1}{10} + 16 \cdot \frac{3}{10} + 25 \cdot \frac{6}{10} = \frac{9 + 48 + 150}{10} = \frac{207}{10}$$
+```math
+E(X^2) = 9 \cdot \frac{1}{10} + 16 \cdot \frac{3}{10} + 25 \cdot \frac{6}{10} = \frac{9 + 48 + 150}{10} = \frac{207}{10}
+```
 
-$$\mathrm{Var}(X) = E(X^2) - \lbrace E(X)\rbrace^2 = \frac{207}{10} - \frac{81}{4} = \frac{414 - 405}{20} = \frac{9}{20}$$
+```math
+\mathrm{Var}(X) = E(X^2) - \lbrace E(X)\rbrace^2 = \frac{207}{10} - \frac{81}{4} = \frac{414 - 405}{20} = \frac{9}{20}
+```
 
 상수 $a$, $b$에 대해 $E(aX + b) = aE(X) + b$이고 $\mathrm{Var}(aX + b) = a^2\mathrm{Var}(X)$이다. 상수를 더하면 분포가 평행 이동할 뿐 퍼진 정도는 그대로이므로 분산에서 $b$가 사라지고, 값을 $a$배 하면 편차도 $a$배가 되므로 분산은 $a^2$배가 된다.
 
-$$E(4X + 3) = 4 \cdot \frac{9}{2} + 3 = 21, \qquad \mathrm{Var}(2X + 2) = 2^2 \cdot \frac{9}{20} = \frac{9}{5}$$
+```math
+E(4X + 3) = 4 \cdot \frac{9}{2} + 3 = 21, \qquad \mathrm{Var}(2X + 2) = 2^2 \cdot \frac{9}{20} = \frac{9}{5}
+```
 
 ### 2.4 Q11. 제곱의 기댓값과 분산의 관계
 
@@ -156,11 +176,13 @@ $$E(4X + 3) = 4 \cdot \frac{9}{2} + 3 = 21, \qquad \mathrm{Var}(2X + 2) = 2^2 \c
 
 **풀이.** 참이다. 표준편차의 제곱은 분산이므로 $\mathrm{Sd}(X)^2 = \mathrm{Var}(X)$이고, 분산의 정의 $\mathrm{Var}(X) = E[(X - \mu)^2]$에서 출발해 전개한다.
 
-$$\begin{aligned}
+```math
+\begin{aligned}
 \mathrm{Var}(X) &= E[(X - \mu)^2] = E[X^2 - 2\mu X + \mu^2] \\
 &= E[X^2] - 2\mu E[X] + \mu^2 \qquad (\text{기댓값의 선형성, } \mu \text{는 상수}) \\
 &= E[X^2] - 2\mu^2 + \mu^2 = E[X^2] - \mu^2
-\end{aligned}$$
+\end{aligned}
+```
 
 양변에 $\mu^2$를 더하면 $E[X^2] = \mathrm{Var}(X) + \mu^2 = \mathrm{Sd}(X)^2 + \mu^2$이다. 둘째 줄에서 **기댓값의 선형성**(linearity of expectation), 즉 $E[aX + bY + c] = aE[X] + bE[Y] + c$를 썼고, $\mu$는 확률변수가 아닌 상수이므로 $E[\mu^2] = \mu^2$이다. 이 유도는 이산형과 연속형에 모두 성립하며, $E[X^2]$가 유한하다는 것만 전제한다.
 
@@ -178,7 +200,9 @@ $$\begin{aligned}
 
 **풀이.** 각 아이가 서로 독립으로 남자(M)나 여자(F)일 확률이 각각 $\frac{1}{2}$이라 가정한다. 첫째와 둘째의 성별을 순서대로 적은 표본공간 $S = \lbrace MM, MF, FM, FF\rbrace$의 네 결과는 확률이 모두 $\frac{1}{4}$이다. "자녀 중 한 명이 남자아이"라는 정보는 적어도 한 명이 남자아이라는 사건 $B = \lbrace MM, MF, FM\rbrace$이고, 구하는 사건은 둘 다 남자아이인 $A = \lbrace MM\rbrace$이다. **조건부 확률**(conditional probability)의 정의 $P(A \mid B) = \frac{P(A \cap B)}{P(B)}$에 대입하면 다음과 같다.
 
-$$P(A \mid B) = \frac{P(\lbrace MM\rbrace)}{P(\lbrace MM, MF, FM\rbrace)} = \frac{1/4}{3/4} = \frac{1}{3}$$
+```math
+P(A \mid B) = \frac{P(\lbrace MM\rbrace)}{P(\lbrace MM, MF, FM\rbrace)} = \frac{1/4}{3/4} = \frac{1}{3}
+```
 
 조건이 주어지면 표본공간이 $B$로 줄어들고, 줄어든 표본공간의 세 결과 중 하나만 $A$에 속한다.
 
@@ -198,7 +222,9 @@ $$P(A \mid B) = \frac{P(\lbrace MM\rbrace)}{P(\lbrace MM, MF, FM\rbrace)} = \fra
 
 **풀이.** 베이즈 정리는 **사전 확률**(prior probability)에 기초하여 **사후 확률**(posterior probability)을 추론한다. 영어 문장의 빈칸 순서로는 첫째가 사후 확률, 둘째가 사전 확률이고, 한국어 문장의 순서로는 첫째가 사전 확률, 둘째가 사후 확률이다.
 
-$$P(A \mid B) = \frac{P(B \mid A)\,P(A)}{P(B)}$$
+```math
+P(A \mid B) = \frac{P(B \mid A)\,P(A)}{P(B)}
+```
 
 - $P(A)$는 사건 $B$를 관측하기 전의 믿음인 사전 확률이다.
 - $P(B \mid A)$는 $A$가 참일 때 관측 $B$가 나올 확률인 **가능도**(likelihood)이다.
@@ -222,10 +248,10 @@ $$P(A \mid B) = \frac{P(B \mid A)\,P(A)}{P(B)}$$
 | 항목 | 답 |
 |:-----|:-----|
 | 확률변수의 표기 | $X \sim Poi(4)$ |
-| 확률질량함수 | $P(X = x) = \dfrac{e^{-4}\,4^x}{x!}, \quad x = 0, 1, 2, \dots$ |
+| 확률질량함수 | $`P(X = x) = \dfrac{e^{-4}\,4^x}{x!}, \quad x = 0, 1, 2, \dots`$ |
 | $E(X)$ | $\lambda = 4$ |
 | $\mathrm{Var}(X)$ | $\lambda = 4$ |
-| $P(X = 2)$ | $\dfrac{e^{-4}\,4^2}{2!} = 8e^{-4} \approx 0.1465$ |
+| $P(X = 2)$ | $`\dfrac{e^{-4}\,4^2}{2!} = 8e^{-4} \approx 0.1465`$ |
 
 *표 5. Q3의 포아송분포 풀이*
 
@@ -269,9 +295,13 @@ $$P(A \mid B) = \frac{P(B \mid A)\,P(A)}{P(B)}$$
 
 합이 31개 항이어서 손으로 계산하기 어려우므로 **정규 근사**(normal approximation)를 쓸 수 있다. $np = 60 \ge 5$이고 $n(1 - p) = 40 \ge 5$이므로 $X$는 근사적으로 $N(60, 24)$를 따르고, 표준편차는 $\sqrt{24} \approx 4.899$이다. 이산 분포를 연속 분포로 근사하므로 경계에 0.5를 더하거나 빼는 **연속성 수정**(continuity correction)을 적용한다.
 
-$$P(X \ge 70) \approx P\left(Z \ge \frac{69.5 - 60}{\sqrt{24}}\right) = P(Z \ge 1.939) \approx 0.0262$$
+```math
+P(X \ge 70) \approx P\left(Z \ge \frac{69.5 - 60}{\sqrt{24}}\right) = P(Z \ge 1.939) \approx 0.0262
+```
 
-$$P(X = 70) \approx P\left(\frac{69.5 - 60}{\sqrt{24}} \le Z \le \frac{70.5 - 60}{\sqrt{24}}\right) = P(1.939 \le Z \le 2.143) \approx 0.0102$$
+```math
+P(X = 70) \approx P\left(\frac{69.5 - 60}{\sqrt{24}} \le Z \le \frac{70.5 - 60}{\sqrt{24}}\right) = P(1.939 \le Z \le 2.143) \approx 0.0102
+```
 
 근사값 0.0262와 0.0102는 정확한 값 0.0248과 0.0100에 가깝다. 연속성 수정 없이 $P(Z \ge \frac{70 - 60}{\sqrt{24}}) = P(Z \ge 2.041)$로 계산하면 약 0.0206이 되어 오차가 더 크다.
 
@@ -304,7 +334,9 @@ Q12와 Q13은 두 확률변수 $X$, $Y$의 **결합확률질량함수**(joint pr
 
 **풀이.** $F_{X,Y}(x_i, y_j)$는 $x \le x_i$이고 $y \le y_j$인 모든 칸의 확률을 더한 값이다. 표 8에서 왼쪽 위 모서리부터 $(x_i, y_j)$ 칸까지의 직사각형 안을 모두 더하면 된다. 예를 들어 다음과 같다.
 
-$$F_{X,Y}(2, 8) = p(1, 6) + p(1, 8) + p(2, 6) + p(2, 8) = \frac{1}{5} + 0 + 0 + \frac{1}{5} = \frac{2}{5}$$
+```math
+F_{X,Y}(2, 8) = p(1, 6) + p(1, 8) + p(2, 6) + p(2, 8) = \frac{1}{5} + 0 + 0 + \frac{1}{5} = \frac{2}{5}
+```
 
 | $F_{X,Y}(x, y)$ | $y = 6$ | $y = 8$ | $y = 10$ |
 |:-----:|:-----:|:-----:|:-----:|
@@ -324,17 +356,23 @@ $$F_{X,Y}(2, 8) = p(1, 6) + p(1, 8) + p(2, 6) + p(2, 8) = \frac{1}{5} + 0 + 0 + 
 
 **풀이.** 주변확률질량함수로 각 기댓값을 구한다.
 
-$$E[X] = 1 \cdot \frac{2}{5} + 2 \cdot \frac{1}{5} + 3 \cdot \frac{2}{5} = \frac{10}{5} = 2, \qquad E[Y] = 6 \cdot \frac{2}{5} + 8 \cdot \frac{1}{5} + 10 \cdot \frac{2}{5} = \frac{40}{5} = 8$$
+```math
+E[X] = 1 \cdot \frac{2}{5} + 2 \cdot \frac{1}{5} + 3 \cdot \frac{2}{5} = \frac{10}{5} = 2, \qquad E[Y] = 6 \cdot \frac{2}{5} + 8 \cdot \frac{1}{5} + 10 \cdot \frac{2}{5} = \frac{40}{5} = 8
+```
 
 $E[XY]$는 결합확률질량함수에서 확률이 0이 아닌 다섯 칸만 더하면 된다.
 
-$$E[XY] = \sum_{x}\sum_{y} xy\,p(x, y) = \frac{1 \cdot 6 + 1 \cdot 10 + 2 \cdot 8 + 3 \cdot 6 + 3 \cdot 10}{5} = \frac{6 + 10 + 16 + 18 + 30}{5} = \frac{80}{5} = 16$$
+```math
+E[XY] = \sum_{x}\sum_{y} xy\,p(x, y) = \frac{1 \cdot 6 + 1 \cdot 10 + 2 \cdot 8 + 3 \cdot 6 + 3 \cdot 10}{5} = \frac{6 + 10 + 16 + 18 + 30}{5} = \frac{80}{5} = 16
+```
 
 $E[X]E[Y] = 2 \cdot 8 = 16$이므로 $E[XY] = E[X]E[Y]$가 성립하고, **공분산**(covariance) $\mathrm{Cov}(X, Y) = E[XY] - E[X]E[Y] = 0$이다. 즉 $X$와 $Y$는 **무상관**(uncorrelated)이다.
 
 그러나 $X$와 $Y$는 **독립이 아니다.** 두 이산확률변수가 독립이려면 모든 $(x, y)$에 대해 $p(x, y) = p_X(x)p_Y(y)$가 성립해야 하는데, 한 칸만 확인해도 성립하지 않는다.
 
-$$p(1, 6) = \frac{1}{5} \ne p_X(1)\,p_Y(6) = \frac{2}{5} \cdot \frac{2}{5} = \frac{4}{25}$$
+```math
+p(1, 6) = \frac{1}{5} \ne p_X(1)\,p_Y(6) = \frac{2}{5} \cdot \frac{2}{5} = \frac{4}{25}
+```
 
 $p(2, 6) = 0 \ne \frac{1}{5} \cdot \frac{2}{5}$도 반례이다. 실제로 $X = 2$이면 $Y = 8$로 정해지고, $X$가 1이나 3이면 $Y$는 6이나 10이므로 $X$의 값이 $Y$의 분포를 바꾼다. 이 의존 관계는 $x = 2$를 중심으로 대칭이어서 직선적인 경향이 없고, 직선적인 관계만 재는 공분산은 0이 된다.
 

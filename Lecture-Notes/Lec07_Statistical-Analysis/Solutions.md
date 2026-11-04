@@ -152,7 +152,7 @@ t.test(len ~ supp, data = tg)$p.value                     # p-value of the Welch
 
 **Explanation:** ANOVA splits the total variation into variation between groups and variation within groups ([Lecture 7, Section 4.1](Concepts_Lecture.md#41-analysis-of-variance-anova)).
 
-1. **Group means and overall mean:** $\bar{y}_A = 24/4 = 6$, $\bar{y}_B = 32/4 = 8$, $\bar{y}_C = 20/4 = 5$, and the overall mean is $\bar{y} = 76/12 = 6.333$.
+1. **Group means and overall mean:** $`\bar{y}_A = 24/4 = 6`$, $`\bar{y}_B = 32/4 = 8`$, $`\bar{y}_C = 20/4 = 5`$, and the overall mean is $\bar{y} = 76/12 = 6.333$.
 2. **Between-group sum of squares:** $SSB = 4\lbrace(6 - 6.333)^2 + (8 - 6.333)^2 + (5 - 6.333)^2\rbrace = 4(0.111 + 2.778 + 1.778) = 4 \times 4.667 = 18.667$.
 3. **Within-group sum of squares:** the deviations are $-1, 1, 0, 0$ in A, $0, 1, -1, 0$ in B, and $-1, 0, 1, 0$ in C, so each group's sum of squared deviations is 2 and $SSW = 2 + 2 + 2 = 6$.
 4. **Mean squares:** the degrees of freedom are $k - 1 = 2$ between groups and $N - k = 12 - 3 = 9$ within groups, so $MSB = 18.667/2 = 9.333$ and $MSW = 6/9 = 0.667$.
@@ -186,7 +186,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 ### Solution
 
-**Answer:** The ANOVA gives $F = 15.37$ (degrees of freedom 5 and 65) with a p-value of $5.94 \times 10^{-10}$. Neither the normality of the residuals (p = 0.627) nor equal variances (p = 0.660) is rejected, and the Kruskal-Wallis test (p = $5.1 \times 10^{-7}$) gives the same conclusion, so the mean weight is concluded to differ by feed.
+**Answer:** The ANOVA gives $F = 15.37$ (degrees of freedom 5 and 65) with a p-value of $5.94 \times 10^{-10}$. Neither the normality of the residuals (p = 0.627) nor equal variances (p = 0.660) is rejected, and the Kruskal-Wallis test (p = $`5.1 \times 10^{-7}`$) gives the same conclusion, so the mean weight is concluded to differ by feed.
 
 **Explanation:**
 
@@ -233,7 +233,7 @@ Which feeds differ is checked by comparing all 15 pairs with `TukeyHSD(fit)`. Th
 
 ### Solution
 
-**Answer:** (a) Pearson correlation coefficient 0.901 (p < $2.2 \times 10^{-16}$), Spearman rank correlation coefficient 0.778. (b) $\widehat{\text{eruptions}} = -1.874 + 0.0756 \times \text{waiting}$, coefficient of determination 0.811. (c) About 4.18 minutes. (d) $b_1 \approx 0.0756$, $b_0 \approx -1.872$.
+**Answer:** (a) Pearson correlation coefficient 0.901 (p < $`2.2 \times 10^{-16}`$), Spearman rank correlation coefficient 0.778. (b) $\widehat{\text{eruptions}} = -1.874 + 0.0756 \times \text{waiting}$, coefficient of determination 0.811. (c) About 4.18 minutes. (d) $b_1 \approx 0.0756$, $b_0 \approx -1.872$.
 
 **Explanation:**
 
@@ -269,7 +269,7 @@ sample estimates:
 - **(a)** With $r = 0.901$ there is a strong positive linear relationship: the longer the wait, the longer the eruption. The test statistic is $t = r\sqrt{n-2}/\sqrt{1-r^2} = 0.9008\sqrt{270}/\sqrt{1 - 0.8115} = 14.802/0.4342 \approx 34.09$ ([Lecture 7, Section 5.1](Concepts_Lecture.md#51-the-pearson-correlation-coefficient)). The Spearman rank correlation 0.778 is smaller than the Pearson coefficient because these data split into two clusters, short waits with short eruptions and long waits with long eruptions. The Pearson coefficient is inflated by the large distance between the clusters, while ranks shrink that distance and reflect more of the weaker relationship within each cluster ([Lecture 7, Section 5.2](Concepts_Lecture.md#52-the-spearman-rank-correlation-coefficient)).
 - **(b)** The slope 0.0756 means that each additional minute of waiting goes with an average increase of 0.0756 minutes (about 4.5 seconds) in eruption duration. The coefficient of determination is $0.8115 = 0.9008^2$, so about 81% of the variation in eruption duration is explained by waiting time.
 - **(c)** $-1.874 + 0.07563 \times 80 = -1.874 + 6.050 = 4.176$ minutes.
-- **(d)** $b_1 = r\,s_y/s_x = 0.9008 \times 1.141/13.595 = 0.0756$ and $b_0 = \bar{y} - b_1\bar{x} = 3.488 - 0.0756 \times 70.897 = 3.488 - 5.360 = -1.872$ ([Lecture 7, Section 5.3](Concepts_Lecture.md#53-simple-linear-regression)). The difference from R's -1.874 comes from computing with rounded means and standard deviations.
+- **(d)** $`b_1 = r\,s_y/s_x = 0.9008 \times 1.141/13.595 = 0.0756`$ and $b_0 = \bar{y} - b_1\bar{x} = 3.488 - 0.0756 \times 70.897 = 3.488 - 5.360 = -1.872$ ([Lecture 7, Section 5.3](Concepts_Lecture.md#53-simple-linear-regression)). The difference from R's -1.874 comes from computing with rounded means and standard deviations.
 
 ---
 
@@ -281,7 +281,7 @@ sample estimates:
 
 ### Solution
 
-**Answer:** (a) The admission rate is 44.5% for men and 30.4% for women, and $X^2 = 92.2$ (1 degree of freedom, p < $2.2 \times 10^{-16}$) rejects independence. (b) By department, women have a higher admission rate than men in four of the six departments. The association in the combined data arises because women applied more to departments with low admission rates, and ignoring the third variable, department, can lead to a wrong conclusion.
+**Answer:** (a) The admission rate is 44.5% for men and 30.4% for women, and $X^2 = 92.2$ (1 degree of freedom, p < $`2.2 \times 10^{-16}`$) rejects independence. (b) By department, women have a higher admission rate than men in four of the six departments. The association in the combined data arises because women applied more to departments with low admission rates, and ignoring the third variable, department, can lead to a wrong conclusion.
 
 **Explanation:**
 
@@ -325,7 +325,7 @@ Gender     A   B   C   D   E   F
   Female 108  25 593 375 393 341
 ```
 
-**(a)** Of the 2,691 male applicants 1,198 were admitted ($1198/2691 = 0.445$), and of the 1,835 female applicants 557 were admitted ($557/1835 = 0.304$). The expected count of the admitted-men cell is $1755 \times 2691/4526 = 1043.5$ ([Lecture 7, Section 6.1](Concepts_Lecture.md#61-contingency-tables-and-the-chi-squared-test-of-independence)). The Pearson residual is 4.78 for admitted men and -5.79 for admitted women, so compared with independence more men and fewer women were admitted ([Lecture 7, Section 6.2](Concepts_Lecture.md#62-pearson-residuals-and-the-association-plot)). `apply(X, c(2, 3), f)` applies the function `f` (admitted divided by applicants) to each combination of sex and department in the three-dimensional table.
+**(a)** Of the 2,691 male applicants 1,198 were admitted ($`1198/2691 = 0.445`$), and of the 1,835 female applicants 557 were admitted ($`557/1835 = 0.304`$). The expected count of the admitted-men cell is $1755 \times 2691/4526 = 1043.5$ ([Lecture 7, Section 6.1](Concepts_Lecture.md#61-contingency-tables-and-the-chi-squared-test-of-independence)). The Pearson residual is 4.78 for admitted men and -5.79 for admitted women, so compared with independence more men and fewer women were admitted ([Lecture 7, Section 6.2](Concepts_Lecture.md#62-pearson-residuals-and-the-association-plot)). `apply(X, c(2, 3), f)` applies the function `f` (admitted divided by applicants) to each combination of sex and department in the three-dimensional table.
 
 **(b)** By department, women have the higher admission rate in A (women 0.82, men 0.62), B, D, and F, and a slightly lower rate only in C and E. However, 51% of male applicants (1,385) applied to A and B, which have high admission rates, while only 133 women (7%) applied to A and B and most applied to C-F, which have low admission rates. The association between sex and admission seen in the combined data therefore comes mainly from the difference in choice of department.
 

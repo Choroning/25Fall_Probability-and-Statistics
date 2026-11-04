@@ -35,7 +35,7 @@
 
 | Step | Computation | Value |
 |:-----|:-----|:-----|
-| Sample means | $\bar{x}_A = 65/5$, $\bar{x}_B = 102/6$ | 13, 17 |
+| Sample means | $`\bar{x}_A = 65/5`$, $`\bar{x}_B = 102/6`$ | 13, 17 |
 | Sums of squared deviations | A: $1 + 4 + 4 + 1 + 0$, B: $1 + 1 + 4 + 0 + 4 + 0$ | 10, 10 |
 | Pooled variance | $s_p^2 = (10 + 10)/(5 + 6 - 2)$ | 2.222 |
 | Pooled standard deviation | $s_p = \sqrt{2.222}$ | 1.491 |
@@ -215,7 +215,7 @@ qqnorm(log(oz), main = "Normal Q-Q Plot of log(Ozone)"); qqline(log(oz))
 
 ### Solution
 
-**Answer:** $W = 11$, $\mu_W = 20$, $\sigma_W = 4.082$. The two-sided p-value is 0.0275 without the continuity correction ($z = -2.205$), 0.0373 with it ($z = -2.082$), and 0.0317 from the exact distribution. Every method rejects the null hypothesis at the significance level 0.05.
+**Answer:** $W = 11$, $\mu_W = 20$, $\sigma_W = 4.082$. The two-sided p-value is 0.0275 without the continuity correction ($`z = -2.205`$), 0.0373 with it ($`z = -2.082`$), and 0.0317 from the exact distribution. Every method rejects the null hypothesis at the significance level 0.05.
 
 **Explanation:**
 
@@ -276,9 +276,9 @@ The result of `rank()` gives the ranks in input order (3.1, 4.5, 2.8, 5.0, 6.2, 
 
 **(2) Tie correction.** The tie groups have sizes 3 (the 12s) and 2 (the 15s), so $\sum(t_k^3 - t_k) = (27 - 3) + (8 - 2) = 30$. With $n_1 = 4$, $n_2 = 5$, and $N = 9$, the result is as follows ([Lecture 8, Section 4.5](Concepts_Lecture.md#45-limitations-continuity-correction-and-ties)).
 
-$$
+```math
 \sigma_W^2 = \frac{4 \times 5}{12}\left\lbrace10 - \frac{30}{9 \times 8}\right\rbrace = 1.667 \times 9.583 = 15.97, \qquad \sigma_W = 3.997
-$$
+```
 
 **(3) Test.** $\mu_W = 4 \times 10/2 = 20$, and since $W$ lies below its mean, the continuity correction adds 0.5. $z = (13.5 + 0.5 - 20)/3.997 = -1.501$, and the two-sided p-value is $2 \times P(Z \le -1.501) = 0.133$.
 
@@ -327,7 +327,7 @@ R's `W = 3.5` is the Mann-Whitney statistic $13.5 - 4 \times 5/2 = 3.5$. Togethe
 
 There are no zero differences, so $n = 8$. The only negative difference is patient 3's $-1$ (rank 1), so $T^+ = (1 + 2 + \cdots + 8) - 1 = 36 - 1 = 35$ and $T^- = 1$.
 
-Under the null hypothesis each rank independently carries a positive or negative sign with probability 1/2 each, so all $2^8 = 256$ sign patterns are equally likely. $T^+ \ge 35$ is the same as $T^- \le 1$, which happens in only 2 patterns: all differences positive ($T^- = 0$), or only the difference of rank 1 negative ($T^- = 1$). Therefore $P(T^+ \ge 35) = 2/256$, and since the distribution is symmetric, the two-sided p-value is $4/256 = 0.0156$.
+Under the null hypothesis each rank independently carries a positive or negative sign with probability 1/2 each, so all $2^8 = 256$ sign patterns are equally likely. $T^+ \ge 35$ is the same as $T^- \le 1$, which happens in only 2 patterns: all differences positive ($`T^- = 0`$), or only the difference of rank 1 negative ($`T^- = 1`$). Therefore $P(T^+ \ge 35) = 2/256$, and since the distribution is symmetric, the two-sided p-value is $4/256 = 0.0156$.
 
 ```r
 before <- c(140, 152, 138, 145, 160, 148, 155, 142)

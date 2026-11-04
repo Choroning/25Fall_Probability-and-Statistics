@@ -80,9 +80,9 @@ Up to Lecture 5, probabilities of events were computed for a known population di
 
 A **parameter** is a fixed value, such as the population mean $\mu$ or the population variance $\sigma^2$, that determines the population distribution and is usually unknown. A statistic is a quantity that can be computed from the sample alone. For example, when $\mu$ is unknown, $\bar{X} - \mu$ is not a statistic. The two most basic estimators are the **sample mean**, which estimates the population mean, and the **sample variance**, which estimates the population variance.
 
-$$
+```math
 \bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i, \qquad S^2 = \frac{1}{n-1}\sum_{i=1}^{n}(X_i - \bar{X})^2
-$$
+```
 
 An estimator is a random variable whose value changes from sample to sample, and the single value computed from the observed data is called an **estimate**. Estimators, which are random variables, are written in uppercase as $\bar{X}$ and $S^2$, and observed values are distinguished in lowercase as $\bar{x}$ and $s^2$. An estimator of a parameter $\theta$ is often written $\hat{\theta}$.
 
@@ -98,15 +98,15 @@ Unbiasedness alone is not enough. For example, the first observation $X_1$ by it
 
 If $X_1, \ldots, X_n$ is a random sample with mean $\mu$ and variance $\sigma^2$, linearity of expectation shows that the sample mean is unbiased.
 
-$$
+```math
 E(\bar{X}) = E\left(\frac{1}{n}\sum_{i=1}^{n} X_i\right) = \frac{1}{n}\sum_{i=1}^{n} E(X_i) = \frac{1}{n}\sum_{i=1}^{n}\mu = \mu
-$$
+```
 
 For the variance, the constant $1/n$ comes out squared, and since the $X_i$ are independent, the variance of the sum is the sum of the variances (Lecture 3).
 
-$$
+```math
 Var(\bar{X}) = Var\left(\frac{1}{n}\sum_{i=1}^{n} X_i\right) = \frac{1}{n^2}\sum_{i=1}^{n} Var(X_i) = \frac{1}{n^2}\sum_{i=1}^{n}\sigma^2 = \frac{\sigma^2}{n}
-$$
+```
 
 The standard deviation of the sample mean is $\sigma/\sqrt{n}$. The more data there are, the more tightly the sample mean gathers around the population mean, but the rate is proportional to $\sqrt{n}$, so halving the spread requires four times as many observations.
 
@@ -114,15 +114,15 @@ The standard deviation of the sample mean is $\sigma/\sqrt{n}$. The more data th
 
 The sample variance divides by $n - 1$ rather than $n$ because of unbiasedness. First, we show the following identity by squaring $X_i - \bar{X} = (X_i - \mu) - (\bar{X} - \mu)$, summing, and using $\sum (X_i - \mu) = n(\bar{X} - \mu)$.
 
-$$
+```math
 \sum_{i=1}^{n}(X_i - \bar{X})^2 = \sum_{i=1}^{n}(X_i - \mu)^2 - 2(\bar{X} - \mu)\sum_{i=1}^{n}(X_i - \mu) + n(\bar{X} - \mu)^2 = \sum_{i=1}^{n}(X_i - \mu)^2 - n(\bar{X} - \mu)^2
-$$
+```
 
 Taking expectations of both sides, with $E[(X_i - \mu)^2] = \sigma^2$ and $E[(\bar{X} - \mu)^2] = Var(\bar{X}) = \sigma^2/n$, gives
 
-$$
+```math
 E\left[\sum_{i=1}^{n}(X_i - \bar{X})^2\right] = n\sigma^2 - n \cdot \frac{\sigma^2}{n} = (n - 1)\sigma^2
-$$
+```
 
 Hence $E(S^2) = \sigma^2$. Dividing by $n$ would give the expected value $(n-1)\sigma^2/n$, a systematic underestimate of the population variance. Deviations measured from $\bar{X}$, which is fitted to the data, are smaller than deviations from the population mean $\mu$; this is the same phenomenon as the $n - 1$ degrees of freedom of Lecture 5, Section 7.2.
 
@@ -140,27 +140,27 @@ Hence $E(S^2) = \sigma^2$. Dividing by $n$ would give the expected value $(n-1)\
 
 If the population is normal, the sampling distribution of the sample mean is exactly normal for every $n$.
 
-$$
+```math
 X_1, X_2, \ldots, X_n \overset{iid}{\sim} N(\mu, \sigma^2) \quad\Rightarrow\quad \bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i \sim N\left(\mu, \frac{\sigma^2}{n}\right)
-$$
+```
 
 The reason has two steps. First, a sum of independent normal random variables is normal [1], so $Y = \sum_{i=1}^{n} X_i \sim N(n\mu, n\sigma^2)$; the mean and variance come from linearity of expectation and independence. Second, $\bar{X} = Y/n$ is a linear transformation of $Y$, so by Lecture 5, Section 5.3, it follows $N(n\mu/n, n\sigma^2/n^2) = N(\mu, \sigma^2/n)$.
 
-$$
+```math
 Y = \sum_{i=1}^{n} X_i \sim N(n\mu, n\sigma^2) \quad\Rightarrow\quad \bar{X} = \frac{1}{n}Y \sim N\left(\mu, \frac{\sigma^2}{n}\right)
-$$
+```
 
 Standardizing gives the standard normal distribution. The mean and variance are checked by the same computation as the standardization of Lecture 5, Section 5.3.
 
-$$
+```math
 X_1, \ldots, X_n \overset{iid}{\sim} N(\mu, \sigma^2) \quad\Rightarrow\quad Z = \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim N(0, 1), \qquad E(Z) = 0,\ Var(Z) = 1
-$$
+```
 
 For example, a sample of size 10 from a normal population with mean 100 and variance 100 gives $\bar{X} \sim N(100, 100/10) = N(100, 10)$ and $(\bar{X} - 100)/(10/\sqrt{10}) \sim N(0, 1)$. [Exercise 1](Exercises.md#exercise-1-simulating-the-distribution-of-the-sample-mean) checks this result by simulation.
 
 ### 2.2 Standard Error and the Meaning of a Sampling Distribution
 
-An example illustrates what a sampling distribution means. In the 1970s, the body weight of 20-29-year-old men in the U.S. had mean $\mu = 170$ pounds and standard deviation $\sigma = 40$ pounds. If simple random samples of size $n = 64$ are drawn independently from this population many times and the mean of each sample is computed, the means differ from sample to sample: $\bar{x}_1 = 173$ for the first, $\bar{x}_2 = 185$ for the second, $\bar{x}_3 = 164$ for the third, and so on. The distribution of all these $\bar{x}$ values is the sampling distribution of the sample mean (Figure 1).
+An example illustrates what a sampling distribution means. In the 1970s, the body weight of 20-29-year-old men in the U.S. had mean $\mu = 170$ pounds and standard deviation $\sigma = 40$ pounds. If simple random samples of size $n = 64$ are drawn independently from this population many times and the mean of each sample is computed, the means differ from sample to sample: $`\bar{x}_1 = 173`$ for the first, $`\bar{x}_2 = 185`$ for the second, $`\bar{x}_3 = 164`$ for the third, and so on. The distribution of all these $\bar{x}$ values is the sampling distribution of the sample mean (Figure 1).
 
 ![Figure 1. Sample means computed from repeated samples of size 64 drawn from a population, and their distribution](../../images/Lec06_p24.png)
 
@@ -197,25 +197,25 @@ The population mean is estimated by $\hat{\mu} = \bar{x}$ and the population var
 ### 3.2 Interval Estimation and Confidence Intervals
 
 - **Interval estimation:** The procedure of determining a confidence interval whose probability of containing the true value of the parameter is the confidence level $1 - \alpha$.
-- **Confidence interval:** An interval $[\hat{\theta}_L, \hat{\theta}_U]$ whose probability of containing the true value of the parameter is $1 - \alpha$. Its endpoints $\hat{\theta}_L$ and $\hat{\theta}_U$ are statistics computed from the sample.
-- **Confidence level:** The probability that the confidence interval contains the true value of the parameter, $P(\hat{\theta}_L < \theta < \hat{\theta}_U) = 1 - \alpha$.
-- **Significance level:** The probability that the confidence interval does not contain the true value of the parameter, $1 - P(\hat{\theta}_L < \theta < \hat{\theta}_U) = \alpha$. The same $\alpha$ is used in the hypothesis tests of Section 6.
+- **Confidence interval:** An interval $`[\hat{\theta}_L, \hat{\theta}_U]`$ whose probability of containing the true value of the parameter is $1 - \alpha$. Its endpoints $`\hat{\theta}_L`$ and $`\hat{\theta}_U`$ are statistics computed from the sample.
+- **Confidence level:** The probability that the confidence interval contains the true value of the parameter, $`P(\hat{\theta}_L < \theta < \hat{\theta}_U) = 1 - \alpha`$.
+- **Significance level:** The probability that the confidence interval does not contain the true value of the parameter, $`1 - P(\hat{\theta}_L < \theta < \hat{\theta}_U) = \alpha`$. The same $\alpha$ is used in the hypothesis tests of Section 6.
 
 A confidence interval for the population mean is built from the sampling distribution of Section 2. If $\sigma$ is known, $(\bar{X} - \mu)/(\sigma/\sqrt{n})$ follows $N(0, 1)$ exactly when the population is normal and approximately, by the central limit theorem, when $n$ is large. Hence, for the upper quantile $z_{\alpha/2}$ of Lecture 5, Section 4.3, the following holds (approximately in the second case).
 
-$$
+```math
 P\left(-z_{\alpha/2} < \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} < z_{\alpha/2}\right) = 1 - \alpha
-$$
+```
 
 Solving the inequalities inside the parentheses for $\mu$ gives the following.
 
-$$
+```math
 P\left(\bar{X} - z_{\alpha/2}\frac{\sigma}{\sqrt{n}} < \mu < \bar{X} + z_{\alpha/2}\frac{\sigma}{\sqrt{n}}\right) = 1 - \alpha
-$$
+```
 
-Hence the $100(1-\alpha)\%$ confidence interval for $\mu$ is $\bar{x} \pm z_{\alpha/2}\,\sigma/\sqrt{n}$, and the 95% interval uses $z_{0.025} = 1.96$. If $\sigma$ is unknown and the population is normal, the t distribution of Lecture 5, Section 7.3 gives $\bar{x} \pm t_{\alpha/2,\,n-1}\,s/\sqrt{n}$.
+Hence the $`100(1-\alpha)\%`$ confidence interval for $\mu$ is $`\bar{x} \pm z_{\alpha/2}\,\sigma/\sqrt{n}`$, and the 95% interval uses $z_{0.025} = 1.96$. If $\sigma$ is unknown and the population is normal, the t distribution of Lecture 5, Section 7.3 gives $`\bar{x} \pm t_{\alpha/2,\,n-1}\,s/\sqrt{n}`$.
 
-In the body weight example, if the sample mean were $\bar{x} = 173$, the 95% confidence interval would be $173 \pm 1.96 \times 5 = (163.2, 182.8)$. The width $2z_{\alpha/2}\,\sigma/\sqrt{n}$ grows with the confidence level and shrinks in proportion to $1/\sqrt{n}$ as the sample size grows.
+In the body weight example, if the sample mean were $\bar{x} = 173$, the 95% confidence interval would be $173 \pm 1.96 \times 5 = (163.2, 182.8)$. The width $`2z_{\alpha/2}\,\sigma/\sqrt{n}`$ grows with the confidence level and shrinks in proportion to $1/\sqrt{n}$ as the sample size grows.
 
 ### 3.3 Interpreting a Confidence Interval
 
@@ -254,10 +254,10 @@ In inferential statistics, the null hypothesis is a general statement or default
 
 | Aspect | Alternative hypothesis | Null hypothesis |
 |:-----|:-----|:-----|
-| Symbol | $H_1$, $H_A$ ($H_a$) | $H_0$ |
+| Symbol | $H_1$, $H_A$ ($`H_a`$) | $H_0$ |
 | Role | The hypothesis that is the main purpose of the study | The hypothesis opposed to the purpose of the study |
 | Researcher's stance | The hypothesis one wants to claim is right | The hypothesis one wants to claim is wrong |
-| Typical form | Different ($\neq$, $>$, $<$) | The same ($=$) |
+| Typical form | Different ($\neq$, $>$, $`<`$) | The same ($`=`$) |
 
 *Table 1. Comparison of the alternative and null hypotheses*
 
@@ -273,15 +273,15 @@ The main idea of hypothesis testing is as follows.
 
 For example, suppose the goal is to show the following proposition.
 
-$$
+```math
 H_1:\ \text{In general, men and women have different heights}
-$$
+```
 
 The goal is to show that this proposition is "true". To do so, set up the opposite hypothesis.
 
-$$
+```math
 H_0:\ \text{Men and women have the same height}
-$$
+```
 
 Assuming that men and women have the same height, examine the heights of men and women separately in the collected data and find their means and variances. If numerical evidence shows that the two groups differ by an amount that would almost never occur under this assumption, it is evidence that the null hypothesis is "false", and we conclude that the original proposition $H_1$ is "true". This has the same structure as proof by contradiction in mathematics.
 
@@ -323,21 +323,21 @@ Table 2 expressed in probabilities is called the **confusion matrix**, or the co
 
 Each column contains the two declarations for the same true state, so its probabilities sum to 1.
 
-$$
+```math
 P(H_0 \mid H_0) + P(H_1 \mid H_0) = 1, \qquad P(H_0 \mid H_1) + P(H_1 \mid H_1) = 1
-$$
+```
 
 If the prior probabilities $P(H_0)$ and $P(H_1)$ of the true states are known, the law of total probability of Lecture 2 gives the probability of correct classification $P_{cc}$ and the error probability $P_e$.
 
-$$
+```math
 P_{cc} = P(\text{correct classification}) = P(H_0 \mid H_0)P(H_0) + P(H_1 \mid H_1)P(H_1)
-$$
+```
 
-$$
+```math
 P_e = P(\text{error}) = 1 - P_{cc} = P(H_0 \mid H_1)P(H_1) + P(H_1 \mid H_0)P(H_0)
-$$
+```
 
-If a correct classification is given zero cost ($C_{00} = C_{11} = 0$) and an incorrect one full cost ($C_{01} = C_{10} = 1$), the expected cost equals $P_e$. Under this cost structure, minimizing the error probability therefore minimizes the expected cost. In practice the two errors often have different costs (for example, the cost of missing a disease versus the cost of retesting a healthy person), and the decision criterion is then set to reflect those costs.
+If a correct classification is given zero cost ($`C_{00} = C_{11} = 0`$) and an incorrect one full cost ($`C_{01} = C_{10} = 1`$), the expected cost equals $P_e$. Under this cost structure, minimizing the error probability therefore minimizes the expected cost. In practice the two errors often have different costs (for example, the cost of missing a disease versus the cost of retesting a healthy person), and the decision criterion is then set to reflect those costs.
 
 > **[Machine Learning]** The evaluation of binary classifiers in machine learning uses the same confusion matrix. The model's prediction corresponds to the "declaration" and the true label to the "true state", and the recall, precision, and accuracy of the next section are standard evaluation measures for classification models. Moving the classification threshold trades false positives against false negatives, just as $\alpha$ and $\beta$ trade off in a test.
 
@@ -383,9 +383,9 @@ Even though both sensitivity and specificity are high, one third of the positive
 
 The two errors are linked. In the body weight example of Section 6, testing $H_0: \mu = 170$ against $H_a: \mu > 170$ at significance level $\alpha = 0.05$ rejects $H_0$ when $\bar{x}$ is at least the critical value $170 + 1.645 \times 5 = 178.22$. If the true mean is $\mu = 180$, the power is
 
-$$
+```math
 P(\bar{X} \geq 178.22 \mid \mu = 180) = P\left(Z \geq \frac{178.22 - 180}{5}\right) = P(Z \geq -0.355) \approx 0.639
-$$
+```
 
 and $\beta \approx 0.361$. Even if body weight has actually increased by 10 pounds, this test misses the change with a probability of about 36%.
 
@@ -429,9 +429,9 @@ One-sided and two-sided tests differ in the direction of the alternative hypothe
 
 This example is a **one-sample test of a mean when $\sigma$ is known**. The following statistic is used.
 
-$$
+```math
 z_{\text{stat}} = \frac{\bar{x} - \mu_0}{SE_{\bar{x}}}, \qquad SE_{\bar{x}} = \frac{\sigma}{\sqrt{n}}
-$$
+```
 
 Here $\mu_0$ is the population mean when $H_0$ is true. If $H_0$ is true and the population is normal or $n$ is large, Section 2 gives $Z = (\bar{X} - \mu_0)/(\sigma/\sqrt{n}) \sim N(0, 1)$ (exactly or approximately). Thus $z_{\text{stat}}$ tells how many standard errors the observed sample mean lies from $\mu_0$. It is called the **Z statistic**, and a statistic used for a test is called a **test statistic** in general.
 
@@ -443,9 +443,9 @@ The magnitude $|z_{\text{stat}}|$ of the test statistic grows in the following c
 
 In the body weight example, $\mu_0 = 170$, $\sigma = 40$, and $n = 64$, so the standard error is as follows.
 
-$$
+```math
 SE_{\bar{x}} = \frac{\sigma}{\sqrt{n}} = \frac{40}{\sqrt{64}} = 5
-$$
+```
 
 If the sample mean is 173, $z_{\text{stat}} = (173 - 170)/5 = 0.60$; if it is 185, $z_{\text{stat}} = (185 - 170)/5 = 3.00$.
 
@@ -491,7 +491,7 @@ The smaller the p-value, the stronger the evidence in the data against $H_0$. A 
 
 For example, $P = 0.27$ means non-significant evidence against $H_0$, and $P = 0.01$ means highly significant evidence. However, it is unwise to draw firm borders for significance. $P = 0.049$ and $P = 0.051$ carry almost the same strength of evidence, so calling one "significant" and the other "not significant" as if they were opposite conclusions is a mistake.
 
-> **Caution:** p-values are often misinterpreted. The statement of the American Statistical Association (ASA) stresses the following [2]. A p-value is not the probability that $H_0$ is true, nor the probability that the result arose by chance alone; it only indicates how incompatible the data are with $H_0$ and the model's assumptions. A small p-value does not mean that an effect is large or important; with a very large sample, even a practically meaningless small difference yields a small p-value. A large p-value is not evidence that $H_0$ is true either. Therefore, do not report the p-value alone; report the size of the effect (for example $\bar{x} - \mu_0$) and a confidence interval as well.
+> **Caution:** p-values are often misinterpreted. The statement of the American Statistical Association (ASA) stresses the following [2]. A p-value is not the probability that $H_0$ is true, nor the probability that the result arose by chance alone; it only indicates how incompatible the data are with $H_0$ and the model's assumptions. A small p-value does not mean that an effect is large or important; with a very large sample, even a practically meaningless small difference yields a small p-value. A large p-value is not evidence that $H_0$ is true either. Therefore, do not report the p-value alone; report the size of the effect (for example $`\bar{x} - \mu_0`$) and a confidence interval as well.
 
 ### 6.5 Significance Level and Rejection Region
 
@@ -520,7 +520,7 @@ The same conclusion can be reached from the value of the test statistic. The ran
 
 A two-sided test splits the significance level $\alpha$ into $\alpha/2$ in each tail, so at the same $\alpha$ its critical value on each side is farther out than that of a one-sided test (1.96 > 1.645).
 
-A two-sided test and a confidence interval give the same information. A two-sided test at level $\alpha$ rejects $H_0: \mu = \mu_0$ exactly when $\mu_0$ lies outside the $100(1-\alpha)\%$ confidence interval. In the body weight example, the 95% confidence interval for $\bar{x} = 185$ is $185 \pm 9.8 = (175.2, 194.8)$, which excludes 170, in agreement with the two-sided p-value $0.0027 < 0.05$.
+A two-sided test and a confidence interval give the same information. A two-sided test at level $\alpha$ rejects $H_0: \mu = \mu_0$ exactly when $\mu_0$ lies outside the $`100(1-\alpha)\%`$ confidence interval. In the body weight example, the 95% confidence interval for $\bar{x} = 185$ is $185 \pm 9.8 = (175.2, 194.8)$, which excludes 170, in agreement with the two-sided p-value $0.0027 < 0.05$.
 
 ### 6.6 Summary of the Test Procedure
 
@@ -546,9 +546,9 @@ graph LR
 
 Let $X$ be a score on the Wechsler Adult Intelligence Scale (WAIS). In the general population, $X \sim N(100, 15^2)$ (mean 100, standard deviation 15). A sample of $n = 9$ people from the population of a town called Lake Wobegon gave the following scores.
 
-$$
+```math
 \lbrace116,\ 128,\ 125,\ 119,\ 89,\ 99,\ 105,\ 116,\ 118\rbrace
-$$
+```
 
 The scores sum to 1015, so $\bar{x} = 1015/9 = 112.78 \approx 112.8$. Does this sample mean provide strong evidence that the town's population mean $\mu$ is greater than 100?
 
@@ -556,9 +556,9 @@ The scores sum to 1015, so $\bar{x} = 1015/9 = 112.78 \approx 112.8$. Does this 
 
 **B. Test statistic:** The population standard deviation $\sigma = 15$ is known.
 
-$$
+```math
 SE_{\bar{x}} = \frac{\sigma}{\sqrt{n}} = \frac{15}{\sqrt{9}} = 5, \qquad z_{\text{stat}} = \frac{\bar{x} - \mu_0}{SE_{\bar{x}}} = \frac{112.8 - 100}{5} = 2.56
-$$
+```
 
 **C. p-value:** For the one-sided test, $P = P(Z \geq 2.56) = 1 - 0.9948 = 0.0052$. It is unlikely that this sample came from the distribution under $H_0$, so this is strong evidence against $H_0$. The two-sided test considers random deviations both up and down from $\mu_0$, so it adds the two tails beyond $\pm z_{\text{stat}}$. The two-sided $P$ is therefore $2 \times 0.0052 = 0.0104$.
 
@@ -574,9 +574,9 @@ For this test to be valid, the 9 people must be a random sample from the town's 
 
 In real data analysis, $\sigma$ is usually unknown. The following statistic then replaces $\sigma$ with the sample standard deviation $s$, and if the population is normal, by Lecture 5, Section 7.3, it follows the t distribution with $n - 1$ degrees of freedom under $H_0$.
 
-$$
+```math
 t_{\text{stat}} = \frac{\bar{x} - \mu_0}{s/\sqrt{n}} \sim t(n-1) \quad \text{under } H_0
-$$
+```
 
 This is the **one-sample t-test**. Its p-value is obtained from Table 6 with tail probabilities of $t(n-1)$ in place of $Z$. For large samples, the central limit theorem lets it be used approximately even if the population is not normal.
 
@@ -614,7 +614,7 @@ For these data, $s = 12.67$ is smaller than $\sigma = 15$, so the t statistic is
 
 ### 7.1 Purpose of the Comparison
 
-The goal of a two-group comparison is to compare differences in population mean and variability between two specific groups. For example, when people are divided into two crowds, one asks whether the two crowds differ in mean height or mean weight. The characteristics of each population are described by the population means $\mu_1$ and $\mu_2$, and the mean $\bar{x}_1$ or $\bar{x}_2$ of each sample tells us about the corresponding population mean.
+The goal of a two-group comparison is to compare differences in population mean and variability between two specific groups. For example, when people are divided into two crowds, one asks whether the two crowds differ in mean height or mean weight. The characteristics of each population are described by the population means $\mu_1$ and $\mu_2$, and the mean $`\bar{x}_1`$ or $`\bar{x}_2`$ of each sample tells us about the corresponding population mean.
 
 ```mermaid
 graph BT
@@ -683,7 +683,7 @@ The **independent two-sample t-test** compares two population means under the fo
 - **Sufficient sample size:** The sample in each group should be large enough. A common criterion is $n_1 \geq 30$ and $n_2 \geq 30$.
 - **Normality:** Within each group, the continuous variable being compared should follow a normal distribution. This condition is not necessary if the samples are large, because the central limit theorem makes the difference of the sample means approximately normal.
 - **Independence:** The two groups must be independent of each other, and the observations within each group must be independent as well. That is, $x_i \sim N(\mu_1, \sigma^2)$ and $y_j \sim N(\mu_2, \sigma^2)$ are mutually independent.
-- **Equal variances:** The variable of interest must have the same variance in both groups ($\sigma_1^2 = \sigma_2^2 = \sigma^2$). Under unequal variances (heteroscedasticity), the different test statistic of Section 8.3 is used.
+- **Equal variances:** The variable of interest must have the same variance in both groups ($`\sigma_1^2 = \sigma_2^2 = \sigma^2`$). Under unequal variances (heteroscedasticity), the different test statistic of Section 8.3 is used.
 
 > **Note:** Only one of the first two assumptions is needed. If both populations are normal with equal variances, the t statistic of the next section follows the t distribution **exactly** regardless of sample size, so $n \geq 30$ is not required. Conversely, if normality is doubtful, the samples must be large for the approximation by the central limit theorem to be justified, and how large depends on the skewness of the distribution (Lecture 5, Section 8.2). $n \geq 30$ is a rough criterion for this approximation.
 
@@ -691,42 +691,42 @@ The **independent two-sample t-test** compares two population means under the fo
 
 The null hypothesis is that the two population means are equal.
 
-$$
+```math
 H_0: \mu_1 = \mu_2
-$$
+```
 
 The test statistic is as follows and follows the t distribution with $n_1 + n_2 - 2$ degrees of freedom under $H_0$.
 
-$$
+```math
 t = \frac{\bar{X} - \bar{Y}}{s_p\sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}}} \sim t_{n_1 + n_2 - 2} \quad \text{under } H_0
-$$
+```
 
 Here $\bar{X}$ and $\bar{Y}$ are the sample means of the two groups, and $s_p$ is the **pooled standard deviation**, which estimates the common variance $\sigma^2$ from the data of both groups. Its square, the **pooled variance**, is as follows.
 
-$$
+```math
 s_p^2 = \frac{\sum_{i=1}^{n_1}(x_i - \bar{x})^2 + \sum_{j=1}^{n_2}(y_j - \bar{y})^2}{n_1 + n_2 - 2} = \frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}
-$$
+```
 
 The pooled variance is the average of the two sample variances weighted by their degrees of freedom. The denominator is $n_1 + n_2 - 2$ because one degree of freedom is lost for each group mean that is estimated.
 
 Why this statistic follows the t distribution is explained by the results of Lecture 5, Section 7.
 
-1. The two sample means are independent normal random variables, so their difference is also normal, and the variances add: $\bar{X} - \bar{Y} \sim N(\mu_1 - \mu_2,\ \sigma^2(1/n_1 + 1/n_2))$.
+1. The two sample means are independent normal random variables, so their difference is also normal, and the variances add: $`\bar{X} - \bar{Y} \sim N(\mu_1 - \mu_2,\ \sigma^2(1/n_1 + 1/n_2))`$.
 2. Under $H_0$, $\mu_1 - \mu_2 = 0$, so $Z = (\bar{X} - \bar{Y})/(\sigma\sqrt{1/n_1 + 1/n_2}) \sim N(0, 1)$.
 3. $(n_1 - 1)S_1^2/\sigma^2 \sim \chi^2(n_1 - 1)$ and $(n_2 - 1)S_2^2/\sigma^2 \sim \chi^2(n_2 - 1)$ are independent, so by additivity their sum $(n_1 + n_2 - 2)S_p^2/\sigma^2 \sim \chi^2(n_1 + n_2 - 2)$. This quantity is also independent of $Z$.
 4. Substituting into the definition of the t distribution, $T = Z/\sqrt{Y/\nu}$, the unknown $\sigma$ cancels and the $t$ above results, with $\nu = n_1 + n_2 - 2$ degrees of freedom.
 
-**Decision rule:** Compute the p-value from the t statistic and the t distribution; if the p-value is lower than the chosen significance level, reject the null hypothesis and select the alternative hypothesis. For a two-sided test this is the same as rejecting when $|t| \geq t_{\alpha/2,\, n_1 + n_2 - 2}$. The alternative hypothesis can be $\mu_1 \neq \mu_2$ (two-sided) or $\mu_1 > \mu_2$ or $\mu_1 < \mu_2$ (one-sided).
+**Decision rule:** Compute the p-value from the t statistic and the t distribution; if the p-value is lower than the chosen significance level, reject the null hypothesis and select the alternative hypothesis. For a two-sided test this is the same as rejecting when $`|t| \geq t_{\alpha/2,\, n_1 + n_2 - 2}`$. The alternative hypothesis can be $\mu_1 \neq \mu_2$ (two-sided) or $\mu_1 > \mu_2$ or $\mu_1 < \mu_2$ (one-sided).
 
 ### 8.3 Without Equal Variances: Welch's t-Test
 
 If the two population variances may differ, **Welch's t-test**, which uses the variance of each group separately instead of the pooled variance, is used [3].
 
-$$
+```math
 t_{W} = \frac{\bar{X} - \bar{Y}}{\sqrt{\dfrac{S_1^2}{n_1} + \dfrac{S_2^2}{n_2}}}, \qquad \nu = \frac{\left(\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}\right)^2}{\dfrac{(s_1^2/n_1)^2}{n_1 - 1} + \dfrac{(s_2^2/n_2)^2}{n_2 - 1}}
-$$
+```
 
-Under $H_0$, $t_W$ approximately follows the t distribution with $\nu$ degrees of freedom. The degrees of freedom $\nu$ need not be an integer, and this is called the Welch-Satterthwaite approximation. When the two sample sizes are equal ($n_1 = n_2$), $t_W$ has the same value as the pooled $t$, and only the degrees of freedom differ.
+Under $H_0$, $t_W$ approximately follows the t distribution with $\nu$ degrees of freedom. The degrees of freedom $\nu$ need not be an integer, and this is called the Welch-Satterthwaite approximation. When the two sample sizes are equal ($`n_1 = n_2`$), $t_W$ has the same value as the pooled $t$, and only the degrees of freedom differ.
 
 R's `t.test()` defaults to `var.equal = FALSE`, so without options it performs Welch's t-test. Using Welch's test when the variances are equal costs little power, but using the pooled test when the variances differ (especially with different sample sizes) can make the actual type I error probability deviate substantially from $\alpha$. Welch's test is therefore the safer choice unless equal variances can be assumed with confidence.
 
@@ -825,17 +825,17 @@ $x_i$ and $y_i$ of the same individual are not independent, but values from diff
 
 The null hypothesis is that the mean difference is 0, which is the same as the two conditions having equal population means.
 
-$$
+```math
 H_0: \mu_d = 0 \quad (\Leftrightarrow\ \mu_1 = \mu_2)
-$$
+```
 
-$$
+```math
 t = \frac{\bar{d}}{s_d/\sqrt{n}} \sim t_{n-1} \quad \text{under } H_0
-$$
+```
 
 Here $\bar{d}$ is the mean of the differences and $s_d$ is the standard deviation of the differences. In other words, the paired t-test is the one-sample t-test of Section 6.8 applied to the differences $d_i$.
 
-Pairing increases power because of the variance. If the two values of the same individual are positively correlated, $Var(X - Y) = \sigma_1^2 + \sigma_2^2 - 2\,Cov(X, Y)$ is smaller than the sum of the two variances. Variation between individuals, such as differences in constitution, cancels out when the differences are taken.
+Pairing increases power because of the variance. If the two values of the same individual are positively correlated, $`Var(X - Y) = \sigma_1^2 + \sigma_2^2 - 2\,Cov(X, Y)`$ is smaller than the sum of the two variances. Variation between individuals, such as differences in constitution, cancels out when the differences are taken.
 
 ### 9.3 R Practice: Sleep Data
 
@@ -911,7 +911,7 @@ t-tests are all performed with `t.test()`, whose main arguments are listed in Ta
 | Argument | Meaning | Default |
 |:-----|:-----|:-----|
 | `x`, `y` | First sample, second sample (a one-sample test if `y` is absent) | None |
-| `mu` | Value under the null hypothesis ($\mu_0$, or $\mu_1 - \mu_2$, $\mu_d$) | 0 |
+| `mu` | Value under the null hypothesis ($\mu_0$, or $\mu_1 - \mu_2$, $`\mu_d`$) | 0 |
 | `alternative` | Direction of the alternative: `"two.sided"`, `"less"`, `"greater"` | `"two.sided"` |
 | `paired` | Whether to perform a paired t-test | `FALSE` |
 | `var.equal` | Whether to assume equal variances (`FALSE` gives Welch's t-test) | `FALSE` |
@@ -937,11 +937,11 @@ t-tests are all performed with `t.test()`, whose main arguments are listed in Ta
 | Unbiasedness | $\hat{\theta}$ is unbiased if $E(\hat{\theta}) = \theta$. $E(\bar{X}) = \mu$ and $E(S^2) = \sigma^2$, and $S^2$ divides by $n - 1$ for this reason. |
 | Sampling distribution of the sample mean | $Var(\bar{X}) = \sigma^2/n$. $\bar{X} \sim N(\mu, \sigma^2/n)$ exactly for a normal population and approximately for large $n$ otherwise. |
 | Standard error | The standard deviation of an estimator. For the sample mean $SE = \sigma/\sqrt{n}$, which halves only when the sample is quadrupled. |
-| Confidence interval | With known $\sigma$, $\bar{x} \pm z_{\alpha/2}\,\sigma/\sqrt{n}$. The confidence level is the proportion of repeated intervals containing the true value, not the probability that $\mu$ lies in a computed interval. |
+| Confidence interval | With known $\sigma$, $`\bar{x} \pm z_{\alpha/2}\,\sigma/\sqrt{n}`$. The confidence level is the proportion of repeated intervals containing the true value, not the probability that $\mu$ lies in a computed interval. |
 | Null and alternative hypotheses | $H_0$ is the default "no difference" position and $H_1$ the claim the researcher wants to show. One assumes $H_0$ and looks for a contradiction with the data. |
-| Two types of errors | A type I error rejects a true $H_0$ (probability $\alpha$), and a type II error retains a false $H_0$ (probability $\beta$). Power is $1 - \beta$. |
+| Two types of errors | A type I error rejects a true $H_0$ (probability $`\alpha`$), and a type II error retains a false $H_0$ (probability $`\beta`$). Power is $1 - \beta$. |
 | Confusion matrix | TP, FP, FN, and TN define sensitivity (recall), specificity, precision, FDR, accuracy, and others. Measures that divide by the true state differ from those that divide by the declaration. |
-| One-sample Z-test | With known $\sigma$, compare $z = (\bar{x} - \mu_0)/(\sigma/\sqrt{n})$ with $N(0, 1)$. It requires independence and normality (or large $n$). |
+| One-sample Z-test | With known $\sigma$, compare $z = (\bar{x} - \mu_0)/(\sigma/\sqrt{n})$ with $N(0, 1)$. It requires independence and normality (or large $`n`$). |
 | p-value | The probability under $H_0$ of a result at least as extreme as the observed one in the direction of $H_1$. One-sided uses one tail and two-sided doubles it; it is not the probability that $H_0$ is true. |
 | Significance level and rejection region | Reject when $P \leq \alpha$. At the same $\alpha$ the two-sided critical value (1.96) is farther than the one-sided one (1.645), and a two-sided test agrees with the confidence interval. |
 | One-sample t-test | With unknown $\sigma$, use $t = (\bar{x} - \mu_0)/(s/\sqrt{n})$, which follows $t(n-1)$ under $H_0$ for a normal population and approximately so for large $n$. |
@@ -1027,7 +1027,7 @@ t-tests are all performed with `t.test()`, whose main arguments are listed in Ta
 
    </details>
 
-9. **Interpreting a p-value:** Is the interpretation "$p = 0.03$, so the probability that the null hypothesis is true is 3%" correct?
+9. **Interpreting a p-value:** Is the interpretation "$`p = 0.03`$, so the probability that the null hypothesis is true is 3%" correct?
 
    <details>
    <summary>Answer</summary>
@@ -1059,7 +1059,7 @@ t-tests are all performed with `t.test()`, whose main arguments are listed in Ta
     <details>
     <summary>Answer</summary>
 
-    If the two values of the same person are positively correlated, the variance of the difference, $\sigma_1^2 + \sigma_2^2 - 2\,Cov$, is smaller than the sum of the two variances. The independent two-sample test ignores this covariance and computes a larger standard error, so the t value shrinks, the p-value grows, and power is lost. In the sleep data, the paired test's $p = 0.0028$ became $0.0794$ under the independent test.
+    If the two values of the same person are positively correlated, the variance of the difference, $`\sigma_1^2 + \sigma_2^2 - 2\,Cov`$, is smaller than the sum of the two variances. The independent two-sample test ignores this covariance and computes a larger standard error, so the t value shrinks, the p-value grows, and power is lost. In the sleep data, the paired test's $p = 0.0028$ became $0.0794$ under the independent test.
 
     </details>
 

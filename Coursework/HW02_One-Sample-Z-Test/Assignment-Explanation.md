@@ -81,11 +81,13 @@ The test decides from a sample whether the population mean $\mu$ equals a known 
 2. **Fix the significance level:** Before looking at the data, fix the **significance level** $\alpha$, the upper bound on the probability of a **type I error**, which is rejecting the null hypothesis when it is true.
 3. **Compute the test statistic:** From the sample size $n$ and the sample mean $\bar{x}$, compute the following. The denominator $\sigma/\sqrt{n}$ is the **standard error**, the standard deviation of the sample mean.
 
-$$Z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}$$
+```math
+Z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}
+```
 
 4. **Compute the p-value:** When the null hypothesis is true, $Z$ follows the standard normal distribution $N(0, 1)$. The **p-value** is the probability, under the null hypothesis, of a test statistic as extreme as the observed one or more extreme, and it depends on the direction as follows. $\Phi$ is the cumulative distribution function of the standard normal distribution.
 
-| Alternative | p-value | Rejection region ($\alpha = 0.05$) | Rejection region ($\alpha = 0.10$) |
+| Alternative | p-value | Rejection region ($`\alpha = 0.05`$) | Rejection region ($`\alpha = 0.10`$) |
 |:-----|:-----|:-----|:-----|
 | $\mu \ne \mu_0$ (two-sided) | $2\lbrace1 - \Phi(\lvert z \rvert)\rbrace$ | $\lvert z \rvert > 1.960$ | $\lvert z \rvert > 1.645$ |
 | $\mu > \mu_0$ (right-tailed) | $1 - \Phi(z)$ | $z > 1.645$ | $z > 1.282$ |
@@ -109,9 +111,13 @@ $$Z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}$$
 
 **Computation.** The sample mean of all 8,921 subjects is $\bar{x} = 128.8486$.
 
-$$\frac{\sigma}{\sqrt{n}} = \frac{16.5}{\sqrt{8921}} = 0.17469, \qquad Z = \frac{128.8486 - 128.65}{0.17469} = \frac{0.19856}{0.17469} = 1.1366$$
+```math
+\frac{\sigma}{\sqrt{n}} = \frac{16.5}{\sqrt{8921}} = 0.17469, \qquad Z = \frac{128.8486 - 128.65}{0.17469} = \frac{0.19856}{0.17469} = 1.1366
+```
 
-$$p = 2\lbrace1 - \Phi(1.1366)\rbrace = 0.2557$$
+```math
+p = 2\lbrace1 - \Phi(1.1366)\rbrace = 0.2557
+```
 
 **Conclusion.** $\lvert Z \rvert = 1.137$ is below the rejection boundary 1.960, and the p-value 0.2557 is larger than the significance level 0.05. Therefore the null hypothesis is not rejected, and there is no ground to select the alternative hypothesis. There is no significant evidence that the mean systolic blood pressure of the collected sample differs from the NIH distribution of normal people, and by this criterion the sample cannot be called biased.
 
@@ -131,9 +137,13 @@ A confidence interval gives the same conclusion. The 95% confidence interval for
 
 **Computation.** The sample mean of the 4,455 subjects with `Disease` equal to `COVID19` is $\bar{x} = 129.4846$.
 
-$$\frac{\sigma}{\sqrt{n}} = \frac{16.5}{\sqrt{4455}} = 0.24721, \qquad Z = \frac{129.4846 - 128.65}{0.24721} = \frac{0.83462}{0.24721} = 3.3762$$
+```math
+\frac{\sigma}{\sqrt{n}} = \frac{16.5}{\sqrt{4455}} = 0.24721, \qquad Z = \frac{129.4846 - 128.65}{0.24721} = \frac{0.83462}{0.24721} = 3.3762
+```
 
-$$p = 1 - \Phi(3.3762) = 0.000367$$
+```math
+p = 1 - \Phi(3.3762) = 0.000367
+```
 
 **Conclusion.** $Z = 3.376$ exceeds the right-tailed rejection boundary 1.645, and the p-value 0.000367 is smaller than the significance level 0.05. Therefore the null hypothesis is rejected and the alternative hypothesis is selected. At the 5% significance level, the mean systolic blood pressure of COVID19 patients is judged higher than the national statistic of 128.65 mmHg.
 
@@ -161,11 +171,15 @@ With $\mu$ the mean heart rate of the male population, the three pairs of hypoth
 
 $\sigma^2 = 11.1$ is a variance, so the standard deviation is $\sigma = \sqrt{11.1} = 3.3317$. The sample mean of the 4,834 men with `Gender` equal to 1 is $\bar{x} = 74.7005$.
 
-$$\frac{\sigma}{\sqrt{n}} = \frac{3.3317}{\sqrt{4834}} = 0.047919, \qquad Z = \frac{74.7005 - 74.62}{0.047919} = \frac{0.08046}{0.047919} = 1.6790$$
+```math
+\frac{\sigma}{\sqrt{n}} = \frac{3.3317}{\sqrt{4834}} = 0.047919, \qquad Z = \frac{74.7005 - 74.62}{0.047919} = \frac{0.08046}{0.047919} = 1.6790
+```
 
 All three directions share the same test statistic $Z = 1.679$, and only the p-values differ by direction.
 
-$$p_{\text{two}} = 2\lbrace1 - \Phi(1.679)\rbrace = 0.0932, \qquad p_{\text{right}} = 1 - \Phi(1.679) = 0.0466, \qquad p_{\text{left}} = \Phi(1.679) = 0.9534$$
+```math
+p_{\text{two}} = 2\lbrace1 - \Phi(1.679)\rbrace = 0.0932, \qquad p_{\text{right}} = 1 - \Phi(1.679) = 0.0466, \qquad p_{\text{left}} = \Phi(1.679) = 0.9534
+```
 
 Since $\bar{x} > \mu_0$, $Z > 0$, and then the right-tailed p-value is half the two-sided p-value and the left-tailed p-value is 1 minus the right-tailed p-value.
 
@@ -205,7 +219,9 @@ The data, the test statistic, and the p-values are exactly the same as in Q3, an
 
 To conclude "the heart rate of men is higher than the NIH statistic" because only the right-tailed test rejected in Section 5.2, the right-tailed direction must have been fixed by the research question before looking at the data. Choosing the right-tailed test after seeing that the sample mean is above the reference value is equivalent to a test that rejects when $\lvert Z \rvert > 1.645$. The probability of a type I error of that test is twice the nominal significance level.
 
-$$P(Z > 1.645) + P(Z < -1.645) = 0.05 + 0.05 = 0.10$$
+```math
+P(Z > 1.645) + P(Z < -1.645) = 0.05 + 0.05 = 0.10
+```
 
 Running all three directions and taking whichever rejects as the conclusion causes the same problem. Without a prior reason for a direction, the test must be two-sided, and then the conclusion at the 5% significance level is "there is insufficient evidence that the mean heart rate of men differs from the NIH statistic".
 
@@ -215,9 +231,11 @@ Running all three directions and taking whichever rejects as the conclusion caus
 
 The Z-test assumes that the given $\sigma$ is true, so it is worth checking whether the value agrees with the data. The sample standard deviation of the heart rates of the 4,834 men is $s = 12.99$ (sample variance 168.7), about 3.9 times $\sigma = \sqrt{11.1} = 3.33$. With a sample this large, the sample standard deviation is very close to the population standard deviation, so a variance of 11.1 does not fit these data. The standard error is computed about 3.9 times too small, and $Z$ is inflated by the same factor.
 
-If the number 11.1 is a standard deviation rather than a variance ($\sigma = 11.1$), it fits the data well, and the results change as follows.
+If the number 11.1 is a standard deviation rather than a variance ($`\sigma = 11.1`$), it fits the data well, and the results change as follows.
 
-$$\frac{\sigma}{\sqrt{n}} = \frac{11.1}{\sqrt{4834}} = 0.15965, \qquad Z = \frac{0.08046}{0.15965} = 0.504$$
+```math
+\frac{\sigma}{\sqrt{n}} = \frac{11.1}{\sqrt{4834}} = 0.15965, \qquad Z = \frac{0.08046}{0.15965} = 0.504
+```
 
 The p-values are then 0.614 (two-sided), 0.307 (right-tailed), and 0.693 (left-tailed), and no direction rejects the null hypothesis at either the 5% or the 10% significance level. The one-sample t-test, which uses the sample standard deviation instead of assuming the population value, gives the same conclusion with $t = 0.431$ and a two-sided p-value of 0.667.
 
@@ -235,9 +253,13 @@ The p-values are then 0.614 (two-sided), 0.307 (right-tailed), and 0.693 (left-t
 
 **Computation.** The variance is given, so $\sigma = \sqrt{8.995} = 2.9992$, and the sample mean of all 8,921 subjects is $\bar{x} = 96.0666$.
 
-$$\frac{\sigma}{\sqrt{n}} = \frac{2.9992}{\sqrt{8921}} = 0.031754, \qquad Z = \frac{96.0666 - 96.0245}{0.031754} = \frac{0.04208}{0.031754} = 1.3253$$
+```math
+\frac{\sigma}{\sqrt{n}} = \frac{2.9992}{\sqrt{8921}} = 0.031754, \qquad Z = \frac{96.0666 - 96.0245}{0.031754} = \frac{0.04208}{0.031754} = 1.3253
+```
 
-$$p = 2\lbrace1 - \Phi(1.3253)\rbrace = 0.1851$$
+```math
+p = 2\lbrace1 - \Phi(1.3253)\rbrace = 0.1851
+```
 
 **Conclusion.** The p-value 0.1851 is larger than the significance level 0.05, so the null hypothesis is not rejected, and there is no ground to select the alternative that the data form a separate population. The conclusion is the same at the other conventional levels 0.01 and 0.10. The 95% confidence interval for the population mean, (96.004, 96.129), also contains 96.0245. The sample variance 9.035 is nearly equal to the given variance 8.995, so neither the mean nor the spread shows a notable departure from the Korean statistics.
 
@@ -275,7 +297,7 @@ The standard error $\sigma/\sqrt{n}$ is inversely proportional to the square roo
 | p-value | It is the probability under the null hypothesis of a value as extreme as the observed one or more extreme, and for the same $Z$ a one-sided p-value is half the two-sided one or 1 minus that half. |
 | Decision rule | If the p-value is smaller than the significance level, the null hypothesis is rejected and the alternative selected, and otherwise the null hypothesis is not rejected. |
 | Choice of significance level | A higher significance level makes rejection easier and raises the power but also the probability of a type I error, and choosing it after seeing the data destroys its meaning. |
-| Correspondence with confidence intervals | A $100(1 - \alpha)\%$ confidence interval for the population mean that excludes $\mu_0$ is equivalent to rejection by the two-sided test at significance level $\alpha$. |
+| Correspondence with confidence intervals | A $`100(1 - \alpha)\%`$ confidence interval for the population mean that excludes $\mu_0$ is equivalent to rejection by the two-sided test at significance level $\alpha$. |
 | Checking parameter assumptions | If the given $\sigma$ differs greatly from the sample standard deviation, the conclusion of the Z-test is hard to trust, and the t-test is used instead. |
 | Statistical significance and practical size | In large samples even tiny differences are significant, so the size of the difference and a confidence interval are reported together. |
 

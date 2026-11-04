@@ -39,9 +39,9 @@
 
 The value 0 comes from one outcome, the values 1 and 2 from three outcomes each, and the value 3 from one outcome, so the distribution is:
 
-$$
+```math
 f(0) = \frac{1}{8}, \quad f(1) = \frac{3}{8}, \quad f(2) = \frac{3}{8}, \quad f(3) = \frac{1}{8}, \qquad \sum_x f(x) = \frac{1 + 3 + 3 + 1}{8} = 1
-$$
+```
 
 In general, the number of outcomes with $k$ heads is the number of ways $\binom{3}{k}$ to choose the $k$ positions of the heads among three, so $f(k) = \binom{3}{k} / 8$. This is the binomial distribution $B(3, 1/2)$ treated in Lecture 4.
 
@@ -123,9 +123,9 @@ The counts for small values can be found by hand. $X = 4$ comes only from $(1, 1
 
 The distribution is symmetric about 14. Replacing each face $k$ by $7 - k$ changes the sum $x$ into $28 - x$, and this correspondence is one-to-one, so $f(x) = f(28 - x)$. The expected value and variance can be found in advance from the fact that $X$ is the sum of four independent dice ([Lecture 3, Section 7.3](Concepts_Lecture.md#73-variance-of-a-sum)).
 
-$$
+```math
 E(X) = 4 \cdot \frac{7}{2} = 14, \qquad \mathrm{Var}(X) = 4 \cdot \frac{35}{12} = \frac{35}{3} \approx 11.667, \qquad D(X) = \sqrt{\frac{35}{3}} \approx 3.4157
-$$
+```
 
 **Code:**
 
@@ -210,7 +210,7 @@ The counts grow as 1, 4, 10, 20, ..., peak at 146 for $X = 14$, and then decreas
 
 **Approach:** The number of outcomes with $k$ tails is $\binom{3}{k}$, so the distribution is the same as in Exercise 1: $f(0) = 1/8$, $f(1) = 3/8$, $f(2) = 3/8$, $f(3) = 1/8$. The CDF adds the probabilities of the values at most $x$ and is constant between values ([Lecture 3, Section 2.2](Concepts_Lecture.md#22-cumulative-distribution-function)).
 
-$$
+```math
 F(x) = P(X \le x) =
 \begin{cases}
 0, & x < 0 \\
@@ -219,17 +219,17 @@ F(x) = P(X \le x) =
 7/8, & 2 \le x < 3 \\
 1, & x \ge 3
 \end{cases}
-$$
+```
 
 Each interval includes its left endpoint and excludes its right endpoint. For example, $F(1) = 4/8$ and $F(0.999) = 1/8$. The expected value and standard deviation are:
 
-$$
+```math
 E(X) = \frac{0 \cdot 1 + 1 \cdot 3 + 2 \cdot 3 + 3 \cdot 1}{8} = \frac{12}{8} = 1.5, \qquad E(X^2) = \frac{0 + 3 + 12 + 9}{8} = 3
-$$
+```
 
-$$
+```math
 \mathrm{Var}(X) = 3 - 1.5^2 = 0.75, \qquad D(X) = \sqrt{0.75} \approx 0.866
-$$
+```
 
 **Code:**
 
@@ -301,7 +301,7 @@ The third line gives $F(x)$ at $x = -1, 0, 0.5, 1, 1.5, 2, 3, 4$. As $F(0.5) = F
 - If $x = y$, only the outcome $(x, x)$ does.
 - If $x < y$, there is no outcome, because the maximum cannot be smaller than the minimum.
 
-$$
+```math
 n(x, y) =
 \begin{cases}
 1, & x = y \\
@@ -314,7 +314,7 @@ f(x, y) =
 2/36, & x > y
 \end{cases}
 \qquad (x, y = 1, 2, \dots, 6)
-$$
+```
 
 For cells with $x < y$, $f(x, y) = 0$. The joint frequency table is as follows.
 
@@ -332,9 +332,9 @@ For cells with $x < y$, $f(x, y) = 0$. The joint frequency table is as follows.
 
 Dividing the row sums and column sums by 36 gives the marginal distributions.
 
-$$
+```math
 p_X(x) = \frac{2x - 1}{36}, \qquad p_Y(y) = \frac{13 - 2y}{36} \qquad (x, y = 1, \dots, 6)
-$$
+```
 
 These formulas can also be checked another way. The maximum is at most $x$ exactly when both numbers are at most $x$, so $P(X \le x) = (x/6)^2$ and $p_X(x) = P(X \le x) - P(X \le x - 1) = \lbrace x^2 - (x - 1)^2\rbrace/36 = (2x - 1)/36$. In the same way, $P(Y \ge y) = \lbrace(7 - y)/6\rbrace^2$ gives $p_Y(y) = (13 - 2y)/36$.
 
@@ -412,7 +412,7 @@ X          1      2      3      4      5      6    Sum
 
 *Figure 4. Joint probability distribution of the maximum X and minimum Y of two dice, with circle size proportional to probability*
 
-The probability is $1/36 \approx 0.0278$ on the diagonal ($x = y$), $2/36 \approx 0.0556$ below it ($x > y$), and 0 above it ($x < y$).
+The probability is $1/36 \approx 0.0278$ on the diagonal ($`x = y`$), $2/36 \approx 0.0556$ below it ($`x > y`$), and 0 above it ($`x < y`$).
 
 ---
 
@@ -435,23 +435,23 @@ The probability is $1/36 \approx 0.0278$ on the diagonal ($x = y$), $2/36 \appro
 
 The expected value is the sum of the values times their probabilities ([Lecture 3, Section 5.1](Concepts_Lecture.md#51-definition-of-the-expected-value)).
 
-$$
+```math
 E(X) = \sum_x x f(x) = \frac{300 \cdot 1 + 100 \cdot 3 + (-100) \cdot 3 + (-300) \cdot 1}{8} = \frac{300 + 300 - 300 - 300}{8} = 0
-$$
+```
 
 Linearity confirms this: $E(H) = 3/2$, so $E(X) = 100\lbrace2E(H) - 3\rbrace = 100(3 - 3) = 0$. The expected profit is 0, so the game favors neither side; it is a **fair game**.
 
 The variance comes from $E(X^2)$.
 
-$$
+```math
 E(X^2) = \frac{90{,}000 \cdot 1 + 10{,}000 \cdot 3 + 10{,}000 \cdot 3 + 90{,}000 \cdot 1}{8} = \frac{240{,}000}{8} = 30{,}000
-$$
+```
 
-$$
+```math
 \mathrm{Var}(X) = 30{,}000 - 0^2 = 30{,}000, \qquad D(X) = \sqrt{30{,}000} \approx 173.21
-$$
+```
 
-The linear transformation property gives the same result, $\mathrm{Var}(X) = 200^2\, \mathrm{Var}(H) = 40{,}000 \cdot 0.75 = 30{,}000$. Although the expected profit is 0, the profit in one game deviates from the mean by roughly 173 won.
+The linear transformation property gives the same result, $`\mathrm{Var}(X) = 200^2\, \mathrm{Var}(H) = 40{,}000 \cdot 0.75 = 30{,}000`$. Although the expected profit is 0, the profit in one game deviates from the mean by roughly 173 won.
 
 **Code:**
 
@@ -511,13 +511,13 @@ E(X) = 0  Var(X) = 30000  D(X) = 173.2051
 
 **Approach:** Each face has probability $1/6$, so compute from the definitions ([Lecture 3, Section 6.1](Concepts_Lecture.md#61-variance)).
 
-$$
+```math
 \mu_X = E(X) = \frac{1}{6}(1 + 2 + 3 + 4 + 5 + 6) = \frac{21}{6} = \frac{7}{2}
-$$
+```
 
-$$
+```math
 \sigma_X^2 = E(X^2) - \mu_X^2 = \frac{1}{6}(1^2 + 2^2 + 3^2 + 4^2 + 5^2 + 6^2) - \Big(\frac{7}{2}\Big)^2 = \frac{91}{6} - \frac{49}{4} = \frac{35}{12}
-$$
+```
 
 Here $1^2 + \cdots + 6^2 = 1 + 4 + 9 + 16 + 25 + 36 = 91$ and $\frac{91}{6} - \frac{49}{4} = \frac{182 - 147}{12}$. The standard deviation is $\sqrt{35/12} \approx 1.708$.
 
@@ -555,25 +555,25 @@ E(X) = 3.5  E(X^2) = 15.16667  Var(X) = 2.916667  D(X) = 1.7078
 
 **Method 1: properties of linear transformations.** From Exercise 6, $\mu_X = 7/2$ and $\sigma_X^2 = 35/12$. Substitute $a = 100$ and $b = -400$ into $E(aX + b) = aE(X) + b$ and $\mathrm{Var}(aX + b) = a^2 \mathrm{Var}(X)$ ([Lecture 3, Section 6.3](Concepts_Lecture.md#63-expectation-and-variance-of-a-linear-transformation)).
 
-$$
+```math
 \mu_Y \equiv E(Y) = 100\,E(X) - 400 = 350 - 400 = -50
-$$
+```
 
-$$
+```math
 \sigma_Y^2 \equiv \mathrm{Var}(Y) = 100^2\, \sigma_X^2 = \frac{350{,}000}{12} \approx 29{,}166.67
-$$
+```
 
 **Method 2: direct computation.** $Y$ takes the values $-300, -200, -100, 0, 100, 200$, each with probability $1/6$.
 
-$$
+```math
 E(Y) = \frac{-300 - 200 - 100 + 0 + 100 + 200}{6} = \frac{-300}{6} = -50
-$$
+```
 
-$$
+```math
 E(Y^2) = \frac{90{,}000 + 40{,}000 + 10{,}000 + 0 + 10{,}000 + 40{,}000}{6} = \frac{190{,}000}{6}, \qquad \mathrm{Var}(Y) = \frac{190{,}000}{6} - (-50)^2 = \frac{190{,}000 - 15{,}000}{6} = \frac{175{,}000}{6} \approx 29{,}166.67
-$$
+```
 
-The two methods agree, since $\frac{175{,}000}{6} = \frac{350{,}000}{12}$. The standard deviation is $\sigma_Y = 100\,\sigma_X \approx 170.78$. Subtracting 400 only shifts the distribution without changing its spread, while multiplying by 100 multiplies the standard deviation by 100 and the variance by $100^2$.
+The two methods agree, since $\frac{175{,}000}{6} = \frac{350{,}000}{12}$. The standard deviation is $`\sigma_Y = 100\,\sigma_X \approx 170.78`$. Subtracting 400 only shifts the distribution without changing its spread, while multiplying by 100 multiplies the standard deviation by 100 and the variance by $100^2$.
 
 **Code:**
 

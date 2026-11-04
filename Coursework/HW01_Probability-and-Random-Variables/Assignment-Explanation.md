@@ -86,15 +86,21 @@ Coursework/HW01_Probability-and-Random-Variables/
 
 **Solution.** There are two unknowns, so two equations are needed. The first comes from a **property of probability distributions**: all probabilities add up to 1.
 
-$$a + (a + b) + b = 2a + 2b = 1 \quad\Rightarrow\quad a + b = \frac{1}{2}$$
+```math
+a + (a + b) + b = 2a + 2b = 1 \quad\Rightarrow\quad a + b = \frac{1}{2}
+```
 
 The second comes from the given expectation. The expected value of a function $g(X) = X^2$ of a random variable is the sum of $g(x)$ times the probability over every value $x$.
 
-$$E(X^2) = 1^2 \cdot a + 2^2 \cdot (a + b) + 3^2 \cdot b = a + 4a + 4b + 9b = 5a + 13b$$
+```math
+E(X^2) = 1^2 \cdot a + 2^2 \cdot (a + b) + 3^2 \cdot b = a + 4a + 4b + 9b = 5a + 13b
+```
 
 Since $5a + 13b = a + 5$, we have $4a + 13b = 5$. Substituting $a = \frac{1}{2} - b$ from the first equation gives the following.
 
-$$4\left(\frac{1}{2} - b\right) + 13b = 2 + 9b = 5 \quad\Rightarrow\quad b = \frac{1}{3}, \quad a = \frac{1}{2} - \frac{1}{3} = \frac{1}{6}$$
+```math
+4\left(\frac{1}{2} - b\right) + 13b = 2 + 9b = 5 \quad\Rightarrow\quad b = \frac{1}{3}, \quad a = \frac{1}{2} - \frac{1}{3} = \frac{1}{6}
+```
 
 Therefore $b - a = \frac{1}{3} - \frac{1}{6} = \frac{1}{6}$. With these values the probabilities are $\frac{1}{6}, \frac{1}{2}, \frac{1}{3}$, all nonnegative and summing to 1, so the table is a valid probability distribution.
 
@@ -106,7 +112,9 @@ Therefore $b - a = \frac{1}{3} - \frac{1}{6} = \frac{1}{6}$. With these values t
 
 **Solution.** If the coins are independent and each shows heads with probability $\frac{1}{2}$, then $X$ follows the binomial distribution $B(4, \frac{1}{2})$.
 
-$$P(X = k) = \binom{4}{k}\left(\frac{1}{2}\right)^k\left(\frac{1}{2}\right)^{4-k} = \frac{\binom{4}{k}}{16}, \quad k = 0, 1, 2, 3, 4$$
+```math
+P(X = k) = \binom{4}{k}\left(\frac{1}{2}\right)^k\left(\frac{1}{2}\right)^{4-k} = \frac{\binom{4}{k}}{16}, \quad k = 0, 1, 2, 3, 4
+```
 
 This formula gives the distribution of $X$, and the probabilities of the values of $X$ are collected for each value of $Y$. The value $Y = 2$ corresponds to $X = 2, 3, 4$ together.
 
@@ -119,7 +127,9 @@ This formula gives the distribution of $X$, and the probabilities of the values 
 
 Hence $P(Y = 0) = \frac{1}{16}$, $P(Y = 1) = \frac{4}{16}$, and $P(Y = 2) = \frac{6 + 4 + 1}{16} = \frac{11}{16}$, and the expected value is as follows.
 
-$$E(Y) = 0 \cdot \frac{1}{16} + 1 \cdot \frac{4}{16} + 2 \cdot \frac{11}{16} = \frac{26}{16} = \frac{13}{8} = 1.625$$
+```math
+E(Y) = 0 \cdot \frac{1}{16} + 1 \cdot \frac{4}{16} + 2 \cdot \frac{11}{16} = \frac{26}{16} = \frac{13}{8} = 1.625
+```
 
 Computing $E[g(X)] = \sum_x g(x) P(X = x)$ directly, without building the distribution of $Y$, gives the same result. Because $Y = \min(X, 2)$, $E(Y)$ is smaller than $E(X) = 2$.
 
@@ -129,7 +139,9 @@ Computing $E[g(X)] = \sum_x g(x) P(X = x)$ directly, without building the distri
 
 **Solution.** There are $\binom{5}{3} = 10$ equally likely ways to draw three balls at once. For the maximum to be $k$, the ball labeled $k$ must be drawn and the other two must be chosen from $1, \dots, k-1$. Thus $X$ takes the values 3, 4, and 5 with the following probabilities.
 
-$$P(X = k) = \frac{\binom{k-1}{2}}{\binom{5}{3}}, \quad k = 3, 4, 5$$
+```math
+P(X = k) = \frac{\binom{k-1}{2}}{\binom{5}{3}}, \quad k = 3, 4, 5
+```
 
 | $X$ | 3 | 4 | 5 |
 |:-----:|:-----:|:-----:|:-----:|
@@ -140,15 +152,23 @@ $$P(X = k) = \frac{\binom{k-1}{2}}{\binom{5}{3}}, \quad k = 3, 4, 5$$
 
 The expected value and the expected square are as follows.
 
-$$E(X) = 3 \cdot \frac{1}{10} + 4 \cdot \frac{3}{10} + 5 \cdot \frac{6}{10} = \frac{3 + 12 + 30}{10} = \frac{9}{2}$$
+```math
+E(X) = 3 \cdot \frac{1}{10} + 4 \cdot \frac{3}{10} + 5 \cdot \frac{6}{10} = \frac{3 + 12 + 30}{10} = \frac{9}{2}
+```
 
-$$E(X^2) = 9 \cdot \frac{1}{10} + 16 \cdot \frac{3}{10} + 25 \cdot \frac{6}{10} = \frac{9 + 48 + 150}{10} = \frac{207}{10}$$
+```math
+E(X^2) = 9 \cdot \frac{1}{10} + 16 \cdot \frac{3}{10} + 25 \cdot \frac{6}{10} = \frac{9 + 48 + 150}{10} = \frac{207}{10}
+```
 
-$$\mathrm{Var}(X) = E(X^2) - \lbrace E(X)\rbrace^2 = \frac{207}{10} - \frac{81}{4} = \frac{414 - 405}{20} = \frac{9}{20}$$
+```math
+\mathrm{Var}(X) = E(X^2) - \lbrace E(X)\rbrace^2 = \frac{207}{10} - \frac{81}{4} = \frac{414 - 405}{20} = \frac{9}{20}
+```
 
 For constants $a$ and $b$, $E(aX + b) = aE(X) + b$ and $\mathrm{Var}(aX + b) = a^2\mathrm{Var}(X)$. Adding a constant only shifts the distribution and leaves its spread unchanged, so $b$ disappears from the variance, and multiplying the values by $a$ multiplies every deviation by $a$, so the variance is multiplied by $a^2$.
 
-$$E(4X + 3) = 4 \cdot \frac{9}{2} + 3 = 21, \qquad \mathrm{Var}(2X + 2) = 2^2 \cdot \frac{9}{20} = \frac{9}{5}$$
+```math
+E(4X + 3) = 4 \cdot \frac{9}{2} + 3 = 21, \qquad \mathrm{Var}(2X + 2) = 2^2 \cdot \frac{9}{20} = \frac{9}{5}
+```
 
 ### 2.4 Q11. The Expected Square and the Variance
 
@@ -156,11 +176,13 @@ $$E(4X + 3) = 4 \cdot \frac{9}{2} + 3 = 21, \qquad \mathrm{Var}(2X + 2) = 2^2 \c
 
 **Solution.** It is true. The square of the standard deviation is the variance, $\mathrm{Sd}(X)^2 = \mathrm{Var}(X)$, and the derivation starts from the definition of the variance, $\mathrm{Var}(X) = E[(X - \mu)^2]$.
 
-$$\begin{aligned}
+```math
+\begin{aligned}
 \mathrm{Var}(X) &= E[(X - \mu)^2] = E[X^2 - 2\mu X + \mu^2] \\
 &= E[X^2] - 2\mu E[X] + \mu^2 \qquad (\text{linearity of expectation, } \mu \text{ is a constant}) \\
 &= E[X^2] - 2\mu^2 + \mu^2 = E[X^2] - \mu^2
-\end{aligned}$$
+\end{aligned}
+```
 
 Adding $\mu^2$ to both sides gives $E[X^2] = \mathrm{Var}(X) + \mu^2 = \mathrm{Sd}(X)^2 + \mu^2$. The second line uses the **linearity of expectation**, $E[aX + bY + c] = aE[X] + bE[Y] + c$, and since $\mu$ is a constant rather than a random variable, $E[\mu^2] = \mu^2$. The derivation holds for both discrete and continuous random variables and assumes only that $E[X^2]$ is finite.
 
@@ -178,7 +200,9 @@ Adding $\mu^2$ to both sides gives $E[X^2] = \mathrm{Var}(X) + \mu^2 = \mathrm{S
 
 **Solution.** Assume that each child is a boy (M) or a girl (F) with probability $\frac{1}{2}$ each, independently. The four outcomes of the sample space $S = \lbrace MM, MF, FM, FF\rbrace$, which lists the sexes of the first and second child in order, each have probability $\frac{1}{4}$. The information "one of the children is a boy" is the event that at least one child is a boy, $B = \lbrace MM, MF, FM\rbrace$, and the event of interest is that both are boys, $A = \lbrace MM\rbrace$. Substituting into the definition of **conditional probability**, $P(A \mid B) = \frac{P(A \cap B)}{P(B)}$, gives the following.
 
-$$P(A \mid B) = \frac{P(\lbrace MM\rbrace)}{P(\lbrace MM, MF, FM\rbrace)} = \frac{1/4}{3/4} = \frac{1}{3}$$
+```math
+P(A \mid B) = \frac{P(\lbrace MM\rbrace)}{P(\lbrace MM, MF, FM\rbrace)} = \frac{1/4}{3/4} = \frac{1}{3}
+```
 
 Given the condition, the sample space shrinks to $B$, and only one of the three outcomes in the reduced sample space belongs to $A$.
 
@@ -198,7 +222,9 @@ Given the condition, the sample space shrinks to $B$, and only one of the three 
 
 **Solution.** Bayes' theorem infers the **posterior probability** based on the **prior probability**. In the order of the English sentence, the first blank is the posterior probability and the second is the prior probability, and in the order of the Korean sentence, the first is the prior probability and the second is the posterior probability.
 
-$$P(A \mid B) = \frac{P(B \mid A)\,P(A)}{P(B)}$$
+```math
+P(A \mid B) = \frac{P(B \mid A)\,P(A)}{P(B)}
+```
 
 - $P(A)$ is the prior probability, the belief before observing the event $B$.
 - $P(B \mid A)$ is the **likelihood**, the probability of observing $B$ when $A$ is true.
@@ -222,10 +248,10 @@ Strictly speaking, the posterior probability is obtained not from the prior prob
 | Item | Answer |
 |:-----|:-----|
 | Notation of the random variable | $X \sim Poi(4)$ |
-| Probability mass function | $P(X = x) = \dfrac{e^{-4}\,4^x}{x!}, \quad x = 0, 1, 2, \dots$ |
+| Probability mass function | $`P(X = x) = \dfrac{e^{-4}\,4^x}{x!}, \quad x = 0, 1, 2, \dots`$ |
 | $E(X)$ | $\lambda = 4$ |
 | $\mathrm{Var}(X)$ | $\lambda = 4$ |
-| $P(X = 2)$ | $\dfrac{e^{-4}\,4^2}{2!} = 8e^{-4} \approx 0.1465$ |
+| $P(X = 2)$ | $`\dfrac{e^{-4}\,4^2}{2!} = 8e^{-4} \approx 0.1465`$ |
 
 *Table 5. Solution of Q3 with the Poisson distribution*
 
@@ -269,9 +295,13 @@ The problem statement asks for the probability of "winning 70 games" while the s
 
 The sum has 31 terms and is hard to compute by hand, so the **normal approximation** can be used. Since $np = 60 \ge 5$ and $n(1 - p) = 40 \ge 5$, $X$ approximately follows $N(60, 24)$, with standard deviation $\sqrt{24} \approx 4.899$. Because a discrete distribution is approximated by a continuous one, the **continuity correction** adds or subtracts 0.5 at the boundary.
 
-$$P(X \ge 70) \approx P\left(Z \ge \frac{69.5 - 60}{\sqrt{24}}\right) = P(Z \ge 1.939) \approx 0.0262$$
+```math
+P(X \ge 70) \approx P\left(Z \ge \frac{69.5 - 60}{\sqrt{24}}\right) = P(Z \ge 1.939) \approx 0.0262
+```
 
-$$P(X = 70) \approx P\left(\frac{69.5 - 60}{\sqrt{24}} \le Z \le \frac{70.5 - 60}{\sqrt{24}}\right) = P(1.939 \le Z \le 2.143) \approx 0.0102$$
+```math
+P(X = 70) \approx P\left(\frac{69.5 - 60}{\sqrt{24}} \le Z \le \frac{70.5 - 60}{\sqrt{24}}\right) = P(1.939 \le Z \le 2.143) \approx 0.0102
+```
 
 The approximations 0.0262 and 0.0102 are close to the exact values 0.0248 and 0.0100. Without the continuity correction, $P(Z \ge \frac{70 - 60}{\sqrt{24}}) = P(Z \ge 2.041)$ gives about 0.0206, a larger error.
 
@@ -304,7 +334,9 @@ Q12 and Q13 concern two random variables $X$ and $Y$ whose **joint probability m
 
 **Solution.** $F_{X,Y}(x_i, y_j)$ is the sum of the probabilities of all cells with $x \le x_i$ and $y \le y_j$, that is, the sum over the rectangle from the top-left corner of Table 8 to the cell $(x_i, y_j)$. For example:
 
-$$F_{X,Y}(2, 8) = p(1, 6) + p(1, 8) + p(2, 6) + p(2, 8) = \frac{1}{5} + 0 + 0 + \frac{1}{5} = \frac{2}{5}$$
+```math
+F_{X,Y}(2, 8) = p(1, 6) + p(1, 8) + p(2, 6) + p(2, 8) = \frac{1}{5} + 0 + 0 + \frac{1}{5} = \frac{2}{5}
+```
 
 | $F_{X,Y}(x, y)$ | $y = 6$ | $y = 8$ | $y = 10$ |
 |:-----:|:-----:|:-----:|:-----:|
@@ -324,17 +356,23 @@ The last row, $F_{X,Y}(3, y)$, equals the cumulative distribution function of $Y
 
 **Solution.** The marginal probability mass functions give the expected values.
 
-$$E[X] = 1 \cdot \frac{2}{5} + 2 \cdot \frac{1}{5} + 3 \cdot \frac{2}{5} = \frac{10}{5} = 2, \qquad E[Y] = 6 \cdot \frac{2}{5} + 8 \cdot \frac{1}{5} + 10 \cdot \frac{2}{5} = \frac{40}{5} = 8$$
+```math
+E[X] = 1 \cdot \frac{2}{5} + 2 \cdot \frac{1}{5} + 3 \cdot \frac{2}{5} = \frac{10}{5} = 2, \qquad E[Y] = 6 \cdot \frac{2}{5} + 8 \cdot \frac{1}{5} + 10 \cdot \frac{2}{5} = \frac{40}{5} = 8
+```
 
 $E[XY]$ needs only the five cells of the joint probability mass function with nonzero probability.
 
-$$E[XY] = \sum_{x}\sum_{y} xy\,p(x, y) = \frac{1 \cdot 6 + 1 \cdot 10 + 2 \cdot 8 + 3 \cdot 6 + 3 \cdot 10}{5} = \frac{6 + 10 + 16 + 18 + 30}{5} = \frac{80}{5} = 16$$
+```math
+E[XY] = \sum_{x}\sum_{y} xy\,p(x, y) = \frac{1 \cdot 6 + 1 \cdot 10 + 2 \cdot 8 + 3 \cdot 6 + 3 \cdot 10}{5} = \frac{6 + 10 + 16 + 18 + 30}{5} = \frac{80}{5} = 16
+```
 
 Since $E[X]E[Y] = 2 \cdot 8 = 16$, $E[XY] = E[X]E[Y]$ holds, and the **covariance** is $\mathrm{Cov}(X, Y) = E[XY] - E[X]E[Y] = 0$. That is, $X$ and $Y$ are **uncorrelated**.
 
 However, $X$ and $Y$ are **not independent.** Two discrete random variables are independent only if $p(x, y) = p_X(x)p_Y(y)$ for every $(x, y)$, and a single cell already violates it.
 
-$$p(1, 6) = \frac{1}{5} \ne p_X(1)\,p_Y(6) = \frac{2}{5} \cdot \frac{2}{5} = \frac{4}{25}$$
+```math
+p(1, 6) = \frac{1}{5} \ne p_X(1)\,p_Y(6) = \frac{2}{5} \cdot \frac{2}{5} = \frac{4}{25}
+```
 
 $p(2, 6) = 0 \ne \frac{1}{5} \cdot \frac{2}{5}$ is another counterexample. In fact, $X = 2$ forces $Y = 8$, while $X = 1$ or $3$ gives $Y = 6$ or $10$, so the value of $X$ changes the distribution of $Y$. This dependence is symmetric about $x = 2$ and has no linear trend, so the covariance, which measures only linear association, is 0.
 

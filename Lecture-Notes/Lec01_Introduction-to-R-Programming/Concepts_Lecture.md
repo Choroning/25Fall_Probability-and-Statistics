@@ -671,9 +671,9 @@ This command creates 100 values that follow the normal distribution with mean 18
 
 In probability theory, the **normal distribution**, also called the Gaussian, Gauss, or Laplace-Gauss distribution, is a very commonly used continuous probability distribution. The probability density function of the normal distribution with mean $\mu$ and variance $\sigma^2$ is as follows.
 
-$$
+```math
 f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left( -\frac{(x - \mu)^2}{2\sigma^2} \right), \qquad -\infty < x < \infty
-$$
+```
 
 The curve is bell-shaped, peaks at $x = \mu$, and is symmetric about $\mu$; the larger $\sigma^2$ is, the lower and wider it spreads. Normal distributions are important in statistics for representing real-valued random variables whose distributions are not known exactly, because quantities determined by the sum of many small factors, such as measurement errors or heights, are often approximately normal. A random variable with a normal distribution is said to be normally distributed, and such a random variable is also called a **normal deviate**. Lecture 5 covers the properties of the normal distribution in detail.
 
@@ -990,7 +990,7 @@ ggplot(ourData, aes(x = Gender, y = Height, color = Gender, fill = Gender)) +
 | Matrix | A two-dimensional structure whose elements all share one type. It cannot hold factors, and mixed types become strings. |
 | Generating values | `rep()` repeats (`times`, `each`), `seq()` and `:` create sequences, and `rnorm(n, mean, sd)` draws normal random numbers. `sd` is the standard deviation. |
 | Factor | Stores categorical data as levels and integer codes. `summary()` returns frequencies for factors and a six-value summary for numeric data. |
-| Descriptive statistics | `mean()`, `sd()` (denominator $n-1$), `median()`, and `summary()` summarize center and spread. Groups of different nature are summarized separately. |
+| Descriptive statistics | `mean()`, `sd()` (denominator $`n-1`$), `median()`, and `summary()` summarize center and spread. Groups of different nature are summarized separately. |
 | Visualization | `hist()` and `boxplot()` are base graphics, and ggplot2 and ggpubr draw density plots and box plots with the observations added. Data with the same summary values can have different distributions, so plot the data to check. |
 
 ---

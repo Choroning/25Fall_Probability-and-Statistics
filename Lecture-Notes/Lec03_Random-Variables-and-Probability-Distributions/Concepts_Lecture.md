@@ -65,9 +65,9 @@ Despite the word "variable" in its name, a random variable is a function. Its va
 
 **Example: tossing a coin three times.** If a coin is tossed three times in sequence, the sample space is as follows, where H is heads and T is tails.
 
-$$
+```math
 \mathcal{S} = \lbrace HHH,\ HHT,\ HTH,\ HTT,\ THH,\ THT,\ TTH,\ TTT\rbrace
-$$
+```
 
 Several random variables can be defined on this one sample space.
 
@@ -137,29 +137,29 @@ Lectures 3-4 deal with discrete random variables; continuous random variables ar
 
 In general, for a set $A$ of real numbers, $\lbrace X \in A\rbrace$ is shorthand for the following event.
 
-$$
+```math
 \lbrace X \in A\rbrace = X^{-1}(A) = \lbrace\, s \in \mathcal{S} : X(s) \in A \,\rbrace
-$$
+```
 
 Here $X^{-1}(A)$ is not an inverse function but the **inverse image**, the set of all outcomes whose function value lies in $A$. The inverse image is always defined, even when $X$ is not one-to-one. Since events have probabilities, value ranges also have probabilities.
 
-$$
+```math
 P(X \in A) = P(\lbrace\, s \in \mathcal{S} : X(s) \in A \,\rbrace)
-$$
+```
 
 If a fair coin is tossed independently three times, each of the eight outcomes has probability $1/8$ (Lecture 2). Thus the probability of the range $0 < X \le 2$ is the sum of the probabilities of the six outcomes $\lbrace HHT, HTH, HTT, THH, THT, TTH\rbrace$ that correspond to it.
 
-$$
+```math
 P(0 < X \le 2) = \frac{6}{8}
-$$
+```
 
 In the same way one can find $P(X \le -1)$, $P(X \le 0)$, $P(X \le 1)$, $P(X \le 2)$, $P(X \le 3)$, and $P(X \le 4)$; their values are listed in Table 2 of Section 2.2.
 
 Grouping the outcomes in Figure 1 that map to the same value produces four events.
 
-$$
+```math
 E_0 = \lbrace TTT\rbrace, \quad E_1 = \lbrace HTT, THT, TTH\rbrace, \quad E_2 = \lbrace HHT, HTH, THH\rbrace, \quad E_3 = \lbrace HHH\rbrace
-$$
+```
 
 > **Key Point:** Because $X$ is a **function**, the events $E_0, E_1, E_2, E_3$ are mutually exclusive and their union is $\mathcal{S}$. A function must be defined for every $s \in \mathcal{S}$, so no outcome is left out, and it is single-valued, so no outcome belongs to two events at once. That is, the events of the form $\lbrace X = x\rbrace$ form a **partition** of the sample space.
 
@@ -175,14 +175,14 @@ $$
 
 The name "mass" comes from the image of the total probability 1 being split into lumps placed at the points the random variable takes. For the number of heads $X$ in three coin tosses:
 
-$$
+```math
 \begin{aligned}
 p_X(0) &\equiv P(\lbrace TTT\rbrace) = \tfrac{1}{8} \\
 p_X(1) &\equiv P(\lbrace HTT, THT, TTH\rbrace) = \tfrac{3}{8} \\
 p_X(2) &\equiv P(\lbrace HHT, HTH, THH\rbrace) = \tfrac{3}{8} \\
 p_X(3) &\equiv P(\lbrace HHH\rbrace) = \tfrac{1}{8}
 \end{aligned}
-$$
+```
 
 These values add up to $p_X(0) + p_X(1) + p_X(2) + p_X(3) = 1$. The reason lies in the key point of Section 1.3: the four events $\lbrace X = 0\rbrace, \dots, \lbrace X = 3\rbrace$ form a partition of the sample space, so by the axioms of probability the sum of their probabilities is $P(\mathcal{S}) = 1$.
 
@@ -210,16 +210,16 @@ The cumulative distribution function is defined at **every real number** $x$, no
 | $0$ | $\lbrace TTT\rbrace$ | $1/8$ |
 | $1$ | $\lbrace TTT, HTT, THT, TTH\rbrace$ | $4/8$ |
 | $2$ | The seven outcomes other than $HHH$ | $7/8$ |
-| $3$ | All eight outcomes ($\mathcal{S}$) | $1$ |
-| $4$ | All eight outcomes ($\mathcal{S}$) | $1$ |
+| $3$ | All eight outcomes ($`\mathcal{S}`$) | $1$ |
+| $4$ | All eight outcomes ($`\mathcal{S}`$) | $1$ |
 
 *Table 2. Events {X ≤ x} and values of the cumulative distribution function for the number of heads X*
 
 For example, the probability in Section 1.3 can be obtained as a difference of CDF values.
 
-$$
+```math
 P(0 < X \le 2) = P(X = 1) + P(X = 2) = F(2) - F(0) = \frac{7}{8} - \frac{1}{8} = \frac{6}{8}
-$$
+```
 
 The cumulative distribution function has the following properties.
 
@@ -239,8 +239,8 @@ The CDF of a discrete random variable is a **step function**, as in Figure 3. It
 | Aspect | Discrete random variable | Continuous random variable |
 |:-----|:-----|:-----|
 | Function describing the distribution | Probability mass function $p_X(x) = P(X = x)$ | Probability density function $f_X(x)$ |
-| Cumulative distribution function | $F_X(x) = \sum_{t \le x} p_X(t)$ | $F_X(x) = \int_{-\infty}^{x} f_X(t)\, dt$ |
-| Probability of an interval $(a, b]$ | $\sum_{a < t \le b} p_X(t)$ | $\int_{a}^{b} f_X(t)\, dt$ |
+| Cumulative distribution function | $F_X(x) = \sum_{t \le x} p_X(t)$ | $`F_X(x) = \int_{-\infty}^{x} f_X(t)\, dt`$ |
+| Probability of an interval $(a, b]$ | $\sum_{a < t \le b} p_X(t)$ | $`\int_{a}^{b} f_X(t)\, dt`$ |
 | Probability of a point $P(X = x)$ | Can be greater than 0 | Always 0 |
 | Shape of the CDF | Step function | Continuous function |
 
@@ -288,13 +288,13 @@ The same method solves larger problems such as the sum of four dice and the join
 
 The probability mass function and the cumulative distribution function can also be functions of **more than one variable**. To handle two random variables defined on the same sample space together, we need the probability that two values occur at the same time.
 
-> **Definition:** For two discrete random variables $X$ and $Y$, $p_{X,Y}(x, y) \equiv P(X = x,\ Y = y) = P(\lbrace X = x\rbrace \cap \lbrace Y = y\rbrace)$ is called the **joint probability mass function**.
+> **Definition:** For two discrete random variables $X$ and $Y$, $`p_{X,Y}(x, y) \equiv P(X = x,\ Y = y) = P(\lbrace X = x\rbrace \cap \lbrace Y = y\rbrace)`$ is called the **joint probability mass function**.
 
-**Example.** Toss a coin three times, and let $X$ be the number of heads and $Y$ the index of the toss with the first head (0 for $TTT$). For example, $p_{X,Y}(2, 1)$ is the probability that there are two heads and the first head occurs at the first toss, that is, two heads with the first toss being heads.
+**Example.** Toss a coin three times, and let $X$ be the number of heads and $Y$ the index of the toss with the first head (0 for $`TTT`$). For example, $p_{X,Y}(2, 1)$ is the probability that there are two heads and the first head occurs at the first toss, that is, two heads with the first toss being heads.
 
-$$
+```math
 p_{X,Y}(2, 1) = P(X = 2,\ Y = 1) = P(\lbrace HHT, HTH\rbrace) = \frac{2}{8} = \frac{1}{4}
-$$
+```
 
 To find the whole joint probability mass function, first write down the values of both random variables for each outcome.
 
@@ -319,11 +319,11 @@ Counting the outcomes that give the same $(x, y)$ and dividing by 8 gives the jo
 
 The right column and the bottom row of the table are the row sums and column sums.
 
-$$
+```math
 p_X(x) = \sum_{y} p_{X,Y}(x, y), \qquad p_Y(y) = \sum_{x} p_{X,Y}(x, y)
-$$
+```
 
-Because they are written in the margins of the table, these are called **marginal probabilities**; $p_X$ is the **marginal PMF** of $X$ and $p_Y$ the marginal PMF of $Y$. A marginal PMF equals the PMF of that random variable considered alone. The event $\lbrace X = x\rbrace$ is the union of the mutually exclusive events $\lbrace X = x, Y = y\rbrace$ ($y$ ranging over all values of $Y$), so by the law of total probability of Lecture 2 its probability is the sum of the joint probabilities. Indeed, $p_X$ in Table 5 equals $1/8, 3/8, 3/8, 1/8$ found in Section 2.1.
+Because they are written in the margins of the table, these are called **marginal probabilities**; $p_X$ is the **marginal PMF** of $X$ and $p_Y$ the marginal PMF of $Y$. A marginal PMF equals the PMF of that random variable considered alone. The event $\lbrace X = x\rbrace$ is the union of the mutually exclusive events $\lbrace X = x, Y = y\rbrace$ ($y$ ranging over all values of $`Y`$), so by the law of total probability of Lecture 2 its probability is the sum of the joint probabilities. Indeed, $p_X$ in Table 5 equals $1/8, 3/8, 3/8, 1/8$ found in Section 2.1.
 
 > **Note:** The marginal distributions can always be obtained from the joint distribution, but the joint distribution cannot be recovered from the marginals alone, because many joint distributions can share the same marginals. Only when the two random variables are independent is the joint distribution determined as the product of the marginals (Section 4).
 
@@ -331,15 +331,15 @@ Because they are written in the margins of the table, these are called **margina
 
 The cumulative distribution function also extends to two variables.
 
-$$
+```math
 F_{X,Y}(x, y) \equiv P(X \le x,\ Y \le y) = \sum_{x_i \le x} \sum_{y_j \le y} p_{X,Y}(x_i, y_j)
-$$
+```
 
 This is called the **joint cumulative distribution function**, or joint distribution function. It is the sum of the joint probabilities of all cells at most $x$ and at most $y$. For example, from Table 5:
 
-$$
+```math
 F_{X,Y}(1, 1) = p(0, 0) + p(0, 1) + p(1, 0) + p(1, 1) = \frac{1}{8} + 0 + 0 + \frac{1}{8} = \frac{2}{8}
-$$
+```
 
 Letting $y$ grow without bound gives $F_{X,Y}(x, \infty) = P(X \le x) = F_X(x)$, so the CDF of each random variable can also be obtained from the joint CDF.
 
@@ -351,14 +351,14 @@ Letting $y$ grow without bound gives $F_{X,Y}(x, \infty) = P(X \le x) = F_X(x)$,
 
 ### 4.1 Definition of Independence
 
-> **Definition:** Two discrete random variables $X$ and $Y$ are **independent** if $P(X = x,\ Y = y) = P(X = x) \cdot P(Y = y)$ for all $x$ and $y$.
+> **Definition:** Two discrete random variables $X$ and $Y$ are **independent** if $`P(X = x,\ Y = y) = P(X = x) \cdot P(Y = y)`$ for all $x$ and $y$.
 
 The same condition can be written in two other ways.
 
 1. In terms of probability mass functions, $p_{X,Y}(x, y) = p_X(x) \cdot p_Y(y)$ for all $x$ and $y$.
 2. In terms of events, $E_x \equiv X^{-1}(\lbrace x\rbrace)$ and $E_y \equiv Y^{-1}(\lbrace y\rbrace)$ are independent events in the sample space $\mathcal{S}$, that is, $P(E_x \cap E_y) = P(E_x) \cdot P(E_y)$ for all $x$ and $y$.
 
-The second form shows that independence of random variables is defined through the independence of events from Lecture 2. Here $X^{-1}(\lbrace x\rbrace) = \lbrace\, s \in \mathcal{S} : X(s) = x \,\rbrace$, and in the discrete case $x$ and $y$ are typically integers.
+The second form shows that independence of random variables is defined through the independence of events from Lecture 2. Here $`X^{-1}(\lbrace x\rbrace) = \lbrace\, s \in \mathcal{S} : X(s) = x \,\rbrace`$, and in the discrete case $x$ and $y$ are typically integers.
 
 The meaning of independence is clear in terms of conditional probability. When $P(X = x) > 0$, independence is the same as $P(Y = y \mid X = x) = P(Y = y)$: knowing the value of $X$ does not change the distribution of $Y$.
 
@@ -368,11 +368,11 @@ The meaning of independence is clear in terms of conditional probability. When $
 
 Are $X$ (the number of heads) and $Y$ (the position of the first head) in Table 5 independent? Compare the joint probability with the product of the marginals at $(x, y) = (0, 1)$.
 
-$$
+```math
 p_{X,Y}(0, 1) = 0, \qquad p_X(0) \cdot p_Y(1) = \frac{1}{8} \cdot \frac{4}{8} = \frac{1}{16}
-$$
+```
 
-The two values differ, so there is a pair with $p_{X,Y}(x, y) \ne p_X(x) \cdot p_Y(y)$, and $X$ and $Y$ are **not independent**. Intuitively too, knowing that there is no head ($X = 0$) forces $Y = 0$, so the value of $X$ changes the distribution of $Y$.
+The two values differ, so there is a pair with $p_{X,Y}(x, y) \ne p_X(x) \cdot p_Y(y)$, and $X$ and $Y$ are **not independent**. Intuitively too, knowing that there is no head ($`X = 0`$) forces $Y = 0$, so the value of $X$ changes the distribution of $Y$.
 
 ### 4.3 An Example of Independent Random Variables and the CDF
 
@@ -406,14 +406,14 @@ For example, $F_{X,Y}(2, 2) = \frac{1}{3} + \frac{1}{12} + \frac{2}{9} + \frac{1
 
 **Proof.** Let the values of $X$ be $x_1 < x_2 < \cdots$ and those of $Y$ be $y_1 < y_2 < \cdots$. Then:
 
-$$
+```math
 \begin{aligned}
 F_{X,Y}(x_k, y_\ell) &= P(X \le x_k,\ Y \le y_\ell) = \sum_{i \le k} \sum_{j \le \ell} p_{X,Y}(x_i, y_j) \\
 &= \sum_{i \le k} \sum_{j \le \ell} p_X(x_i) \cdot p_Y(y_j) && \text{(by independence)} \\
 &= \sum_{i \le k} \Big\lbrace p_X(x_i) \sum_{j \le \ell} p_Y(y_j) \Big\rbrace \\
 &= \Big\lbrace \sum_{i \le k} p_X(x_i) \Big\rbrace \cdot \Big\lbrace \sum_{j \le \ell} p_Y(y_j) \Big\rbrace = F_X(x_k) \cdot F_Y(y_\ell)
 \end{aligned}
-$$
+```
 
 In the third line, $p_X(x_i)$ does not depend on the sum over $j$, so it is taken out of the inner sum.
 
@@ -433,43 +433,43 @@ The expected value is the **weighted average** of the values of $X$, weighted by
 
 **Example: one roll of a die.** Let $X$ be the number shown by one roll of a fair die; each face has probability $1/6$.
 
-$$
+```math
 E(X) = 1 \cdot \frac{1}{6} + 2 \cdot \frac{1}{6} + \cdots + 6 \cdot \frac{1}{6} = \frac{1}{6} \sum_{k=1}^{6} k = \frac{1}{6} \cdot 21 = \frac{7}{2}
-$$
+```
 
 $7/2 = 3.5$ is a value a die can never show. The expected value is the center of mass of the distribution and need not be a value the random variable actually takes.
 
 **Expectation of a function.** A function $g(X)$ of a random variable is also a random variable, and its expected value can be computed directly from the distribution of $X$ without finding the distribution of $g(X)$.
 
-$$
+```math
 E[g(X)] = \sum_k g(x_k) \cdot p_X(x_k)
-$$
+```
 
 For example, for a die $E(X^2) = \frac{1}{6}(1^2 + 2^2 + \cdots + 6^2) = \frac{91}{6}$. This formula is used for the variance in Section 6. To avoid nested parentheses, the notation $E(X)$ is used when the argument is simple, and square brackets as in $E[(X - \mu)^2]$ when the argument contains parentheses.
 
-> **Note:** When $X$ takes infinitely many values, the expected value is defined only if the sum converges. Precisely, the expected value is said to exist when $\sum_k |x_k|\, p_X(x_k) < \infty$ [1]. All distributions in Lectures 3-4 satisfy this condition.
+> **Note:** When $X$ takes infinitely many values, the expected value is defined only if the sum converges. Precisely, the expected value is said to exist when $`\sum_k |x_k|\, p_X(x_k) < \infty`$ [1]. All distributions in Lectures 3-4 satisfy this condition.
 
 ### 5.2 Linearity of Expectation
 
 For constants $a$ and $b$, the following holds.
 
-$$
+```math
 E(aX) = a\,E(X), \qquad E(aX + b) = a\,E(X) + b
-$$
+```
 
 **Proof (discrete random variable).** Substitute $g(x) = ax + b$ into the formula for the expectation of a function.
 
-$$
+```math
 E(aX + b) = \sum_k (a x_k + b)\, p_X(x_k) = a \sum_k x_k\, p_X(x_k) + b \sum_k p_X(x_k) = a\,E(X) + b \cdot 1
-$$
+```
 
-The last step uses the fact that the probability mass function sums to 1. Setting $b = 0$ gives $E(aX) = a\,E(X)$.
+The last step uses the fact that the probability mass function sums to 1. Setting $b = 0$ gives $`E(aX) = a\,E(X)`$.
 
-**Proof (continuous random variable).** For a continuous random variable with probability density function $f(x)$, integrals replace sums (Lecture 5). The expected value is $E(X) = \int_{-\infty}^{\infty} x f(x)\, dx$, and $\int_{-\infty}^{\infty} f(x)\, dx = 1$.
+**Proof (continuous random variable).** For a continuous random variable with probability density function $f(x)$, integrals replace sums (Lecture 5). The expected value is $`E(X) = \int_{-\infty}^{\infty} x f(x)\, dx`$, and $`\int_{-\infty}^{\infty} f(x)\, dx = 1`$.
 
-$$
+```math
 E(aX + b) = \int_{-\infty}^{\infty} (ax + b) f(x)\, dx = a \int_{-\infty}^{\infty} x f(x)\, dx + b \int_{-\infty}^{\infty} f(x)\, dx = a\,E(X) + b
-$$
+```
 
 For example, if the number $X$ shown by a die is multiplied by 100 and then 400 is subtracted, $Y = 100X - 400$ has expected value $100 \cdot \frac{7}{2} - 400 = -50$. There is no need to find the distribution of $Y$ separately.
 
@@ -477,26 +477,26 @@ For example, if the number $X$ shown by a die is multiplied by 100 and then 400 
 
 The expected value of a function $g(X, Y)$ of two random variables is the sum weighted by the joint probability mass function.
 
-$$
+```math
 E[g(X, Y)] \equiv \sum_k \sum_\ell g(x_k, y_\ell)\, p_{X,Y}(x_k, y_\ell)
-$$
+```
 
 **Example.** For the distribution in Table 6, find $E(X)$, $E(Y)$, and $E(XY)$. $E(X)$ and $E(Y)$ are computed from the marginal probability mass functions.
 
-$$
+```math
 E(X) = 1 \cdot \frac{1}{2} + 2 \cdot \frac{1}{3} + 3 \cdot \frac{1}{6} = \frac{5}{3}, \qquad E(Y) = 1 \cdot \frac{2}{3} + 2 \cdot \frac{1}{6} + 3 \cdot \frac{1}{6} = \frac{3}{2}
-$$
+```
 
 For $E(XY)$, set $g(x, y) = xy$ and add over all nine cells. Each term is $xy$ times the probability of the cell.
 
-$$
+```math
 \begin{aligned}
 E(XY) &= 1 \cdot \frac{1}{3} + 2 \cdot \frac{1}{12} + 3 \cdot \frac{1}{12} \\
 &\quad + 2 \cdot \frac{2}{9} + 4 \cdot \frac{1}{18} + 6 \cdot \frac{1}{18} \\
 &\quad + 3 \cdot \frac{1}{9} + 6 \cdot \frac{1}{36} + 9 \cdot \frac{1}{36} \\
 &= \frac{12 + 6 + 9 + 16 + 8 + 12 + 12 + 6 + 9}{36} = \frac{90}{36} = \frac{5}{2}
 \end{aligned}
-$$
+```
 
 This equals $E(X) \cdot E(Y) = \frac{5}{3} \cdot \frac{3}{2} = \frac{5}{2}$. The reason is that $X$ and $Y$ are independent, as shown in Section 4.3, and Property 2 of Section 5.4 guarantees this in general.
 
@@ -506,7 +506,7 @@ This equals $E(X) \cdot E(Y) = \frac{5}{3} \cdot \frac{3}{2} = \frac{5}{2}$. The
 
 **Proof.** Set $g(x, y) = x + y$, split the sum in two, and in each part carry out the sum over the other variable first.
 
-$$
+```math
 \begin{aligned}
 E(X + Y) &= \sum_k \sum_\ell (x_k + y_\ell)\, p_{X,Y}(x_k, y_\ell) \\
 &= \sum_k \sum_\ell x_k\, p_{X,Y}(x_k, y_\ell) + \sum_k \sum_\ell y_\ell\, p_{X,Y}(x_k, y_\ell) \\
@@ -514,7 +514,7 @@ E(X + Y) &= \sum_k \sum_\ell (x_k + y_\ell)\, p_{X,Y}(x_k, y_\ell) \\
 &= \sum_k \Big\lbrace x_k \sum_\ell p_{X,Y}(x_k, y_\ell) \Big\rbrace + \sum_\ell \Big\lbrace y_\ell \sum_k p_{X,Y}(x_k, y_\ell) \Big\rbrace \\
 &= \sum_k x_k\, p_X(x_k) + \sum_\ell y_\ell\, p_Y(y_\ell) = E(X) + E(Y)
 \end{aligned}
-$$
+```
 
 The third line swaps the order of summation in the second sum, and the fifth line uses the marginal PMF formula of Section 3.1. Independence is used nowhere.
 
@@ -522,14 +522,14 @@ The third line swaps the order of summation in the second sum, and the fifth lin
 
 **Proof.** Under independence, the joint PMF factors into the marginal PMFs, so the double sum becomes the product of two sums.
 
-$$
+```math
 \begin{aligned}
 E(XY) &= \sum_k \sum_\ell x_k\, y_\ell\, p_{X,Y}(x_k, y_\ell) \\
 &= \sum_k \sum_\ell x_k\, y_\ell\, p_X(x_k)\, p_Y(y_\ell) && \text{(by independence)} \\
 &= \sum_k \Big\lbrace x_k\, p_X(x_k) \sum_\ell y_\ell\, p_Y(y_\ell) \Big\rbrace \\
 &= \Big\lbrace \sum_k x_k\, p_X(x_k) \Big\rbrace \cdot \Big\lbrace \sum_\ell y_\ell\, p_Y(y_\ell) \Big\rbrace = E(X) \cdot E(Y)
 \end{aligned}
-$$
+```
 
 **The converse does not hold.** The following distribution is an example.
 
@@ -544,13 +544,13 @@ $$
 
 The expected values are as follows.
 
-$$
+```math
 E(X) = 1 \cdot \frac{2}{5} + 2 \cdot \frac{1}{5} + 3 \cdot \frac{2}{5} = \frac{10}{5} = 2, \qquad E(Y) = 6 \cdot \frac{2}{5} + 8 \cdot \frac{1}{5} + 10 \cdot \frac{2}{5} = \frac{40}{5} = 8
-$$
+```
 
-$$
+```math
 E(XY) = (1 \cdot 6) \cdot \frac{1}{5} + (1 \cdot 10) \cdot \frac{1}{5} + (2 \cdot 8) \cdot \frac{1}{5} + (3 \cdot 6) \cdot \frac{1}{5} + (3 \cdot 10) \cdot \frac{1}{5} = \frac{6 + 10 + 16 + 18 + 30}{5} = 16
-$$
+```
 
 Hence $E(XY) = 16 = 2 \cdot 8 = E(X) \cdot E(Y)$. However, $p_{X,Y}(1, 6) = \frac{1}{5}$ while $p_X(1) \cdot p_Y(6) = \frac{2}{5} \cdot \frac{2}{5} = \frac{4}{25}$, so $X$ and $Y$ are not independent. There is also a cell with $p_{X,Y}(1, 8) = 0 \ne \frac{2}{5} \cdot \frac{1}{5}$.
 
@@ -566,28 +566,28 @@ Hence $E(XY) = 16 = 2 \cdot 8 = E(X) \cdot E(Y)$. However, $p_{X,Y}(1, 6) = \fra
 
 The expected value describes the center of a distribution but says nothing about how spread out the values are. The spread is measured by the variance.
 
-> **Definition:** The **variance** of a random variable $X$ with mean $\mu = E(X)$ is $\mathrm{Var}(X) \equiv E[(X - \mu)^2] = \sum_k (x_k - \mu)^2\, p_X(x_k)$.
+> **Definition:** The **variance** of a random variable $X$ with mean $\mu = E(X)$ is $`\mathrm{Var}(X) \equiv E[(X - \mu)^2] = \sum_k (x_k - \mu)^2\, p_X(x_k)`$.
 
 The variance is the probability-weighted average of the squared distances of the values from the mean, that is, the **average weighted square distance**. Distances are squared because averaging the deviations $x_k - \mu$ as they are always gives 0; indeed, by linearity $E(X - \mu) = E(X) - \mu = 0$. Squaring prevents positive and negative deviations from cancelling and puts more weight on distant values. The variance is always nonnegative, and it is 0 only when $X$ takes a single value with probability 1.
 
 The variance can be rewritten in a simpler form by expanding the square and using the linearity of Section 5.2 ($\mu$ is a constant).
 
-$$
+```math
 \begin{aligned}
 \mathrm{Var}(X) &= E[X^2 - 2\mu X + \mu^2] \\
 &= E(X^2) - 2\mu\, E(X) + \mu^2 \\
 &= E(X^2) - 2\mu^2 + \mu^2 \\
 &= E(X^2) - \mu^2
 \end{aligned}
-$$
+```
 
 In words, the variance is "the mean of the square minus the square of the mean," and this formula is usually more convenient for computation.
 
 **Example: one roll of a die.** $\mu = 7/2$ and $E(X^2) = \frac{1}{6}\sum_{k=1}^{6} k^2$. Substituting $n = 6$ into the sum-of-squares formula $\sum_{k=1}^{n} k^2 = \frac{n(n+1)(2n+1)}{6}$ gives $\frac{6 \cdot 7 \cdot 13}{6} = 91$.
 
-$$
+```math
 \mathrm{Var}(X) = \sum_{k=1}^{6} \Big[ k^2 \cdot \frac{1}{6} \Big] - \mu^2 = \frac{1}{6} \cdot \frac{6(6+1)(2 \cdot 6+1)}{6} - \Big(\frac{7}{2}\Big)^2 = \frac{91}{6} - \frac{49}{4} = \frac{182 - 147}{12} = \frac{35}{12}
-$$
+```
 
 The definition gives the same result. The deviations $k - 3.5$ are $-2.5, -1.5, -0.5, 0.5, 1.5, 2.5$, and the sum of their squares is $6.25 + 2.25 + 0.25 + 0.25 + 2.25 + 6.25 = 17.5$, so $\mathrm{Var}(X) = 17.5 / 6 = 35/12 \approx 2.917$.
 
@@ -597,35 +597,35 @@ The definition gives the same result. The deviations $k - 3.5$ are $-2.5, -1.5, 
 
 The variance has squared units (for example, cm²), which makes direct comparison with the original values difficult. The standard deviation has the same unit as $X$ and is interpreted as a typical distance of the values from the mean. The standard deviation of a die is:
 
-$$
+```math
 \sigma = \sqrt{\frac{35}{12}} \approx 1.708
-$$
+```
 
 ### 6.3 Expectation and Variance of a Linear Transformation
 
 For constants $a$ and $b$, the expected value and variance of $aX + b$ are as follows.
 
-$$
+```math
 E(aX + b) = a\,E(X) + b, \qquad \mathrm{Var}(aX + b) = a^2\, \mathrm{Var}(X)
-$$
+```
 
 The first formula was proved in Section 5.2. The second uses the fact that the mean of $aX + b$ is $a\mu_X + b$.
 
-$$
+```math
 \begin{aligned}
 \mathrm{Var}(aX + b) &= E\big[\lbrace(aX + b) - (a\mu_X + b)\rbrace^2\big] \\
 &= E\big[a^2 (X - \mu_X)^2\big] \\
 &= a^2\, E\big[(X - \mu_X)^2\big] = a^2\, \mathrm{Var}(X)
 \end{aligned}
-$$
+```
 
-Since $b$ cancels in the second line, shifting all values by the same constant does not change the spread. Multiplying all values by $a$ multiplies the deviations by $a$, so the variance is multiplied by $a^2$ and the standard deviation by $|a|$: $\sigma(aX + b) = |a|\, \sigma(X)$.
+Since $b$ cancels in the second line, shifting all values by the same constant does not change the spread. Multiplying all values by $a$ multiplies the deviations by $a$, so the variance is multiplied by $a^2$ and the standard deviation by $|a|$: $`\sigma(aX + b) = |a|\, \sigma(X)`$.
 
 **Example.** For the number $X$ shown by a die and $Y = 100X - 400$, we have $\mu_X = 7/2$ and $\sigma_X^2 = 35/12$, so:
 
-$$
+```math
 \mu_Y = 100 \cdot \frac{7}{2} - 400 = 350 - 400 = -50, \qquad \sigma_Y^2 = 100^2 \cdot \frac{35}{12} = \frac{350{,}000}{12} \approx 29{,}166.67
-$$
+```
 
 The standard deviation is $\sigma_Y = 100 \cdot \sigma_X \approx 170.78$.
 
@@ -639,20 +639,20 @@ The standard deviation is $\sigma_Y = 100 \cdot \sigma_X \approx 170.78$.
 
 ### 7.1 Definition and Meaning of Covariance
 
-> **Definition:** The **covariance** of two random variables $X$ and $Y$ with means $E(X) = \mu_X$ and $E(Y) = \mu_Y$ is $\mathrm{Cov}(X, Y) \equiv E[(X - \mu_X)(Y - \mu_Y)] = \sum_{k, \ell} (x_k - \mu_X)(y_\ell - \mu_Y)\, p_{X,Y}(x_k, y_\ell)$.
+> **Definition:** The **covariance** of two random variables $X$ and $Y$ with means $E(X) = \mu_X$ and $E(Y) = \mu_Y$ is $`\mathrm{Cov}(X, Y) \equiv E[(X - \mu_X)(Y - \mu_Y)] = \sum_{k, \ell} (x_k - \mu_X)(y_\ell - \mu_Y)\, p_{X,Y}(x_k, y_\ell)`$.
 
 Like the variance, the covariance can be simplified by expanding the product.
 
-$$
+```math
 \begin{aligned}
 \mathrm{Cov}(X, Y) &= E[(X - \mu_X)(Y - \mu_Y)] \\
 &= E[XY - \mu_X Y - \mu_Y X + \mu_X \mu_Y] \\
 &= E(XY) - \mu_X \mu_Y - \mu_Y \mu_X + \mu_X \mu_Y \\
 &= E(XY) - E(X)\,E(Y)
 \end{aligned}
-$$
+```
 
-The third line uses linearity, $E(\mu_X Y) = \mu_X\, E(Y) = \mu_X \mu_Y$. Setting $Y = X$ gives $\mathrm{Cov}(X, X) = E(X^2) - \mu_X^2 = \mathrm{Var}(X)$, so the variance is the covariance of a random variable with itself.
+The third line uses linearity, $`E(\mu_X Y) = \mu_X\, E(Y) = \mu_X \mu_Y`$. Setting $Y = X$ gives $\mathrm{Cov}(X, X) = E(X^2) - \mu_X^2 = \mathrm{Var}(X)$, so the variance is the covariance of a random variable with itself.
 
 The covariance measures the direction in which two random variables move together, their **concordance** or **coherence**.
 
@@ -675,9 +675,9 @@ The converse does not hold. For the distribution in Table 8, $E(X) = 2$, $E(Y) =
 
 The relations among independence, the expectation of a product, and the covariance are:
 
-$$
+```math
 X, Y \text{ independent} \ \Longrightarrow\ E(XY) = E(X)\,E(Y) \ \Longleftrightarrow\ \mathrm{Cov}(X, Y) = 0
-$$
+```
 
 The arrow on the left holds in one direction only, while the two conditions on the right are equivalent.
 
@@ -685,23 +685,23 @@ The arrow on the left holds in one direction only, while the two conditions on t
 
 The variance of a sum of two random variables is the sum of their variances plus a covariance term. It uses the fact that the mean of $X + Y$ is $\mu_X + \mu_Y$ (Property 1 of Section 5.4).
 
-$$
+```math
 \begin{aligned}
 \mathrm{Var}(X + Y) &= E\big[\lbrace(X + Y) - (\mu_X + \mu_Y)\rbrace^2\big] = E\big[\lbrace(X - \mu_X) + (Y - \mu_Y)\rbrace^2\big] \\
 &= E\big[(X - \mu_X)^2\big] + E\big[(Y - \mu_Y)^2\big] + 2\,E\big[(X - \mu_X)(Y - \mu_Y)\big] \\
 &= \mathrm{Var}(X) + \mathrm{Var}(Y) + 2\,\mathrm{Cov}(X, Y)
 \end{aligned}
-$$
+```
 
 **Property.** If $X$ and $Y$ are independent, then $\mathrm{Cov}(X, Y) = 0$, so $\mathrm{Var}(X + Y) = \mathrm{Var}(X) + \mathrm{Var}(Y)$.
 
-In the same way, $\mathrm{Var}(X - Y) = \mathrm{Var}(X) + \mathrm{Var}(Y) - 2\,\mathrm{Cov}(X, Y)$, and under independence the variance of a difference is also the **sum** of the variances. For $n$ mutually independent random variables, $\mathrm{Var}(X_1 + \cdots + X_n) = \mathrm{Var}(X_1) + \cdots + \mathrm{Var}(X_n)$, a property used in Lecture 4 to find the variance of the binomial distribution.
+In the same way, $`\mathrm{Var}(X - Y) = \mathrm{Var}(X) + \mathrm{Var}(Y) - 2\,\mathrm{Cov}(X, Y)`$, and under independence the variance of a difference is also the **sum** of the variances. For $n$ mutually independent random variables, $\mathrm{Var}(X_1 + \cdots + X_n) = \mathrm{Var}(X_1) + \cdots + \mathrm{Var}(X_n)$, a property used in Lecture 4 to find the variance of the binomial distribution.
 
 **Example.** When four dice are rolled independently, the sum $X_1 + X_2 + X_3 + X_4$ has the following mean and variance.
 
-$$
+```math
 E\Big(\sum_{i=1}^{4} X_i\Big) = 4 \cdot \frac{7}{2} = 14, \qquad \mathrm{Var}\Big(\sum_{i=1}^{4} X_i\Big) = 4 \cdot \frac{35}{12} = \frac{35}{3} \approx 11.667
-$$
+```
 
 The standard deviation is $\sqrt{35/3} \approx 3.4157$. Obtaining the same values by listing all 1296 outcomes is the subject of [Exercise 2](Exercises.md#exercise-2-distribution-of-the-sum-of-four-dice).
 
@@ -723,7 +723,7 @@ The standard deviation is $\sqrt{35/3} \approx 3.4157$. Obtaining the same value
 | If $E(XY) = E(X)E(Y)$, then $X$ and $Y$ are independent. | **F.** The distribution in Table 8 is a counterexample. This equation is only a necessary condition for independence. |
 | Even if $X$ and $Y$ are not independent, $E(X + Y) = E(X) + E(Y)$. | **T.** The additivity of expectation always holds, regardless of independence. |
 | $\mathrm{Var}(X + 3) = \mathrm{Var}(X) + 9$. | **F.** Adding a constant does not change the spread, so $\mathrm{Var}(X + 3) = \mathrm{Var}(X)$. |
-| $\mathrm{Var}(-2X) = -2\,\mathrm{Var}(X)$. | **F.** Since $\mathrm{Var}(aX) = a^2\,\mathrm{Var}(X)$, it equals $4\,\mathrm{Var}(X)$. A variance cannot be negative. |
+| $`\mathrm{Var}(-2X) = -2\,\mathrm{Var}(X)`$. | **F.** Since $`\mathrm{Var}(aX) = a^2\,\mathrm{Var}(X)`$, it equals $`4\,\mathrm{Var}(X)`$. A variance cannot be negative. |
 | If the covariance is 0, the two random variables are independent. | **F.** There are counterexamples such as $Y = X^2$ with $X$ uniform on $-1, 0, 1$. Independence implies zero covariance, but not conversely. |
 
 ---
@@ -741,13 +741,13 @@ The standard deviation is $\sqrt{35/3} \approx 3.4157$. Obtaining the same value
 | Cumulative distribution function | $F_X(x) = P(X \le x)$. It is non-decreasing and right-continuous with $F(-\infty) = 0$, $F(\infty) = 1$, and $P(a < X \le b) = F(b) - F(a)$. In the discrete case it is a step function. |
 | Joint and marginal distributions | $p_{X,Y}(x, y) = P(X = x, Y = y)$. The marginal PMFs are the row and column sums of the joint probabilities. |
 | Independence | $p_{X,Y} = p_X \cdot p_Y$ for all $(x, y)$. Checking the product of CDFs gives the same result. One counterexample shows dependence. |
-| Expected value | $E(X) = \sum_k x_k\, p_X(x_k)$ is a weighted average. $E(aX + b) = aE(X) + b$ and $E(X + Y) = E(X) + E(Y)$ always hold. |
+| Expected value | $`E(X) = \sum_k x_k\, p_X(x_k)`$ is a weighted average. $E(aX + b) = aE(X) + b$ and $E(X + Y) = E(X) + E(Y)$ always hold. |
 | Expectation of a product | If $X$ and $Y$ are independent, $E(XY) = E(X)E(Y)$. The converse does not hold. |
 | Variance and standard deviation | $\mathrm{Var}(X) = E[(X - \mu)^2] = E(X^2) - \mu^2$ and $\sigma = \sqrt{\mathrm{Var}(X)}$. One roll of a die has $\mu = 7/2$ and $\sigma^2 = 35/12$. |
-| Linear transformation | $\mathrm{Var}(aX + b) = a^2\,\mathrm{Var}(X)$ and $\sigma(aX + b) = \vert a \vert\,\sigma(X)$. An added constant does not affect the variance. |
+| Linear transformation | $`\mathrm{Var}(aX + b) = a^2\,\mathrm{Var}(X)`$ and $`\sigma(aX + b) = \vert a \vert\,\sigma(X)`$. An added constant does not affect the variance. |
 | Covariance | $\mathrm{Cov}(X, Y) = E[(X - \mu_X)(Y - \mu_Y)] = E(XY) - E(X)E(Y)$. Its range is $(-\infty, \infty)$, and its sign shows the direction of joint movement. |
 | Independence and covariance | Independence implies zero covariance, but zero covariance does not imply independence. |
-| Variance of a sum | $\mathrm{Var}(X + Y) = \mathrm{Var}(X) + \mathrm{Var}(Y) + 2\,\mathrm{Cov}(X, Y)$, which reduces to the sum of variances under independence. |
+| Variance of a sum | $`\mathrm{Var}(X + Y) = \mathrm{Var}(X) + \mathrm{Var}(Y) + 2\,\mathrm{Cov}(X, Y)`$, which reduces to the sum of variances under independence. |
 
 ---
 

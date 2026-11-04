@@ -190,9 +190,9 @@ There are far more statistical methods than the tables and flowcharts above can 
 
 A **regression model** is a statistical model that sets up the relationship between one dependent variable and one or more explanatory variables as an equation. In the classical regression model the dependent (response) variable is numerical, and the independent (explanatory) variables are one or more numerical or categorical variables. The most basic **linear regression model** is as follows.
 
-$$
+```math
 Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_k X_k + \varepsilon, \qquad \varepsilon \sim N(0, \sigma^2)
-$$
+```
 
 Here $\beta_0$ is the intercept, $\beta_j$ is the regression coefficient that gives how much the mean of $Y$ changes when $X_j$ increases by 1 with the other explanatory variables held fixed, and $\varepsilon$ is the random error not explained by the explanatory variables. A categorical explanatory variable enters the equation through indicator (dummy) variables that take the value 0 or 1 for each category.
 
@@ -288,9 +288,9 @@ A two-group comparison tests whether the distribution of a continuous dependent 
 
 In panels A and B of Figure 3, the distance between the means (vertical lines) of the red and blue distributions is the same. In A, however, both distributions have a small spread and barely overlap, whereas in B the spreads are large and the distributions overlap a great deal. In A a single value is enough to tell which group it came from, but in B this is hard. A two-group comparison therefore judges the difference in means not by itself but **relative to the size of its variability (the standard error)**. The t statistic computes this ratio as follows.
 
-$$
+```math
 t = \frac{\text{difference between the two sample means}}{\text{standard error of that difference}} = \frac{\text{signal}}{\text{noise}}
-$$
+```
 
 For the same difference in means, a large spread as in B makes the t statistic small and the difference hard to detect. Increasing the sample size shrinks the standard error and makes the same difference easier to detect.
 
@@ -390,23 +390,23 @@ The typical methods for comparing three or more groups are **analysis of varianc
 
 If three groups are compared by running a t-test on each pair, three tests in all, then even with a significance level of 0.05 for each test, the probability of at least one false rejection grows to $1 - 0.95^3 \approx 0.143$ (assuming the three tests are independent). **One-way ANOVA** avoids this problem by testing the null hypothesis that all group means are equal in a single test.
 
-Let $y_{ij}$ be the $j$th observation in the $i$th of $k$ groups. The model is as follows.
+Let $y_{ij}$ be the $`j`$th observation in the $`i`$th of $k$ groups. The model is as follows.
 
-$$
+```math
 y_{ij} = \mu_i + \varepsilon_{ij}, \qquad \varepsilon_{ij} \stackrel{\text{iid}}{\sim} N(0, \sigma^2), \qquad H_0: \mu_1 = \mu_2 = \cdots = \mu_k
-$$
+```
 
-ANOVA splits the total variation into variation between groups and variation within groups. Here $n_i$ is the size of the $i$th group, $N$ is the total number of observations, $\bar{y}_i$ is the group mean, and $\bar{y}$ is the overall mean.
+ANOVA splits the total variation into variation between groups and variation within groups. Here $n_i$ is the size of the $`i`$th group, $N$ is the total number of observations, $`\bar{y}_i`$ is the group mean, and $\bar{y}$ is the overall mean.
 
-$$
+```math
 \underbrace{\sum_{i}\sum_{j}(y_{ij}-\bar{y})^2}_{SST} = \underbrace{\sum_{i} n_i(\bar{y}_i-\bar{y})^2}_{SSB} + \underbrace{\sum_{i}\sum_{j}(y_{ij}-\bar{y}_i)^2}_{SSW}
-$$
+```
 
 The test statistic is the ratio of the mean squares, each sum of squares divided by its degrees of freedom.
 
-$$
+```math
 F = \frac{MSB}{MSW} = \frac{SSB/(k-1)}{SSW/(N-k)} \sim F_{k-1,\, N-k} \quad \text{under } H_0
-$$
+```
 
 If the null hypothesis is true, the group means cluster around the overall mean, $MSB$ and $MSW$ are similar, and $F$ is near 1; if the group means differ, $MSB$ grows and so does $F$. The assumptions are independence of the observations, normality within each group (normality of the residuals), and equal variances across groups.
 
@@ -460,11 +460,11 @@ The p-value 0.438 of the Shapiro-Wilk test (null hypothesis: the residuals are n
 
 ### 4.3 The Kruskal-Wallis Test
 
-The **Kruskal-Wallis test** is the nonparametric version of ANOVA and extends the Wilcoxon rank-sum test to three or more groups [9]. All $N$ observations are pooled and ranked; with $R_i$ the rank sum of the $i$th group, the test statistic is as follows.
+The **Kruskal-Wallis test** is the nonparametric version of ANOVA and extends the Wilcoxon rank-sum test to three or more groups [9]. All $N$ observations are pooled and ranked; with $R_i$ the rank sum of the $`i`$th group, the test statistic is as follows.
 
-$$
+```math
 H = \frac{12}{N(N+1)}\sum_{i=1}^{k}\frac{R_i^2}{n_i} - 3(N+1) \;\approx\; \chi^2_{k-1} \quad \text{under } H_0
-$$
+```
 
 The null hypothesis is that the $k$ groups all have the same distribution. If the ranks are evenly mixed across groups, the mean rank of each group is close to the overall mean rank $(N+1)/2$ and $H$ is small; if large ranks concentrate in one group, $H$ becomes large. No normality assumption is needed, but the groups must have similarly shaped distributions for the result to be interpreted as a difference in location (median).
 
@@ -485,9 +485,9 @@ Comparing $H = 7.988$ with the chi-squared distribution with 2 degrees of freedo
 
 When the response is not normally distributed, as with counts or binary values, a generalized linear model is fitted and models are compared by their **deviance** instead of the sums of squares of ANOVA. The deviance is twice the difference in log-likelihood between the saturated model, which fits the observations perfectly, and the fitted model; in a normal model it plays the same role as the residual sum of squares [2].
 
-$$
+```math
 D = 2\lbrace\ell(\text{saturated model}) - \ell(\text{fitted model})\rbrace
-$$
+```
 
 The decrease in deviance from adding an explanatory variable approximately follows a chi-squared distribution under the null hypothesis (no effect of that variable), with degrees of freedom equal to the number of added parameters. Testing effects on this principle is the **analysis of deviance (ANODEV)**.
 
@@ -520,7 +520,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 The intercept-only model (`NULL`) has deviance 409.04 (71 degrees of freedom), which drops to 98.33 (66 degrees of freedom) when `spray` is added. Comparing the decrease $409.04 - 98.33 = 310.71$ with the chi-squared distribution with 5 degrees of freedom gives a p-value below $2.2 \times 10^{-16}$, so the mean insect count is concluded to differ by insecticide. The means of C, D, and E (2.1-4.9) are much smaller than those of A, B, and F (14.5-16.7).
 
-> **Caution:** The Poisson model assumes that the mean equals the variance. When the residual deviance divided by its degrees of freedom ($98.33/66 \approx 1.49$) departs well above 1, **overdispersion**, a variance larger than the mean, is suspected; then `family = quasipoisson` or negative binomial regression is used to correct the standard errors.
+> **Caution:** The Poisson model assumes that the mean equals the variance. When the residual deviance divided by its degrees of freedom ($`98.33/66 \approx 1.49`$) departs well above 1, **overdispersion**, a variance larger than the mean, is suspected; then `family = quasipoisson` or negative binomial regression is used to correct the standard errors.
 
 ### 4.5 Visualizing a Several-Group Comparison
 
@@ -554,17 +554,17 @@ Figure 5 is a screen of an interactive tool that visualizes the correlation coef
 
 The **Pearson correlation coefficient** measures the strength and direction of the **linear** relationship between two variables. It is the covariance of Lecture 3 divided by the two standard deviations, which removes the effect of the units.
 
-$$
+```math
 r = \frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2}\sqrt{\sum_{i=1}^{n}(y_i-\bar{y})^2}} = \frac{s_{xy}}{s_x s_y}
-$$
+```
 
 $r$ takes values between -1 and 1. If $r = 1$, all points lie on a line with positive slope; if $r = -1$, on a line with negative slope; and if $r = 0$, there is no linear relationship. $r^2$ is the proportion of the variance of one variable explained by its linear relationship with the other, and the shared variance of 74% in Figure 5 is $0.86^2 = 0.7396$.
 
 The null hypothesis that the population correlation $\rho$ is 0 is tested with the following statistic, assuming that the two variables are bivariate normal.
 
-$$
+```math
 t = \frac{r\sqrt{n-2}}{\sqrt{1-r^2}} \sim t_{n-2} \quad \text{under } H_0: \rho = 0
-$$
+```
 
 R's `cars` data give the speed (`speed`, mph) and stopping distance (`dist`, ft) of 50 cars from the 1920s.
 
@@ -608,9 +608,9 @@ With $r = 0.8069$ and $n = 50$, $t = 0.8069\sqrt{48}/\sqrt{1 - 0.8069^2} = 0.806
 
 A correlation coefficient gives only the strength of a relationship, while regression gives an equation that predicts one variable from the other. **Simple linear regression** finds $b_0$ and $b_1$ that minimize the residual sum of squares $\sum (y_i - b_0 - b_1 x_i)^2$ in $Y = \beta_0 + \beta_1 X + \varepsilon$ (the method of least squares). The solution is as follows.
 
-$$
+```math
 b_1 = r\,\frac{s_y}{s_x}, \qquad b_0 = \bar{y} - b_1\bar{x}
-$$
+```
 
 Applying these formulas to Figure 5 gives $b_1 = 0.86 \times 3/5 = 0.516 \approx 0.52$ and $b_0 = 100 - 0.516 \times 100 = 48.4$, matching the displayed $y = 48.40 + 0.52x$. The **coefficient of determination** $R^2$ of simple linear regression equals $r^2$.
 
@@ -661,9 +661,9 @@ The typical methods for analyzing the association of two categorical random vari
 
 A table that counts the observations of two categorical variables by each combination of categories is called a **contingency table**. If the row variable has $r$ categories and the column variable has $c$, it is an $r \times c$ contingency table. The null hypothesis of the **chi-squared test of independence** is that the two variables are independent. Under independence, the count expected in the cell of row $i$ and column $j$ is determined by the row and column totals.
 
-$$
+```math
 E_{ij} = \frac{(\text{row } i \text{ total}) \times (\text{column } j \text{ total})}{N}, \qquad X^2 = \sum_{i=1}^{r}\sum_{j=1}^{c}\frac{(O_{ij}-E_{ij})^2}{E_{ij}} \;\approx\; \chi^2_{(r-1)(c-1)} \quad \text{under } H_0
-$$
+```
 
 $O_{ij}$ is the observed count and $E_{ij}$ the expected count. The farther the observed counts are from the expected counts, the larger $X^2$. The chi-squared approximation is accurate only when the expected counts are large enough; a common rule is that no cell has an expected count below 1 and no more than 20% of the cells have expected counts below 5 [12], [13].
 
@@ -711,9 +711,9 @@ The expected count of the first-class death (`No`) cell follows from the first-c
 
 The chi-squared test only tells whether an association exists, so the cells that create the association are found with **Pearson residuals**.
 
-$$
+```math
 r_{ij} = \frac{O_{ij}-E_{ij}}{\sqrt{E_{ij}}}, \qquad X^2 = \sum_{i}\sum_{j} r_{ij}^2
-$$
+```
 
 A positive residual means the cell has more observations than expected under independence, and a negative one means fewer. A residual whose absolute value exceeds 2 (about a 5% probability under the standard normal distribution) is commonly regarded as a notable deviation. Strictly speaking, the variance of a Pearson residual is less than 1, so a precise judgment uses the standardized residuals (`test$stdres`), which are adjusted to have variance 1. In the result above, the residual 9.57 of the first-class survival cell is the largest, while crew survival (-4.37) and third-class survival (-3.32) are strongly negative. This means that first-class passengers survived far more often than under independence, and third-class passengers and crew far less often.
 
@@ -741,9 +741,9 @@ The classic example is the tea-tasting experiment [15]. Eight cups, four with th
 
 If the taster cannot tell the difference (null hypothesis), the number $X$ of milk-first cups among the four chosen follows the hypergeometric distribution of drawing four cups without replacement from eight cups of which four are milk-first.
 
-$$
+```math
 P(X = 3) = \frac{\binom{4}{3}\binom{4}{1}}{\binom{8}{4}} = \frac{16}{70}, \qquad P(X = 4) = \frac{\binom{4}{4}\binom{4}{0}}{\binom{8}{4}} = \frac{1}{70}
-$$
+```
 
 Under the (one-sided) alternative that the taster can tell the difference, the p-value is the probability of 3 or more correct, $P(X \ge 3) = 17/70 \approx 0.2429$.
 
@@ -773,9 +773,9 @@ The p-value 0.2429 matches the hand calculation. Getting 3 of the 4 right can be
 
 When one variable consists of **ordered categories**, such as dose or age group, and the other is binary (response or no response), the general chi-squared test ignores the order of the categories. The **Cochran-Armitage test for trend** gives each category a score $x_i$ (for example 1, 2, 3, 4) and tests, with a test on 1 degree of freedom, whether the response proportion increases or decreases linearly with the score [16], [13]. With $n_i$ the sample size and $y_i$ the number of responses in category $i$, and $\bar{p}$ the overall response proportion, the statistic is as follows.
 
-$$
+```math
 X^2_{\text{trend}} = \frac{\left\lbrace\sum_i x_i (y_i - n_i \bar{p})\right\rbrace^2}{\bar{p}(1-\bar{p})\left\lbrace\sum_i n_i x_i^2 - \left(\sum_i n_i x_i\right)^2 / N\right\rbrace} \;\approx\; \chi^2_1 \quad \text{under } H_0
-$$
+```
 
 The following is a hypothetical example in which 20 people are assigned to each of four dose levels and the responders are counted.
 
@@ -842,9 +842,9 @@ The following table matches research questions to the four analysis types and th
 | Family of regression models | A continuous response calls for linear regression, counts for Poisson regression, survival times for the Cox model, and a binomial response for logistic regression. |
 | Type I: two groups | `Continuous ~ two_group`, analyzed with the t-test, paired t-test, Wilcoxon test, and permutation t-test. |
 | Permutation test | Shuffles the group labels at random to build the null distribution of the statistic and obtain the p-value. |
-| Type II: several groups | `Continuous ~ Multiple_group`, analyzed with ANOVA ($F = MSB/MSW$), the Kruskal-Wallis test, and ANODEV, with post hoc tests to find which pairs differ. |
+| Type II: several groups | `Continuous ~ Multiple_group`, analyzed with ANOVA ($`F = MSB/MSW`$), the Kruskal-Wallis test, and ANODEV, with post hoc tests to find which pairs differ. |
 | ANODEV | Tests the decrease in deviance from adding an explanatory variable to a generalized linear model against a chi-squared distribution. |
-| Type III: two continuous variables | `Continuous ~ Continuous`, analyzed with the Pearson correlation (linear), Spearman correlation (monotone), and regression ($b_1 = r s_y/s_x$, $R^2 = r^2$). |
+| Type III: two continuous variables | `Continuous ~ Continuous`, analyzed with the Pearson correlation (linear), Spearman correlation (monotone), and regression ($b_1 = r s_y/s_x$, $`R^2 = r^2`$). |
 | Type IV: two categorical variables | `Category ~ Category`, analyzed with the chi-squared test, Fisher's exact test, and the Cochran-Armitage trend test. |
 | Pearson residual | $(O-E)/\sqrt{E}$ shows which cells create the association, and an absolute value above 2 is regarded as a notable deviation. |
 

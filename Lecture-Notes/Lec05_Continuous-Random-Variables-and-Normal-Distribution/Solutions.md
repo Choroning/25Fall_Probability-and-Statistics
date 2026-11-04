@@ -82,7 +82,7 @@ dnorm(0, 0, c(1, 2))
 - The one-parameter exponential, t, and chi-square distributions receive only `para[k]`. The gamma distribution takes its second parameter as a scale and passes its reciprocal (the rate) as the third positional argument of `dgamma()`. The others (such as the normal) receive both parameters unchanged. `invisible(pdf)` returns the value without printing it.
 - `mu` and `sig` are the means and standard deviations of the four distributions, and `xa` holds 200 points from $-7$ to $7$.
 - `par(mfrow = c(2, 2))` splits the plot window into 2 rows and 2 columns. The loop draws a curve in each panel with `plot()` and a dashed line at the mean with `abline(v = mu[k], lty = 2)`. Expressions inside `.()` in `bquote()` are replaced by their values, so the titles read like $N(\mu = 0, \sigma^2 = 1)$.
-- The last two lines compare the maxima of the computed curves with the theoretical peak heights $1/(\sqrt{2\pi}\,\sigma)$.
+- The last two lines compare the maxima of the computed curves with the theoretical peak heights $`1/(\sqrt{2\pi}\,\sigma)`$.
 
 ```text
 [1] 0.3986955 0.1994403 0.3989372 0.1994705
@@ -115,15 +115,15 @@ Comparing the four graphs of Figure 1 gives the following.
 
 **Explanation:** The variance is 4, so the standard deviation is $\sigma = 2$. Standardizing the endpoints gives $(-1 - 2)/2 = -1.5$ and $(4 - 2)/2 = 1$ ([Lecture 5, Section 5.3](Concepts_Lecture.md#53-linear-transformation-and-standardization)).
 
-$$
+```math
 P(-1 < X < 4) = P\left(\frac{-1 - 2}{2} < Z < \frac{4 - 2}{2}\right) = P(-1.5 < Z < 1) = \Phi(1) - \Phi(-1.5)
-$$
+```
 
 From the standard normal table, $\Phi(1) = 0.8413$ and $\Phi(1.5) = 0.9332$, and by symmetry $\Phi(-1.5) = 1 - 0.9332 = 0.0668$.
 
-$$
+```math
 \Phi(1) - \Phi(-1.5) = 0.8413 - 0.0668 = 0.7745
-$$
+```
 
 In R, the value is confirmed in two ways.
 
@@ -221,15 +221,15 @@ The output is the same as a textbook standard normal table. For example, the val
 
 **Explanation:** Standardizing the endpoints gives $(180 - 175)/8 = 0.625$ and $(185 - 175)/8 = 1.25$.
 
-$$
+```math
 P(180 < X < 185) = P\left(\frac{180 - 175}{8} < Z < \frac{185 - 175}{8}\right) = P(0.625 < Z < 1.25) = \Phi(1.25) - \Phi(0.625)
-$$
+```
 
 The standard normal table gives $\Phi(1.25) = 0.8944$. Since $0.625$ has a third decimal place, interpolate linearly between the neighboring values $\Phi(0.62) = 0.7324$ and $\Phi(0.63) = 0.7357$. $0.625$ is the midpoint of the two points, so take the average of the two values.
 
-$$
+```math
 \Phi(0.625) \approx \frac{0.7324 + 0.7357}{2} = 0.73405 \approx 0.7341, \qquad P(180 < X < 185) \approx 0.8944 - 0.7341 = 0.1603
-$$
+```
 
 ```r
 pnorm(185, 175, 8) - pnorm(180, 175, 8)
@@ -257,19 +257,19 @@ The second and third positional arguments of `pnorm(q, mean, sd)` are the mean a
 
 **(1) Exact computation with the binomial distribution.** Add the binomial probabilities from 40 to 45.
 
-$$
+```math
 P(40 \leq X \leq 45) = \sum_{x=40}^{45}\binom{100}{x}\left(\frac{1}{2}\right)^{x}\left(\frac{1}{2}\right)^{100-x} \approx 0.1665
-$$
+```
 
 **(2) Normal approximation.** $np = 50$ and $n(1-p) = 50$ comfortably meet the conditions, and $\sigma = \sqrt{100 \times 0.5 \times 0.5} = 5$. The bars of the integers 40 to 45 occupy the interval $[39.5, 45.5]$, so the continuity correction gives the following ([Lecture 5, Section 6.2](Concepts_Lecture.md#62-continuity-correction)).
 
-$$
+```math
 P(40 \leq X \leq 45) \approx P(39.5 < X < 45.5) = P\left(\frac{39.5 - 50}{5} < Z < \frac{45.5 - 50}{5}\right) = P(-2.1 < Z < -0.9)
-$$
+```
 
-$$
+```math
 = \Phi(-0.9) - \Phi(-2.1) = \lbrace1 - \Phi(0.9)\rbrace - \lbrace1 - \Phi(2.1)\rbrace = (1 - 0.8159) - (1 - 0.9821) = 0.1841 - 0.0179 = 0.1662
-$$
+```
 
 ```r
 pbinom(45, 100, 0.5) - pbinom(39, 100, 0.5)
@@ -488,7 +488,7 @@ Figure 6 shows the results for the chi-square distribution with 1 degree of free
 
 *Figure 6. Histograms and normal Q-Q plots of standardized sample means from the chi-square distribution with 1 degree of freedom for n of 1, 10, 30, and 100*
 
-Figure 7 shows the results for the Bernoulli ($n = 1, 100$), Poisson ($n = 1, 40$), and negative binomial ($n = 1, 30$) distributions.
+Figure 7 shows the results for the Bernoulli ($`n = 1, 100`$), Poisson ($`n = 1, 40`$), and negative binomial ($`n = 1, 30`$) distributions.
 
 ![Figure 7. Histograms and normal Q-Q plots of standardized sample means from the Bernoulli, Poisson, and negative binomial distributions for the smallest and largest n](../../images/Lec05_CLT-Discrete.png)
 
@@ -499,14 +499,14 @@ The speed of convergence is explained by the skewness $\gamma$ of the population
 | Population | Mean, variance | Skewness $\gamma$ | Skewness of $\bar{X}$ at the largest $n$ |
 |:-----|:-----|:-----|:-----|
 | Chi-square $\chi^2(1)$ | 1, 2 | $\sqrt{8} \approx 2.83$ | $n = 100$: 0.28 |
-| Bernoulli ($p = 0.5$) | 0.5, 0.25 | 0 | $n = 100$: 0 |
-| Poisson ($\lambda = 1$) | 1, 1 | 1 | $n = 40$: 0.16 |
+| Bernoulli ($`p = 0.5`$) | 0.5, 0.25 | 0 | $n = 100$: 0 |
+| Poisson ($`\lambda = 1`$) | 1, 1 | 1 | $n = 40$: 0.16 |
 | Negative binomial (`size = 1`, `prob = 0.5`) | 1, 2 | $1.5/\sqrt{0.5} \approx 2.12$ | $n = 30$: 0.39 |
 
 *Table 2. Mean, variance, and skewness of the four populations and the skewness of the sample mean at the largest sample size*
 
 - **Chi-square $\chi^2(1)$:** For $n = 1$ the histogram is the population itself, concentrated near 0 with a very long right tail, and the Q-Q plot bends strongly upward. For $n = 10$ and $30$ a peak forms, but the right end of the Q-Q plot still rises above the line, showing that a right tail remains. For $n = 100$ the points lie almost on the line.
-- **Bernoulli:** For $n = 1$ the only values are 0 and 1, so the histogram has two bars and the Q-Q plot consists of two horizontal lines. The population is symmetric ($\gamma = 0$), so it approaches the normal quickly as $n$ grows; at $n = 100$ the histogram and Q-Q plot match the normal well even though the mean takes only the discrete values $0, 0.01, \ldots, 1$.
+- **Bernoulli:** For $n = 1$ the only values are 0 and 1, so the histogram has two bars and the Q-Q plot consists of two horizontal lines. The population is symmetric ($`\gamma = 0`$), so it approaches the normal quickly as $n$ grows; at $n = 100$ the histogram and Q-Q plot match the normal well even though the mean takes only the discrete values $0, 0.01, \ldots, 1$.
 - **Poisson:** For $n = 1$ the integer values 0, 1, 2, ... produce a staircase Q-Q plot. At $n = 40$ the skewness has dropped to 0.16 and the fit to the normal is good.
 - **Negative binomial:** `rnbinom(n, size = 1, prob = 0.5)` counts the failures before the first success, a form of the geometric distribution equal to the geometric distribution defined as the number of trials until the first success, minus 1. It is right-skewed, so a skewness of 0.39 remains even at $n = 30$, but the Q-Q plot mostly follows the line.
 
