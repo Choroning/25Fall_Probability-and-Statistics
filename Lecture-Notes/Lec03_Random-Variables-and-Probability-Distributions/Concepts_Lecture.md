@@ -55,7 +55,7 @@
 
 ## 1. Random Variables
 
-Lecture 2 showed how to assign probabilities to events in a sample space. In practice, we are often interested less in the outcome of an experiment itself than in a number obtained from it, such as the number of heads, the sum of dice, or the number of defective items. A random variable turns outcomes into numbers so that probability can be handled as a function of numbers. This lecture defines random variables and their distributions, and derives the expected value, variance, and covariance that summarize a distribution.
+Lecture 2 showed how to assign probabilities to events in a sample space. In practice, we are often interested less in the outcome of an experiment itself than in a number obtained from it, such as the number of heads, the sum of dice, or the number of defective items. A random variable turns outcomes into numbers so that probability can be handled as a function of numbers. The sections below define random variables and their distributions, and then derive the expected value, variance, and covariance that summarize a distribution.
 
 ### 1.1 A Function from the Sample Space to the Real Numbers
 
@@ -66,7 +66,7 @@ Despite the word "variable" in its name, a random variable is a function. Its va
 **Example: tossing a coin three times.** If a coin is tossed three times in sequence, the sample space is as follows, where H is heads and T is tails.
 
 $$
-\mathcal{S} = \{HHH,\ HHT,\ HTH,\ HTT,\ THH,\ THT,\ TTH,\ TTT\}
+\mathcal{S} = \lbrace HHH,\ HHT,\ HTH,\ HTT,\ THH,\ THT,\ TTH,\ TTT\rbrace
 $$
 
 Several random variables can be defined on this one sample space.
@@ -110,7 +110,7 @@ Random variables are divided into two kinds according to the form of the values 
 
 > **Definition:** A **discrete random variable** is a random variable whose possible values are finite in number or countably infinite. A **continuous random variable** takes uncountably infinitely many values on an interval of real numbers; the probability at a single point is 0, and the probability of an interval is obtained by integrating a probability density function.
 
-**Countably infinite** means infinite in a way that allows every element to be numbered 1st, 2nd, 3rd, and so on without omission. The set of natural numbers $\{1, 2, 3, \dots\}$ and the set of integers are examples. In contrast, an infinity that cannot be fully numbered by any method, such as the real numbers in the interval $[0, 1]$, is **uncountably infinite**.
+**Countably infinite** means infinite in a way that allows every element to be numbered 1st, 2nd, 3rd, and so on without omission. The set of natural numbers $\lbrace1, 2, 3, \dots\rbrace$ and the set of integers are examples. In contrast, an infinity that cannot be fully numbered by any method, such as the real numbers in the interval $[0, 1]$, is **uncountably infinite**.
 
 Since a random variable is defined on a sample space, the size of the sample space indicates its kind. If the sample space is finite, the random variable takes only finitely many values, so it is always discrete. If the sample space is infinite, the random variable is discrete when the sample space is countably infinite and can be continuous when it is uncountably infinite. In summary, a discrete random variable is the case of $X : \mathcal{S} \to \mathbb{R}$ with $\mathcal{S}$ finite or countably infinite, and a continuous random variable is the typical form for $\mathcal{S}$ uncountably infinite.
 
@@ -126,28 +126,28 @@ Since a random variable is defined on a sample space, the size of the sample spa
 
 *Table 1. Examples of random variables classified as discrete or continuous*
 
-This lecture and Lecture 4 deal with discrete random variables; continuous random variables are treated in Lecture 5.
+Lectures 3-4 deal with discrete random variables; continuous random variables are treated in Lecture 5.
 
 ### 1.3 Value Ranges and Events
 
 **Value ranges** of a random variable correspond to events in the sample space. In the experiment of tossing a coin three times, let $X$ be the number of heads. Then:
 
-- The value $X(s) = 2$ corresponds to the event $\{HHT, HTH, THH\}$. Fixing one real number determines the set of outcomes that give that value, that is, an event.
-- The range $1 < X(s) \le 3$ corresponds to the event $\{HHH, HHT, HTH, THH\}$.
+- The value $X(s) = 2$ corresponds to the event $\lbrace HHT, HTH, THH\rbrace$. Fixing one real number determines the set of outcomes that give that value, that is, an event.
+- The range $1 < X(s) \le 3$ corresponds to the event $\lbrace HHH, HHT, HTH, THH\rbrace$.
 
-In general, for a set $A$ of real numbers, $\{X \in A\}$ is shorthand for the following event.
+In general, for a set $A$ of real numbers, $\lbrace X \in A\rbrace$ is shorthand for the following event.
 
 $$
-\{X \in A\} = X^{-1}(A) = \{\, s \in \mathcal{S} : X(s) \in A \,\}
+\lbrace X \in A\rbrace = X^{-1}(A) = \lbrace\, s \in \mathcal{S} : X(s) \in A \,\rbrace
 $$
 
 Here $X^{-1}(A)$ is not an inverse function but the **inverse image**, the set of all outcomes whose function value lies in $A$. The inverse image is always defined, even when $X$ is not one-to-one. Since events have probabilities, value ranges also have probabilities.
 
 $$
-P(X \in A) = P(\{\, s \in \mathcal{S} : X(s) \in A \,\})
+P(X \in A) = P(\lbrace\, s \in \mathcal{S} : X(s) \in A \,\rbrace)
 $$
 
-If a fair coin is tossed independently three times, each of the eight outcomes has probability $1/8$ (Lecture 2). Thus the probability of the range $0 < X \le 2$ is the sum of the probabilities of the six outcomes $\{HHT, HTH, HTT, THH, THT, TTH\}$ that correspond to it.
+If a fair coin is tossed independently three times, each of the eight outcomes has probability $1/8$ (Lecture 2). Thus the probability of the range $0 < X \le 2$ is the sum of the probabilities of the six outcomes $\lbrace HHT, HTH, HTT, THH, THT, TTH\rbrace$ that correspond to it.
 
 $$
 P(0 < X \le 2) = \frac{6}{8}
@@ -158,10 +158,10 @@ In the same way one can find $P(X \le -1)$, $P(X \le 0)$, $P(X \le 1)$, $P(X \le
 Grouping the outcomes in Figure 1 that map to the same value produces four events.
 
 $$
-E_0 = \{TTT\}, \quad E_1 = \{HTT, THT, TTH\}, \quad E_2 = \{HHT, HTH, THH\}, \quad E_3 = \{HHH\}
+E_0 = \lbrace TTT\rbrace, \quad E_1 = \lbrace HTT, THT, TTH\rbrace, \quad E_2 = \lbrace HHT, HTH, THH\rbrace, \quad E_3 = \lbrace HHH\rbrace
 $$
 
-> **Key Point:** Because $X$ is a **function**, the events $E_0, E_1, E_2, E_3$ are mutually exclusive and their union is $\mathcal{S}$. A function must be defined for every $s \in \mathcal{S}$, so no outcome is left out, and it is single-valued, so no outcome belongs to two events at once. That is, the events of the form $\{X = x\}$ form a **partition** of the sample space.
+> **Key Point:** Because $X$ is a **function**, the events $E_0, E_1, E_2, E_3$ are mutually exclusive and their union is $\mathcal{S}$. A function must be defined for every $s \in \mathcal{S}$, so no outcome is left out, and it is single-valued, so no outcome belongs to two events at once. That is, the events of the form $\lbrace X = x\rbrace$ form a **partition** of the sample space.
 
 ---
 
@@ -177,14 +177,14 @@ The name "mass" comes from the image of the total probability 1 being split into
 
 $$
 \begin{aligned}
-p_X(0) &\equiv P(\{TTT\}) = \tfrac{1}{8} \\
-p_X(1) &\equiv P(\{HTT, THT, TTH\}) = \tfrac{3}{8} \\
-p_X(2) &\equiv P(\{HHT, HTH, THH\}) = \tfrac{3}{8} \\
-p_X(3) &\equiv P(\{HHH\}) = \tfrac{1}{8}
+p_X(0) &\equiv P(\lbrace TTT\rbrace) = \tfrac{1}{8} \\
+p_X(1) &\equiv P(\lbrace HTT, THT, TTH\rbrace) = \tfrac{3}{8} \\
+p_X(2) &\equiv P(\lbrace HHT, HTH, THH\rbrace) = \tfrac{3}{8} \\
+p_X(3) &\equiv P(\lbrace HHH\rbrace) = \tfrac{1}{8}
 \end{aligned}
 $$
 
-These values add up to $p_X(0) + p_X(1) + p_X(2) + p_X(3) = 1$. The reason lies in the key point of Section 1.3: the four events $\{X = 0\}, \dots, \{X = 3\}$ form a partition of the sample space, so by the axioms of probability the sum of their probabilities is $P(\mathcal{S}) = 1$.
+These values add up to $p_X(0) + p_X(1) + p_X(2) + p_X(3) = 1$. The reason lies in the key point of Section 1.3: the four events $\lbrace X = 0\rbrace, \dots, \lbrace X = 3\rbrace$ form a partition of the sample space, so by the axioms of probability the sum of their probabilities is $P(\mathcal{S}) = 1$.
 
 In general, a probability mass function has the following properties.
 
@@ -204,11 +204,11 @@ As in Figure 2, a probability mass function is drawn as bars at the values, each
 
 The cumulative distribution function is defined at **every real number** $x$, not only at the values $X$ takes. For the number of heads $X$ in three coin tosses, the CDF is as follows.
 
-| $x$ | Event $\{X \le x\}$ | $F(x) = P(X \le x)$ |
+| $x$ | Event $\lbrace X \le x\rbrace$ | $F(x) = P(X \le x)$ |
 |:-----|:-----|:-----|
 | $-1$ | Empty event $\emptyset$ | $0$ |
-| $0$ | $\{TTT\}$ | $1/8$ |
-| $1$ | $\{TTT, HTT, THT, TTH\}$ | $4/8$ |
+| $0$ | $\lbrace TTT\rbrace$ | $1/8$ |
+| $1$ | $\lbrace TTT, HTT, THT, TTH\rbrace$ | $4/8$ |
 | $2$ | The seven outcomes other than $HHH$ | $7/8$ |
 | $3$ | All eight outcomes ($\mathcal{S}$) | $1$ |
 | $4$ | All eight outcomes ($\mathcal{S}$) | $1$ |
@@ -223,9 +223,9 @@ $$
 
 The cumulative distribution function has the following properties.
 
-1. **It is non-decreasing.** If $a < b$, the event $\{X \le a\}$ is contained in the event $\{X \le b\}$, so $F(a) \le F(b)$. Since probabilities are nonnegative, accumulating them can only increase the value or leave it unchanged, never decrease it.
-2. **$F(-\infty) = 0$ and $F(\infty) = 1$.** Precisely, $\lim_{x \to -\infty} F(x) = 0$ and $\lim_{x \to \infty} F(x) = 1$. As $x$ decreases without bound, the event $\{X \le x\}$ shrinks to the empty event, and as $x$ increases without bound it grows to the whole sample space. Being cumulative, the function starts at 0 and ends at 1.
-3. **$P(a < X \le b) = F(b) - F(a)$.** The event $\{X \le b\}$ is the union of the mutually exclusive events $\{X \le a\}$ and $\{a < X \le b\}$, so $F(b) = F(a) + P(a < X \le b)$. Note that the left endpoint $a$ is excluded and the right endpoint $b$ is included.
+1. **It is non-decreasing.** If $a < b$, the event $\lbrace X \le a\rbrace$ is contained in the event $\lbrace X \le b\rbrace$, so $F(a) \le F(b)$. Since probabilities are nonnegative, accumulating them can only increase the value or leave it unchanged, never decrease it.
+2. **$F(-\infty) = 0$ and $F(\infty) = 1$.** Precisely, $\lim_{x \to -\infty} F(x) = 0$ and $\lim_{x \to \infty} F(x) = 1$. As $x$ decreases without bound, the event $\lbrace X \le x\rbrace$ shrinks to the empty event, and as $x$ increases without bound it grows to the whole sample space. Being cumulative, the function starts at 0 and ends at 1.
+3. **$P(a < X \le b) = F(b) - F(a)$.** The event $\lbrace X \le b\rbrace$ is the union of the mutually exclusive events $\lbrace X \le a\rbrace$ and $\lbrace a < X \le b\rbrace$, so $F(b) = F(a) + P(a < X \le b)$. Note that the left endpoint $a$ is excluded and the right endpoint $b$ is included.
 4. **It is right-continuous.** $\lim_{h \to 0^{+}} F(x + h) = F(x)$ for every $x$ [1]. For a discrete random variable, $F$ jumps up at each value, and its value at that point is the value after the jump.
 
 ![Figure 3. Cumulative distribution function of the number of heads X, where filled dots are function values and open dots are left limits](../../images/Lec03_Coin-Heads-CDF.png)
@@ -288,12 +288,12 @@ The same method solves larger problems such as the sum of four dice and the join
 
 The probability mass function and the cumulative distribution function can also be functions of **more than one variable**. To handle two random variables defined on the same sample space together, we need the probability that two values occur at the same time.
 
-> **Definition:** For two discrete random variables $X$ and $Y$, $p_{X,Y}(x, y) \equiv P(X = x,\ Y = y) = P(\{X = x\} \cap \{Y = y\})$ is called the **joint probability mass function**.
+> **Definition:** For two discrete random variables $X$ and $Y$, $p_{X,Y}(x, y) \equiv P(X = x,\ Y = y) = P(\lbrace X = x\rbrace \cap \lbrace Y = y\rbrace)$ is called the **joint probability mass function**.
 
 **Example.** Toss a coin three times, and let $X$ be the number of heads and $Y$ the index of the toss with the first head (0 for $TTT$). For example, $p_{X,Y}(2, 1)$ is the probability that there are two heads and the first head occurs at the first toss, that is, two heads with the first toss being heads.
 
 $$
-p_{X,Y}(2, 1) = P(X = 2,\ Y = 1) = P(\{HHT, HTH\}) = \frac{2}{8} = \frac{1}{4}
+p_{X,Y}(2, 1) = P(X = 2,\ Y = 1) = P(\lbrace HHT, HTH\rbrace) = \frac{2}{8} = \frac{1}{4}
 $$
 
 To find the whole joint probability mass function, first write down the values of both random variables for each outcome.
@@ -323,7 +323,7 @@ $$
 p_X(x) = \sum_{y} p_{X,Y}(x, y), \qquad p_Y(y) = \sum_{x} p_{X,Y}(x, y)
 $$
 
-Because they are written in the margins of the table, these are called **marginal probabilities**; $p_X$ is the **marginal PMF** of $X$ and $p_Y$ the marginal PMF of $Y$. A marginal PMF equals the PMF of that random variable considered alone. The event $\{X = x\}$ is the union of the mutually exclusive events $\{X = x, Y = y\}$ ($y$ ranging over all values of $Y$), so by the law of total probability of Lecture 2 its probability is the sum of the joint probabilities. Indeed, $p_X$ in Table 5 equals $1/8, 3/8, 3/8, 1/8$ found in Section 2.1.
+Because they are written in the margins of the table, these are called **marginal probabilities**; $p_X$ is the **marginal PMF** of $X$ and $p_Y$ the marginal PMF of $Y$. A marginal PMF equals the PMF of that random variable considered alone. The event $\lbrace X = x\rbrace$ is the union of the mutually exclusive events $\lbrace X = x, Y = y\rbrace$ ($y$ ranging over all values of $Y$), so by the law of total probability of Lecture 2 its probability is the sum of the joint probabilities. Indeed, $p_X$ in Table 5 equals $1/8, 3/8, 3/8, 1/8$ found in Section 2.1.
 
 > **Note:** The marginal distributions can always be obtained from the joint distribution, but the joint distribution cannot be recovered from the marginals alone, because many joint distributions can share the same marginals. Only when the two random variables are independent is the joint distribution determined as the product of the marginals (Section 4).
 
@@ -356,9 +356,9 @@ Letting $y$ grow without bound gives $F_{X,Y}(x, \infty) = P(X \le x) = F_X(x)$,
 The same condition can be written in two other ways.
 
 1. In terms of probability mass functions, $p_{X,Y}(x, y) = p_X(x) \cdot p_Y(y)$ for all $x$ and $y$.
-2. In terms of events, $E_x \equiv X^{-1}(\{x\})$ and $E_y \equiv Y^{-1}(\{y\})$ are independent events in the sample space $\mathcal{S}$, that is, $P(E_x \cap E_y) = P(E_x) \cdot P(E_y)$ for all $x$ and $y$.
+2. In terms of events, $E_x \equiv X^{-1}(\lbrace x\rbrace)$ and $E_y \equiv Y^{-1}(\lbrace y\rbrace)$ are independent events in the sample space $\mathcal{S}$, that is, $P(E_x \cap E_y) = P(E_x) \cdot P(E_y)$ for all $x$ and $y$.
 
-The second form shows that independence of random variables is defined through the independence of events from Lecture 2. Here $X^{-1}(\{x\}) = \{\, s \in \mathcal{S} : X(s) = x \,\}$, and in the discrete case $x$ and $y$ are typically integers.
+The second form shows that independence of random variables is defined through the independence of events from Lecture 2. Here $X^{-1}(\lbrace x\rbrace) = \lbrace\, s \in \mathcal{S} : X(s) = x \,\rbrace$, and in the discrete case $x$ and $y$ are typically integers.
 
 The meaning of independence is clear in terms of conditional probability. When $P(X = x) > 0$, independence is the same as $P(Y = y \mid X = x) = P(Y = y)$: knowing the value of $X$ does not change the distribution of $Y$.
 
@@ -410,8 +410,8 @@ $$
 \begin{aligned}
 F_{X,Y}(x_k, y_\ell) &= P(X \le x_k,\ Y \le y_\ell) = \sum_{i \le k} \sum_{j \le \ell} p_{X,Y}(x_i, y_j) \\
 &= \sum_{i \le k} \sum_{j \le \ell} p_X(x_i) \cdot p_Y(y_j) && \text{(by independence)} \\
-&= \sum_{i \le k} \Big\{ p_X(x_i) \sum_{j \le \ell} p_Y(y_j) \Big\} \\
-&= \Big\{ \sum_{i \le k} p_X(x_i) \Big\} \cdot \Big\{ \sum_{j \le \ell} p_Y(y_j) \Big\} = F_X(x_k) \cdot F_Y(y_\ell)
+&= \sum_{i \le k} \Big\lbrace p_X(x_i) \sum_{j \le \ell} p_Y(y_j) \Big\rbrace \\
+&= \Big\lbrace \sum_{i \le k} p_X(x_i) \Big\rbrace \cdot \Big\lbrace \sum_{j \le \ell} p_Y(y_j) \Big\rbrace = F_X(x_k) \cdot F_Y(y_\ell)
 \end{aligned}
 $$
 
@@ -447,7 +447,7 @@ $$
 
 For example, for a die $E(X^2) = \frac{1}{6}(1^2 + 2^2 + \cdots + 6^2) = \frac{91}{6}$. This formula is used for the variance in Section 6. To avoid nested parentheses, the notation $E(X)$ is used when the argument is simple, and square brackets as in $E[(X - \mu)^2]$ when the argument contains parentheses.
 
-> **Note:** When $X$ takes infinitely many values, the expected value is defined only if the sum converges. Precisely, the expected value is said to exist when $\sum_k |x_k|\, p_X(x_k) < \infty$ [1]. All distributions in this lecture and in Lecture 4 satisfy this condition.
+> **Note:** When $X$ takes infinitely many values, the expected value is defined only if the sum converges. Precisely, the expected value is said to exist when $\sum_k |x_k|\, p_X(x_k) < \infty$ [1]. All distributions in Lectures 3-4 satisfy this condition.
 
 ### 5.2 Linearity of Expectation
 
@@ -511,7 +511,7 @@ $$
 E(X + Y) &= \sum_k \sum_\ell (x_k + y_\ell)\, p_{X,Y}(x_k, y_\ell) \\
 &= \sum_k \sum_\ell x_k\, p_{X,Y}(x_k, y_\ell) + \sum_k \sum_\ell y_\ell\, p_{X,Y}(x_k, y_\ell) \\
 &= \sum_k \sum_\ell x_k\, p_{X,Y}(x_k, y_\ell) + \sum_\ell \sum_k y_\ell\, p_{X,Y}(x_k, y_\ell) \\
-&= \sum_k \Big\{ x_k \sum_\ell p_{X,Y}(x_k, y_\ell) \Big\} + \sum_\ell \Big\{ y_\ell \sum_k p_{X,Y}(x_k, y_\ell) \Big\} \\
+&= \sum_k \Big\lbrace x_k \sum_\ell p_{X,Y}(x_k, y_\ell) \Big\rbrace + \sum_\ell \Big\lbrace y_\ell \sum_k p_{X,Y}(x_k, y_\ell) \Big\rbrace \\
 &= \sum_k x_k\, p_X(x_k) + \sum_\ell y_\ell\, p_Y(y_\ell) = E(X) + E(Y)
 \end{aligned}
 $$
@@ -526,8 +526,8 @@ $$
 \begin{aligned}
 E(XY) &= \sum_k \sum_\ell x_k\, y_\ell\, p_{X,Y}(x_k, y_\ell) \\
 &= \sum_k \sum_\ell x_k\, y_\ell\, p_X(x_k)\, p_Y(y_\ell) && \text{(by independence)} \\
-&= \sum_k \Big\{ x_k\, p_X(x_k) \sum_\ell y_\ell\, p_Y(y_\ell) \Big\} \\
-&= \Big\{ \sum_k x_k\, p_X(x_k) \Big\} \cdot \Big\{ \sum_\ell y_\ell\, p_Y(y_\ell) \Big\} = E(X) \cdot E(Y)
+&= \sum_k \Big\lbrace x_k\, p_X(x_k) \sum_\ell y_\ell\, p_Y(y_\ell) \Big\rbrace \\
+&= \Big\lbrace \sum_k x_k\, p_X(x_k) \Big\rbrace \cdot \Big\lbrace \sum_\ell y_\ell\, p_Y(y_\ell) \Big\rbrace = E(X) \cdot E(Y)
 \end{aligned}
 $$
 
@@ -554,7 +554,7 @@ $$
 
 Hence $E(XY) = 16 = 2 \cdot 8 = E(X) \cdot E(Y)$. However, $p_{X,Y}(1, 6) = \frac{1}{5}$ while $p_X(1) \cdot p_Y(6) = \frac{2}{5} \cdot \frac{2}{5} = \frac{4}{25}$, so $X$ and $Y$ are not independent. There is also a cell with $p_{X,Y}(1, 8) = 0 \ne \frac{2}{5} \cdot \frac{1}{5}$.
 
-> **Caution:** $E(XY) = E(X)E(Y)$ is only a **necessary** condition for independence, not a sufficient one. One cannot conclude independence from this equation. The only criteria that work in both directions are the conditions written in terms of probabilities: $p_{X,Y} = p_X \cdot p_Y$ or $F_{X,Y} = F_X \cdot F_Y$ for all $(x, y)$. Conversely, if $E(XY) \ne E(X)E(Y)$, one can conclude that $X$ and $Y$ are not independent.
+> **Caution:** $E(XY) = E(X)E(Y)$ is only a **necessary** condition for independence, not a sufficient one. One cannot conclude independence from this equation. Among the criteria discussed so far, the ones that work in both directions are the conditions written in terms of probabilities: $p_{X,Y} = p_X \cdot p_Y$ or $F_{X,Y} = F_X \cdot F_Y$ for all $(x, y)$. Conversely, if $E(XY) \ne E(X)E(Y)$, one can conclude that $X$ and $Y$ are not independent.
 
 ---
 
@@ -613,7 +613,7 @@ The first formula was proved in Section 5.2. The second uses the fact that the m
 
 $$
 \begin{aligned}
-\mathrm{Var}(aX + b) &= E\big[\{(aX + b) - (a\mu_X + b)\}^2\big] \\
+\mathrm{Var}(aX + b) &= E\big[\lbrace(aX + b) - (a\mu_X + b)\rbrace^2\big] \\
 &= E\big[a^2 (X - \mu_X)^2\big] \\
 &= a^2\, E\big[(X - \mu_X)^2\big] = a^2\, \mathrm{Var}(X)
 \end{aligned}
@@ -687,7 +687,7 @@ The variance of a sum of two random variables is the sum of their variances plus
 
 $$
 \begin{aligned}
-\mathrm{Var}(X + Y) &= E\big[\{(X + Y) - (\mu_X + \mu_Y)\}^2\big] = E\big[\{(X - \mu_X) + (Y - \mu_Y)\}^2\big] \\
+\mathrm{Var}(X + Y) &= E\big[\lbrace(X + Y) - (\mu_X + \mu_Y)\rbrace^2\big] = E\big[\lbrace(X - \mu_X) + (Y - \mu_Y)\rbrace^2\big] \\
 &= E\big[(X - \mu_X)^2\big] + E\big[(Y - \mu_Y)^2\big] + 2\,E\big[(X - \mu_X)(Y - \mu_Y)\big] \\
 &= \mathrm{Var}(X) + \mathrm{Var}(Y) + 2\,\mathrm{Cov}(X, Y)
 \end{aligned}
@@ -717,7 +717,7 @@ The standard deviation is $\sqrt{35/3} \approx 3.4157$. Obtaining the same value
 |:-----|:-----|
 | A random variable is a function that assigns probabilities to events. | **F.** A random variable is a function that assigns a real number to each outcome of the sample space. Assigning probabilities to events is the job of the probability (probability measure). |
 | Every random variable defined on a finite sample space is discrete. | **T.** With finitely many outcomes, the random variable takes finitely many values. |
-| The cumulative distribution function can decrease as $x$ increases. | **F.** If $a < b$, then $\{X \le a\} \subset \{X \le b\}$, so $F(a) \le F(b)$. |
+| The cumulative distribution function can decrease as $x$ increases. | **F.** If $a < b$, then $\lbrace X \le a\rbrace \subset \lbrace X \le b\rbrace$, so $F(a) \le F(b)$. |
 | The CDF $F(x)$ of a discrete random variable is defined only at the values $X$ takes. | **F.** It is defined at every real $x$ and is a step function that is constant between values. |
 | The marginal PMFs can always be obtained from the joint PMF. | **T.** They are the row and column sums. Conversely, the joint distribution is generally not determined by the marginals. |
 | If $E(XY) = E(X)E(Y)$, then $X$ and $Y$ are independent. | **F.** The distribution in Table 8 is a counterexample. This equation is only a necessary condition for independence. |
@@ -736,7 +736,7 @@ The standard deviation is $\sqrt{35/3} \approx 3.4157$. Obtaining the same value
 |:-----|:-----|
 | Random variable | A function $X : \mathcal{S} \to \mathbb{R}$ that assigns a real number to each outcome of the sample space. Each column of structured data can be viewed as a random variable. |
 | Discrete and continuous | Discrete if the values are finite in number or countably infinite, continuous if they spread continuously over an interval of reals. A random variable on a finite sample space is always discrete. |
-| Value ranges and events | $\{X \in A\} = \{s : X(s) \in A\}$ is an event and therefore has a probability. The events $\{X = x\}$ form a partition of the sample space. |
+| Value ranges and events | $\lbrace X \in A\rbrace = \lbrace s : X(s) \in A\rbrace$ is an event and therefore has a probability. The events $\lbrace X = x\rbrace$ form a partition of the sample space. |
 | Probability mass function | $p_X(x) = P(X = x)$. Each value lies between 0 and 1, and the values sum to 1. |
 | Cumulative distribution function | $F_X(x) = P(X \le x)$. It is non-decreasing and right-continuous with $F(-\infty) = 0$, $F(\infty) = 1$, and $P(a < X \le b) = F(b) - F(a)$. In the discrete case it is a step function. |
 | Joint and marginal distributions | $p_{X,Y}(x, y) = P(X = x, Y = y)$. The marginal PMFs are the row and column sums of the joint probabilities. |

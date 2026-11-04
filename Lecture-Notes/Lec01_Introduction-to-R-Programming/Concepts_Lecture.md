@@ -73,7 +73,7 @@ Probability and statistics are theories defined by formulas, but how the theory 
 
 ### 1.2 Course Roadmap
 
-This lecture installs R and introduces its data structures, basic functions, descriptive statistics, and visualization. The topics of the units are as follows.
+Lecture 1 installs R and introduces its data structures, basic functions, descriptive statistics, and visualization. The topics of the units are as follows.
 
 | Lecture | Topics |
 |:---|:-----|
@@ -98,7 +98,7 @@ Using R requires installing two programs in turn. First install **R**, the langu
 
 ### 2.1 Installing R
 
-R is downloaded from **CRAN (the Comprehensive R Archive Network)**. CRAN is a worldwide network of servers that distributes R itself and its packages, and its address is [https://cran.r-project.org/](https://cran.r-project.org/) [1]. In the "Download and Install R" box on the front page, choose the link for your operating system.
+R is downloaded from **CRAN (the Comprehensive R Archive Network)**. CRAN is a worldwide network of servers that distributes R itself and its packages, and its address is [https://cran.r-project.org/](https://cran.r-project.org/) [1]. The "Download and Install R" box on the front page collects the links to precompiled binary distributions of the base system and contributed packages, which most Windows and Mac users download. In this box, choose the link for your operating system.
 
 ![Figure 1. Download links for R by operating system on the CRAN front page](../../images/Lec01_p03.png)
 
@@ -120,9 +120,9 @@ sudo apt install r-base
 
 ### 2.2 Installing RStudio
 
-**RStudio** is an integrated development environment for R (Section 3). The company that develops it, RStudio, PBC, renamed itself Posit in 2022, and RStudio Desktop is now downloaded from Posit's download page [https://posit.co/download/rstudio-desktop/](https://posit.co/download/rstudio-desktop/) [2]. The former address (`https://www.rstudio.com/products/rstudio/download/`) also leads to this page.
+**RStudio** is an integrated development environment for R (Section 3). The company that develops it, RStudio, PBC, renamed itself Posit (Posit Software, PBC) in 2022 [2]. RStudio Desktop is now downloaded from the download page in Posit's RStudio User Guide, [https://docs.posit.co/ide/user/download.html](https://docs.posit.co/ide/user/download.html) [3]. The former addresses `https://www.rstudio.com/products/rstudio/download/` and `https://posit.co/download/rstudio-desktop/` both lead to this user guide.
 
-RStudio comes as **RStudio Desktop**, which runs on a personal computer, and **RStudio Server**, which is used through a web browser, and paid commercial products are offered alongside the free open-source editions. The free open-source edition of RStudio Desktop is enough for self-study and for the exercises of this course. The download page detects the operating system of your computer and offers the matching installer (`.exe` for Windows, `.dmg` for macOS, `.deb` or `.rpm` for Linux). On Windows, run the installer; on macOS, open the `.dmg` file and drag the RStudio icon into the Applications folder.
+RStudio comes as **RStudio Desktop**, which is installed and used on a personal computer, and **RStudio Server**, which is installed on a server and used through a web browser. The former download page split each of them into a free open-source license edition and a paid commercial license edition and showed four products: RStudio Desktop (open source), RStudio Desktop (commercial), RStudio Server (open source), and RStudio Server Pro (commercial); the commercial editions are now offered as RStudio Desktop Pro and Posit Workbench [2], [3]. The free open-source edition of RStudio Desktop is enough for self-study and for the exercises of this course. The download page detects the operating system of your computer and offers the matching installer (`.exe` for Windows, `.dmg` for macOS, `.deb` or `.rpm` for Linux). On Windows, run the installer; on macOS, open the `.dmg` file and drag the RStudio icon into the Applications folder.
 
 ### 2.3 Checking the Installation
 
@@ -169,13 +169,13 @@ The console in Figure 2 shows the message R prints at startup, and the code edit
 
 ### 3.3 Shortcuts and Cheat Sheets
 
-Memorizing the key bindings for the operations you use most speeds up your work considerably. RStudio provides a **cheat sheet** that summarizes the most widely used commands and shortcuts on one or two pages; choose Help > Cheatsheets > RStudio IDE Cheat Sheet to open it. The same menu also offers cheat sheets for major packages, such as data transformation with dplyr and data visualization with ggplot2.
+Memorizing the key bindings for the operations you use most speeds up your work considerably. RStudio provides a **cheat sheet** that summarizes the most widely used commands and shortcuts on one or two pages; choose Help > Cheatsheets > RStudio IDE Cheat Sheet to open it. The menu in Figure 3 also lists Data Transformation with dplyr, Data Visualization with ggplot2, package development with devtools, web applications with shiny, interfacing Spark with sparklyr, the R Markdown cheat sheet, and the R Markdown Reference Guide. The list of cheat sheets in the menu differs between RStudio versions.
 
 ![Figure 3. The Help > Cheatsheets menu of RStudio and its list of cheat sheets](../../images/Lec01_p08.png)
 
 *Figure 3. The Help > Cheatsheets menu of RStudio and its list of cheat sheets*
 
-The following shortcuts are used frequently in RStudio [3]. The full list is under Help > Keyboard Shortcuts Help (Alt+Shift+K).
+The following shortcuts are used frequently in RStudio [4]. The full list is under Help > Keyboard Shortcuts Help (Alt+Shift+K).
 
 | Action | Windows, Linux | macOS |
 |:-----|:---------------|:------|
@@ -293,7 +293,7 @@ Every R function has a help page describing its usage, the meaning of its argume
 
 *Table 6. Functions that open help pages*
 
-The front page opened by `help.start()` has three parts. **Manuals** holds the official manuals such as An Introduction to R, The R Language Definition, Writing R Extensions, R Installation and Administration, R Data Import/Export, and R Internals; **Reference** holds the list of help pages of the installed packages (Packages) and a search facility (Search Engine & Keywords); and **Miscellaneous Material** holds information about R, the license, frequently asked questions, the change log (NEWS), and more.
+The front page opened by `help.start()` has three parts. **Manuals** holds the official manuals such as An Introduction to R, The R Language Definition, Writing R Extensions, R Installation and Administration, R Data Import/Export, and R Internals; **Reference** holds the list of help pages of the installed packages (Packages) and a search facility (Search Engine & Keywords); and **Miscellaneous Material** holds About R, Authors, Resources, License, Frequently Asked Questions, Thanks, the change log (NEWS), User Manuals, and Technical papers. R for Windows adds below them a part with the change log and FAQ specific to the Windows version (Material specific to the Windows port).
 
 ```r
 help(head)               # help page of the function head()
@@ -312,7 +312,7 @@ Packages are often called "R libraries", but strictly speaking a **library** in 
 
 ### 5.3 Installing and Loading Packages
 
-The first step in finding and installing packages is to set the **repositories** from which packages are downloaded. Running `setRepositories()` in an interactive session shows a menu of repositories such as CRAN, BioC software, BioC annotation, BioC experiment, CRAN (extras), R-Forge, and rforge.net, and by default only CRAN is selected. BioC is Bioconductor, a repository of bioinformatics packages. In most cases CRAN alone is enough.
+The first step in finding and installing packages is to set the **repositories** from which packages are downloaded. Running `setRepositories()` in an interactive session shows a menu of repositories such as CRAN, BioC software, BioC annotation, BioC experiment, CRAN (extras), R-Forge, and rforge.net, and by default only CRAN is selected. BioC is Bioconductor, a repository of bioinformatics packages. In most cases CRAN alone is enough. Giving the numbers directly without the menu, as in `setRepositories(ind = 1:7)`, selects repositories 1 through 7 of the list at once.
 
 ```r
 ## Set repository for downloading R packages
@@ -404,7 +404,7 @@ x[x > 25]
 
 ### 6.2 Basic Types and Coercion
 
-The basic types that the elements of a vector can have are as follows [4].
+The four most frequently used basic types that the elements of a vector can have are as follows. There are also the complex type `complex` and the type `raw`, which holds bytes [5].
 
 | Type (`typeof()`) | `class()` | Meaning | Examples |
 |:--------------------|:----------|:---|:---|
@@ -417,7 +417,7 @@ The basic types that the elements of a vector can have are as follows [4].
 
 `class()` tells how an object is treated, and `typeof()` tells which type it is stored as in memory. A number written without `L`, such as `42`, is stored as a double even though it looks like an integer.
 
-A vector can hold only one type, so when `c()` receives values of different types, R converts all of them to a single type in the direction that loses no information. This is called **coercion**, and the direction is `logical` → `integer` → `double` → `character`.
+A vector can hold only one type, so when `c()` receives values of different types, R converts all of them to a single type in the direction that loses no information. This is called **coercion**, and the direction is `logical` → `integer` → `double` → `character` (`complex` comes between `double` and `character`).
 
 ```r
 c(1, "a", TRUE)
@@ -491,7 +491,7 @@ str(iris)
  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
 ```
 
-`str(iris)` shows that iris is a data frame with 150 observations and 5 variables, that the first four columns are numeric, and that `Species` is a factor with the three levels setosa, versicolor, and virginica. The names after `$` are the column names, and a single column can be extracted as `data$column_name`, as in `iris$Species`.
+The `ls()` output above is that of a freshly started R session; if objects created earlier remain, their names are listed as well. `str(iris)` shows that iris is a data frame with 150 observations and 5 variables, that the first four columns are numeric, and that `Species` is a factor with the three levels setosa, versicolor, and virginica. The names after `$` are the column names, and a single column can be extracted as `data$column_name`, as in `iris$Species`.
 
 ### 6.5 Length, Rows and Columns, and Partial Views
 
@@ -669,19 +669,19 @@ rnorm(n = 100, mean = 180, sd = 1)
 
 This command creates 100 values that follow the normal distribution with mean 180 and standard deviation 1. It is used to create artificial data, for example, as if the heights of 100 people were drawn at random from a population whose mean height is 180cm with a standard deviation of 1cm.
 
-In probability theory, the **normal distribution**, also called the Gaussian, Gauss, or Laplace-Gauss distribution, is the most commonly used continuous probability distribution. The probability density function of the normal distribution with mean $\mu$ and variance $\sigma^2$ is as follows.
+In probability theory, the **normal distribution**, also called the Gaussian, Gauss, or Laplace-Gauss distribution, is a very commonly used continuous probability distribution. The probability density function of the normal distribution with mean $\mu$ and variance $\sigma^2$ is as follows.
 
 $$
 f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left( -\frac{(x - \mu)^2}{2\sigma^2} \right), \qquad -\infty < x < \infty
 $$
 
-The curve is bell-shaped, peaks at $x = \mu$, and is symmetric about $\mu$; the larger $\sigma^2$ is, the lower and wider it spreads. Normal distributions are important in statistics for representing real-valued random variables whose distributions are not known exactly, because quantities determined by the sum of many small factors, such as measurement errors or heights, are often approximately normal. A random variable with a normal distribution is said to be normally distributed, and its value is called a **normal deviate**. Lecture 5 covers the properties of the normal distribution in detail.
+The curve is bell-shaped, peaks at $x = \mu$, and is symmetric about $\mu$; the larger $\sigma^2$ is, the lower and wider it spreads. Normal distributions are important in statistics for representing real-valued random variables whose distributions are not known exactly, because quantities determined by the sum of many small factors, such as measurement errors or heights, are often approximately normal. A random variable with a normal distribution is said to be normally distributed, and such a random variable is also called a **normal deviate**. Lecture 5 covers the properties of the normal distribution in detail.
 
 ![Figure 4. Probability density functions of four normal distributions with different means and variances](../../images/Lec01_Normal-Densities.png)
 
 *Figure 4. Probability density functions of four normal distributions with different means and variances*
 
-Three curves in Figure 4 share the mean 0 and have variances 0.2, 1, and 5; the smaller the variance, the higher and narrower the curve gathers around 0. The green curve has mean -2, so the same shape is shifted to the left.
+Three curves in Figure 4 share the mean 0 and have variances 0.2, 1, and 5; the smaller the variance, the higher and narrower the curve gathers around 0. The green curve has mean -2 and variance 0.5, so it is symmetric about -2, higher and narrower than the red curve with variance 1 but lower and wider than the blue curve with variance 0.2.
 
 > **Caution:** The third argument of `rnorm()` is the **standard deviation** $\sigma$, not the variance $\sigma^2$. To draw values from the normal distribution with variance 5, write `rnorm(n, mean = 0, sd = sqrt(5))`.
 
@@ -750,7 +750,7 @@ a b c d
 - **For a numeric variable,** it returns six values: the minimum (Min.), first quartile (1st Qu.), median (Median), mean (Mean), third quartile (3rd Qu.), and maximum (Max.) (Section 8.2).
 - **For a factor,** it returns the frequency of each level, that is, the number of elements in each category. The `C` above has 5 elements in each of its four levels.
 
-> **Key Point:** A data frame can hold factor variables as they are, but a matrix (including one made with `data.matrix()`) turns factors into integer codes. Data with categorical variables should be handled as a data frame.
+> **Key Point:** A data frame can hold factor variables as they are, but a matrix cannot hold factors. In a matrix made with `cbind()` or `data.matrix()` a factor turns into integer codes, and in one made with `as.matrix()` or `matrix()` it turns into strings, so the level information of the factor is lost. Data with categorical variables should be handled as a data frame.
 
 ### 7.5 Creating Matrices
 
@@ -779,7 +779,7 @@ class(A)
 [1] "matrix" "array" 
 ```
 
-`matrix(0, nrow = 10, ncol = 5)` is a 10-by-5 matrix whose elements are all 0, and `matrix(NA, ...)` is a matrix whose elements are all `NA`. `NA` (not available) denotes a **missing value** in R, that is, a position whose value is not yet known or unknown. This is how an empty table to be filled in later is prepared. The printouts of the two matrices are long and are omitted. Since R 4.0, `class()` of a matrix returns the two values `"matrix" "array"`, meaning that a matrix is also a two-dimensional array.
+`matrix(0, nrow = 10, ncol = 5)` is a 10-by-5 matrix whose elements are all 0, and `matrix(NA, ...)` is a matrix whose elements are all `NA`. `NA` (not available) denotes a **missing value** in R, that is, a position whose value is not yet known or unknown. This is how an empty table to be filled in later is prepared. The two matrices print all 10 rows and 5 columns and are long, so the output above shows only the results from `dim(A)` on. Since R 4.0, `class()` of a matrix returns the two values `"matrix" "array"`, meaning that a matrix is also a two-dimensional array.
 
 When several values are given, they are filled in **by column** by default, and **by row** with `byrow = TRUE`.
 
@@ -852,7 +852,7 @@ sd(x)
 [1] 2.483277
 ```
 
-> **Note:** Textbooks and software compute quartiles in slightly different ways; R's `quantile()` offers nine methods through its `type` argument, and the default is the method above (`type = 7`) [5]. With large data, the differences between methods are small.
+> **Note:** Textbooks and software compute quartiles in slightly different ways; R's `quantile()` offers nine methods through its `type` argument, and the default is the method above (`type = 7`) [6]. With large data, the differences between methods are small.
 
 Now apply these functions to `ourData`.
 
@@ -915,7 +915,7 @@ boxplot(Height ~ Gender, data = ourData, col = c("blue", "red"))
 ```
 
 - **Histogram:** `hist(x)` divides the range of the values into intervals of equal width and draws the number of observations in each interval (Frequency) as the height of a bar. It shows the shape of a distribution (center, spread, skewness, number of peaks).
-- **Box plot:** The lower and upper edges of the box are approximately $Q_1$ and $Q_3$, and the thick line inside the box is the median. The lines extending up and down from the box (whiskers) reach the most extreme observations within 1.5 times the interquartile range $Q_3 - Q_1$ from the box edges, and observations farther out are drawn separately as points, as candidate outliers [6].
+- **Box plot:** The lower and upper edges of the box are approximately $Q_1$ and $Q_3$, and the thick line inside the box is the median. The lines extending up and down from the box (whiskers) reach the most extreme observations within 1.5 times the interquartile range $Q_3 - Q_1$ from the box edges, and observations farther out are drawn separately as points, as candidate outliers [7].
 - **Model formula `Height ~ Gender`:** It means to split the variable on the left of `~` by the categories of the variable on the right. `data = ourData` makes R look for both variables among the columns of `ourData`. `col` sets the box colors in the order of the levels (Female, Male).
 
 ![Figure 5. Histogram of the men's heights (left) and box plot of height by gender (right)](../../images/Lec01_Base-Graphics.png)
@@ -926,9 +926,9 @@ The histogram in Figure 5 shows that the heights of the 10 men are scattered bet
 
 ### 8.4 Visualization with ggplot2 and ggpubr
 
-Visualization matters in statistical analysis, because summary values such as the mean and standard deviation do not reveal the shape of a distribution. Anscombe presented four datasets with nearly identical means, variances, correlation coefficients, and regression lines but entirely different scatter plots, showing why data should be plotted before analysis [7].
+Visualization matters in statistical analysis, because summary values such as the mean and standard deviation do not reveal the shape of a distribution. Anscombe presented four datasets with nearly identical means, variances, correlation coefficients, and regression lines but entirely different scatter plots, showing why data should be plotted before analysis [8].
 
-More refined plots than base graphics are drawn with third-party packages such as **ggplot2** and **ggpubr**. **ggplot2** builds a plot by stacking layers with `+` according to the grammar of graphics: the data (`data`), the mapping of variables to visual properties (`aes()`, aesthetic mapping), and the shapes to draw (`geom_*()`) [8]. **ggpubr** is built on ggplot2 and draws publication-ready plots with a single function call [9].
+More refined plots than base graphics are drawn with third-party packages such as **ggplot2** and **ggpubr**. **ggplot2** builds a plot by stacking layers with `+` according to the grammar of graphics: the data (`data`), the mapping of variables to visual properties (`aes()`, aesthetic mapping), and the shapes to draw (`geom_*()`) [9]. **ggpubr** is built on ggplot2 and draws publication-ready plots with a single function call [10].
 
 ```r
 library(ggpubr)   # also loads ggplot2
@@ -1067,7 +1067,7 @@ ggplot(ourData, aes(x = Gender, y = Height, color = Gender, fill = Gender)) +
    <details>
    <summary>Answer</summary>
 
-   Yes. The six summary values describe only a few points of a distribution, so features such as the number of peaks, where values cluster, and outliers can still differ. Anscombe's four datasets have the same means, variances, and even correlation coefficients, yet their plots are entirely different. The shape of a distribution should be checked directly with a histogram, a density plot, or a box plot drawn together with the observations.
+   Yes. The six summary values describe only a few points of a distribution, so features such as the number of peaks, where values cluster, and outliers can still differ. Anscombe's four datasets have nearly the same means, variances, and even correlation coefficients, yet their plots are entirely different. The shape of a distribution should be checked directly with a histogram, a density plot, or a box plot drawn together with the observations.
 
    </details>
 
@@ -1078,11 +1078,12 @@ ggplot(ourData, aes(x = Gender, y = Height, color = Gender, fill = Gender)) +
 ## References
 
 1. The R Foundation, "The Comprehensive R Archive Network," https://cran.r-project.org/
-2. Posit Software, PBC, "RStudio Desktop," https://posit.co/download/rstudio-desktop/
-3. Posit Software, PBC, "Keyboard shortcuts," *RStudio IDE User Guide*, https://docs.posit.co/ide/user/ide/reference/shortcuts.html
-4. W. N. Venables, D. M. Smith, and the R Core Team, "An Introduction to R," https://cran.r-project.org/doc/manuals/r-release/R-intro.html
-5. R. J. Hyndman and Y. Fan, "Sample quantiles in statistical packages," *The American Statistician*, vol. 50, no. 4, pp. 361-365, 1996.
-6. J. W. Tukey, *Exploratory Data Analysis*. Reading, MA, USA: Addison-Wesley, 1977.
-7. F. J. Anscombe, "Graphs in statistical analysis," *The American Statistician*, vol. 27, no. 1, pp. 17-21, 1973.
-8. H. Wickham, *ggplot2: Elegant Graphics for Data Analysis*, 2nd ed. Cham, Switzerland: Springer, 2016.
-9. A. Kassambara, "ggpubr: ggplot2 Based Publication Ready Plots," R package, https://rpkgs.datanovia.com/ggpubr/
+2. J. J. Allaire and H. Wickham, "RStudio is becoming Posit," *Posit Blog*, Jul. 27, 2022, https://posit.co/blog/rstudio-is-becoming-posit/
+3. Posit Software, PBC, "Download RStudio," *RStudio IDE User Guide*, https://docs.posit.co/ide/user/download.html
+4. Posit Software, PBC, "Keyboard shortcuts," *RStudio IDE User Guide*, https://docs.posit.co/ide/user/ide/reference/shortcuts.html
+5. W. N. Venables, D. M. Smith, and the R Core Team, "An Introduction to R," https://cran.r-project.org/doc/manuals/r-release/R-intro.html
+6. R. J. Hyndman and Y. Fan, "Sample quantiles in statistical packages," *The American Statistician*, vol. 50, no. 4, pp. 361-365, 1996.
+7. J. W. Tukey, *Exploratory Data Analysis*. Reading, MA, USA: Addison-Wesley, 1977.
+8. F. J. Anscombe, "Graphs in statistical analysis," *The American Statistician*, vol. 27, no. 1, pp. 17-21, 1973.
+9. H. Wickham, *ggplot2: Elegant Graphics for Data Analysis*, 2nd ed. Cham, Switzerland: Springer, 2016.
+10. A. Kassambara, "ggpubr: ggplot2 Based Publication Ready Plots," R package, https://rpkgs.datanovia.com/ggpubr/

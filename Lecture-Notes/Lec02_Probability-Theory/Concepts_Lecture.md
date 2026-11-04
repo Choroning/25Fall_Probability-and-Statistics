@@ -63,7 +63,7 @@ An experiment such as tossing a coin or rolling a die, which can be repeated und
 **Example 1 (one coin toss).** When we flip a coin once, the sample space is as follows.
 
 $$
-S = \{H, T\}
+S = \lbrace H, T\rbrace
 $$
 
 Here $H$ denotes that the coin lands heads up and $T$ that it lands tails up. For a **fair coin**, $H$ and $T$ have the same chance of occurring; that is, if we flip the coin many times, about 50% of the outcomes will be $H$. We then say that the **probability** of $H$ is 0.5 (50%), and the probability of $T$ is also 0.5.
@@ -71,7 +71,7 @@ Here $H$ denotes that the coin lands heads up and $T$ that it lands tails up. Fo
 **Example 2 (three coin tosses).** When we toss a coin three times and record the results in the order in which they occur, the sample space is as follows.
 
 $$
-S = \{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\}
+S = \lbrace HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\rbrace
 $$
 
 The elements of $S$ are vectors of length 3, sequences, or **ordered outcomes**. Each toss has 2 results, so the number of outcomes is $2 \times 2 \times 2 = 8$. For a fair coin we may expect each of the 8 outcomes to be equally likely, so the probability of the sequence $HTT$ is $1/8$. The sequences with exactly two heads are $HHT$, $HTH$, and $THH$, so their probability is as follows.
@@ -80,25 +80,25 @@ $$
 \frac{1}{8} + \frac{1}{8} + \frac{1}{8} = \frac{3}{8}
 $$
 
-**Example 3 (one roll of a die).** When we roll a fair die once, the sample space is $S = \{1, 2, 3, 4, 5, 6\}$, and the probability that the die lands with $k$ up is $1/6$ for each $k = 1, 2, \ldots, 6$. When we roll it 1200 times, we expect a 5 about $1200 \times \frac{1}{6} = 200$ times. The probability that the die lands with an even number up is the sum of the probabilities of the even faces 2, 4, and 6.
+**Example 3 (one roll of a die).** When we roll a fair die once, the sample space is $S = \lbrace1, 2, 3, 4, 5, 6\rbrace$, and the probability that the die lands with $k$ up is $1/6$ for each $k = 1, 2, \ldots, 6$. When we roll it 1200 times, we expect a 5 about $1200 \times \frac{1}{6} = 200$ times. The probability that the die lands with an even number up is the sum of the probabilities of the even faces 2, 4, and 6.
 
 $$
 \frac{1}{6} + \frac{1}{6} + \frac{1}{6} = \frac{1}{2}
 $$
 
-> **Caution:** How the results are recorded determines the sample space and the probability calculation. If the results of three coin tosses are recorded without order, only as the number of heads, the sample space is $\{0, 1, 2, 3\}$, but these four outcomes are not equally likely. Zero and three heads each have probability $1/8$, while one and two heads each have probability $3/8$. The assumption of equally likely outcomes holds for the ordered outcomes.
+> **Caution:** How the results are recorded determines the sample space and the probability calculation. If the results of three coin tosses are recorded without order, only as the number of heads, the sample space is $\lbrace0, 1, 2, 3\rbrace$, but these four outcomes are not equally likely. Zero and three heads each have probability $1/8$, while one and two heads each have probability $3/8$. The assumption of equally likely outcomes holds for the ordered outcomes.
 
 ### 1.2 Events
 
 > **Definition:** In probability theory, subsets of the sample space are called **events**.
 
-When a die is rolled once, the sample space is $S = \{1, 2, 3, 4, 5, 6\}$, and the subset $E = \{2, 4, 6\}$ (an even number) is an example of an event. If the die is rolled once and lands with a 2 or a 4 or a 6 up, we say that the event $E$ has **occurred**. In general, $E$ occurs when the outcome of the experiment is an element of $E$. As computed in Section 1.1, the probability that $E$ occurs is as follows.
+When a die is rolled once, the sample space is $S = \lbrace1, 2, 3, 4, 5, 6\rbrace$, and the subset $E = \lbrace2, 4, 6\rbrace$ (an even number) is an example of an event. If the die is rolled once and lands with a 2 or a 4 or a 6 up, we say that the event $E$ has **occurred**. In general, $E$ occurs when the outcome of the experiment is an element of $E$. As computed in Section 1.1, the probability that $E$ occurs is as follows.
 
 $$
 P(E) = \frac{1}{6} + \frac{1}{6} + \frac{1}{6} = \frac{1}{2}
 $$
 
-An event $\{k\}$ consisting of a single outcome is called an **elementary event**. The sample space $S$ itself is also an event and always occurs, so it is called the **certain event**, and the empty set $\emptyset$ never occurs, so it is called the **impossible event**.
+An event $\lbrace k\rbrace$ consisting of a single outcome is called an **elementary event**. The sample space $S$ itself is also an event and always occurs, so it is called the **certain event**, and the empty set $\emptyset$ never occurs, so it is called the **impossible event**.
 
 ### 1.3 Operations on Events
 
@@ -114,7 +114,7 @@ Since events are subsets of the sample space $S$, that is, sets, we can apply th
 
 *Table 1. Operations on and relations between events*
 
-By convention, probability theory uses $E^c$ instead of $\bar{E}$, $EF$ instead of $E \cap F$, and $E \subset F$ instead of $E \subseteq F$. So $E \subset F$ includes the case $E = F$. To avoid confusion, this note writes intersections as $E \cap F$.
+Probability theory often uses $E^c$ instead of $\bar{E}$, $EF$ instead of $E \cap F$, and $E \subset F$ instead of $E \subseteq F$. So $E \subset F$ includes the case $E = F$. Since $EF$ is easily confused with multiplication, intersections are written as $E \cap F$ from here on.
 
 ![Figure 1. Venn diagrams of a complement, an intersection, a union, and two mutually exclusive events](../../images/Lec02_Venn-Diagrams.png)
 
@@ -122,10 +122,10 @@ By convention, probability theory uses $E^c$ instead of $\bar{E}$, $EF$ instead 
 
 In Figure 1 the rectangle represents the sample space $S$, the circles represent events, and the shaded part is the result of each operation. Panel (a) is $A^c$, everything outside $A$; (b) is $A \cap B$, the overlap of the two circles; (c) is $A \cup B$, both circles in full; and (d) shows the case $A \cap B = \emptyset$, where the circles do not overlap.
 
-In the example of one roll of a die, let $E = \{2, 4, 6\}$ (even) and $F = \{4, 5, 6\}$ (4 or more). Then:
+In the example of one roll of a die, let $E = \lbrace2, 4, 6\rbrace$ (even) and $F = \lbrace4, 5, 6\rbrace$ (4 or more). Then:
 
 $$
-E^c = \{1, 3, 5\}, \qquad E \cup F = \{2, 4, 5, 6\}, \qquad E \cap F = \{4, 6\}
+E^c = \lbrace1, 3, 5\rbrace, \qquad E \cup F = \lbrace2, 4, 5, 6\rbrace, \qquad E \cap F = \lbrace4, 6\rbrace
 $$
 
 Operations on events obey the laws of sets. The following two laws are used in the proofs later.
@@ -133,7 +133,7 @@ Operations on events obey the laws of sets. The following two laws are used in t
 - **Distributive laws:** $E \cap (F \cup G) = (E \cap F) \cup (E \cap G)$, $\ E \cup (F \cap G) = (E \cup F) \cap (E \cup G)$
 - **De Morgan's laws:** $(E \cup F)^c = E^c \cap F^c$, $\ (E \cap F)^c = E^c \cup F^c$
 
-In the example above, $(E \cup F)^c = \{1, 3\}$ and $E^c \cap F^c = \{1, 3, 5\} \cap \{1, 2, 3\} = \{1, 3\}$, so De Morgan's law holds. In words, the negation of "at least one of $E$ and $F$ occurs" is "neither $E$ nor $F$ occurs".
+In the example above, $(E \cup F)^c = \lbrace1, 3\rbrace$ and $E^c \cap F^c = \lbrace1, 3, 5\rbrace \cap \lbrace1, 2, 3\rbrace = \lbrace1, 3\rbrace$, so De Morgan's law holds. In words, the negation of "at least one of $E$ and $F$ occurs" is "neither $E$ nor $F$ occurs".
 
 > **[Discrete Mathematics]** Set inclusion, union, intersection, complement, the distributive laws, and De Morgan's laws are the basics of set theory covered in discrete mathematics. Probability theory can be viewed as these set operations plus a function $P$ that measures the size of each set.
 
@@ -151,7 +151,7 @@ $$
 P(E) = \frac{\lvert E \rvert}{\lvert S \rvert}
 $$
 
-For example, the probability of throwing a coin to get a head is expected to be $\lvert \{H\} \rvert / \lvert \{H, T\} \rvert = 1/2$. Classical probability is intuitive because it is computed by counting, but it requires that all outcomes be equally likely. Applying the formula to outcomes that are not equally likely, as in the caution box of Section 1.1, gives wrong answers.
+For example, the probability of throwing a coin to get a head is expected to be $\lvert \lbrace H\rbrace \rvert / \lvert \lbrace H, T\rbrace \rvert = 1/2$. Classical probability is intuitive because it is computed by counting, but it requires that all outcomes be equally likely. Applying the formula to outcomes that are not equally likely, as in the caution box of Section 1.1, gives wrong answers.
 
 ### 2.2 Relative Frequency and the Law of Large Numbers
 
@@ -161,7 +161,7 @@ $$
 f_n(E) = \frac{n_E}{n}
 $$
 
-> **Key Point:** By the **law of large numbers**, if the experiment is repeated countless times, independently (Section 5) and under the same conditions, the relative frequency $f_n(E)$ gradually approaches the classical (true) probability $P(E)$.
+> **Key Point:** By the **law of large numbers**, if the experiment is repeated countless times, independently (Section 5) and under the same conditions, the relative frequency $f_n(E)$ gradually approaches the probability $P(E)$ of the event. When all outcomes of the experiment are equally likely, $P(E)$ is the classical probability, so the proportion of heads of a fair coin approaches 1/2.
 
 Precisely, for every $\varepsilon > 0$, the probability that the relative frequency deviates from $P(E)$ by more than $\varepsilon$ goes to 0 as $n \to \infty$ (the weak law of large numbers) [1].
 
@@ -197,7 +197,7 @@ $$
 P(E_1 \cup E_2 \cup \cdots \cup E_n) = P(E_1) + P(E_2) + \cdots + P(E_n)
 $$
 
-> **Note:** The axioms of probability are sometimes introduced as the three statements $0 \le P(E) \le 1$, $P(S) = 1$, and addition for finitely many mutually exclusive events. This form suffices when the sample space is finite. However, $P(E) \le 1$ need not be an axiom because it can be proved from the others (Section 3.2), and when the sample space is infinite, addition for finitely many events is not enough; addition for countably infinitely many events, as in Axiom 3, is needed. Moreover, on an uncountably infinite sample space such as an interval of real numbers, probabilities cannot be assigned consistently to every subset, so events are restricted to a collection of subsets that can be given probabilities (a sigma-algebra, $\sigma$-algebra). All events treated in this course can be taken to satisfy this condition.
+> **Note:** The axioms of probability are sometimes introduced as the three statements $0 \le P(E) \le 1$, $P(S) = 1$, and addition for finitely many mutually exclusive events. This form suffices when the sample space is finite. However, $P(E) \le 1$ need not be an axiom because it can be proved from the others (Section 3.2), and when the sample space is infinite, addition for finitely many events is not enough; addition for countably infinitely many events, as in Axiom 3, is needed. Moreover, on an uncountably infinite sample space such as an interval of real numbers, even a natural probability such as the continuous uniform distribution (Lecture 5) cannot always be assigned consistently to every subset, so events are restricted to a collection of subsets that can be given probabilities (a sigma-algebra, $\sigma$-algebra). All events treated in this course can be taken to satisfy this condition.
 
 The classical probability of Section 2.1 satisfies all three axioms, because $\lvert E \rvert / \lvert S \rvert \ge 0$, $\lvert S \rvert / \lvert S \rvert = 1$, and the number of outcomes in a union of mutually exclusive events is the sum of the numbers of outcomes in the events.
 
@@ -274,7 +274,7 @@ $$
 n(E \cup F) = n(E) + n(F) - n(E \cap F)
 $$
 
-**Example.** For one roll of a die with $E = \{2, 4, 6\}$ and $F = \{4, 5, 6\}$, $E \cap F = \{4, 6\}$, so the following holds, which agrees with the probability $4/6$ of $E \cup F = \{2, 4, 5, 6\}$.
+**Example.** For one roll of a die with $E = \lbrace2, 4, 6\rbrace$ and $F = \lbrace4, 5, 6\rbrace$, $E \cap F = \lbrace4, 6\rbrace$, so the following holds, which agrees with the probability $4/6$ of $E \cup F = \lbrace2, 4, 5, 6\rbrace$.
 
 $$
 P(E \cup F) = \frac{3}{6} + \frac{3}{6} - \frac{2}{6} = \frac{4}{6} = \frac{2}{3}
@@ -309,13 +309,13 @@ Substituting this and $P(A \cup B) = P(A) + P(B) - P(A \cap B)$ into the first e
 
 Adding each event once, subtracting the parts covered twice (pairs of events), and adding back the part covered three times is called the **inclusion-exclusion principle**, and it generalizes in the same way to $n$ events.
 
-**Example.** For one roll of a die, let $A = \{2, 4, 6\}$, $B = \{4, 5, 6\}$, and $C = \{1, 2\}$. Since $A \cap B = \{4, 6\}$, $A \cap C = \{2\}$, $B \cap C = \emptyset$, and $A \cap B \cap C = \emptyset$:
+**Example.** For one roll of a die, let $A = \lbrace2, 4, 6\rbrace$, $B = \lbrace4, 5, 6\rbrace$, and $C = \lbrace1, 2\rbrace$. Since $A \cap B = \lbrace4, 6\rbrace$, $A \cap C = \lbrace2\rbrace$, $B \cap C = \emptyset$, and $A \cap B \cap C = \emptyset$:
 
 $$
 P(A \cup B \cup C) = \frac{3 + 3 + 2 - 2 - 1 - 0 + 0}{6} = \frac{5}{6}
 $$
 
-Indeed $A \cup B \cup C = \{1, 2, 4, 5, 6\}$, whose probability is $5/6$.
+Indeed $A \cup B \cup C = \lbrace1, 2, 4, 5, 6\rbrace$, whose probability is $5/6$.
 
 **Property (Boole's inequality).** For events $E_1, \ldots, E_n$, the following holds.
 
@@ -359,7 +359,7 @@ In Figure 3 each dot is one outcome, and the 6 outcomes in the sample space $S$ 
 - **Left:** $E$ contains 4 dots, $F$ contains 5 dots, and their overlap $E \cap F$ contains 3 dots. Hence $P(E \mid F) = \frac{3/6}{5/6} = \frac{3}{5}$, which differs from $P(E) = 4/6$ without any information.
 - **Right:** $E$ (2 dots) and $F$ (4 dots) do not overlap, so $E \cap F = \emptyset$ and $P(E \mid F) = \frac{0}{4/6} = 0$. If $F$ has occurred, $E$ cannot occur.
 
-**Example.** If a coin is tossed two times, the sample space is $S = \{HH, HT, TH, TT\}$. Let $E$ be the event of two heads, $E = \{HH\}$, and let $F$ be the event that the first toss gives heads, $F = \{HH, HT\}$. Since $E \subset F$, $E \cap F = \{HH\} = E$, and therefore:
+**Example.** If a coin is tossed two times, the sample space is $S = \lbrace HH, HT, TH, TT\rbrace$. Let $E$ be the event of two heads, $E = \lbrace HH\rbrace$, and let $F$ be the event that the first toss gives heads, $F = \lbrace HH, HT\rbrace$. Since $E \subset F$, $E \cap F = \lbrace HH\rbrace = E$, and therefore:
 
 $$
 P(E \mid F) = \frac{P(E \cap F)}{P(F)} = \frac{P(E)}{P(F)} = \frac{1/4}{2/4} = \frac{1}{2}
@@ -421,7 +421,7 @@ $$
 
 In other words, under independence, **knowing that $F$ occurred does not change the probability of $E$.** The product form of the definition has the advantages of being symmetric in $E$ and $F$ and of applying to events with probability 0.
 
-**Example.** For two coin tosses, let $E$ be the event that the first toss is heads, $\{HH, HT\}$, and $F$ the event that the second toss is heads, $\{HH, TH\}$. Then $P(E \cap F) = P(\{HH\}) = 1/4 = (1/2)(1/2) = P(E)\, P(F)$, so $E$ and $F$ are independent.
+**Example.** For two coin tosses, let $E$ be the event that the first toss is heads, $\lbrace HH, HT\rbrace$, and $F$ the event that the second toss is heads, $\lbrace HH, TH\rbrace$. Then $P(E \cap F) = P(\lbrace HH\rbrace) = 1/4 = (1/2)(1/2) = P(E)\, P(F)$, so $E$ and $F$ are independent.
 
 **Property.** If $E$ and $F$ are independent, then $E$ and $F^c$ are also independent. For the same reason, $E^c$ and $F$, and $E^c$ and $F^c$, are independent.
 
@@ -447,7 +447,7 @@ $$
 
 For three events $A$, $B$, and $C$, all four equations $P(A \cap B) = P(A)P(B)$, $P(A \cap C) = P(A)P(C)$, $P(B \cap C) = P(B)P(C)$, and $P(A \cap B \cap C) = P(A)P(B)P(C)$ must hold. Independence of each pair (pairwise independence) is not enough.
 
-**Example.** For two tosses of a fair coin, let $A$ be the event that the first toss is heads, $\{HH, HT\}$, $B$ the event that the second toss is heads, $\{HH, TH\}$, and $C$ the event that the two results agree, $\{HH, TT\}$. All three events have probability $1/2$, and the intersection of any two of them is $\{HH\}$, with probability $1/4 = (1/2)(1/2)$. The three events are therefore pairwise independent. But $A \cap B \cap C = \{HH\}$, so the following shows that they are not mutually independent [1].
+**Example.** For two tosses of a fair coin, let $A$ be the event that the first toss is heads, $\lbrace HH, HT\rbrace$, $B$ the event that the second toss is heads, $\lbrace HH, TH\rbrace$, and $C$ the event that the two results agree, $\lbrace HH, TT\rbrace$. All three events have probability $1/2$, and the intersection of any two of them is $\lbrace HH\rbrace$, with probability $1/4 = (1/2)(1/2)$. The three events are therefore pairwise independent. But $A \cap B \cap C = \lbrace HH\rbrace$, so the following shows that they are not mutually independent [1].
 
 $$
 P(A \cap B \cap C) = \frac{1}{4} \ne \frac{1}{8} = P(A)\, P(B)\, P(C)
@@ -745,7 +745,7 @@ After two positive results in a row the probability rises to about 28%, and afte
    <details>
    <summary>Answer</summary>
 
-   With $F = \{2, 4, 6\}$ and $E = \{4, 5, 6\}$, $E \cap F = \{4, 6\}$. The outcomes are equally likely, so $P(E \mid F) = \lvert E \cap F \rvert / \lvert F \rvert = 2/3$. This is larger than the unconditional $P(E) = 1/2$.
+   With $F = \lbrace2, 4, 6\rbrace$ and $E = \lbrace4, 5, 6\rbrace$, $E \cap F = \lbrace4, 6\rbrace$. The outcomes are equally likely, so $P(E \mid F) = \lvert E \cap F \rvert / \lvert F \rvert = 2/3$. This is larger than the unconditional $P(E) = 1/2$.
 
    </details>
 

@@ -91,7 +91,7 @@ The following figure arranges the 21 outcomes in a table whose rows are the firs
 
 *Figure 1. Outcomes in events A, B, and C among the 21 outcomes of two dice (from left to right)*
 
-> **Note:** If event $C$ is read as "the difference between the two dice is less than 1", only the 6 pairs of equal faces, with difference 0, remain. This solution defines the event as "the difference is at most 1", which includes pairs with difference 1 such as $(1,2)$ and $(2,3)$, as above. Under the original reading, the pairs of equal faces all have even sums, so $A \cap C = C$ and $B \cap C = \{(4,4), (5,5), (6,6)\}$.
+> **Note:** If event $C$ is read literally as "the difference between the two dice is less than 1", only the 6 pairs of equal faces, with difference 0, remain. The third table of Figure 1, however, also contains pairs with difference 1 such as $(1,2)$ and $(2,3)$, so Exercise 1 defines event $C$ as "the difference is at most 1". Under the literal reading, the pairs of equal faces all have even sums, so $A \cap C = C$ and $B \cap C = \lbrace(4,4), (5,5), (6,6)\rbrace$.
 
 > **Caution:** The 21 outcomes above are convenient for listing the elements of events but are **not equally likely.** When dice are actually thrown, $(1,2)$ arises in two ways, the first die 1 and the second 2 or the reverse, so its probability is $2/36$, while $(1,1)$ has probability $1/36$. Probabilities must therefore be computed with the 36 equally likely ordered pairs. For example, computing $P(A)$ as $12/21 \approx 0.571$ is wrong.
 >
@@ -204,7 +204,7 @@ At $10, 10^2, \ldots, 10^6$ tosses the proportion is 0.6, 0.61, 0.516, 0.51, 0.4
 
 ### Solution
 
-**Approach:** Recording the results in the order of the tosses, the sample space is $\{HHHH, HHHT, HHTH, \ldots, TTTH, TTTT\}$, whose $\lvert S \rvert = 2^4 = 16$ outcomes are equally likely. Count the heads in each outcome and divide the number of outcomes meeting the condition by 16 (classical probability). The number of outcomes with exactly $k$ heads is $\binom{4}{k}$, the number of ways to choose the $k$ positions of the heads among the four.
+**Approach:** Recording the results in the order of the tosses, the sample space is $\lbrace HHHH, HHHT, HHTH, \ldots, TTTH, TTTT\rbrace$, whose $\lvert S \rvert = 2^4 = 16$ outcomes are equally likely. Count the heads in each outcome and divide the number of outcomes meeting the condition by 16 (classical probability). The number of outcomes with exactly $k$ heads is $\binom{4}{k}$, the number of ways to choose the $k$ positions of the heads among the four.
 
 **Code:**
 
@@ -241,7 +241,7 @@ heads
 - **(1) Two or more:** $\lvert A \rvert = \binom{4}{4} + \binom{4}{3} + \binom{4}{2} = 1 + 4 + 6 = 11$, so $P(A) = 11/16 = 0.6875$. Checking with the complement, $1 + 4 = 5$ outcomes have 0 or 1 head, so $1 - 5/16 = 11/16$.
 - **(2) Three or more:** $\binom{4}{4} + \binom{4}{3} = 1 + 4 = 5$, so the probability is $5/16 = 0.3125$.
 
-> **Note:** Strictly, the event that heads appears "more than two times" is the event of three or more heads, with probability $5/16$, but the computation $\binom{4}{4} + \binom{4}{3} + \binom{4}{2} = 11$ given with the same problem counts the event of two or more heads. The exercise is split into two questions to distinguish the two readings. "More than" excludes the number itself, while "or more" includes it.
+> **Note:** Strictly, the event that heads appears "more than two times" is the event of three or more heads, with probability $5/16$, but the computation $\binom{4}{4} + \binom{4}{3} + \binom{4}{2} = 11$ given with the same problem counts the event of two or more heads. The two questions of Exercise 3 correspond to these two readings. "More than" excludes the number itself, while "or more" includes it.
 
 ---
 
@@ -324,7 +324,7 @@ A       FALSE TRUE
 
 The size of each event is the sum of its regions. For example, $\lvert A \rvert = 106 + 329 + 16 + 124 = 575$, $\lvert A \cap B \rvert = 329 + 124 = 453$, and $\lvert A \cap C \rvert = 16 + 124 = 140$.
 
-> **Note:** If event $A$ is read strictly as "the sum of the numbers is 15" and event $B$ as "more than one die is 6", the numbers of outcomes are 140 and 171, respectively. The sizes 575 and 671 used in the computations of Exercises 5 and 6 correspond to "the sum is 15 or more" and "at least one die is 6", so this exercise defines the events that way.
+> **Note:** If event $A$ is read literally as "the sum of the numbers is 15" and events $B$ and $C$ as "more than one die is 6 (or 1)", the numbers of outcomes are 140, 171, and 171, respectively. The sizes 575 and 671 used in the computations of Exercises 5 and 6 correspond to "the sum is 15 or more" and "at least one die is 6 (or 1)", so Exercise 4 defines the events this way.
 
 ---
 
@@ -531,7 +531,7 @@ mean(isDefect)
 [1] 0.023912
 ```
 
-- **`prior * defect`:** R's arithmetic is element-wise, so $P(\text{line}) \times P(F \mid \text{line}) = P(\text{line} \cap F)$ is computed for each line, keeping the names A-D. The sum from `sum()`, $P(F) = 0.024$, is the result of the law of total probability. About 24 of every 1000 randomly sampled products are defective.
+- **`prior * defect`:** R's arithmetic is element-wise, so $P(\text{line}) \times P(F \mid \text{line}) = P(\text{line} \cap F)$ is computed for each line, keeping the names A-D. The sum from `sum()`, $P(F) = 0.024$, is the result of the law of total probability. On average, 24 of every 1000 randomly sampled products are defective.
 - **Simulation:** `sample(names(prior), ..., prob = prior)` draws the production line of each product according to the production ratios. `defect[line]` is the defective rate of each product's line, and the product is counted as defective if the uniform random number `runif(n)` between 0 and 1 is smaller than that rate, because a uniform random number is smaller than $p$ with probability $p$. The proportion of defective products among one million, 0.023912, is close to the theoretical value 0.024 (the law of large numbers).
 
 ---

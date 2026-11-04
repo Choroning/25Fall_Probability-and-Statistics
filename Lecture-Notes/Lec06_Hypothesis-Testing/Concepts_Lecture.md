@@ -72,7 +72,7 @@
 
 ## 1. Statistics and Estimators
 
-Up to Lecture 5, probabilities of events were computed for a known population distribution. The real problems of statistics run in the opposite direction. The whole population cannot be observed, so a sample, which is a part of it, is observed and the characteristics of the population are inferred from the sample. This lecture covers the two ways of doing so: estimation and hypothesis testing.
+Up to Lecture 5, probabilities of events were computed for a known population distribution. The real problems of statistics run in the opposite direction. The whole population cannot be observed, so a sample, which is a part of it, is observed and the characteristics of the population are inferred from the sample. The two ways of doing so are estimation and hypothesis testing.
 
 ### 1.1 Random Samples, Statistics, and Estimators
 
@@ -84,7 +84,7 @@ $$
 \bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i, \qquad S^2 = \frac{1}{n-1}\sum_{i=1}^{n}(X_i - \bar{X})^2
 $$
 
-An estimator is a random variable whose value changes from sample to sample, and the single value computed from the observed data is called an **estimate**. This lecture writes estimators, which are random variables, in uppercase as $\bar{X}$ and $S^2$, and observed values in lowercase as $\bar{x}$ and $s^2$. An estimator of a parameter $\theta$ is often written $\hat{\theta}$.
+An estimator is a random variable whose value changes from sample to sample, and the single value computed from the observed data is called an **estimate**. Estimators, which are random variables, are written in uppercase as $\bar{X}$ and $S^2$, and observed values are distinguished in lowercase as $\bar{x}$ and $s^2$. An estimator of a parameter $\theta$ is often written $\hat{\theta}$.
 
 ### 1.2 Unbiasedness
 
@@ -92,7 +92,7 @@ An estimator is a random variable whose value changes from sample to sample, and
 
 Unbiasedness is the first requirement for a good estimator. It means that if samples of the same size are drawn repeatedly and the estimate is computed each time, the average of the estimates matches the true value, so the estimator does not systematically overestimate or underestimate. $E(\hat{\theta}) - \theta$ is called the **bias**.
 
-Unbiasedness alone is not enough. For example, the first observation $X_1$ by itself satisfies $E(X_1) = \mu$ and is therefore unbiased, but its variance $\sigma^2$ is larger than the variance $\sigma^2/n$ of $\bar{X}$. Among unbiased estimators, those with smaller variance are preferred, and the mean squared error $E[(\hat{\theta} - \theta)^2] = Var(\hat{\theta}) + \{E(\hat{\theta}) - \theta\}^2$, which accounts for both bias and variance, is also used.
+Unbiasedness alone is not enough. For example, the first observation $X_1$ by itself satisfies $E(X_1) = \mu$ and is therefore unbiased, but its variance $\sigma^2$ is larger than the variance $\sigma^2/n$ of $\bar{X}$. Among unbiased estimators, those with smaller variance are preferred, and the mean squared error $E[(\hat{\theta} - \theta)^2] = Var(\hat{\theta}) + \lbrace E(\hat{\theta}) - \theta\rbrace^2$, which accounts for both bias and variance, is also used.
 
 ### 1.3 Expected Value and Variance of the Sample Mean
 
@@ -227,7 +227,7 @@ In a confidence interval, what is random is the interval, not the parameter $\mu
 
 In Figure 3, 46 of the 50 intervals contain the true value 170 and 4 do not. On average, 2.5 of 50 intervals miss it, and the actual count varies from sample to sample.
 
-> **Caution:** For an observed interval $(163.2, 182.8)$, saying "the probability that $\mu$ is in this interval is 95%" is incorrect in the (frequentist) framework of this lecture. An interval already computed either contains $\mu$ or does not. The correct statement is "this interval was produced by a procedure that contains the true value with probability 95%".
+> **Caution:** For an observed interval $(163.2, 182.8)$, saying "the probability that $\mu$ is in this interval is 95%" is incorrect in the frequentist framework. An interval already computed either contains $\mu$ or does not. The correct statement is "this interval was produced by a procedure that contains the true value with probability 95%".
 
 ---
 
@@ -271,7 +271,7 @@ The main idea of hypothesis testing is as follows.
 - But it is easy to show that it is "wrong".
 - The reason is that a single counterexample suffices.
 
-For example, suppose we want to show the following proposition.
+For example, suppose the goal is to show the following proposition.
 
 $$
 H_1:\ \text{In general, men and women have different heights}
@@ -547,7 +547,7 @@ graph LR
 Let $X$ be a score on the Wechsler Adult Intelligence Scale (WAIS). In the general population, $X \sim N(100, 15^2)$ (mean 100, standard deviation 15). A sample of $n = 9$ people from the population of a town called Lake Wobegon gave the following scores.
 
 $$
-\{116,\ 128,\ 125,\ 119,\ 89,\ 99,\ 105,\ 116,\ 118\}
+\lbrace116,\ 128,\ 125,\ 119,\ 89,\ 99,\ 105,\ 116,\ 118\rbrace
 $$
 
 The scores sum to 1015, so $\bar{x} = 1015/9 = 112.78 \approx 112.8$. Does this sample mean provide strong evidence that the town's population mean $\mu$ is greater than 100?
@@ -734,7 +734,7 @@ R's `t.test()` defaults to `var.equal = FALSE`, so without options it performs W
 
 ### 8.4 R Practice: p24 Level Data
 
-We compare the p24 levels (mg) of two treatment groups (300mg and 600mg), with 10 people in each group.
+We compare the p24 levels of two treatment groups (300mg and 600mg), with 10 people in each group.
 
 | Dose | p24 level |
 |:-----|:-----|
@@ -1045,7 +1045,7 @@ t-tests are all performed with `t.test()`, whose main arguments are listed in Ta
 
     </details>
 
-11. **Choosing a test:** Choose an appropriate test for each case. (a) The differences in blood pressure before and after treatment for 12 patients are strongly skewed. (b) Exam scores of 200 students each from two different schools are compared. (c) For a normal population with known $\sigma$, one tests whether the mean differs from a reference value.
+11. **Choosing a test:** Choose an appropriate test for each case. (a) The differences in blood pressure before and after treatment for 12 patients contain many outliers and do not appear to follow a normal distribution. (b) The math scores of 200 students each from two different schools are compared. (c) For a normal population with known $\sigma$, one tests whether the mean differs from a reference value.
 
     <details>
     <summary>Answer</summary>

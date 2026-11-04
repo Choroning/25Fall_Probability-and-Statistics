@@ -73,7 +73,7 @@
 
 ### 1.2 과목의 흐름
 
-이 강의에서는 R을 설치하고 자료 구조와 기본 함수, 기술 통계, 시각화를 익힌다. 이후 단원의 주제는 다음과 같다.
+1강에서는 R을 설치하고 자료 구조와 기본 함수, 기술 통계, 시각화를 익힌다. 각 단원의 주제는 다음과 같다.
 
 | 강 | 주제 |
 |:---|:-----|
@@ -98,7 +98,7 @@ R을 쓰려면 두 프로그램을 차례로 설치한다. 먼저 언어 자체�
 
 ### 2.1 R 설치
 
-R은 **CRAN(Comprehensive R Archive Network)** 에서 내려받는다. CRAN은 R 본체와 패키지를 배포하는 전 세계 서버들의 네트워크이며, 주소는 [https://cran.r-project.org/](https://cran.r-project.org/)이다 [1]. 첫 화면의 "Download and Install R" 상자에서 자신의 운영체제에 맞는 링크를 고른다.
+R은 **CRAN(Comprehensive R Archive Network)** 에서 내려받는다. CRAN은 R 본체와 패키지를 배포하는 전 세계 서버들의 네트워크이며, 주소는 [https://cran.r-project.org/](https://cran.r-project.org/)이다 [1]. 첫 화면의 "Download and Install R" 상자는 R 기본 시스템과 기여 패키지를 미리 컴파일한 바이너리 배포판의 링크를 모아 두었으며, Windows와 Mac 사용자는 대부분 이 배포판을 받는다. 이 상자에서 자신의 운영체제에 맞는 링크를 고른다.
 
 ![그림 1. CRAN 첫 화면의 운영체제별 R 내려받기 링크](../../images/Lec01_p03.png)
 
@@ -120,9 +120,9 @@ sudo apt install r-base
 
 ### 2.2 RStudio 설치
 
-**RStudio**는 R을 위한 통합 개발 환경(3절)이다. RStudio를 만든 회사 RStudio, PBC는 2022년에 이름을 Posit으로 바꾸었고, RStudio Desktop은 지금 Posit의 내려받기 페이지 [https://posit.co/download/rstudio-desktop/](https://posit.co/download/rstudio-desktop/)에서 받는다 [2]. 예전 주소(`https://www.rstudio.com/products/rstudio/download/`)도 이 페이지로 연결된다.
+**RStudio**는 R을 위한 통합 개발 환경(3절)이다. RStudio를 만든 회사 RStudio, PBC는 2022년에 이름을 Posit(Posit Software, PBC)으로 바꾸었다 [2]. 지금 RStudio Desktop은 Posit의 RStudio 사용자 설명서에 있는 내려받기 페이지 [https://docs.posit.co/ide/user/download.html](https://docs.posit.co/ide/user/download.html)에서 받는다 [3]. 예전 주소인 `https://www.rstudio.com/products/rstudio/download/`와 `https://posit.co/download/rstudio-desktop/` 두 곳은 모두 이 사용자 설명서로 연결된다.
 
-RStudio에는 개인 컴퓨터에서 쓰는 **RStudio Desktop**과 웹 브라우저로 접속해 쓰는 **RStudio Server**가 있고, 무료인 오픈 소스판과 함께 기업용 유료 제품도 제공된다. 개인 학습과 이 과목의 실습에는 무료인 RStudio Desktop 오픈 소스판이면 충분하다. 내려받기 페이지는 접속한 컴퓨터의 운영체제를 알아보고 맞는 설치 파일(Windows는 `.exe`, macOS는 `.dmg`, Linux는 `.deb`나 `.rpm`)을 안내한다. Windows에서는 설치 파일을 실행하고, macOS에서는 `.dmg` 파일을 열어 RStudio 아이콘을 Applications 폴더로 끌어 넣는다.
+RStudio에는 개인 컴퓨터에 설치하여 쓰는 **RStudio Desktop**과, 서버에 설치하고 웹 브라우저로 접속하여 쓰는 **RStudio Server**가 있다. 예전 내려받기 페이지는 이 둘을 각각 무료인 오픈 소스 라이선스판과 유료인 상용 라이선스판으로 나누어 RStudio Desktop(오픈 소스), RStudio Desktop(상용), RStudio Server(오픈 소스), RStudio Server Pro(상용)의 네 제품을 보여 주었으며, 지금은 상용판이 RStudio Desktop Pro와 Posit Workbench라는 이름으로 제공된다 [2], [3]. 개인 학습과 이 과목의 실습에는 무료인 RStudio Desktop 오픈 소스판이면 충분하다. 내려받기 페이지는 접속한 컴퓨터의 운영체제를 알아보고 맞는 설치 파일(Windows는 `.exe`, macOS는 `.dmg`, Linux는 `.deb`나 `.rpm`)을 안내한다. Windows에서는 설치 파일을 실행하고, macOS에서는 `.dmg` 파일을 열어 RStudio 아이콘을 Applications 폴더로 끌어 넣는다.
 
 ### 2.3 설치 확인
 
@@ -169,13 +169,13 @@ RStudio를 처음 실행하면 세 개의 창(pane)이 보인다. 왼쪽 창은 
 
 ### 3.3 단축키와 치트시트
 
-자주 쓰는 동작의 단축키(key binding)를 외워 두면 작업 속도가 크게 빨라진다. RStudio는 가장 많이 쓰는 명령과 단축키를 한두 쪽에 정리한 **치트시트(cheat sheet)** 를 제공하며, 메뉴의 Help > Cheatsheets에서 RStudio IDE Cheat Sheet를 고르면 열린다. 같은 메뉴에는 dplyr를 이용한 데이터 변환, ggplot2를 이용한 시각화 등 주요 패키지의 치트시트도 있다.
+자주 쓰는 동작의 단축키(key binding)를 외워 두면 작업 속도가 크게 빨라진다. RStudio는 가장 많이 쓰는 명령과 단축키를 한두 쪽에 정리한 **치트시트(cheat sheet)** 를 제공하며, 메뉴의 Help > Cheatsheets에서 RStudio IDE Cheat Sheet를 고르면 열린다. 그림 3의 메뉴에는 그 밖에 dplyr를 이용한 데이터 변환(Data Transformation with dplyr), ggplot2를 이용한 시각화(Data Visualization with ggplot2), devtools를 이용한 패키지 개발, shiny를 이용한 웹 응용 프로그램, sparklyr를 이용한 Spark 연동, R Markdown 치트시트와 R Markdown 참조 안내서(Reference Guide)가 있다. 메뉴에 실린 치트시트의 목록은 RStudio의 버전에 따라 다르다.
 
 ![그림 3. RStudio의 Help > Cheatsheets 메뉴와 치트시트 목록](../../images/Lec01_p08.png)
 
 *그림 3. RStudio의 Help > Cheatsheets 메뉴와 치트시트 목록*
 
-다음은 RStudio에서 자주 쓰는 단축키이다 [3]. 전체 목록은 Help > Keyboard Shortcuts Help(Alt+Shift+K)에서 볼 수 있다.
+다음은 RStudio에서 자주 쓰는 단축키이다 [4]. 전체 목록은 Help > Keyboard Shortcuts Help(Alt+Shift+K)에서 볼 수 있다.
 
 | 동작 | Windows, Linux | macOS |
 |:-----|:---------------|:------|
@@ -293,7 +293,7 @@ R의 모든 함수에는 사용법, 인수의 뜻, 반환값, 예제를 담은 �
 
 *표 6. 도움말을 여는 함수*
 
-`help.start()`가 여는 첫 화면은 세 부분으로 이루어진다. **Manuals**에는 An Introduction to R, The R Language Definition, Writing R Extensions, R Installation and Administration, R Data Import/Export, R Internals 같은 공식 설명서가 있고, **Reference**에는 설치된 패키지의 도움말 목록(Packages)과 검색 기능(Search Engine & Keywords)이 있으며, **Miscellaneous Material**에는 R 소개, 라이선스, 자주 묻는 질문, 변경 내역(NEWS) 등이 있다.
+`help.start()`가 여는 첫 화면은 세 부분으로 이루어진다. **Manuals**에는 An Introduction to R, The R Language Definition, Writing R Extensions, R Installation and Administration, R Data Import/Export, R Internals 같은 공식 설명서가 있고, **Reference**에는 설치된 패키지의 도움말 목록(Packages)과 검색 기능(Search Engine & Keywords)이 있으며, **Miscellaneous Material**에는 R 소개(About R), 저자(Authors), 참고 자료(Resources), 라이선스(License), 자주 묻는 질문(Frequently Asked Questions), 감사의 말(Thanks), 변경 내역(NEWS), 사용자 설명서(User Manuals), 기술 문서(Technical papers)가 있다. Windows용 R에서는 그 아래에 Windows판에만 해당하는 변경 내역과 Windows FAQ를 모은 부분(Material specific to the Windows port)이 더 있다.
 
 ```r
 help(head)               # help page of the function head()
@@ -312,7 +312,7 @@ R의 강점의 하나는 시스템을 쉽게 확장할 수 있다는 점이다. 
 
 ### 5.3 패키지 설치와 불러오기
 
-패키지를 찾아 설치하는 첫 단계는 패키지를 내려받을 **저장소(repository)** 를 정하는 것이다. 대화식 세션에서 `setRepositories()`를 실행하면 CRAN, BioC software, BioC annotation, BioC experiment, CRAN (extras), R-Forge, rforge.net 같은 저장소 목록이 메뉴로 나타나며, 기본으로는 CRAN만 선택되어 있다. BioC는 생물정보학 패키지 저장소인 Bioconductor이다. 대부분의 경우 CRAN만으로 충분하다.
+패키지를 찾아 설치하는 첫 단계는 패키지를 내려받을 **저장소(repository)** 를 정하는 것이다. 대화식 세션에서 `setRepositories()`를 실행하면 CRAN, BioC software, BioC annotation, BioC experiment, CRAN (extras), R-Forge, rforge.net 같은 저장소 목록이 메뉴로 나타나며, 기본으로는 CRAN만 선택되어 있다. BioC는 생물정보학 패키지 저장소인 Bioconductor이다. 대부분의 경우 CRAN만으로 충분하다. 메뉴를 거치지 않고 `setRepositories(ind = 1:7)`처럼 번호로 지정하면 목록의 1번부터 7번까지의 저장소를 한꺼번에 선택한다.
 
 ```r
 ## Set repository for downloading R packages
@@ -404,7 +404,7 @@ x[x > 25]
 
 ### 6.2 기본 자료형과 형 변환
 
-벡터의 원소가 가질 수 있는 기본 자료형은 다음과 같다 [4].
+벡터의 원소가 가질 수 있는 기본 자료형 가운데 자주 쓰는 네 가지는 다음과 같다. 이 밖에 복소수형 `complex`와 바이트 값을 담는 `raw`가 있다 [5].
 
 | 자료형 (`typeof()`) | `class()` | 뜻 | 예 |
 |:--------------------|:----------|:---|:---|
@@ -417,7 +417,7 @@ x[x > 25]
 
 `class()`는 객체가 어떤 종류로 취급되는지를, `typeof()`는 메모리에 어떤 자료형으로 저장되는지를 알려 준다. `42`처럼 `L`을 붙이지 않은 숫자는 정수처럼 보여도 실수형(`double`)으로 저장된다.
 
-벡터는 한 가지 자료형만 담을 수 있으므로, `c()`에 서로 다른 자료형을 넣으면 R은 정보를 잃지 않는 쪽으로 모든 값을 한 자료형으로 바꾼다. 이를 **형 변환(coercion)** 이라 하며, 바뀌는 방향은 `logical` → `integer` → `double` → `character`이다.
+벡터는 한 가지 자료형만 담을 수 있으므로, `c()`에 서로 다른 자료형을 넣으면 R은 정보를 잃지 않는 쪽으로 모든 값을 한 자료형으로 바꾼다. 이를 **형 변환(coercion)** 이라 하며, 바뀌는 방향은 `logical` → `integer` → `double` → `character`이다(`complex`는 `double`과 `character` 사이에 온다).
 
 ```r
 c(1, "a", TRUE)
@@ -491,7 +491,7 @@ str(iris)
  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
 ```
 
-`str(iris)`는 iris가 관측치 150개와 변수 5개로 이루어진 데이터 프레임이며, 처음 네 열은 수치형이고 `Species`는 setosa, versicolor, virginica의 세 수준을 갖는 팩터임을 보여 준다. `$` 뒤의 이름이 열 이름이고, `iris$Species`처럼 `데이터$열이름`으로 열 하나를 꺼낼 수 있다.
+위의 `ls()` 출력은 새로 시작한 R 세션에서 나오는 결과이며, 앞에서 만든 객체가 남아 있으면 그 이름도 함께 나열된다. `str(iris)`는 iris가 관측치 150개와 변수 5개로 이루어진 데이터 프레임이며, 처음 네 열은 수치형이고 `Species`는 setosa, versicolor, virginica의 세 수준을 갖는 팩터임을 보여 준다. `$` 뒤의 이름이 열 이름이고, `iris$Species`처럼 `데이터$열이름`으로 열 하나를 꺼낼 수 있다.
 
 ### 6.5 길이, 행과 열의 수, 일부 보기
 
@@ -669,19 +669,19 @@ rnorm(n = 100, mean = 180, sd = 1)
 
 이 명령은 평균 180, 표준편차 1인 정규분포를 따르는 값 100개를 만든다. 예를 들어 평균 키가 180cm이고 표준편차가 1cm인 집단에서 100명의 키를 무작위로 뽑은 것처럼 가상의 데이터를 만들 때 쓴다.
 
-확률론에서 **정규분포(normal distribution)** 는 가우스 분포(Gaussian distribution) 또는 Laplace-Gauss 분포라고도 부르는, 가장 흔히 쓰이는 연속확률분포이다. 평균이 $\mu$, 분산이 $\sigma^2$인 정규분포의 확률밀도함수는 다음과 같다.
+확률론에서 **정규분포(normal distribution)** 는 가우스 분포(Gaussian distribution) 또는 Laplace-Gauss 분포라고도 부르는, 매우 흔히 쓰이는 연속확률분포이다. 평균이 $\mu$, 분산이 $\sigma^2$인 정규분포의 확률밀도함수는 다음과 같다.
 
 $$
 f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left( -\frac{(x - \mu)^2}{2\sigma^2} \right), \qquad -\infty < x < \infty
 $$
 
-곡선은 $x = \mu$에서 가장 높고 $\mu$를 중심으로 좌우 대칭인 종 모양이며, $\sigma^2$이 클수록 낮고 넓게 퍼진다. 정규분포는 분포를 정확히 알지 못하는 실수 값 확률변수를 나타내는 데 통계학에서 중요하게 쓰인다. 측정 오차나 키처럼 작은 요인이 많이 더해져 정해지는 양은 대체로 정규분포에 가깝기 때문이다. 정규분포를 따르는 확률변수를 정규분포한다(normally distributed)고 하고, 그 값을 **정규 편차(normal deviate)** 라고 부른다. 정규분포의 성질은 5강에서 자세히 다룬다.
+곡선은 $x = \mu$에서 가장 높고 $\mu$를 중심으로 좌우 대칭인 종 모양이며, $\sigma^2$이 클수록 낮고 넓게 퍼진다. 정규분포는 분포를 정확히 알지 못하는 실수 값 확률변수를 나타내는 데 통계학에서 중요하게 쓰인다. 측정 오차나 키처럼 작은 요인이 많이 더해져 정해지는 양은 대체로 정규분포에 가깝기 때문이다. 정규분포를 따르는 확률변수는 정규분포한다(normally distributed)고 하며, 그러한 확률변수를 **정규 편차(normal deviate)** 라고도 부른다. 정규분포의 성질은 5강에서 자세히 다룬다.
 
 ![그림 4. 평균과 분산이 다른 네 정규분포의 확률밀도함수](../../images/Lec01_Normal-Densities.png)
 
 *그림 4. 평균과 분산이 다른 네 정규분포의 확률밀도함수*
 
-그림 4의 세 곡선은 평균이 0으로 같고 분산이 0.2, 1, 5로 다르며, 분산이 작을수록 0 근처에 높고 좁게 모인다. 녹색 곡선은 평균이 -2이므로 같은 모양이 왼쪽으로 옮겨져 있다.
+그림 4의 세 곡선은 평균이 0으로 같고 분산이 0.2, 1, 5로 다르며, 분산이 작을수록 0 근처에 높고 좁게 모인다. 녹색 곡선은 평균이 -2, 분산이 0.5이므로 -2를 중심으로 대칭이며, 분산이 1인 빨간 곡선보다는 높고 좁으며, 분산이 0.2인 파란 곡선보다는 낮고 넓다.
 
 > **주의:** `rnorm()`의 세 번째 인수는 분산 $\sigma^2$이 아니라 **표준편차** $\sigma$이다. 분산이 5인 정규분포에서 값을 뽑으려면 `rnorm(n, mean = 0, sd = sqrt(5))`로 써야 한다.
 
@@ -750,7 +750,7 @@ a b c d
 - **수치형 변수에 쓰면** 최솟값(Min.), 제1사분위수(1st Qu.), 중앙값(Median), 평균(Mean), 제3사분위수(3rd Qu.), 최댓값(Max.)의 여섯 값을 돌려준다(8.2절).
 - **팩터에 쓰면** 수준별 빈도, 즉 각 범주에 속한 원소의 개수를 돌려준다. 위의 `C`는 네 수준이 5개씩이다.
 
-> **핵심:** 데이터 프레임은 팩터 변수를 그대로 담을 수 있지만, 행렬(`data.matrix()`로 만든 행렬 포함)은 팩터를 정수 코드로 바꾸어 버린다. 범주형 변수가 있는 데이터는 데이터 프레임으로 다룬다.
+> **핵심:** 데이터 프레임은 팩터 변수를 그대로 담을 수 있지만, 행렬은 팩터를 담지 못한다. `cbind()`나 `data.matrix()`로 만든 행렬에서는 팩터가 정수 코드로, `as.matrix()`나 `matrix()`로 만든 행렬에서는 문자열로 바뀌어 팩터의 수준 정보가 사라진다. 범주형 변수가 있는 데이터는 데이터 프레임으로 다룬다.
 
 ### 7.5 행렬 만들기
 
@@ -779,7 +779,7 @@ class(A)
 [1] "matrix" "array" 
 ```
 
-`matrix(0, nrow = 10, ncol = 5)`는 모든 원소가 0인 10행 5열 행렬이고, `matrix(NA, ...)`는 모든 원소가 `NA`인 행렬이다. `NA`(not available)는 R에서 **결측값**, 즉 아직 값이 없거나 알 수 없는 자리를 뜻한다. 값을 나중에 채울 빈 표를 미리 만들 때 이렇게 쓴다. 두 행렬의 출력은 길어서 생략했다. R 4.0부터 행렬의 `class()`는 행렬이 2차원 배열(array)이기도 하다는 뜻으로 `"matrix" "array"` 두 값을 돌려준다.
+`matrix(0, nrow = 10, ncol = 5)`는 모든 원소가 0인 10행 5열 행렬이고, `matrix(NA, ...)`는 모든 원소가 `NA`인 행렬이다. `NA`(not available)는 R에서 **결측값**, 즉 아직 값이 없거나 알 수 없는 자리를 뜻한다. 값을 나중에 채울 빈 표를 미리 만들 때 이렇게 쓴다. 두 행렬은 10행 5열 전체가 출력되어 길므로, 위 출력은 `dim(A)`부터의 결과만 보인다. R 4.0부터 행렬의 `class()`는 행렬이 2차원 배열(array)이기도 하다는 뜻으로 `"matrix" "array"` 두 값을 돌려준다.
 
 값을 여러 개 주면 기본으로 **열 방향**으로 채우고, `byrow = TRUE`이면 **행 방향**으로 채운다.
 
@@ -852,7 +852,7 @@ sd(x)
 [1] 2.483277
 ```
 
-> **참고:** 사분위수를 구하는 방식은 교재와 소프트웨어마다 조금씩 다르며, R의 `quantile()`은 `type` 인수로 아홉 가지 방식을 제공하고 기본값은 위의 방식(`type = 7`)이다 [5]. 자료가 많으면 방식에 따른 차이는 작다.
+> **참고:** 사분위수를 구하는 방식은 교재와 소프트웨어마다 조금씩 다르며, R의 `quantile()`은 `type` 인수로 아홉 가지 방식을 제공하고 기본값은 위의 방식(`type = 7`)이다 [6]. 자료가 많으면 방식에 따른 차이는 작다.
 
 이제 `ourData`에 적용한다.
 
@@ -915,7 +915,7 @@ boxplot(Height ~ Gender, data = ourData, col = c("blue", "red"))
 ```
 
 - **히스토그램(histogram):** `hist(x)`는 값의 범위를 같은 너비의 구간으로 나누고, 각 구간에 속한 관측치의 개수(Frequency)를 막대의 높이로 그린다. 분포의 모양(중심, 퍼짐, 치우침, 봉우리의 수)을 보여 준다.
-- **상자 그림(box plot):** 상자의 아래쪽과 위쪽 경계가 대략 $Q_1$과 $Q_3$이고, 상자 안의 굵은 선이 중앙값이다. 상자에서 위아래로 뻗은 선(수염, whisker)은 상자 경계에서 사분위 범위 $Q_3 - Q_1$의 1.5배 이내에 있는 가장 먼 관측치까지 이어지며, 그보다 먼 관측치는 이상값 후보로 점으로 따로 표시된다 [6].
+- **상자 그림(box plot):** 상자의 아래쪽과 위쪽 경계가 대략 $Q_1$과 $Q_3$이고, 상자 안의 굵은 선이 중앙값이다. 상자에서 위아래로 뻗은 선(수염, whisker)은 상자 경계에서 사분위 범위 $Q_3 - Q_1$의 1.5배 이내에 있는 가장 먼 관측치까지 이어지며, 그보다 먼 관측치는 이상값 후보로 점으로 따로 표시된다 [7].
 - **모형식 `Height ~ Gender`:** `~` 왼쪽의 변수를 오른쪽 변수의 범주별로 나누라는 뜻이다. `data = ourData`는 두 변수를 `ourData`의 열에서 찾게 한다. `col`은 상자의 색을 수준 순서(Female, Male)대로 정한다.
 
 ![그림 5. 남성 키의 히스토그램(왼쪽)과 성별에 따른 키의 상자 그림(오른쪽)](../../images/Lec01_Base-Graphics.png)
@@ -926,9 +926,9 @@ boxplot(Height ~ Gender, data = ourData, col = c("blue", "red"))
 
 ### 8.4 ggplot2와 ggpubr를 이용한 시각화
 
-시각화는 통계 분석에서 중요하다. 평균이나 표준편차 같은 요약값은 분포의 모양을 알려 주지 않기 때문이다. Anscombe은 평균, 분산, 상관계수, 회귀직선이 거의 같은데도 산점도는 전혀 다른 네 데이터셋을 제시하여, 분석 전에 데이터를 그려 보아야 하는 이유를 보였다 [7].
+시각화는 통계 분석에서 중요하다. 평균이나 표준편차 같은 요약값은 분포의 모양을 알려 주지 않기 때문이다. Anscombe은 평균, 분산, 상관계수, 회귀직선이 거의 같은데도 산점도는 전혀 다른 네 데이터셋을 제시하여, 분석 전에 데이터를 그려 보아야 하는 이유를 보였다 [8].
 
-R의 기본 그래픽보다 정교한 그림은 **ggplot2**와 **ggpubr** 같은 서드파티 패키지로 그린다. **ggplot2**는 그래픽 문법(grammar of graphics)에 따라 데이터(`data`), 변수와 시각 요소의 대응(`aes()`, aesthetic mapping), 그리는 도형(`geom_*()`)을 `+`로 층층이 쌓아 그림을 만든다 [8]. **ggpubr**는 ggplot2 위에 만들어진 패키지로, 논문에 바로 쓸 만한 그림을 함수 하나로 그리게 해 준다 [9].
+R의 기본 그래픽보다 정교한 그림은 **ggplot2**와 **ggpubr** 같은 서드파티 패키지로 그린다. **ggplot2**는 그래픽 문법(grammar of graphics)에 따라 데이터(`data`), 변수와 시각 요소의 대응(`aes()`, aesthetic mapping), 그리는 도형(`geom_*()`)을 `+`로 층층이 쌓아 그림을 만든다 [9]. **ggpubr**는 ggplot2 위에 만들어진 패키지로, 논문에 바로 쓸 만한 그림을 함수 하나로 그리게 해 준다 [10].
 
 ```r
 library(ggpubr)   # also loads ggplot2
@@ -1067,7 +1067,7 @@ ggplot(ourData, aes(x = Gender, y = Height, color = Gender, fill = Gender)) +
    <details>
    <summary>정답</summary>
 
-   그렇다. 여섯 개의 요약값은 분포의 몇 지점만 알려 주므로, 봉우리의 수나 값이 몰린 위치, 이상값 같은 특징은 서로 다를 수 있다. Anscombe의 네 데이터셋은 평균, 분산, 상관계수까지 같아도 그림이 전혀 다르다. 히스토그램, 밀도 그림, 관측치를 함께 그린 상자 그림으로 분포의 모양을 직접 확인해야 한다.
+   그렇다. 여섯 개의 요약값은 분포의 몇 지점만 알려 주므로, 봉우리의 수나 값이 몰린 위치, 이상값 같은 특징은 서로 다를 수 있다. Anscombe의 네 데이터셋은 평균, 분산, 상관계수까지 거의 같아도 그림이 전혀 다르다. 히스토그램, 밀도 그림, 관측치를 함께 그린 상자 그림으로 분포의 모양을 직접 확인해야 한다.
 
    </details>
 
@@ -1078,11 +1078,12 @@ ggplot(ourData, aes(x = Gender, y = Height, color = Gender, fill = Gender)) +
 ## 참고 문헌
 
 1. The R Foundation, "The Comprehensive R Archive Network," https://cran.r-project.org/
-2. Posit Software, PBC, "RStudio Desktop," https://posit.co/download/rstudio-desktop/
-3. Posit Software, PBC, "Keyboard shortcuts," *RStudio IDE User Guide*, https://docs.posit.co/ide/user/ide/reference/shortcuts.html
-4. W. N. Venables, D. M. Smith, and the R Core Team, "An Introduction to R," https://cran.r-project.org/doc/manuals/r-release/R-intro.html
-5. R. J. Hyndman and Y. Fan, "Sample quantiles in statistical packages," *The American Statistician*, vol. 50, no. 4, pp. 361-365, 1996.
-6. J. W. Tukey, *Exploratory Data Analysis*. Reading, MA, USA: Addison-Wesley, 1977.
-7. F. J. Anscombe, "Graphs in statistical analysis," *The American Statistician*, vol. 27, no. 1, pp. 17-21, 1973.
-8. H. Wickham, *ggplot2: Elegant Graphics for Data Analysis*, 2nd ed. Cham, Switzerland: Springer, 2016.
-9. A. Kassambara, "ggpubr: ggplot2 Based Publication Ready Plots," R package, https://rpkgs.datanovia.com/ggpubr/
+2. J. J. Allaire and H. Wickham, "RStudio is becoming Posit," *Posit Blog*, Jul. 27, 2022, https://posit.co/blog/rstudio-is-becoming-posit/
+3. Posit Software, PBC, "Download RStudio," *RStudio IDE User Guide*, https://docs.posit.co/ide/user/download.html
+4. Posit Software, PBC, "Keyboard shortcuts," *RStudio IDE User Guide*, https://docs.posit.co/ide/user/ide/reference/shortcuts.html
+5. W. N. Venables, D. M. Smith, and the R Core Team, "An Introduction to R," https://cran.r-project.org/doc/manuals/r-release/R-intro.html
+6. R. J. Hyndman and Y. Fan, "Sample quantiles in statistical packages," *The American Statistician*, vol. 50, no. 4, pp. 361-365, 1996.
+7. J. W. Tukey, *Exploratory Data Analysis*. Reading, MA, USA: Addison-Wesley, 1977.
+8. F. J. Anscombe, "Graphs in statistical analysis," *The American Statistician*, vol. 27, no. 1, pp. 17-21, 1973.
+9. H. Wickham, *ggplot2: Elegant Graphics for Data Analysis*, 2nd ed. Cham, Switzerland: Springer, 2016.
+10. A. Kassambara, "ggpubr: ggplot2 Based Publication Ready Plots," R package, https://rpkgs.datanovia.com/ggpubr/

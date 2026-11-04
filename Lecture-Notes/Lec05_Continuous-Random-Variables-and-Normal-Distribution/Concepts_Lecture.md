@@ -58,7 +58,7 @@
 
 ## 1. Continuous Random Variables
 
-Lecture 3 defined a random variable as a function that assigns a real number to each outcome of a sample space, and Lecture 4 covered discrete random variables, whose possible values can be counted one by one. This lecture covers continuous random variables, whose values are spread continuously over an interval of real numbers. Measured quantities such as height, weight, waiting time, and measurement error are typical examples.
+Lecture 3 defined a random variable as a function that assigns a real number to each outcome of a sample space, and Lecture 4 covered discrete random variables, whose possible values can be counted one by one. In contrast, a random variable whose values are spread continuously over an interval of real numbers is a continuous random variable. Measured quantities such as height, weight, waiting time, and measurement error are typical examples.
 
 ### 1.1 Definition and Example
 
@@ -66,7 +66,7 @@ Lecture 3 defined a random variable as a function that assigns a real number to 
 
 Whether a random variable is discrete or continuous depends less on the phenomenon itself than on how its outcomes are mapped to real numbers. If a person's height is recorded as the measured real value, it is a continuous random variable; if it is rounded to the nearest centimeter and recorded as an integer, its possible values can be counted and it becomes a discrete random variable.
 
-> **Note:** An uncountably infinite sample space alone does not make a random variable continuous. For a number $\theta$ chosen from $(0, 1]$, define $X(\theta) = 1$ if $\theta > 1/2$ and $X(\theta) = 0$ otherwise; then $X$ is a discrete random variable with only two values. Strictly, $X$ is called continuous when there is a function $f \geq 0$ with $P(X \leq x) = \int_{-\infty}^{x} f(t)\,dt$ for every $x$ [1], and every continuous random variable in this lecture satisfies this condition.
+> **Note:** An uncountably infinite sample space alone does not make a random variable continuous. For a number $\theta$ chosen from $(0, 1]$, define $X(\theta) = 1$ if $\theta > 1/2$ and $X(\theta) = 0$ otherwise; then $X$ is a discrete random variable with only two values. Strictly, $X$ is called continuous when there is a function $f \geq 0$ with $P(X \leq x) = \int_{-\infty}^{x} f(t)\,dt$ for every $x$ [1], and the random variables with the uniform, normal, chi-square, t, and F distributions treated from Section 3 on all satisfy this condition.
 
 The simplest example chooses a number $\theta$ from the interval $(0, 1]$ and sets $X(\theta) = \theta$. Suppose any value of $\theta$ is equally likely. Then the probability that $\theta$ falls in an interval is proportional to the length of that interval, and since the whole interval has length 1, the probability equals the length.
 
@@ -80,7 +80,7 @@ The single point $\theta = 1/\sqrt{2}$ is an interval of length 0, so its probab
 
 > **Definition:** The **cumulative distribution function (CDF)** of a random variable $X$ is $F_X(x) \equiv P(X \leq x)$. It is also called the distribution function.
 
-For $a < b$, the event $\{X \leq b\}$ is the union of the disjoint events $\{X \leq a\}$ and $\{a < X \leq b\}$, so the addition rule of probability gives the following.
+For $a < b$, the event $\lbrace X \leq b\rbrace$ is the union of the disjoint events $\lbrace X \leq a\rbrace$ and $\lbrace a < X \leq b\rbrace$, so the addition rule of probability gives the following.
 
 $$
 F_X(b) - F_X(a) = P(a < X \leq b)
@@ -159,7 +159,7 @@ For a function $g$, $E[g(X)] = \int_{-\infty}^{\infty} g(x)\,f(x)\,dx$. Hence th
 
 ## 2. Common Continuous Distributions
 
-Table 2 lists frequently used continuous distributions and their notation. The normal distribution is the most important of them, and the chi-square, t, and F distributions are the distributions followed by test statistics in the hypothesis tests of Lecture 6. The uniform, standard normal, normal, chi-square, t, and F distributions are treated in detail from Section 3 on; for the exponential, gamma, and beta distributions only the definitions and uses are summarized below [1].
+Table 2 lists frequently used continuous distributions and their notation. The normal distribution is the most important of them, and the chi-square, t, and F distributions are the distributions followed by test statistics in the hypothesis tests from Lecture 6 on. The uniform, standard normal, normal, chi-square, t, and F distributions are treated in detail from Section 3 on; for the exponential, gamma, and beta distributions only the definitions and uses are summarized below [1].
 
 | Distribution | Notation | PDF or definition | Expected value | Variance |
 |:-----|:-----|:-----|:-----|:-----|
@@ -189,7 +189,7 @@ Table 2 lists frequently used continuous distributions and their notation. The n
 
 ### 3.1 PDF and CDF
 
-The **continuous uniform distribution** makes every value in the interval $(a, b]$ equally likely and is written $X \sim U(a, b)$. This lecture calls it the uniform distribution for short. The example of Section 1.1 is the case $a = 0$, $b = 1$.
+The **continuous uniform distribution** makes every value in the interval $(a, b]$ equally likely and is written $X \sim U(a, b)$. Hereafter it is called the uniform distribution for short. The example of Section 1.1 is the case $a = 0$, $b = 1$.
 
 $$
 f(x) = \begin{cases} \dfrac{1}{b-a}, & a < x \leq b \\ 0, & \text{otherwise} \end{cases} \qquad\qquad F(x) = \begin{cases} 0, & x \leq a \\ \dfrac{x-a}{b-a}, & a < x \leq b \\ 1, & x > b \end{cases}
@@ -291,9 +291,9 @@ $$
 \Phi(z) = \frac{1}{2} + \frac{1}{\sqrt{2\pi}}\sum_{k=0}^{\infty} \frac{(-1)^k\,z^{2k+1}}{2^k\,k!\,(2k+1)}
 $$
 
-Summing the first 21 terms of this series at $z = 1$ gives $\Phi(1) = 0.8413447$. The normal tables printed at the back of school textbooks were produced by numerical computations of this kind, and in R the function `pnorm()` computes the same values.
+Summing the first 21 terms of this series at $z = 1$ gives $\Phi(1) = 0.8413447$. The normal tables printed at the back of statistics textbooks were produced by numerical computations of this kind, and in R the function `pnorm()` computes the same values.
 
-The **standard normal table** lists $\Phi(z)$ for $z = 0.00$ to $3.09$, with $z$ up to the first decimal place in the rows and the second decimal place in the columns. Table 3 shows some of its rows.
+The **standard normal table** lists $\Phi(z)$ for nonnegative $z$ (for example, $0.00$ to $3.89$), with $z$ up to the first decimal place in the rows and the second decimal place in the columns. Table 3 shows some of its rows.
 
 | $z$ | 0.00 | 0.01 | 0.02 | 0.03 | 0.04 | 0.05 | 0.06 | 0.07 | 0.08 | 0.09 |
 |:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|:-----|
@@ -311,11 +311,11 @@ The table is read as follows.
 
 - $\Phi(1.25)$ is 0.8944, the cell where row 1.2 meets column 0.05.
 - Negative values use symmetry: $\Phi(-1.25) = 1 - \Phi(1.25) = 1 - 0.8944 = 0.1056$.
-- A third decimal place not in the table is handled by linear interpolation between neighboring values: $\Phi(2.125) \approx \frac{1}{2}\{\Phi(2.12) + \Phi(2.13)\} = \frac{1}{2}(0.9830 + 0.9834) = 0.9832$.
+- A third decimal place not in the table is handled by linear interpolation between neighboring values: $\Phi(2.125) \approx \frac{1}{2}\lbrace\Phi(2.12) + \Phi(2.13)\rbrace = \frac{1}{2}(0.9830 + 0.9834) = 0.9832$.
 
 Table 4 lists values often used in tests and interval estimation. The point with right-tail probability $\alpha$, that is, $z_\alpha$ with $P(Z > z_\alpha) = \alpha$, is called the upper $\alpha$ quantile; $z_{0.05} = 1.645$, $z_{0.025} = 1.960$, and $z_{0.005} = 2.576$.
 
-| $z$ | $\Phi(z)$ | $1 - \Phi(z)$ | $2\{1 - \Phi(z)\}$ |
+| $z$ | $\Phi(z)$ | $1 - \Phi(z)$ | $2\lbrace1 - \Phi(z)\rbrace$ |
 |:-----|:-----|:-----|:-----|
 | 0.500 | 0.6915 | 0.3085 | 0.6171 |
 | 1.000 | 0.8413 | 0.1587 | 0.3173 |
@@ -417,7 +417,7 @@ $$
 **Example 1 (probability).** Suppose the scores of an intelligence test follow $X \sim N(100, 15^2)$. The probability of a score between 85 and 130 is found as follows. Standardizing the endpoints gives $(85 - 100)/15 = -1$ and $(130 - 100)/15 = 2$.
 
 $$
-P(85 < X < 130) = P(-1 < Z < 2) = \Phi(2) - \Phi(-1) = \Phi(2) - \{1 - \Phi(1)\} = 0.9772 - (1 - 0.8413) = 0.8185
+P(85 < X < 130) = P(-1 < Z < 2) = \Phi(2) - \Phi(-1) = \Phi(2) - \lbrace1 - \Phi(1)\rbrace = 0.9772 - (1 - 0.8413) = 0.8185
 $$
 
 Without rounding the table values the result is 0.8186. As Figure 4 shows, the area on the left equals the standardized area on the right.
@@ -513,7 +513,7 @@ $$
 E[\chi_n^2] = n, \qquad Var(\chi_n^2) = 2n, \qquad \sigma(\chi_n^2) = \sqrt{2n}
 $$
 
-These follow directly from the definition. By Section 4.2, $E(Z_i^2) = 1$, so the sum of $n$ terms has mean $n$. Also $Var(Z_i^2) = E(Z_i^4) - \{E(Z_i^2)\}^2 = 3 - 1 = 2$, and the variance of a sum of independent variables is the sum of their variances, so $Var(\chi_n^2) = 2n$.
+These follow directly from the definition. By Section 4.2, $E(Z_i^2) = 1$, so the sum of $n$ terms has mean $n$. Also $Var(Z_i^2) = E(Z_i^4) - \lbrace E(Z_i^2)\rbrace^2 = 3 - 1 = 2$, and the variance of a sum of independent variables is the sum of their variances, so $Var(\chi_n^2) = 2n$.
 
 ![Figure 6. PDFs of chi-square distributions with 1, 2, 4, and 8 degrees of freedom](../../images/Lec05_Chi-Square-Densities.png)
 
@@ -600,7 +600,7 @@ Figure 7 shows a histogram of 10,000 generated values of $(\chi_8^2/8)/(\chi_5^2
 
 *Figure 7. Histogram of 10,000 generated chi-square ratios and the PDF of F(8, 5)*
 
-> **Note:** The simulated mean is close to the theoretical value, but the standard deviation differs considerably, and with other random numbers it can come out below the theoretical value. $F(8, 5)$ has a finite variance ($\nu_2 = 5 > 4$), but the sample variance converges stably only when the fourth moment is finite, and the fourth moment of the F distribution exists only when $\nu_2 > 8$. Occasional very large values therefore shake the sample standard deviation strongly. This must be kept in mind when estimating a variance by simulation from a heavy-tailed distribution.
+> **Note:** The simulated mean is close to the theoretical value, but the standard deviation differs considerably, and with other random numbers it can come out below the theoretical value. $F(8, 5)$ has a finite variance ($\nu_2 = 5 > 4$), so the sample variance eventually converges to the theoretical value, but the variance of the sample variance itself is finite only when the fourth moment is finite, and the fourth moment of the F distribution exists only when $\nu_2 > 8$. Occasional very large values therefore shake the sample standard deviation strongly. This must be kept in mind when estimating a variance by simulation from a heavy-tailed distribution.
 
 ---
 

@@ -29,7 +29,7 @@ Exercises 1-8 ask you to choose analysis methods and to compute the tests of the
 
 **Problem:** For each of the following five research situations, identify the types of the dependent and independent variables, state which of the four analysis types of Lecture 7 applies, and choose a suitable test (including the alternative when normality is doubtful).
 
-- (a) Compare the tooth cell lengths of 30 guinea pigs given vitamin C as orange juice and 30 given it as tablets.
+- (a) Compare the tooth cell lengths of 30 guinea pigs given vitamin C as orange juice and 30 given it as ascorbic acid.
 - (b) Compare whether chick weight differs among six types of feed.
 - (c) Analyze the relationship between the time a geyser was waited for before erupting and the duration of the eruption.
 - (d) Analyze whether the sex of graduate applicants is associated with admission.
@@ -43,7 +43,7 @@ Exercises 1-8 ask you to choose analysis methods and to compute the tests of the
 
 ## Exercise 2: Tooth Growth by Supplement Type
 
-**Problem:** R's `ToothGrowth` data give vitamin C to 60 guinea pigs as orange juice (`supp = "OJ"`) or as ascorbic acid tablets (`supp = "VC"`) and measure the length of the cells responsible for tooth growth (`len`) (30 animals each). Find the mean and standard deviation for each supplement, and at the significance level 0.05 test whether the mean `len` differs between the supplements with the Welch t-test and whether the distributions differ with the Wilcoxon rank-sum test. Compare the two results.
+**Problem:** R's `ToothGrowth` data give vitamin C to 60 guinea pigs as orange juice (`supp = "OJ"`) or as ascorbic acid (`supp = "VC"`) and measure the length of the cells responsible for tooth growth (`len`) (30 animals each). Find the mean and standard deviation for each supplement, and at the significance level 0.05 test whether the mean `len` differs between the supplements with the Welch t-test and whether the distributions differ with the Wilcoxon rank-sum test. Compare the two results.
 
 **[Solution](Solutions.md#exercise-2-tooth-growth-by-supplement-type)**
 

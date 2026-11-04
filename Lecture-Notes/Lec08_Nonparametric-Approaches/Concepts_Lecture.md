@@ -53,11 +53,11 @@
 
 ## 1. Concepts of Two-Group Comparison
 
-This lecture covers methods for comparing two groups statistically. It summarizes the assumptions of the t-test, a parametric method, examines how to check one of those assumptions, normality, and the alternatives when normality fails (transformation and nonparametric tests), and then computes the Wilcoxon rank-sum test, the typical nonparametric test, and compares its performance with the t-test. The distinction between parametric and nonparametric methods was defined in Lecture 7, Section 1.1.
+The sections below cover methods for comparing two groups statistically. It summarizes the assumptions of the t-test, a parametric method, examines how to check one of those assumptions, normality, and the alternatives when normality fails (transformation and nonparametric tests), and then computes the Wilcoxon rank-sum test, the typical nonparametric test, and compares its performance with the t-test. The distinction between parametric and nonparametric methods was defined in Lecture 7, Section 1.1.
 
 ### 1.1 Basic Concepts of Hypothesis Testing
 
-A two-group comparison is built on the hypothesis testing of Lecture 6. The concepts used throughout this lecture are summarized again as follows.
+A two-group comparison is built on the hypothesis testing of Lecture 6. The concepts used throughout the sections below are summarized again as follows.
 
 | Concept | Meaning |
 |:-----|:-----|
@@ -392,7 +392,7 @@ qqnorm(ex4); qqline(ex4)           # normal Q-Q plot and reference line
 
 **Reading the box plot.** In R's box plot, the bottom and top of the box are 14.7 and 15.9, the medians of the lower and upper halves, and the thick line inside the box is the median $(15.0 + 15.5)/2 = 15.25$. The length of the box (the interquartile range) is $15.9 - 14.7 = 1.2$, and values more than $1.5 \times 1.2 = 1.8$ beyond the box (below 12.9 or above 17.7) are marked as outliers. So 11.4 is drawn separately as a point, and the lower whisker extends to 13.1, the smallest value within that range. The lower whisker is longer than the upper one and there is an outlier at the bottom, so the distribution is skewed to the left.
 
-**Reading the Q-Q plot.** The $i$th of the $n$ values sorted by size is paired with the quantile at a similar position in the standard normal distribution. For $n \le 10$, R's `qqnorm()` uses $\Phi^{-1}\{(i - 3/8)/(n + 1/4)\}$ as the theoretical quantile, which for these data gives -1.547, -1.000, -0.655, -0.375, -0.123, 0.123, 0.375, 0.655, 1.000, 1.547. `qqline()` is the reference line through the first and third quartiles of the sample and of the theoretical distribution. The points in the middle lie near the line, but the two smallest values (11.4, 13.1) are far below it. This means that the small values are smaller than a normal distribution would lead one to expect, which shows a distribution with a long left tail.
+**Reading the Q-Q plot.** The $i$th of the $n$ values sorted by size is paired with the quantile at a similar position in the standard normal distribution. For $n \le 10$, R's `qqnorm()` uses $\Phi^{-1}\lbrace(i - 3/8)/(n + 1/4)\rbrace$ as the theoretical quantile, which for these data gives -1.547, -1.000, -0.655, -0.375, -0.123, 0.123, 0.375, 0.655, 1.000, 1.547. `qqline()` is the reference line through the first and third quartiles of the sample and of the theoretical distribution. The points in the middle lie near the line, but the two smallest values (11.4, 13.1) are far below it. This means that the small values are smaller than a normal distribution would lead one to expect, which shows a distribution with a long left tail.
 
 > **Note:** The shape in which the points depart from the line reveals features of the distribution. If both ends depart outward from the line (the left end downward, the right end upward), the tails are heavier than those of the normal distribution; if the points form a convex curve (bending upward), the distribution is skewed to the right; and if they form a concave curve (bending downward), it is skewed to the left.
 
@@ -477,7 +477,7 @@ shapiro.test(log(y))$p.value                  # log transformation
 
 In the original data the mean (28.2) exceeds the median (22.0) and the maximum is 137, a long right tail, and the Shapiro-Wilk p-value of $1.4 \times 10^{-10}$ strongly rejects normality. In the left Q-Q plot of Figure 6 the points also form a convex curve. The square-root transformation reduces the skewness but its p-value of 0.00024 is still not enough, while after the log transformation the p-value is 0.988, the histogram is bell-shaped, and the Q-Q plot is a straight line.
 
-> **Caution:** When using a transformation, check the following. The logarithm and square root are undefined for values of 0 or below, so for data containing 0 a constant is added, as in $\log(y + 1)$. Also, a test done on the transformed scale is not a test about means on the original scale. For example, comparing the means of $\log y$ amounts to comparing geometric means (or ratios) on the original scale. Report the result stating on which scale the comparison was made.
+> **Caution:** When using a transformation, check the following. The logarithm is undefined for values of 0 or below and the square root for negative values, so before log-transforming data that contain 0 a constant is added, as in $\log(y + 1)$. Also, a test done on the transformed scale is not a test about means on the original scale. For example, comparing the means of $\log y$ amounts to comparing geometric means (or ratios) on the original scale. Report the result stating on which scale the comparison was made.
 
 ---
 
@@ -525,7 +525,7 @@ The formulas look complicated, but the computation has only three steps: rank th
 
 To find out whether even a few weeds reduce corn yield, corn was planted at the same rate in 8 small plots; in 4 plots chosen at random all weeds were removed, and in the other 4, three lamb's-quarter plants per meter of row were left [9].
 
-| Treatment | Yield |
+| Treatment | Yield (bushels per acre) |
 |:-----|:-----|
 | 0 weeds per meter | 166.7, 172.2, 165.0, 176.9 |
 | 3 weeds per meter | 158.6, 176.4, 153.1, 156.0 |
@@ -645,7 +645,7 @@ The corrected 0.0968 is much closer to the exact value 0.1 than the uncorrected 
 **Ties in rank.** When several observations have the same value, a single rank cannot be assigned. In that case all of them receive the average of the ranks they occupy (the **average rank**, or midrank). For example, in 153, 155, 158, 158, 161, 164 the two 158s occupy the 3rd and 4th places, so both receive rank 3.5. With ties the exact distribution can no longer be used as is, and since ties reduce the variability of the ranks, $\sigma_W$ must be adjusted [10].
 
 $$
-\sigma_W^2 = \frac{n_1 n_2}{12}\left\{(N+1) - \frac{\sum_k (t_k^3 - t_k)}{N(N-1)}\right\}
+\sigma_W^2 = \frac{n_1 n_2}{12}\left\lbrace(N+1) - \frac{\sum_k (t_k^3 - t_k)}{N(N-1)}\right\rbrace
 $$
 
 Here $t_k$ is the number of observations in the $k$th group of ties. The following code tests the case in which the first group is 153, 155, 158 and the second group is 158, 161, 164.
@@ -670,7 +670,7 @@ Warning message:
 In wilcox.test.default(a, b) : cannot compute exact p-value with ties
 ```
 
-The warning means that the exact p-value cannot be computed because of the ties, so the normal approximation was used instead. Checking by hand, the rank sum of the first group is $W = 1 + 2 + 3.5 = 6.5$ and $\mu_W = 3 \times 7/2 = 10.5$. There is one group of ties of size 2, so $\sigma_W^2 = (9/12)\{7 - 6/30\} = 0.75 \times 6.8 = 5.1$ and $\sigma_W = 2.258$. With the continuity correction, $z = (6.5 - 10.5 + 0.5)/2.258 = -1.55$, and the two-sided p-value is $2 \times P(Z \le -1.55) = 0.1212$, matching R. R's `W = 0.5` is the Mann-Whitney statistic $6.5 - 3 \times 4/2 = 0.5$.
+The warning means that the exact p-value cannot be computed because of the ties, so the normal approximation was used instead. Checking by hand, the rank sum of the first group is $W = 1 + 2 + 3.5 = 6.5$ and $\mu_W = 3 \times 7/2 = 10.5$. There is one group of ties of size 2, so $\sigma_W^2 = (9/12)\lbrace7 - 6/30\rbrace = 0.75 \times 6.8 = 5.1$ and $\sigma_W = 2.258$. With the continuity correction, $z = (6.5 - 10.5 + 0.5)/2.258 = -1.55$, and the two-sided p-value is $2 \times P(Z \le -1.55) = 0.1212$, matching R. R's `W = 0.5` is the Mann-Whitney statistic $6.5 - 3 \times 4/2 = 0.5$.
 
 > **Caution:** The null hypothesis of the Wilcoxon rank-sum test is that the two distributions are the same. If the two distributions differ in shape or spread, the null hypothesis can be rejected even when the medians are equal, so interpreting the result as a difference in medians requires the assumption that the two distributions have similar shapes.
 
@@ -733,7 +733,7 @@ The histogram in Figure 7 shows a distribution in which about 40% of the values 
 
 The t-test does not reject the null hypothesis, but the Wilcoxon test rejects it strongly. The large values of the long right tail pull up the sample mean and also inflate the standard deviation, so the t statistic ends up near 0, whereas ranks are not affected by the size of large values and pick up well the fact that most values are below 35.
 
-> **Note:** The hypothesis $H_0: \mu = 35$ of this comparison concerns a single population, so the methods actually used are the one-sample t-test and the Wilcoxon signed-rank test (the procedure of Section 4.6 applied to $d_i = y_i - 35$). A rank sum cannot be negative, so the negative $W = -16845.5$ is a centered value: the signed-rank statistic $T^+$ minus its expected value $n(n+1)/4$ under the null hypothesis. The rank-sum test for two independent samples is compared with the two-sample t-test by simulation in Section 5.3.
+> **Note:** The hypothesis $H_0: \mu = 35$ of this comparison concerns a single population, so the methods actually used are the one-sample t-test and the Wilcoxon signed-rank test (the procedure of Section 4.6 applied to $d_i = y_i - 35$). A rank sum cannot be negative, so the negative $W = -16845.5$ is interpreted as a centered value: the signed-rank statistic $T^+$ minus its expected value $n(n+1)/4$ under the null hypothesis. The UNIVARIATE procedure of SAS also reports the signed-rank statistic centered in this way, as $S$ [11]. The rank-sum test for two independent samples is compared with the two-sample t-test by simulation in Section 5.3.
 
 ### 5.2 Comparison on Normal Data
 
@@ -818,8 +818,8 @@ skewed_shift 0.3305   0.7255
 ```
 
 - With no shift (`_null`), the rejection rates of both tests are 0.04-0.05, near the significance level 0.05. Both tests control the type I error well.
-- With a shift on normal data, the power is 0.708 for the t-test and 0.679 for the Wilcoxon test, slightly higher for the t-test. Under the normal distribution the asymptotic relative efficiency of the Wilcoxon test (the ratio of the sample sizes needed for the same power) is $3/\pi \approx 0.955$, so the Wilcoxon test needs only about 5% more observations than the t-test [11].
-- With a shift on skewed data, the power is 0.331 for the t-test and 0.726 for the Wilcoxon test, more than twice as high for the Wilcoxon test. The large values of the long tail inflate the standard error of the t-test. Over all continuous distributions, the asymptotic relative efficiency of the Wilcoxon test relative to the t-test never falls below 0.864, and for heavy-tailed distributions it can be much larger than 1 [11].
+- With a shift on normal data, the power is 0.708 for the t-test and 0.679 for the Wilcoxon test, slightly higher for the t-test. Under the normal distribution the asymptotic relative efficiency of the Wilcoxon test (the ratio of the sample sizes needed for the same power) is $3/\pi \approx 0.955$, so the Wilcoxon test needs only about 5% more observations than the t-test [12].
+- With a shift on skewed data, the power is 0.331 for the t-test and 0.726 for the Wilcoxon test, more than twice as high for the Wilcoxon test. The large values of the long tail inflate the standard error of the t-test. Over all continuous distributions, the asymptotic relative efficiency of the Wilcoxon test relative to the t-test never falls below 0.864, and for heavy-tailed distributions it can be much larger than 1 [12].
 
 > **Key Point:** When the data are normal, the Wilcoxon test loses only a little power relative to the t-test, and when the data are skewed or contain outliers, it can have much higher power than the t-test. This makes the Wilcoxon test a safe choice for small samples whose normality is doubtful.
 
@@ -966,4 +966,5 @@ The following table lists suitable tests for situations in two-group comparisons
 8. H. B. Mann and D. R. Whitney, "On a test of whether one of two random variables is stochastically larger than the other," *The Annals of Mathematical Statistics*, vol. 18, no. 1, pp. 50-60, 1947.
 9. D. S. Moore and G. P. McCabe, *Introduction to the Practice of Statistics*, 3rd ed. New York, NY, USA: W. H. Freeman, 1999, ch. 14.
 10. M. Hollander, D. A. Wolfe, and E. Chicken, *Nonparametric Statistical Methods*, 3rd ed. Hoboken, NJ, USA: Wiley, 2014.
-11. J. L. Hodges and E. L. Lehmann, "The efficiency of some nonparametric competitors of the t-test," *The Annals of Mathematical Statistics*, vol. 27, no. 2, pp. 324-335, 1956.
+11. SAS Institute Inc., "Tests for location," in *Base SAS 9.4 Procedures Guide: Statistical Procedures*, 5th ed. Cary, NC, USA: SAS Institute Inc., accessed Nov. 4, 2026. https://support.sas.com/documentation/cdl/en/procstat/70116/HTML/default/procstat_univariate_details17.htm
+12. J. L. Hodges and E. L. Lehmann, "The efficiency of some nonparametric competitors of the t-test," *The Annals of Mathematical Statistics*, vol. 27, no. 2, pp. 324-335, 1956.

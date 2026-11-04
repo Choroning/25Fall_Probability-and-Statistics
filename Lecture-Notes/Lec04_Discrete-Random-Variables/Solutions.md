@@ -4,10 +4,6 @@
 
 > **Last Updated:** 2026-11-04
 
-Each solution first gives the reason for choosing the distribution and the hand calculation, and then confirms the same result with R code. The code runs with base R only.
-
-> **Note:** `disc.exp()`, which prints the expected value and variance of a distribution, and `disc.mexp()`, which plots several distributions side by side, are functions of the Rstat package [1]. Since this package is not on CRAN, the same calculations are written here in a few lines following the definitions of expected value and variance, and the plots are placed side by side with `par(mfrow = ...)`. The Windows-only function `win.graph()` is not used.
-
 ---
 
 <br>
@@ -72,6 +68,8 @@ sum(fx[x >= 15])                   # P(X >= 15) by summing the PMF
 - `EX` and `VX` are computed from the definitions $\sum x f(x)$ and $\sum x^2 f(x) - E(X)^2$, and the next line computes the formula values. The two agree.
 - `x >= 15` is a logical vector, so `sum(x >= 15)` is 6, the number of values at least 15; dividing by 20 gives the probability. This works only when all outcomes are equally likely.
 - `fx[x >= 15]` selects the probabilities of the values at least 15, and their sum is $P(X \ge 15)$. This method works even when the probabilities differ.
+
+> **Note:** `disc.exp()`, which prints the expected value and variance of a distribution, and `disc.mexp()`, which plots several distributions side by side, are functions of the Rstat package [1]. Since this package is not on CRAN, all solutions write the same calculations in a few lines following the definitions of expected value and variance, and the plots are placed side by side with `par(mfrow = ...)`. The Windows-only function `win.graph()` is not used.
 
 **Output:**
 
@@ -197,7 +195,7 @@ $$
 f(2) = \binom{20}{2} (0.03)^2 (0.97)^{20 - 2} = 190 \times (0.03)^2 \times (0.97)^{18} \approx 190 \times 0.0009 \times 0.5780 \approx 0.0988
 $$
 
-The probability of 3 or more is found by subtracting the probability of the complement $\{X \le 2\}$ from 1, which takes far less computation than adding the cases of 3 or more one by one.
+The probability of 3 or more is found by subtracting the probability of the complement $\lbrace X \le 2\rbrace$ from 1, which takes far less computation than adding the cases of 3 or more one by one.
 
 $$
 \begin{aligned}

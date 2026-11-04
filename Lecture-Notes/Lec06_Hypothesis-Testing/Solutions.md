@@ -166,7 +166,7 @@ pnorm(Zstat)             # H1: mu < 169.3
 
 | Alternative hypothesis | p-value | Conclusion at $\alpha = 0.05$ |
 |:-----|:-----|:-----|
-| $\mu_{2020} \neq 169.3$ (two-sided) | $2\{1 - \Phi(2.103)\} = 0.0355$ | Reject $H_0$: the 2020 mean height differs from 169.3 cm |
+| $\mu_{2020} \neq 169.3$ (two-sided) | $2\lbrace1 - \Phi(2.103)\rbrace = 0.0355$ | Reject $H_0$: the 2020 mean height differs from 169.3 cm |
 | $\mu_{2020} > 169.3$ (right-sided) | $1 - \Phi(2.103) = 0.0177$ | Reject $H_0$: the 2020 mean height is greater than 169.3 cm |
 | $\mu_{2020} < 169.3$ (left-sided) | $\Phi(2.103) = 0.9823$ | Fail to reject $H_0$: no evidence that it is smaller |
 

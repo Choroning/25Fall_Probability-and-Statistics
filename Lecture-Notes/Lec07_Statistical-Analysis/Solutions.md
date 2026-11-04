@@ -153,7 +153,7 @@ t.test(len ~ supp, data = tg)$p.value                     # p-value of the Welch
 **Explanation:** ANOVA splits the total variation into variation between groups and variation within groups ([Lecture 7, Section 4.1](Concepts_Lecture.md#41-analysis-of-variance-anova)).
 
 1. **Group means and overall mean:** $\bar{y}_A = 24/4 = 6$, $\bar{y}_B = 32/4 = 8$, $\bar{y}_C = 20/4 = 5$, and the overall mean is $\bar{y} = 76/12 = 6.333$.
-2. **Between-group sum of squares:** $SSB = 4\{(6 - 6.333)^2 + (8 - 6.333)^2 + (5 - 6.333)^2\} = 4(0.111 + 2.778 + 1.778) = 4 \times 4.667 = 18.667$.
+2. **Between-group sum of squares:** $SSB = 4\lbrace(6 - 6.333)^2 + (8 - 6.333)^2 + (5 - 6.333)^2\rbrace = 4(0.111 + 2.778 + 1.778) = 4 \times 4.667 = 18.667$.
 3. **Within-group sum of squares:** the deviations are $-1, 1, 0, 0$ in A, $0, 1, -1, 0$ in B, and $-1, 0, 1, 0$ in C, so each group's sum of squared deviations is 2 and $SSW = 2 + 2 + 2 = 6$.
 4. **Mean squares:** the degrees of freedom are $k - 1 = 2$ between groups and $N - k = 12 - 3 = 9$ within groups, so $MSB = 18.667/2 = 9.333$ and $MSW = 6/9 = 0.667$.
 5. **F statistic:** $F = 9.333/0.667 = 14.0$. Under the null hypothesis it follows $F_{2, 9}$, and since it exceeds the 95% quantile 4.256, the null hypothesis is rejected.

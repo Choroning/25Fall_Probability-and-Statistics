@@ -107,7 +107,7 @@ welch   8.407339 14.73901 5.278477e-07
 
 - **F test:** the statistic is $s_A^2/s_C^2 = 4.719^2/1.975^2 = 22.27/3.90 = 5.71$. The p-value 0.0075 is below 0.05, so the assumption of equal variances is rejected.
 - **t statistic:** both groups have size 12, so Student's and Welch's standard errors coincide and the t statistic is the same, $(14.5 - 2.083)/\sqrt{22.27/12 + 3.90/12} = 12.417/1.477 \approx 8.407$ ([Lecture 8, Section 2.5](Concepts_Lecture.md#25-the-equal-variance-assumption-and-the-welch-t-test)).
-- **Degrees of freedom:** the Welch degrees of freedom are $\nu = (1.856 + 0.325)^2/(1.856^2/11 + 0.325^2/11) = 4.758/0.3228 \approx 14.74$. The information from the group with the larger variance (A) mainly determines the degrees of freedom, so they drop well below 22.
+- **Degrees of freedom:** the Welch degrees of freedom are $\nu = (1.856 + 0.325)^2/(1.856^2/11 + 0.325^2/11) = 4.758/0.3228 \approx 14.74$. The term of A, the group with the larger variance, dominates the formula and pulls $\nu$ toward 11, the degrees of freedom of group A alone, so they drop well below 22.
 - **Conclusion:** for these data the two tests reach the same conclusion, but since the equal-variance assumption fails, the result to report is that of the Welch t-test. With unequal sample sizes and unequal variances, the type I error rate of Student's t-test can stray far from the significance level.
 
 > **Note:** Count data tend to have a larger variance when the mean is larger (in a Poisson distribution the mean and variance are equal). This is why the variance of A, with many insects (22.3), exceeds that of C, with few (3.9); such data can be analyzed with Poisson regression as in Lecture 7, Section 4.4, or have their variance stabilized with a square-root transformation.
@@ -159,7 +159,7 @@ mean difference
 [1] 0.1691734
 ```
 
-Blood pressure fell by an average of 5.1 mmHg after the drug, with a 95% confidence interval of $(2.46, 7.79)$. Analyzing the same data with the independent two-sample t-test mixes the differences in blood pressure between patients (138-160 mmHg) into the standard error and raises the p-value to 0.169. The paired analysis, which looks only at the change within each patient, removes this variation and so has much greater power on the same data.
+Blood pressure fell by an average of 5.1 mmHg after the drug, with a 95% confidence interval of $(2.46, 7.79)$. Analyzing the same data with the independent two-sample t-test mixes the differences in blood pressure between patients (138-160 mmHg before the drug) into the standard error and raises the p-value to 0.169. The paired analysis, which looks only at the change within each patient, removes this variation and so has much greater power on the same data.
 
 ---
 
@@ -232,7 +232,7 @@ The rank sum of group 1 is $W = 1 + 2 + 3 + 5 = 11$.
 
 **(2) Normal approximation.** With $n_1 = 4$, $n_2 = 5$, and $N = 9$, $\mu_W = 4 \times 10/2 = 20$ and $\sigma_W = \sqrt{4 \times 5 \times 10/12} = \sqrt{16.667} = 4.082$ ([Lecture 8, Section 4.2](Concepts_Lecture.md#42-the-test-statistic-w)). Without the continuity correction, $z = (11 - 20)/4.082 = -2.205$ and the two-sided p-value is $2 \times P(Z \le -2.205) = 0.0275$. Since $W$ lies below its mean, the continuity correction adds 0.5 to $W$, giving $z = (11 + 0.5 - 20)/4.082 = -2.082$ and a two-sided p-value of 0.0373 ([Lecture 8, Section 4.5](Concepts_Lecture.md#45-limitations-continuity-correction-and-ties)).
 
-**(3) Exact distribution.** There are $\binom{9}{4} = 126$ ways to choose 4 of the 9 ranks, all equally likely under the null hypothesis. Only 2 combinations have a rank sum of 11 or less, $\{1, 2, 3, 4\}$ (sum 10) and $\{1, 2, 3, 5\}$ (sum 11), so $P(W \le 11) = 2/126 = 0.0159$. The distribution of $W$ is symmetric about $\mu_W$, so the two-sided p-value is $2 \times 0.0159 = 0.0317$ ([Lecture 8, Section 4.4](Concepts_Lecture.md#44-the-exact-distribution-and-rs-output)).
+**(3) Exact distribution.** There are $\binom{9}{4} = 126$ ways to choose 4 of the 9 ranks, all equally likely under the null hypothesis. Only 2 combinations have a rank sum of 11 or less, $\lbrace1, 2, 3, 4\rbrace$ (sum 10) and $\lbrace1, 2, 3, 5\rbrace$ (sum 11), so $P(W \le 11) = 2/126 = 0.0159$. The distribution of $W$ is symmetric about $\mu_W$, so the two-sided p-value is $2 \times 0.0159 = 0.0317$ ([Lecture 8, Section 4.4](Concepts_Lecture.md#44-the-exact-distribution-and-rs-output)).
 
 ```r
 x1 <- c(3.1, 4.5, 2.8, 5.0)
@@ -277,7 +277,7 @@ The result of `rank()` gives the ranks in input order (3.1, 4.5, 2.8, 5.0, 6.2, 
 **(2) Tie correction.** The tie groups have sizes 3 (the 12s) and 2 (the 15s), so $\sum(t_k^3 - t_k) = (27 - 3) + (8 - 2) = 30$. With $n_1 = 4$, $n_2 = 5$, and $N = 9$, the result is as follows ([Lecture 8, Section 4.5](Concepts_Lecture.md#45-limitations-continuity-correction-and-ties)).
 
 $$
-\sigma_W^2 = \frac{4 \times 5}{12}\left\{10 - \frac{30}{9 \times 8}\right\} = 1.667 \times 9.583 = 15.97, \qquad \sigma_W = 3.997
+\sigma_W^2 = \frac{4 \times 5}{12}\left\lbrace10 - \frac{30}{9 \times 8}\right\rbrace = 1.667 \times 9.583 = 15.97, \qquad \sigma_W = 3.997
 $$
 
 **(3) Test.** $\mu_W = 4 \times 10/2 = 20$, and since $W$ lies below its mean, the continuity correction adds 0.5. $z = (13.5 + 0.5 - 20)/3.997 = -1.501$, and the two-sided p-value is $2 \times P(Z \le -1.501) = 0.133$.

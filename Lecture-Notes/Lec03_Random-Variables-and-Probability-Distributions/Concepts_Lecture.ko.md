@@ -55,7 +55,7 @@
 
 ## 1. 확률변수
 
-2강에서는 표본공간의 사건에 확률을 부여하는 방법을 다루었다. 실제 분석에서는 실험의 결과 자체보다 결과에서 얻은 수치, 예를 들어 앞면의 개수, 주사위 눈의 합, 불량품의 수에 관심이 있는 경우가 많다. 확률변수는 실험의 결과를 수로 바꾸어, 확률을 수에 관한 함수로 다룰 수 있게 한다. 이 강의에서는 확률변수와 그 분포를 정의하고, 분포를 요약하는 기댓값, 분산, 공분산을 유도한다.
+2강에서는 표본공간의 사건에 확률을 부여하는 방법을 다루었다. 실제 분석에서는 실험의 결과 자체보다 결과에서 얻은 수치, 예를 들어 앞면의 개수, 주사위 눈의 합, 불량품의 수에 관심이 있는 경우가 많다. 확률변수는 실험의 결과를 수로 바꾸어, 확률을 수에 관한 함수로 다룰 수 있게 한다. 아래에서는 확률변수와 그 분포를 정의하고, 분포를 요약하는 기댓값, 분산, 공분산을 차례로 유도한다.
 
 ### 1.1 표본공간에서 실수로 가는 함수
 
@@ -66,7 +66,7 @@
 **예: 동전을 세 번 던지는 실험.** 동전을 차례로 세 번 던지면 표본공간은 다음과 같다. H는 앞면(head), T는 뒷면(tail)이다.
 
 $$
-\mathcal{S} = \{HHH,\ HHT,\ HTH,\ HTT,\ THH,\ THT,\ TTH,\ TTT\}
+\mathcal{S} = \lbrace HHH,\ HHT,\ HTH,\ HTT,\ THH,\ THT,\ TTH,\ TTT\rbrace
 $$
 
 이 하나의 표본공간 위에 여러 확률변수를 정의할 수 있다.
@@ -110,7 +110,7 @@ graph LR
 
 > **용어 정의:** **이산확률변수(discrete random variable)** 는 취할 수 있는 값이 유한개이거나 셀 수 있는 무한개(countably infinite)인 확률변수이다. **연속확률변수(continuous random variable)** 는 실수 구간 위의 셀 수 없이 많은(uncountably infinite) 값을 취하며, 한 점에서의 확률은 0이고 구간의 확률을 확률밀도함수의 적분으로 구하는 확률변수이다.
 
-**셀 수 있는 무한**은 원소에 1번, 2번, 3번처럼 빠짐없이 번호를 붙일 수 있는 무한을 뜻한다. 자연수 전체 $\{1, 2, 3, \dots\}$나 정수 전체가 그 예이다. 반면 구간 $[0, 1]$의 실수처럼 어떤 방법으로도 번호를 다 붙일 수 없는 무한은 **셀 수 없는 무한**이다.
+**셀 수 있는 무한**은 원소에 1번, 2번, 3번처럼 빠짐없이 번호를 붙일 수 있는 무한을 뜻한다. 자연수 전체 $\lbrace1, 2, 3, \dots\rbrace$나 정수 전체가 그 예이다. 반면 구간 $[0, 1]$의 실수처럼 어떤 방법으로도 번호를 다 붙일 수 없는 무한은 **셀 수 없는 무한**이다.
 
 확률변수는 표본공간에서 정의되므로, 표본공간의 크기로 종류를 가늠할 수 있다. 표본공간이 유한하면 확률변수가 취하는 값도 유한개이므로 그 확률변수는 항상 이산확률변수이다. 표본공간이 무한하면 셀 수 있는 무한일 때는 이산확률변수가 되고, 셀 수 없는 무한일 때는 연속확률변수가 될 수 있다. 정리하면 이산확률변수는 $X : \mathcal{S} \to \mathbb{R}$에서 $\mathcal{S}$가 유한하거나 셀 수 있는 무한인 경우이고, 연속확률변수는 $\mathcal{S}$가 셀 수 없는 무한인 경우의 대표적인 형태이다.
 
@@ -126,28 +126,28 @@ graph LR
 
 *표 1. 확률변수의 예와 이산, 연속의 구분*
 
-이 강의와 4강은 이산확률변수를 다루고, 연속확률변수는 5강에서 다룬다.
+3~4강은 이산확률변수를 다루고, 연속확률변수는 5강에서 다룬다.
 
 ### 1.3 값의 범위와 사건
 
 확률변수의 **값의 범위(value range)** 는 표본공간의 사건에 대응한다. 동전을 세 번 던지는 실험에서 $X$를 앞면의 개수라 하면 다음과 같다.
 
-- 값 $X(s) = 2$는 사건 $\{HHT, HTH, THH\}$에 대응한다. 실수 하나를 정하면 그 값을 주는 결과들의 집합, 즉 사건이 정해진다.
-- 범위 $1 < X(s) \le 3$은 사건 $\{HHH, HHT, HTH, THH\}$에 대응한다.
+- 값 $X(s) = 2$는 사건 $\lbrace HHT, HTH, THH\rbrace$에 대응한다. 실수 하나를 정하면 그 값을 주는 결과들의 집합, 즉 사건이 정해진다.
+- 범위 $1 < X(s) \le 3$은 사건 $\lbrace HHH, HHT, HTH, THH\rbrace$에 대응한다.
 
-일반적으로 실수의 집합 $A$에 대해 $\{X \in A\}$는 다음 사건을 줄여 쓴 것이다.
+일반적으로 실수의 집합 $A$에 대해 $\lbrace X \in A\rbrace$는 다음 사건을 줄여 쓴 것이다.
 
 $$
-\{X \in A\} = X^{-1}(A) = \{\, s \in \mathcal{S} : X(s) \in A \,\}
+\lbrace X \in A\rbrace = X^{-1}(A) = \lbrace\, s \in \mathcal{S} : X(s) \in A \,\rbrace
 $$
 
 여기서 $X^{-1}(A)$는 역함수가 아니라 **역상(inverse image)**, 즉 함숫값이 $A$에 들어가는 결과 전체의 집합이다. $X$가 일대일 함수가 아니어도 역상은 항상 정의된다. 사건에는 확률이 있으므로 값의 범위에도 확률이 있다.
 
 $$
-P(X \in A) = P(\{\, s \in \mathcal{S} : X(s) \in A \,\})
+P(X \in A) = P(\lbrace\, s \in \mathcal{S} : X(s) \in A \,\rbrace)
 $$
 
-공정한 동전을 독립적으로 세 번 던지면 여덟 결과의 확률은 각각 $1/8$이다(2강). 따라서 범위 $0 < X \le 2$의 확률은 그 범위에 대응하는 여섯 결과 $\{HHT, HTH, HTT, THH, THT, TTH\}$의 확률을 더한 값이다.
+공정한 동전을 독립적으로 세 번 던지면 여덟 결과의 확률은 각각 $1/8$이다(2강). 따라서 범위 $0 < X \le 2$의 확률은 그 범위에 대응하는 여섯 결과 $\lbrace HHT, HTH, HTT, THH, THT, TTH\rbrace$의 확률을 더한 값이다.
 
 $$
 P(0 < X \le 2) = \frac{6}{8}
@@ -158,10 +158,10 @@ $$
 그림 1에서 같은 값으로 가는 결과를 묶으면 네 사건이 생긴다.
 
 $$
-E_0 = \{TTT\}, \quad E_1 = \{HTT, THT, TTH\}, \quad E_2 = \{HHT, HTH, THH\}, \quad E_3 = \{HHH\}
+E_0 = \lbrace TTT\rbrace, \quad E_1 = \lbrace HTT, THT, TTH\rbrace, \quad E_2 = \lbrace HHT, HTH, THH\rbrace, \quad E_3 = \lbrace HHH\rbrace
 $$
 
-> **핵심:** $X$가 **함수**이므로 사건 $E_0, E_1, E_2, E_3$은 서로 배반이고 합집합은 $\mathcal{S}$이다. 함수는 모든 $s \in \mathcal{S}$에서 정의되어야 하므로 어떤 결과도 빠지지 않고, 하나의 $s$에 값을 하나만 주므로(single-valued) 한 결과가 두 사건에 동시에 들어가지 않는다. 즉 $\{X = x\}$ 꼴의 사건들은 표본공간의 **분할(partition)** 을 이룬다.
+> **핵심:** $X$가 **함수**이므로 사건 $E_0, E_1, E_2, E_3$은 서로 배반이고 합집합은 $\mathcal{S}$이다. 함수는 모든 $s \in \mathcal{S}$에서 정의되어야 하므로 어떤 결과도 빠지지 않고, 하나의 $s$에 값을 하나만 주므로(single-valued) 한 결과가 두 사건에 동시에 들어가지 않는다. 즉 $\lbrace X = x\rbrace$ 꼴의 사건들은 표본공간의 **분할(partition)** 을 이룬다.
 
 ---
 
@@ -177,14 +177,14 @@ $$
 
 $$
 \begin{aligned}
-p_X(0) &\equiv P(\{TTT\}) = \tfrac{1}{8} \\
-p_X(1) &\equiv P(\{HTT, THT, TTH\}) = \tfrac{3}{8} \\
-p_X(2) &\equiv P(\{HHT, HTH, THH\}) = \tfrac{3}{8} \\
-p_X(3) &\equiv P(\{HHH\}) = \tfrac{1}{8}
+p_X(0) &\equiv P(\lbrace TTT\rbrace) = \tfrac{1}{8} \\
+p_X(1) &\equiv P(\lbrace HTT, THT, TTH\rbrace) = \tfrac{3}{8} \\
+p_X(2) &\equiv P(\lbrace HHT, HTH, THH\rbrace) = \tfrac{3}{8} \\
+p_X(3) &\equiv P(\lbrace HHH\rbrace) = \tfrac{1}{8}
 \end{aligned}
 $$
 
-이 값들을 모두 더하면 $p_X(0) + p_X(1) + p_X(2) + p_X(3) = 1$이다. 그 이유는 1.3절의 핵심에 있다. 네 사건 $\{X = 0\}, \dots, \{X = 3\}$이 표본공간의 분할이므로, 확률의 공리에 따라 확률의 합은 $P(\mathcal{S}) = 1$이다.
+이 값들을 모두 더하면 $p_X(0) + p_X(1) + p_X(2) + p_X(3) = 1$이다. 그 이유는 1.3절의 핵심에 있다. 네 사건 $\lbrace X = 0\rbrace, \dots, \lbrace X = 3\rbrace$이 표본공간의 분할이므로, 확률의 공리에 따라 확률의 합은 $P(\mathcal{S}) = 1$이다.
 
 확률질량함수는 일반적으로 다음 성질을 가진다.
 
@@ -204,11 +204,11 @@ $$
 
 누적분포함수는 $X$가 취하는 값에서만이 아니라 **모든 실수** $x$에서 정의된다. 동전을 세 번 던질 때 앞면의 개수 $X$의 누적분포함수는 다음과 같다.
 
-| $x$ | 사건 $\{X \le x\}$ | $F(x) = P(X \le x)$ |
+| $x$ | 사건 $\lbrace X \le x\rbrace$ | $F(x) = P(X \le x)$ |
 |:-----|:-----|:-----|
 | $-1$ | 공사건 $\emptyset$ | $0$ |
-| $0$ | $\{TTT\}$ | $1/8$ |
-| $1$ | $\{TTT, HTT, THT, TTH\}$ | $4/8$ |
+| $0$ | $\lbrace TTT\rbrace$ | $1/8$ |
+| $1$ | $\lbrace TTT, HTT, THT, TTH\rbrace$ | $4/8$ |
 | $2$ | $HHH$를 뺀 일곱 결과 | $7/8$ |
 | $3$ | 여덟 결과 모두 ($\mathcal{S}$) | $1$ |
 | $4$ | 여덟 결과 모두 ($\mathcal{S}$) | $1$ |
@@ -223,9 +223,9 @@ $$
 
 누적분포함수는 다음 성질을 가진다.
 
-1. **비감소 함수이다.** $a < b$이면 사건 $\{X \le a\}$는 사건 $\{X \le b\}$에 포함되므로 $F(a) \le F(b)$이다. 확률은 0 이상이므로, 누적할수록 값은 늘거나 그대로일 뿐 줄어들지 않는다.
-2. **$F(-\infty) = 0$이고 $F(\infty) = 1$이다.** 정확히는 $\lim_{x \to -\infty} F(x) = 0$, $\lim_{x \to \infty} F(x) = 1$이다. $x$가 한없이 작아지면 사건 $\{X \le x\}$는 공사건으로 줄어들고, 한없이 커지면 표본공간 전체로 늘어난다. 누적이므로 처음에는 0에서 시작하여 끝에서는 1에 도달한다.
-3. **$P(a < X \le b) = F(b) - F(a)$이다.** 사건 $\{X \le b\}$는 서로 배반인 두 사건 $\{X \le a\}$와 $\{a < X \le b\}$의 합집합이므로 $F(b) = F(a) + P(a < X \le b)$이다. 여기서 왼쪽 끝 $a$는 포함되지 않고 오른쪽 끝 $b$는 포함된다는 점에 유의한다.
+1. **비감소 함수이다.** $a < b$이면 사건 $\lbrace X \le a\rbrace$는 사건 $\lbrace X \le b\rbrace$에 포함되므로 $F(a) \le F(b)$이다. 확률은 0 이상이므로, 누적할수록 값은 늘거나 그대로일 뿐 줄어들지 않는다.
+2. **$F(-\infty) = 0$이고 $F(\infty) = 1$이다.** 정확히는 $\lim_{x \to -\infty} F(x) = 0$, $\lim_{x \to \infty} F(x) = 1$이다. $x$가 한없이 작아지면 사건 $\lbrace X \le x\rbrace$는 공사건으로 줄어들고, 한없이 커지면 표본공간 전체로 늘어난다. 누적이므로 처음에는 0에서 시작하여 끝에서는 1에 도달한다.
+3. **$P(a < X \le b) = F(b) - F(a)$이다.** 사건 $\lbrace X \le b\rbrace$는 서로 배반인 두 사건 $\lbrace X \le a\rbrace$와 $\lbrace a < X \le b\rbrace$의 합집합이므로 $F(b) = F(a) + P(a < X \le b)$이다. 여기서 왼쪽 끝 $a$는 포함되지 않고 오른쪽 끝 $b$는 포함된다는 점에 유의한다.
 4. **오른쪽 연속이다.** 모든 $x$에서 $\lim_{h \to 0^{+}} F(x + h) = F(x)$이다 [1]. 이산확률변수에서는 값이 있는 점에서 $F$가 위로 뛰어오르고, 그 점에서의 함숫값은 뛰어오른 뒤의 값이다.
 
 ![그림 3. 앞면의 개수 X의 누적분포함수, 채운 점은 함숫값이고 빈 점은 왼쪽 극한](../../images/Lec03_Coin-Heads-CDF.png)
@@ -288,12 +288,12 @@ X
 
 확률질량함수와 누적분포함수는 **둘 이상의 변수**의 함수일 수도 있다. 같은 표본공간 위에 정의된 두 확률변수를 함께 다루려면 두 값이 동시에 나타날 확률이 필요하다.
 
-> **용어 정의:** 두 이산확률변수 $X$, $Y$에 대해 $p_{X,Y}(x, y) \equiv P(X = x,\ Y = y) = P(\{X = x\} \cap \{Y = y\})$를 **결합확률질량함수(joint probability mass function)** 라고 한다.
+> **용어 정의:** 두 이산확률변수 $X$, $Y$에 대해 $p_{X,Y}(x, y) \equiv P(X = x,\ Y = y) = P(\lbrace X = x\rbrace \cap \lbrace Y = y\rbrace)$를 **결합확률질량함수(joint probability mass function)** 라고 한다.
 
 **예.** 동전을 세 번 던져 $X$는 앞면의 개수, $Y$는 처음 앞면이 나온 시행의 번호($TTT$이면 0)라 하자. 예를 들어 $p_{X,Y}(2, 1)$은 앞면이 두 개이고 첫 앞면이 첫 번째 시행에서 나올 확률, 즉 앞면이 두 개이면서 첫 시행이 앞면일 확률이다.
 
 $$
-p_{X,Y}(2, 1) = P(X = 2,\ Y = 1) = P(\{HHT, HTH\}) = \frac{2}{8} = \frac{1}{4}
+p_{X,Y}(2, 1) = P(X = 2,\ Y = 1) = P(\lbrace HHT, HTH\rbrace) = \frac{2}{8} = \frac{1}{4}
 $$
 
 결합확률질량함수 전체를 구하려면 먼저 결과마다 두 확률변수의 값을 적는다.
@@ -323,7 +323,7 @@ $$
 p_X(x) = \sum_{y} p_{X,Y}(x, y), \qquad p_Y(y) = \sum_{x} p_{X,Y}(x, y)
 $$
 
-표의 가장자리(margin)에 적힌다는 뜻에서 이를 **주변확률(marginal probability)** 이라 하고, $p_X$를 $X$의 **주변확률질량함수(marginal PMF)**, $p_Y$를 $Y$의 주변확률질량함수라고 한다. 주변확률질량함수는 각 확률변수를 따로 보았을 때의 확률질량함수와 같다. 사건 $\{X = x\}$는 서로 배반인 사건들 $\{X = x, Y = y\}$($y$는 $Y$가 취하는 모든 값)의 합집합이므로, 2강의 전확률 공식에 따라 그 확률은 결합확률의 합이다. 실제로 표 5의 $p_X$는 2.1절에서 구한 $1/8, 3/8, 3/8, 1/8$과 같다.
+표의 가장자리(margin)에 적힌다는 뜻에서 이를 **주변확률(marginal probability)** 이라 하고, $p_X$를 $X$의 **주변확률질량함수(marginal PMF)**, $p_Y$를 $Y$의 주변확률질량함수라고 한다. 주변확률질량함수는 각 확률변수를 따로 보았을 때의 확률질량함수와 같다. 사건 $\lbrace X = x\rbrace$는 서로 배반인 사건들 $\lbrace X = x, Y = y\rbrace$($y$는 $Y$가 취하는 모든 값)의 합집합이므로, 2강의 전확률 공식에 따라 그 확률은 결합확률의 합이다. 실제로 표 5의 $p_X$는 2.1절에서 구한 $1/8, 3/8, 3/8, 1/8$과 같다.
 
 > **참고:** 결합분포에서 주변분포는 항상 구할 수 있지만, 주변분포만으로 결합분포를 되찾을 수는 없다. 같은 주변분포를 갖는 결합분포가 여러 개 있을 수 있기 때문이다. 두 확률변수가 독립일 때에만 주변분포의 곱으로 결합분포가 정해진다(4절).
 
@@ -356,9 +356,9 @@ $y$를 한없이 크게 하면 $F_{X,Y}(x, \infty) = P(X \le x) = F_X(x)$가 되
 같은 조건을 다음 두 가지로도 쓸 수 있다.
 
 1. 확률질량함수로 쓰면, 모든 $x$와 $y$에 대해 $p_{X,Y}(x, y) = p_X(x) \cdot p_Y(y)$이다.
-2. 사건으로 쓰면, $E_x \equiv X^{-1}(\{x\})$와 $E_y \equiv Y^{-1}(\{y\})$가 표본공간 $\mathcal{S}$에서 독립인 사건이다. 즉 모든 $x$와 $y$에 대해 $P(E_x \cap E_y) = P(E_x) \cdot P(E_y)$이다.
+2. 사건으로 쓰면, $E_x \equiv X^{-1}(\lbrace x\rbrace)$와 $E_y \equiv Y^{-1}(\lbrace y\rbrace)$가 표본공간 $\mathcal{S}$에서 독립인 사건이다. 즉 모든 $x$와 $y$에 대해 $P(E_x \cap E_y) = P(E_x) \cdot P(E_y)$이다.
 
-두 번째 형태는 확률변수의 독립이 2강에서 다룬 사건의 독립으로 정의됨을 보여 준다. 여기서 $X^{-1}(\{x\}) = \{\, s \in \mathcal{S} : X(s) = x \,\}$이며, 이산의 경우 $x$와 $y$는 대개 정수이다.
+두 번째 형태는 확률변수의 독립이 2강에서 다룬 사건의 독립으로 정의됨을 보여 준다. 여기서 $X^{-1}(\lbrace x\rbrace) = \lbrace\, s \in \mathcal{S} : X(s) = x \,\rbrace$이며, 이산의 경우 $x$와 $y$는 대개 정수이다.
 
 독립의 의미는 조건부 확률로 보면 분명하다. $P(X = x) > 0$이면 독립은 $P(Y = y \mid X = x) = P(Y = y)$와 같다. 즉 $X$의 값을 알아도 $Y$의 분포가 바뀌지 않는다.
 
@@ -410,8 +410,8 @@ $$
 \begin{aligned}
 F_{X,Y}(x_k, y_\ell) &= P(X \le x_k,\ Y \le y_\ell) = \sum_{i \le k} \sum_{j \le \ell} p_{X,Y}(x_i, y_j) \\
 &= \sum_{i \le k} \sum_{j \le \ell} p_X(x_i) \cdot p_Y(y_j) && \text{(독립)} \\
-&= \sum_{i \le k} \Big\{ p_X(x_i) \sum_{j \le \ell} p_Y(y_j) \Big\} \\
-&= \Big\{ \sum_{i \le k} p_X(x_i) \Big\} \cdot \Big\{ \sum_{j \le \ell} p_Y(y_j) \Big\} = F_X(x_k) \cdot F_Y(y_\ell)
+&= \sum_{i \le k} \Big\lbrace p_X(x_i) \sum_{j \le \ell} p_Y(y_j) \Big\rbrace \\
+&= \Big\lbrace \sum_{i \le k} p_X(x_i) \Big\rbrace \cdot \Big\lbrace \sum_{j \le \ell} p_Y(y_j) \Big\rbrace = F_X(x_k) \cdot F_Y(y_\ell)
 \end{aligned}
 $$
 
@@ -447,7 +447,7 @@ $$
 
 예를 들어 주사위에서 $E(X^2) = \frac{1}{6}(1^2 + 2^2 + \cdots + 6^2) = \frac{91}{6}$이다. 이 식은 6절의 분산 계산에 쓰인다. 기댓값 표기는 괄호가 겹치지 않도록 인수가 간단하면 $E(X)$, 인수에 괄호가 있으면 $E[(X - \mu)^2]$처럼 대괄호를 쓴다.
 
-> **참고:** $X$가 무한히 많은 값을 취할 때는 합이 수렴해야 기댓값이 정의된다. 정확히는 $\sum_k |x_k|\, p_X(x_k) < \infty$일 때 기댓값이 존재한다고 한다 [1]. 이 강의와 4강의 분포는 모두 이 조건을 만족한다.
+> **참고:** $X$가 무한히 많은 값을 취할 때는 합이 수렴해야 기댓값이 정의된다. 정확히는 $\sum_k |x_k|\, p_X(x_k) < \infty$일 때 기댓값이 존재한다고 한다 [1]. 3~4강에서 다루는 분포는 모두 이 조건을 만족한다.
 
 ### 5.2 기댓값의 선형성
 
@@ -511,7 +511,7 @@ $$
 E(X + Y) &= \sum_k \sum_\ell (x_k + y_\ell)\, p_{X,Y}(x_k, y_\ell) \\
 &= \sum_k \sum_\ell x_k\, p_{X,Y}(x_k, y_\ell) + \sum_k \sum_\ell y_\ell\, p_{X,Y}(x_k, y_\ell) \\
 &= \sum_k \sum_\ell x_k\, p_{X,Y}(x_k, y_\ell) + \sum_\ell \sum_k y_\ell\, p_{X,Y}(x_k, y_\ell) \\
-&= \sum_k \Big\{ x_k \sum_\ell p_{X,Y}(x_k, y_\ell) \Big\} + \sum_\ell \Big\{ y_\ell \sum_k p_{X,Y}(x_k, y_\ell) \Big\} \\
+&= \sum_k \Big\lbrace x_k \sum_\ell p_{X,Y}(x_k, y_\ell) \Big\rbrace + \sum_\ell \Big\lbrace y_\ell \sum_k p_{X,Y}(x_k, y_\ell) \Big\rbrace \\
 &= \sum_k x_k\, p_X(x_k) + \sum_\ell y_\ell\, p_Y(y_\ell) = E(X) + E(Y)
 \end{aligned}
 $$
@@ -526,8 +526,8 @@ $$
 \begin{aligned}
 E(XY) &= \sum_k \sum_\ell x_k\, y_\ell\, p_{X,Y}(x_k, y_\ell) \\
 &= \sum_k \sum_\ell x_k\, y_\ell\, p_X(x_k)\, p_Y(y_\ell) && \text{(독립)} \\
-&= \sum_k \Big\{ x_k\, p_X(x_k) \sum_\ell y_\ell\, p_Y(y_\ell) \Big\} \\
-&= \Big\{ \sum_k x_k\, p_X(x_k) \Big\} \cdot \Big\{ \sum_\ell y_\ell\, p_Y(y_\ell) \Big\} = E(X) \cdot E(Y)
+&= \sum_k \Big\lbrace x_k\, p_X(x_k) \sum_\ell y_\ell\, p_Y(y_\ell) \Big\rbrace \\
+&= \Big\lbrace \sum_k x_k\, p_X(x_k) \Big\rbrace \cdot \Big\lbrace \sum_\ell y_\ell\, p_Y(y_\ell) \Big\rbrace = E(X) \cdot E(Y)
 \end{aligned}
 $$
 
@@ -554,7 +554,7 @@ $$
 
 따라서 $E(XY) = 16 = 2 \cdot 8 = E(X) \cdot E(Y)$이다. 그러나 $p_{X,Y}(1, 6) = \frac{1}{5}$인데 $p_X(1) \cdot p_Y(6) = \frac{2}{5} \cdot \frac{2}{5} = \frac{4}{25}$이므로 $X$와 $Y$는 독립이 아니다. $p_{X,Y}(1, 8) = 0 \ne \frac{2}{5} \cdot \frac{1}{5}$인 칸도 있다.
 
-> **주의:** $E(XY) = E(X)E(Y)$는 독립의 **필요조건**일 뿐 충분조건이 아니다. 이 식이 성립한다고 해서 독립이라고 결론 내릴 수 없다. 양방향으로 쓸 수 있는 판정 기준은 확률로 쓴 조건, 즉 모든 $(x, y)$에서 $p_{X,Y} = p_X \cdot p_Y$이거나 $F_{X,Y} = F_X \cdot F_Y$인지뿐이다. 반대로 $E(XY) \ne E(X)E(Y)$이면 독립이 아니라고 결론 내릴 수 있다.
+> **주의:** $E(XY) = E(X)E(Y)$는 독립의 **필요조건**일 뿐 충분조건이 아니다. 이 식이 성립한다고 해서 독립이라고 결론 내릴 수 없다. 앞에서 다룬 판정 기준 가운데 양방향으로 쓸 수 있는 것은 확률로 쓴 조건, 즉 모든 $(x, y)$에서 $p_{X,Y} = p_X \cdot p_Y$인지 또는 $F_{X,Y} = F_X \cdot F_Y$인지를 보는 조건이다. 반대로 $E(XY) \ne E(X)E(Y)$이면 독립이 아니라고 결론 내릴 수 있다.
 
 ---
 
@@ -613,7 +613,7 @@ $$
 
 $$
 \begin{aligned}
-\mathrm{Var}(aX + b) &= E\big[\{(aX + b) - (a\mu_X + b)\}^2\big] \\
+\mathrm{Var}(aX + b) &= E\big[\lbrace(aX + b) - (a\mu_X + b)\rbrace^2\big] \\
 &= E\big[a^2 (X - \mu_X)^2\big] \\
 &= a^2\, E\big[(X - \mu_X)^2\big] = a^2\, \mathrm{Var}(X)
 \end{aligned}
@@ -687,7 +687,7 @@ $$
 
 $$
 \begin{aligned}
-\mathrm{Var}(X + Y) &= E\big[\{(X + Y) - (\mu_X + \mu_Y)\}^2\big] = E\big[\{(X - \mu_X) + (Y - \mu_Y)\}^2\big] \\
+\mathrm{Var}(X + Y) &= E\big[\lbrace(X + Y) - (\mu_X + \mu_Y)\rbrace^2\big] = E\big[\lbrace(X - \mu_X) + (Y - \mu_Y)\rbrace^2\big] \\
 &= E\big[(X - \mu_X)^2\big] + E\big[(Y - \mu_Y)^2\big] + 2\,E\big[(X - \mu_X)(Y - \mu_Y)\big] \\
 &= \mathrm{Var}(X) + \mathrm{Var}(Y) + 2\,\mathrm{Cov}(X, Y)
 \end{aligned}
@@ -717,7 +717,7 @@ $$
 |:-----|:-----|
 | 확률변수는 사건에 확률을 대응시키는 함수이다. | **F.** 확률변수는 표본공간의 각 결과에 실수를 대응시키는 함수이다. 사건에 확률을 대응시키는 것은 확률(확률 측도)이다. |
 | 표본공간이 유한하면 그 위에 정의된 확률변수는 모두 이산확률변수이다. | **T.** 결과가 유한개이면 확률변수가 취하는 값도 유한개이다. |
-| 누적분포함수는 $x$가 커질 때 줄어들 수 있다. | **F.** $a < b$이면 $\{X \le a\} \subset \{X \le b\}$이므로 $F(a) \le F(b)$이다. |
+| 누적분포함수는 $x$가 커질 때 줄어들 수 있다. | **F.** $a < b$이면 $\lbrace X \le a\rbrace \subset \lbrace X \le b\rbrace$이므로 $F(a) \le F(b)$이다. |
 | 이산확률변수의 누적분포함수 $F(x)$는 $X$가 취하는 값에서만 정의된다. | **F.** 모든 실수 $x$에서 정의되며, 값 사이에서는 일정한 계단함수이다. |
 | 결합확률질량함수에서 주변확률질량함수를 항상 구할 수 있다. | **T.** 행 합과 열 합으로 구한다. 반대로 주변분포에서 결합분포는 일반적으로 정해지지 않는다. |
 | $E(XY) = E(X)E(Y)$이면 $X$와 $Y$는 독립이다. | **F.** 표 8의 분포가 반례이다. 이 식은 독립의 필요조건일 뿐이다. |
@@ -736,7 +736,7 @@ $$
 |:-----|:-----|
 | 확률변수 | 표본공간의 각 결과에 실수를 대응시키는 함수 $X : \mathcal{S} \to \mathbb{R}$이다. 구조화된 데이터의 각 열은 확률변수로 볼 수 있다. |
 | 이산과 연속 | 취하는 값이 유한개이거나 셀 수 있는 무한개이면 이산, 실수 구간에 연속적으로 퍼져 있으면 연속이다. 유한 표본공간 위의 확률변수는 항상 이산이다. |
-| 값의 범위와 사건 | $\{X \in A\} = \{s : X(s) \in A\}$는 사건이므로 확률을 가진다. 사건 $\{X = x\}$들은 표본공간의 분할을 이룬다. |
+| 값의 범위와 사건 | $\lbrace X \in A\rbrace = \lbrace s : X(s) \in A\rbrace$는 사건이므로 확률을 가진다. 사건 $\lbrace X = x\rbrace$들은 표본공간의 분할을 이룬다. |
 | 확률질량함수 | $p_X(x) = P(X = x)$이다. 각 값은 0과 1 사이이고 합은 1이다. |
 | 누적분포함수 | $F_X(x) = P(X \le x)$이다. 비감소, 오른쪽 연속이고 $F(-\infty) = 0$, $F(\infty) = 1$이며 $P(a < X \le b) = F(b) - F(a)$이다. 이산이면 계단함수이다. |
 | 결합분포와 주변분포 | $p_{X,Y}(x, y) = P(X = x, Y = y)$이다. 주변확률질량함수는 결합확률의 행 합과 열 합이다. |

@@ -4,10 +4,6 @@
 
 > **Last Updated:** 2026-11-04
 
-Each solution first shows the hand calculation and then confirms the same result with R code. The code runs with base R only.
-
-> **Note:** `tosscoin2()` and `rolldie2()`, which build sample spaces, and `disc.exp()`, `disc.cdf()`, and `disc.joint2()`, which summarize distributions, are functions of the Rstat package [1]. Since this package is not on CRAN, `tosscoin2()` and `rolldie2()` are defined here directly with base R's `expand.grid()`, and the remaining calculations are written out in a few lines of code.
-
 ---
 
 <br>
@@ -81,6 +77,8 @@ plot(px, type = "h", lwd = 4, xlab = "x", ylab = "f(x)")
 - `apply(S, 1, countH)` applies `countH()` to each row of `S` and returns the value of $X$ for each outcome as a vector.
 - `table(X) / nrow(S)` is the relative frequency: the count for each value divided by the total number of outcomes, 8. Because all outcomes are equally likely, this is the probability distribution.
 - `sum(px)` checks that the probabilities add to 1, and `plot(px, type = "h")` draws a vertical bar at each value.
+
+> **Note:** `tosscoin2()` and `rolldie2()`, which build sample spaces, and `disc.exp()`, `disc.cdf()`, and `disc.joint2()`, which summarize distributions, are functions of the Rstat package [1]. Since this package is not on CRAN, `tosscoin2()` and `rolldie2()` are defined in all solutions directly with base R's `expand.grid()`, and the remaining calculations are written out in a few lines of code.
 
 **Output:**
 
@@ -196,7 +194,7 @@ N = 1296  E(X) = 14  Var(X) = 11.66667  D(X) = 3.4157
 
 *Figure 2. Probability distribution of the sum of four rolls of a die with the normal curve of mean 14 and standard deviation 3.4157*
 
-The counts grow as 1, 4, 10, 20, ..., peak at 146 for $X = 14$, and then decrease symmetrically. The expected value 14 and standard deviation 3.4157 found by R match the values computed above. The distribution is bell-shaped and, although it is a sum of only four dice, almost coincides with the normal curve. It illustrates the central limit theorem: a sum of many independent random variables has a distribution close to normal (Lecture 5).
+The counts grow as 1, 4, 10, 20, ..., peak at 146 for $X = 14$, and then decrease symmetrically. The expected value 14 and standard deviation 3.4157 found by R match the values computed above. The distribution is bell-shaped and, although it is a sum of only four dice, almost coincides with the normal curve. It illustrates the central limit theorem: the sum of many independent random variables with a common distribution and finite variance has a distribution close to normal (Lecture 5).
 
 > **Note:** In R on Windows, `win.graph(7, 5)` opens a new graphics window 7 inches wide and 5 inches high. This function works only on Windows; on other operating systems, use `dev.new(width = 7, height = 5)`.
 
@@ -338,7 +336,7 @@ $$
 p_X(x) = \frac{2x - 1}{36}, \qquad p_Y(y) = \frac{13 - 2y}{36} \qquad (x, y = 1, \dots, 6)
 $$
 
-These formulas can also be checked another way. The maximum is at most $x$ exactly when both numbers are at most $x$, so $P(X \le x) = (x/6)^2$ and $p_X(x) = P(X \le x) - P(X \le x - 1) = \{x^2 - (x - 1)^2\}/36 = (2x - 1)/36$. In the same way, $P(Y \ge y) = \{(7 - y)/6\}^2$ gives $p_Y(y) = (13 - 2y)/36$.
+These formulas can also be checked another way. The maximum is at most $x$ exactly when both numbers are at most $x$, so $P(X \le x) = (x/6)^2$ and $p_X(x) = P(X \le x) - P(X \le x - 1) = \lbrace x^2 - (x - 1)^2\rbrace/36 = (2x - 1)/36$. In the same way, $P(Y \ge y) = \lbrace(7 - y)/6\rbrace^2$ gives $p_Y(y) = (13 - 2y)/36$.
 
 **Independence.** At $(x, y) = (1, 2)$, $f(1, 2) = 0$ but $p_X(1) \cdot p_Y(2) = \frac{1}{36} \cdot \frac{9}{36} = \frac{9}{1296} \ne 0$, so $X$ and $Y$ are not independent. This is natural: knowing the maximum imposes the constraint that the minimum cannot exceed it.
 
@@ -426,7 +424,7 @@ The probability is $1/36 \approx 0.0278$ on the diagonal ($x = y$), $2/36 \appro
 
 ### Solution
 
-**Approach:** If $H$ is the number of heads, the number of tails is $3 - H$, so the profit is $X = 100\{H - (3 - H)\} = 100(2H - 3)$. The distribution of $H$ is $1/8, 3/8, 3/8, 1/8$ from Exercise 1.
+**Approach:** If $H$ is the number of heads, the number of tails is $3 - H$, so the profit is $X = 100\lbrace H - (3 - H)\rbrace = 100(2H - 3)$. The distribution of $H$ is $1/8, 3/8, 3/8, 1/8$ from Exercise 1.
 
 | $H$ | 0 | 1 | 2 | 3 |
 |:-----|:-----|:-----|:-----|:-----|
@@ -441,7 +439,7 @@ $$
 E(X) = \sum_x x f(x) = \frac{300 \cdot 1 + 100 \cdot 3 + (-100) \cdot 3 + (-300) \cdot 1}{8} = \frac{300 + 300 - 300 - 300}{8} = 0
 $$
 
-Linearity confirms this: $E(H) = 3/2$, so $E(X) = 100\{2E(H) - 3\} = 100(3 - 3) = 0$. The expected profit is 0, so the game favors neither side; it is a **fair game**.
+Linearity confirms this: $E(H) = 3/2$, so $E(X) = 100\lbrace2E(H) - 3\rbrace = 100(3 - 3) = 0$. The expected profit is 0, so the game favors neither side; it is a **fair game**.
 
 The variance comes from $E(X^2)$.
 

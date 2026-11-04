@@ -58,7 +58,7 @@
 
 ## 1. Choosing a Statistical Method
 
-The first decision in a statistical analysis is to choose a method that fits the data and the research question. Even for the same data, the appropriate method depends on what is being asked (a difference between groups, or an association between variables), what kind of variables are involved, whether the observations are independent, and whether the assumptions the method requires hold. Building on the probability distributions and hypothesis tests of Lectures 1-6, this lecture organizes the methods most often used in real data analysis by selection criterion and by analysis type. For each method it explains what the method tests, what it assumes, and how to run it in R; the t-test and the Wilcoxon rank-sum test for two-group comparisons are treated in more depth in Lecture 8.
+The first decision in a statistical analysis is to choose a method that fits the data and the research question. Even for the same data, the appropriate method depends on what is being asked (a difference between groups, or an association between variables), what kind of variables are involved, whether the observations are independent, and whether the assumptions the method requires hold. Building on the probability distributions and hypothesis tests of Lectures 1-6, the sections below organize the methods most often used in real data analysis by selection criterion and by analysis type. For each method they explain what the method tests, what it assumes, and how to run it in R; the t-test and the Wilcoxon rank-sum test for two-group comparisons are treated in more depth in Lecture 8.
 
 ### 1.1 Levels of Measurement
 
@@ -165,11 +165,11 @@ The criteria so far reduce to three questions. (1) What is the dependent variabl
 
 - **Correlated observations:** measuring the same patient several times, or measuring people who belong to the same family or the same hospital, makes the observations tend to resemble one another. Applying a method that assumes independence to such data misestimates the standard errors, so a **mixed model** or **generalized estimating equations (GEE)**, which build the correlation into the model, are used instead.
 - **Time to event:** the time until an event such as death, relapse, or fracture occurs. For a subject in whom the event has not occurred by the end of follow-up, the only information left is that the time to the event is at least the follow-up time; this is called **censoring**. The **Kaplan-Meier estimator** takes censoring into account to estimate the survival probability curve over time, and **Cox regression** estimates the effect of covariates on the hazard (Section 2.3). The **proportional hazards assumption** of Cox regression is the assumption that the ratio of the hazards of two groups does not change over time.
-- **Exponential family:** the collection of distributions, such as the normal, exponential, gamma, beta, Poisson, and binomial distributions, whose density or mass function can be written as $f(y;\theta) = h(y)\exp\{\eta(\theta)T(y) - A(\theta)\}$. When the response follows a distribution in the exponential family, regression is carried out with a **generalized linear model (GLM)**, and the test corresponding to analysis of variance is carried out with the **analysis of deviance (ANODEV)** (Section 4.4) [2].
+- **Exponential family:** the collection of distributions, such as the normal, exponential, gamma, beta, Poisson, and binomial distributions, whose density or mass function can be written as $f(y;\theta) = h(y)\exp\lbrace\eta(\theta)T(y) - A(\theta)\rbrace$. When the response follows a distribution in the exponential family, regression is carried out with a **generalized linear model (GLM)**, and the test corresponding to analysis of variance is carried out with the **analysis of deviance (ANODEV)** (Section 4.4) [2].
 
 ### 1.6 Why There Are So Many Methods, and How to Learn Them
 
-There are far more statistical methods than the tables and flowcharts above can hold. A list of methods for categorical data alone runs to dozens of entries [3], and statistics departments offer categorical data analysis, discrete data analysis, nonparametric statistics, and time series analysis each as a separate semester-long course. Rather than trying to learn every method at once, it is therefore advisable to learn the typical analyses for each data type through hands-on experience, and, when a particular analysis becomes necessary, to study its theory as deeply as probability distributions and hypothesis testing were studied. This lecture organizes the typical analyses into the following four types.
+There are far more statistical methods than the tables and flowcharts above can hold. A list of methods for categorical data alone runs to dozens of entries [3], and categorical data analysis, nonparametric statistics, and time series analysis are each broad enough to have their own textbooks and courses. Rather than trying to learn every method at once, it is therefore advisable to learn the typical analyses for each data type through hands-on experience, and, when a particular analysis becomes necessary, to study its theory as deeply as probability distributions and hypothesis testing were studied. The typical analyses are organized here into the following four types.
 
 | Analysis type | Model form | Typical methods |
 |:-----|:-----|:-----|
@@ -178,7 +178,7 @@ There are far more statistical methods than the tables and flowcharts above can 
 | III. Association of two continuous random variables | `Continuous ~ Continuous` | Pearson correlation, Spearman correlation, regression |
 | IV. Association of two categorical random variables | `Category ~ Category` | Chi-squared test, Fisher's exact test (hypergeometric test), Cochran-Armitage test for trend |
 
-*Table 4. The four analysis types covered in this lecture*
+*Table 4. The four analysis types and their typical methods*
 
 ---
 
@@ -225,7 +225,7 @@ When the response is not continuous, the normal-error assumption of linear regre
 
 *Table 6. Family of regression models by type of response variable*
 
-Poisson regression and logistic regression are kinds of generalized linear model. A generalized linear model does not set the mean $\mu$ of the response equal to the linear predictor directly but passes it through a **link function** $g$, so that $g(\mu) = \beta_0 + \beta_1 X_1 + \cdots + \beta_k X_k$ [2]. Poisson regression uses the log link $\log \mu$ because the mean of a count is positive, and logistic regression uses the logit link $\log\{p/(1-p)\}$ because a probability $p$ lies between 0 and 1. The quantity $p/(1-p)$ is called the **odds**. The Cox model sets the **hazard function** at time $t$ to $h(t \mid x) = h_0(t)\exp(\beta x)$ and estimates only $\beta$ without specifying the form of $h_0(t)$ [4].
+Poisson regression and logistic regression are kinds of generalized linear model. A generalized linear model does not set the mean $\mu$ of the response equal to the linear predictor directly but passes it through a **link function** $g$, so that $g(\mu) = \beta_0 + \beta_1 X_1 + \cdots + \beta_k X_k$ [2]. Poisson regression uses the log link $\log \mu$ because the mean of a count is positive, and logistic regression uses the logit link $\log\lbrace p/(1-p)\rbrace$ because a probability $p$ lies between 0 and 1. The quantity $p/(1-p)$ is called the **odds**. The Cox model sets the **hazard function** at time $t$ to $h(t \mid x) = h_0(t)\exp(\beta x)$ and estimates only $\beta$ without specifying the form of $h_0(t)$ [4].
 
 The following code fits a logistic regression and a Cox model to built-in R data. In `mtcars`, `am` is the transmission type (0: automatic, 1: manual) and `wt` is the weight of the car (in units of 1,000 pounds); `lung` in the `survival` package records the survival time (`time`, in days), death status (`status`), and sex (`sex`, 1: male, 2: female) of patients with advanced lung cancer.
 
@@ -428,7 +428,7 @@ Residuals   27 10.492  0.3886
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
-The ANOVA table can be checked by hand as follows. The overall mean is 5.073, so $SSB = 10\{(5.032-5.073)^2 + (4.661-5.073)^2 + (5.526-5.073)^2\} = 10(0.00168 + 0.16974 + 0.20521) \approx 3.766$. The degrees of freedom are $k-1 = 2$ between groups and $N-k = 30-3 = 27$ within groups, so $MSB = 3.766/2 = 1.8832$, $MSW = 10.492/27 = 0.3886$, and $F = 1.8832/0.3886 \approx 4.846$. Since the p-value 0.0159 is below 0.05, the null hypothesis that the three group means are all equal is rejected. The `Signif. codes` line at the end of the table is R's notation that marks the range of a p-value with asterisks.
+The ANOVA table can be checked by hand as follows. The overall mean is 5.073, so $SSB = 10\lbrace(5.032-5.073)^2 + (4.661-5.073)^2 + (5.526-5.073)^2\rbrace = 10(0.00168 + 0.16974 + 0.20521) \approx 3.766$. The degrees of freedom are $k-1 = 2$ between groups and $N-k = 30-3 = 27$ within groups, so $MSB = 3.766/2 = 1.8832$, $MSW = 10.492/27 = 0.3886$, and $F = 1.8832/0.3886 \approx 4.846$. Since the p-value 0.0159 is below 0.05, the null hypothesis that the three group means are all equal is rejected. The `Signif. codes` line at the end of the table is R's notation that marks the range of a p-value with asterisks.
 
 ### 4.2 Post Hoc Tests
 
@@ -486,7 +486,7 @@ Comparing $H = 7.988$ with the chi-squared distribution with 2 degrees of freedo
 When the response is not normally distributed, as with counts or binary values, a generalized linear model is fitted and models are compared by their **deviance** instead of the sums of squares of ANOVA. The deviance is twice the difference in log-likelihood between the saturated model, which fits the observations perfectly, and the fitted model; in a normal model it plays the same role as the residual sum of squares [2].
 
 $$
-D = 2\{\ell(\text{saturated model}) - \ell(\text{fitted model})\}
+D = 2\lbrace\ell(\text{saturated model}) - \ell(\text{fitted model})\rbrace
 $$
 
 The decrease in deviance from adding an explanatory variable approximately follows a chi-squared distribution under the null hypothesis (no effect of that variable), with degrees of freedom equal to the number of added parameters. Testing effects on this principle is the **analysis of deviance (ANODEV)**.
@@ -602,7 +602,7 @@ With $r = 0.8069$ and $n = 50$, $t = 0.8069\sqrt{48}/\sqrt{1 - 0.8069^2} = 0.806
 
 ### 5.2 The Spearman Rank Correlation Coefficient
 
-**Spearman's rank correlation coefficient** $\rho_s$ is the Pearson correlation coefficient computed between the ranks of the two variables, each variable having been converted to ranks. Because only ranks are used, it needs no normality assumption, is less sensitive to outliers, and measures a **monotone** relationship, in which one variable consistently increases or decreases as the other increases, even if the relationship is not a straight line. In the output above, $\rho_s = 0.830$. `exact = FALSE` requests an approximate p-value instead of the exact one because the data contain ties, and `S` in the output is the sum of squared differences between the ranks of the two variables.
+**Spearman's rank correlation coefficient** $\rho_s$ is the Pearson correlation coefficient computed between the ranks of the two variables, each variable having been converted to ranks. Because only ranks are used, it needs no normality assumption, is less sensitive to outliers, and measures a **monotone** relationship, in which one variable consistently increases or decreases as the other increases, even if the relationship is not a straight line. In the output above, $\rho_s = 0.830$. `exact = FALSE` requests an approximate p-value instead of the exact one because the data contain ties, and `S` in the output is the statistic computed as $(n^3-n)(1-\rho_s)/6$, which equals the sum of squared differences between the ranks of the two variables when there are no ties.
 
 ### 5.3 Simple Linear Regression
 
@@ -715,7 +715,7 @@ $$
 r_{ij} = \frac{O_{ij}-E_{ij}}{\sqrt{E_{ij}}}, \qquad X^2 = \sum_{i}\sum_{j} r_{ij}^2
 $$
 
-A positive residual means the cell has more observations than expected under independence, and a negative one means fewer. A residual whose absolute value exceeds 2 (about a 5% probability under the standard normal distribution) is commonly regarded as a notable deviation. Strictly speaking, the variance of a Pearson residual is less than 1, so a precise judgment uses the standardized residuals (`test$stdres`), which are adjusted to have variance 1.
+A positive residual means the cell has more observations than expected under independence, and a negative one means fewer. A residual whose absolute value exceeds 2 (about a 5% probability under the standard normal distribution) is commonly regarded as a notable deviation. Strictly speaking, the variance of a Pearson residual is less than 1, so a precise judgment uses the standardized residuals (`test$stdres`), which are adjusted to have variance 1. In the result above, the residual 9.57 of the first-class survival cell is the largest, while crew survival (-4.37) and third-class survival (-3.32) are strongly negative. This means that first-class passengers survived far more often than under independence, and third-class passengers and crew far less often.
 
 ![Figure 6. Association plot showing the Pearson residuals of an activity by time-of-day table as bars](../../images/Lec07_p14.png)
 
@@ -729,7 +729,7 @@ In the plot, feeding in the evening, social activity in the morning, and travel 
 
 When the sample is small and many cells have expected counts below 5, the chi-squared approximation is inaccurate. **Fisher's exact test** computes the p-value from exact probabilities without any approximation. In a 2 × 2 table with fixed row and column totals, fixing the count of one cell determines the other three, and under the null hypothesis (independence) that count follows the **hypergeometric distribution** (Lecture 4). For this reason the test is also called the **hypergeometric test**.
 
-The classic example is the tea-tasting experiment [15]. Eight cups, four with the milk poured first and four with the tea poured first, are presented in random order, and the taster is asked to pick the four cups with milk first. The taster identified 3 of the 4 correctly.
+The classic example is the tea-tasting experiment [15]. Eight cups, four with the milk poured first and four with the tea poured first, are presented in random order, and the taster is asked to pick the four cups with milk first. The following table shows the case in which the taster identifies 3 of the 4 cups correctly [13].
 
 | Guess \ Truth | Milk first | Tea first | Total |
 |:-----|:-----:|:-----:|:-----:|
@@ -774,7 +774,7 @@ The p-value 0.2429 matches the hand calculation. Getting 3 of the 4 right can be
 When one variable consists of **ordered categories**, such as dose or age group, and the other is binary (response or no response), the general chi-squared test ignores the order of the categories. The **Cochran-Armitage test for trend** gives each category a score $x_i$ (for example 1, 2, 3, 4) and tests, with a test on 1 degree of freedom, whether the response proportion increases or decreases linearly with the score [16], [13]. With $n_i$ the sample size and $y_i$ the number of responses in category $i$, and $\bar{p}$ the overall response proportion, the statistic is as follows.
 
 $$
-X^2_{\text{trend}} = \frac{\left\{\sum_i x_i (y_i - n_i \bar{p})\right\}^2}{\bar{p}(1-\bar{p})\left\{\sum_i n_i x_i^2 - \left(\sum_i n_i x_i\right)^2 / N\right\}} \;\approx\; \chi^2_1 \quad \text{under } H_0
+X^2_{\text{trend}} = \frac{\left\lbrace\sum_i x_i (y_i - n_i \bar{p})\right\rbrace^2}{\bar{p}(1-\bar{p})\left\lbrace\sum_i n_i x_i^2 - \left(\sum_i n_i x_i\right)^2 / N\right\rbrace} \;\approx\; \chi^2_1 \quad \text{under } H_0
 $$
 
 The following is a hypothetical example in which 20 people are assigned to each of four dose levels and the responders are counted.
@@ -801,7 +801,7 @@ By hand, $\bar{p} = 30/80 = 0.375$. The numerator is 400, the square of $\sum x_
 
 ## Concept Applications
 
-The following table matches research questions to the analysis types and methods of this lecture.
+The following table matches research questions to the four analysis types and their methods.
 
 | Research question | Form of the data | Analysis type and method |
 |:-----|:-----|:-----|
