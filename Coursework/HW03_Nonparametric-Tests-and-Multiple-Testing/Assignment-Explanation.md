@@ -40,7 +40,7 @@
 
 ## 1. Assignment Structure and Data
 
-The assignment has two parts. Q1-Q4 cover parametric and nonparametric methods for comparing two groups in small samples (Lectures 6 and 8), and Q5-Q8 cover the problems of testing thousands of hypotheses on one data set (connected to choosing statistical methods in Lecture 7). Every conclusion must be stated with the terms null hypothesis, alternative hypothesis, reject, select, and significance level. A line-by-line explanation of the code is in the [HW3 Code Walkthrough](Code-Walkthrough.md).
+The assignment has two parts. Q1-Q4 cover parametric and nonparametric methods for comparing two groups in small samples (Lectures 6 and 8), and Q5-Q8 cover the problems of testing more than a thousand hypotheses on one data set (connected to choosing statistical methods in Lecture 7). Every conclusion must be stated with the terms null hypothesis, alternative hypothesis, reject, select, and significance level. A line-by-line explanation of the code is in the [HW3 Code Walkthrough](Code-Walkthrough.md).
 
 ```plaintext
 Coursework/HW03_Nonparametric-Tests-and-Multiple-Testing/
@@ -111,7 +111,7 @@ The rank sum of the computer scientist group is $R_{CS} = 3 \times 5.5 + 10 + 2 
 
 $$\mathrm{Var}(W) = \frac{n_1 n_2}{12}\left[(N + 1) - \frac{\sum_j (t_j^3 - t_j)}{N(N - 1)}\right] = \frac{81}{12}\left[19 - \frac{216}{306}\right] = 123.49$$
 
-$$z = \frac{W - E[W]}{\sqrt{\mathrm{Var}(W)}} = \frac{61.5 - 40.5}{11.112} = 1.890, \qquad p = 2\{1 - \Phi(1.890)\} = 0.0588$$
+$$z = \frac{W - E[W]}{\sqrt{\mathrm{Var}(W)}} = \frac{61.5 - 40.5}{11.112} = 1.890, \qquad p = 2\lbrace1 - \Phi(1.890)\rbrace = 0.0588$$
 
 The p-value 0.0588 is larger than the significance level 0.05, so the null hypothesis is not rejected, and there is insufficient ground to select the alternative that the distributions of case counts of the two occupation groups differ.
 
@@ -274,7 +274,7 @@ For a two-sided test at the 1% significance level this criterion is equivalent t
 
 The other six are Gene_382, Gene_1019, Gene_1130, Gene_1265, Gene_321, and Gene_812, all with correlation coefficients of 0.30-0.34. Whether these 12 are actually related to height is judged again with the multiple testing correction of Section 8.
 
-> **Note:** The Pearson correlation test measures linear association and is exact when the two variables follow a bivariate normal distribution or the sample is large enough. The same test with the rank-based Spearman correlation coefficient gives 19 genes with p-values below 0.01.
+> **Note:** The Pearson correlation test measures linear association and is exact when the two variables follow a bivariate normal distribution and approximately valid when the sample is large enough. The same test with the rank-based Spearman correlation coefficient gives 19 genes with p-values below 0.01.
 
 ---
 
@@ -351,7 +351,7 @@ When every null hypothesis is true, p-values follow the uniform distribution on 
 **Applications.**
 
 - **Discovering biomarker candidates:** Genes of Q5 that pass a strict criterion, such as the 56 under Bonferroni, and show a large difference in group means become candidates for cancer diagnostic biomarkers. A test panel of a few genes is cheaper and faster than measuring the whole genome.
-- **Feature selection in machine learning:** As **filter feature selection**, which picks features for classification from thousands of variables in advance, it reduces the dimension of logistic regression, random forest, and neural network classifiers of cancer versus healthy and prevents overfitting.
+- **Feature selection in machine learning:** As **filter feature selection**, which picks features for classification from thousands of variables in advance, it reduces the dimension of logistic regression, random forest, and neural network classifiers of cancer versus healthy and lowers the risk of overfitting.
 - **Mechanism research and drug targets:** Pathway analysis, which matches the list of significant genes against known biological pathways, builds hypotheses about disease mechanisms and selects drug target candidates for experimental validation.
 - **Study design:** When no signal remains after correction, as in Q6, that is itself a result. It is grounds for judging whether a larger sample is needed, and it shows that using the 12 chance-significant genes as features would only add noise and harm a model.
 

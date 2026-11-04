@@ -87,7 +87,7 @@ $$Z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}$$
 
 | Alternative | p-value | Rejection region ($\alpha = 0.05$) | Rejection region ($\alpha = 0.10$) |
 |:-----|:-----|:-----|:-----|
-| $\mu \ne \mu_0$ (two-sided) | $2\{1 - \Phi(\lvert z \rvert)\}$ | $\lvert z \rvert > 1.960$ | $\lvert z \rvert > 1.645$ |
+| $\mu \ne \mu_0$ (two-sided) | $2\lbrace1 - \Phi(\lvert z \rvert)\rbrace$ | $\lvert z \rvert > 1.960$ | $\lvert z \rvert > 1.645$ |
 | $\mu > \mu_0$ (right-tailed) | $1 - \Phi(z)$ | $z > 1.645$ | $z > 1.282$ |
 | $\mu < \mu_0$ (left-tailed) | $\Phi(z)$ | $z < -1.645$ | $z < -1.282$ |
 
@@ -95,7 +95,7 @@ $$Z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}$$
 
 5. **Decide and conclude:** If the p-value is smaller than the significance level, **reject** the null hypothesis and **select** the alternative hypothesis. Otherwise the null hypothesis is not rejected, which does not prove the null hypothesis true but means that the evidence is insufficient to select the alternative. Comparing the p-value with the significance level is the same decision as checking whether the test statistic falls in the **rejection region**.
 
-> **Definition:** The null hypothesis of a one-sided test is sometimes written $H_0: \mu \le \mu_0$ (right-tailed) or $H_0: \mu \ge \mu_0$ (left-tailed). The p-value is still computed at the boundary value $\mu = \mu_0$, where the probability of a type I error is largest, so the computation is the same.
+> **Note:** The null hypothesis of a one-sided test is sometimes written $H_0: \mu \le \mu_0$ (right-tailed) or $H_0: \mu \ge \mu_0$ (left-tailed). The p-value is still computed at the boundary value $\mu = \mu_0$, where the probability of a type I error is largest, so the computation is the same.
 
 ---
 
@@ -111,7 +111,7 @@ $$Z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}$$
 
 $$\frac{\sigma}{\sqrt{n}} = \frac{16.5}{\sqrt{8921}} = 0.17469, \qquad Z = \frac{128.8486 - 128.65}{0.17469} = \frac{0.19856}{0.17469} = 1.1366$$
 
-$$p = 2\{1 - \Phi(1.1366)\} = 0.2557$$
+$$p = 2\lbrace1 - \Phi(1.1366)\rbrace = 0.2557$$
 
 **Conclusion.** $\lvert Z \rvert = 1.137$ is below the rejection boundary 1.960, and the p-value 0.2557 is larger than the significance level 0.05. Therefore the null hypothesis is not rejected, and there is no ground to select the alternative hypothesis. There is no significant evidence that the mean systolic blood pressure of the collected sample differs from the NIH distribution of normal people, and by this criterion the sample cannot be called biased.
 
@@ -165,7 +165,7 @@ $$\frac{\sigma}{\sqrt{n}} = \frac{3.3317}{\sqrt{4834}} = 0.047919, \qquad Z = \f
 
 All three directions share the same test statistic $Z = 1.679$, and only the p-values differ by direction.
 
-$$p_{\text{two}} = 2\{1 - \Phi(1.679)\} = 0.0932, \qquad p_{\text{right}} = 1 - \Phi(1.679) = 0.0466, \qquad p_{\text{left}} = \Phi(1.679) = 0.9534$$
+$$p_{\text{two}} = 2\lbrace1 - \Phi(1.679)\rbrace = 0.0932, \qquad p_{\text{right}} = 1 - \Phi(1.679) = 0.0466, \qquad p_{\text{left}} = \Phi(1.679) = 0.9534$$
 
 Since $\bar{x} > \mu_0$, $Z > 0$, and then the right-tailed p-value is half the two-sided p-value and the left-tailed p-value is 1 minus the right-tailed p-value.
 
@@ -237,11 +237,11 @@ The p-values are then 0.614 (two-sided), 0.307 (right-tailed), and 0.693 (left-t
 
 $$\frac{\sigma}{\sqrt{n}} = \frac{2.9992}{\sqrt{8921}} = 0.031754, \qquad Z = \frac{96.0666 - 96.0245}{0.031754} = \frac{0.04208}{0.031754} = 1.3253$$
 
-$$p = 2\{1 - \Phi(1.3253)\} = 0.1851$$
+$$p = 2\lbrace1 - \Phi(1.3253)\rbrace = 0.1851$$
 
 **Conclusion.** The p-value 0.1851 is larger than the significance level 0.05, so the null hypothesis is not rejected, and there is no ground to select the alternative that the data form a separate population. The conclusion is the same at the other conventional levels 0.01 and 0.10. The 95% confidence interval for the population mean, (96.004, 96.129), also contains 96.0245. The sample variance 9.035 is nearly equal to the given variance 8.995, so neither the mean nor the spread shows a notable departure from the Korean statistics.
 
-Setting the significance level above 0.1851, for example at 0.20, would allow rejection, but that means accepting a 20% type I error, and above all it chooses the significance level after seeing the p-value, which is not a valid test. A p-value is a probability and always lies between 0 and 1, and the two-sided p-value is twice the area of one tail, $2 \times 0.0925 = 0.1851$.
+Setting the significance level above 0.1851, for example at 0.20, would allow rejection, but that means accepting a 20% type I error, and above all it chooses the significance level after seeing the p-value, which is not a valid test. A p-value is a probability and always lies between 0 and 1, and the two-sided p-value is twice the area of one tail, $2 \times 0.09253 = 0.1851$.
 
 > **Caution:** Failing to reject the null hypothesis does not prove "it is the same population". This test compares only means, and the result means only that no difference in means appeared even in a large sample whose standard error is just 0.032 percentage points. Oxygen saturation cannot exceed 100%, so its distribution has a long left tail (minimum 71, median 97, maximum 99), but with 8,921 subjects the normal approximation of the sample mean is not a problem.
 
@@ -290,7 +290,7 @@ The standard error $\sigma/\sqrt{n}$ is inversely proportional to the square roo
    <details>
    <summary>Answer</summary>
 
-   The standard error is $15/\sqrt{225} = 1$, so $Z = (102 - 100)/1 = 2.0$. The two-sided p-value is $2\{1 - \Phi(2.0)\} = 0.0455$, smaller than 0.05, so the null hypothesis is rejected and the alternative selected.
+   The standard error is $15/\sqrt{225} = 1$, so $Z = (102 - 100)/1 = 2.0$. The two-sided p-value is $2\lbrace1 - \Phi(2.0)\rbrace = 0.0455$, smaller than 0.05, so the null hypothesis is rejected and the alternative selected.
 
    </details>
 
