@@ -47,10 +47,10 @@ The five R scripts in `Solution/` carry out the computations of Q1-Q7, and Q2, Q
 
 *Table 1. Structure of the HW3 scripts*
 
-The scripts locate the data folder relative to their own folder, so they are run with RStudio's Source button or with `source()` as below. Section 2.2 of the [HW2 Code Walkthrough](../HW02_One-Sample-Z-Test/Code-Walkthrough.md) explains this approach.
+The scripts locate the data folder relative to their own folder, so they are run with `source()`. Section 2.2 of the [HW2 Code Walkthrough](../HW02_One-Sample-Z-Test/Code-Walkthrough.md) explains this approach. These scripts show results through lines that contain only a value, such as `t_res`, `table(...)`, and `head(...)`, but `source()` does not print such values by default and shows only the output of `str()` and `cat()`. To see all the output in this document, pass `print.eval = TRUE` as below, or run the script in RStudio with Source with Echo (which prints the code together with the results).
 
 ```r
-source("Coursework/HW03_Nonparametric-Tests-and-Multiple-Testing/Solution/Q1-2.R")
+source("Coursework/HW03_Nonparametric-Tests-and-Multiple-Testing/Solution/Q1-2.R", print.eval = TRUE)
 ```
 
 ---

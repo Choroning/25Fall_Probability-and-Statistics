@@ -56,7 +56,7 @@ source("Coursework/HW02_One-Sample-Z-Test/Solution/Q1.R")
 
 ## 2. The Common Part of the Four Scripts
 
-The first twenty or so lines of the four scripts are the same. Lines 1-21 of `Q1.R` serve as the example.
+The four scripts differ only in the header of lines 1-5 and are otherwise the same up to line 21. Lines 1-21 of `Q1.R` serve as the example.
 
 ### 2.1 Preparing Packages
 
@@ -102,7 +102,7 @@ file_name <- "Data.txt"
 data <- fread(file_name)
 ```
 
-`fread()` is the fast file reader of the data.table package. It detects the separator (a tab here) and the header row by itself and returns a `data.table` object. `data.table` is a class that extends `data.frame`, so columns can be taken out with `$`, as in `data$sysBP`. The first three rows are as follows.
+`fread()` is the fast file reader of the data.table package. It detects the separator (a tab here) and the header row by itself and returns a `data.table` object. `data.table` is a class that extends `data.frame`, so columns can be taken out with `$`, as in `data$sysBP`. The first three rows printed by `head(data, 3)` are as follows, and the columns that do not fit in the width of the console continue below.
 
 ```text
          ID   Age Gender  Race Height_CM Weight_KG sysBP    HR Resting_SaO2
@@ -110,6 +110,11 @@ data <- fread(file_name)
 1: ID_00001  54.5      2     1     159.9        73   130    87           94
 2: ID_00002  62.3      2     1     162.6        86   170    81           94
 3: ID_00003  69.1      1     1     173.2        80   147    69           91
+     BMI HaveCough  FEV1   FVC Disease
+   <num>     <int> <num> <num>  <char>
+1: 28.55         0 112.3 114.6 Healthy
+2: 32.53         0  51.7  93.3 COVID19
+3: 26.67         0  59.3  77.0 COVID19
 ```
 
 The handout's `data.frame(fread("Data.txt", sep = "\t", head = T, stringsAsFactors = T))` converts the result to a plain `data.frame` and turns string columns into factors. For the computations in this assignment the two ways make no difference.
@@ -149,7 +154,7 @@ p_value <- 2 * (1 - pnorm(abs(z_stat)))
 - The population mean $\mu_0$, the population standard deviation $\sigma$, and the significance level $\alpha$ are stored in variables.
 - `length()` gives the sample size $n = 8921$, and `mean()` gives the sample mean $\bar{x} = 128.8486$.
 - `z_stat` transcribes $Z = (\bar{x} - \mu_0)/(\sigma/\sqrt{n})$ directly.
-- `pnorm(q)` is the cumulative distribution function of the standard normal distribution, $\Phi(q) = P(Z \le q)$. The two-sided p-value is the area of the two tails beyond $\lvert z \rvert$, so it is $2\{1 - \Phi(\lvert z \rvert)\}$.
+- `pnorm(q)` is the cumulative distribution function of the standard normal distribution, $\Phi(q) = P(Z \le q)$. The two-sided p-value is the area of the two tails beyond $\lvert z \rvert$, so it is $2\lbrace1 - \Phi(\lvert z \rvert)\rbrace$.
 
 ```r
 # (3) Decision at 5% significance level
@@ -255,6 +260,12 @@ make_decision <- function(p_val, alpha, test_type) {
 `make_decision()` takes a p-value, a significance level, and the name of a test and prints the decision. The same comparison is made several times, so wrapping it in a function removes the repetition. The script judges all three directions at the 0.05 level and the two-sided direction at the 0.10 level.
 
 ```text
+================ Analysis Result (Q3 & Q4) ================
+Population Mean (mu): 74.62
+Population SD (sigma): 3.3317 (Variance=11.1)
+Sample Size (n): 4834
+Sample Mean (x_bar): 74.7005
+-----------------------------------------------------------
 Test Statistic (Z): 1.6790
 -----------------------------------------------------------
 [1] Two-tailed P-value: 9.3156e-02

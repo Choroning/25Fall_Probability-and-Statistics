@@ -28,7 +28,7 @@ Exercises 1-9 check the probability theory of [Lecture 2](Concepts_Lecture.md) t
 
 ## Exercise 1: Three Events for Two Dice
 
-**Problem:** Simulate in R a probability experiment of throwing two dice at the same time. The two dice are not distinguished, so an outcome is recorded as a pair $(i, j)$ with the smaller face first ($i \le j$). Find the elements of the following three events.
+**Problem:** Simulate in R a probability experiment of throwing two dice at the same time. The two dice are not distinguished, so an outcome is recorded as a pair $(i, j)$ with the smaller face first ($`i \le j`$). Find the elements of the following three events.
 
 - Event $A$: The sum of the dice values is even.
 - Event $B$: The sum of the dice values is 8 or more.

@@ -56,7 +56,7 @@
 
 ## 1. Overview of Discrete Distributions
 
-Lecture 3 defined random variables, probability mass functions, expected values, and variances in general. Most discrete random variables met in practice arise from a few typical experimental structures, and the same structure always yields the same form of probability mass function. This lecture organizes seven frequently used discrete distributions in the order of experimental structure, probability mass function, derivation of the expected value and variance, and R functions. The probability mass function is written $f(x)$ instead of $p_X(x)$ of Lecture 3.
+Lecture 3 defined random variables, probability mass functions, expected values, and variances in general. Most discrete random variables met in practice arise from a few typical experimental structures, and the same structure always yields the same form of probability mass function. The sections below organize seven frequently used discrete distributions in the order of experimental structure, probability mass function, derivation of the expected value and variance, and R functions. The probability mass function is written $f(x)$ instead of $p_X(x)$ of Lecture 3.
 
 ### 1.1 Seven Distributions
 
@@ -70,9 +70,9 @@ The shape of each distribution is determined by a few constants. These shape-det
 | Hypergeometric | $HG(n, N, r)$ | $n$, $N$, $r$ | Number of successes among $n$ items drawn without replacement from a finite population |
 | Poisson | $Poi(\lambda)$ | $\lambda$ | Number of occurrences of a rare event in a fixed unit |
 | Geometric | $G(p)$ | $p$ | Number of trials until the first success |
-| Negative binomial | $NB(p, r)$ | $p$, $r$ | Number of trials until the $r$th success |
+| Negative binomial | $NB(p, r)$ | $p$, $r$ | Number of trials until the $`r`$th success |
 
-*Table 1. The seven discrete distributions covered in this lecture*
+*Table 1. Notation, parameters, and counted quantity of the seven discrete distributions*
 
 Here $p$ is the probability of success in one trial. All distributions from the binomial onward are built on trials with only two outcomes, success and failure, so the Bernoulli trial of Section 3 is their common starting point.
 
@@ -93,7 +93,7 @@ For each major distribution, R provides four functions whose names prefix the di
 - The CDF of a discrete distribution is a step function, so there may be no $x$ with $F(x) = u$. The `q` function therefore returns the smallest $x$ with $F(x) \ge u$. In particular, `q...(0.5, ...)` is the median.
 - The result of an `r` function changes on every run. Fixing the starting point of the random numbers with `set.seed()` reproduces the same result.
 
-> **Caution:** For the geometric and negative binomial distributions, R's functions use **the number of failures before success** as the random variable, not the number of trials [1]. To use R functions for distributions defined by the number of trials, as in this lecture, the values must be shifted (Sections 7.4 and 8.3). The argument names of R's hypergeometric functions clash with this lecture's symbols, so they are summarized separately in Section 5.4.
+> **Caution:** For the geometric and negative binomial distributions, R's functions use **the number of failures before success** as the random variable, not the number of trials [2], [3]. To use R functions for distributions defined by the number of trials, as in Sections 7 and 8, the values must be shifted (Sections 7.4 and 8.3). The argument names of R's hypergeometric functions clash with the symbols of $HG(n, N, r)$, so they are summarized separately in Section 5.4.
 
 ---
 
@@ -103,27 +103,27 @@ For each major distribution, R provides four functions whose names prefix the di
 
 > **Definition:** The probability distribution in which $n$ result values $1, 2, \dots, n$ occur with equal probability is called the **discrete uniform distribution**. Its probability mass function is $f(x) = \dfrac{1}{n}$ $(x = 1, 2, \dots, n)$.
 
-The parameter is the number of result values $n$, and the support is $\{1, 2, \dots, n\}$. The number shown by a fair die ($n = 6$) and the number on a ball drawn from balls numbered 1 to 20 ($n = 20$) follow this distribution.
+The parameter is the number of result values $n$, and the support is $\lbrace1, 2, \dots, n\rbrace$. The number shown by a fair die ($`n = 6`$) and the number on a ball drawn from balls numbered 1 to 20 ($`n = 20`$) follow this distribution.
 
 **Expected value.** Use the formula for the sum of natural numbers, $\sum_{x=1}^{n} x = \frac{n(n+1)}{2}$.
 
-$$
+```math
 E(X) = \sum_{x=1}^{n} x \Big(\frac{1}{n}\Big) = \frac{1}{n} \times \frac{n(n+1)}{2} = \frac{n+1}{2}
-$$
+```
 
 **Variance.** Find $E(X^2)$ with the sum-of-squares formula $\sum_{x=1}^{n} x^2 = \frac{n(n+1)(2n+1)}{6}$, and use $\mathrm{Var}(X) = E(X^2) - E(X)^2$ from Lecture 3.
 
-$$
+```math
 E(X^2) = \sum_{x=1}^{n} x^2 \Big(\frac{1}{n}\Big) = \frac{1}{n} \times \frac{n(n+1)(2n+1)}{6} = \frac{(n+1)(2n+1)}{6}
-$$
+```
 
-$$
-\mathrm{Var}(X) = \frac{(n+1)(2n+1)}{6} - \Big(\frac{n+1}{2}\Big)^2 = \frac{(n+1)\{2(2n+1) - 3(n+1)\}}{12} = \frac{(n+1)(n-1)}{12}
-$$
+```math
+\mathrm{Var}(X) = \frac{(n+1)(2n+1)}{6} - \Big(\frac{n+1}{2}\Big)^2 = \frac{(n+1)\lbrace2(2n+1) - 3(n+1)\rbrace}{12} = \frac{(n+1)(n-1)}{12}
+```
 
-The expression in braces is $4n + 2 - 3n - 3 = n - 1$. The two sum formulas can be checked as follows. The first holds because pairing the front and back terms, $1 + n$, $2 + (n-1)$, and so on, produces $n/2$ pairs each summing to $n + 1$. The second follows by adding the identity $(k+1)^3 - k^3 = 3k^2 + 3k + 1$ over $k = 1, \dots, n$; the left side collapses to $(n+1)^3 - 1$ (a telescoping sum), and solving for $\sum k^2$ gives the formula.
+The expression in braces is $4n + 2 - 3n - 3 = n - 1$. The two sum formulas can be checked as follows. The first holds because adding the sum $S = 1 + 2 + \cdots + n$ term by term to the same sum written backward, $S = n + (n-1) + \cdots + 1$, gives $n$ pairs each summing to $n + 1$, so $2S = n(n+1)$. The second follows by adding the identity $(k+1)^3 - k^3 = 3k^2 + 3k + 1$ over $k = 1, \dots, n$; the left side collapses to $(n+1)^3 - 1$ (a telescoping sum), and solving for $\sum k^2$ gives the formula.
 
-**Example.** A die ($n = 6$) has $E(X) = 7/2$ and $\mathrm{Var}(X) = 7 \cdot 5 / 12 = 35/12$, the same values computed from the definitions in Lecture 3.
+**Example.** A die ($`n = 6`$) has $E(X) = 7/2$ and $\mathrm{Var}(X) = 7 \cdot 5 / 12 = 35/12$, the same values computed from the definitions in Lecture 3.
 
 > **Note:** The uniform distribution on the consecutive integers $a, a+1, \dots, b$ is the uniform distribution $U$ on $1, \dots, n$ shifted by $a - 1$, that is, $X = U + (a - 1)$ with $n = b - a + 1$. Hence $E(X) = \frac{a + b}{2}$, and since an added constant does not change the variance, $\mathrm{Var}(X) = \frac{n^2 - 1}{12}$.
 
@@ -169,13 +169,13 @@ Tossing a coin (success if heads), winning or losing a game, whether a product i
 
 **Expected value and variance.** Since $X$ is 0 or 1, $X^2 = X$.
 
-$$
+```math
 E(X) = 1 \cdot p + 0 \cdot (1 - p) = p, \qquad E(X^2) = 1^2 \cdot p + 0^2 \cdot (1 - p) = p
-$$
+```
 
-$$
+```math
 \mathrm{Var}(X) = E(X^2) - E(X)^2 = p - p^2 = p(1 - p)
-$$
+```
 
 The variance $p(1 - p)$ attains its maximum $1/4$ at $p = 1/2$ and becomes smaller as $p$ approaches 0 or 1, that is, as the outcome becomes nearly certain. In particular, if $p$ is small, $1 - p \approx 1$, so $\mathrm{Var}(X) \approx p$.
 
@@ -213,29 +213,29 @@ For the Bernoulli distribution with $p = 0.3$, $P(X = 0) = 0.7$ and $P(X = 1) = 
 
 Perform a Bernoulli trial $n$ times in sequence, and assume the trials are **independent** with the same success probability $p$ each time. Writing 1 for success and 0 for failure, an outcome is a sequence of 0s and 1s of length $n$. For example, with $n = 12$, one outcome is:
 
-$$
+```math
 100011001010
-$$
+```
 
 This outcome has probability $p^5 (1 - p)^7$. Because the trials are independent, their probabilities multiply, and with five 1s and seven 0s we multiply $p$ five times and $1 - p$ seven times. The order of multiplication does not matter, so every sequence of length 12 with five 1s has the same probability $p^5 (1 - p)^7$.
 
-Let $X$ be the number of successes (1s); then $X(100011001010) = 5$. The event $\{X = 5\}$ contains every sequence with five 1s, and the number of such sequences is the number of ways to choose the five positions of the 1s among twelve, $\binom{12}{5} = 792$. Therefore:
+Let $X$ be the number of successes (1s); then $X(100011001010) = 5$. The event $\lbrace X = 5\rbrace$ contains every sequence with five 1s, and the number of such sequences is the number of ways to choose the five positions of the 1s among twelve, $\binom{12}{5} = 792$. Therefore:
 
-$$
+```math
 P(X = 5) = \binom{12}{5} \cdot p^5 \cdot (1 - p)^7
-$$
+```
 
 The same reasoning applies to general $n$ and $k$.
 
-> **Definition:** The number of successes $X$ in $n$ independent Bernoulli trials with common success probability $p$ is called a **binomial random variable**, and its distribution the **binomial distribution**. It is written $X \sim B(n, p)$, and its probability mass function is $P(X = k) = \binom{n}{k}\, p^k (1 - p)^{n - k}$ $(k = 0, 1, \dots, n)$.
+> **Definition:** The number of successes $X$ in $n$ independent Bernoulli trials with common success probability $p$ is called a **binomial random variable**, and its distribution the **binomial distribution**. It is written $X \sim B(n, p)$, and its probability mass function is $`P(X = k) = \binom{n}{k}\, p^k (1 - p)^{n - k}`$ $(k = 0, 1, \dots, n)$.
 
-Here $\binom{n}{k} = {}_n C_k = \frac{n!}{k!\,(n - k)!}$ is the number of combinations of $k$ items chosen from $n$, called the **binomial coefficient**. The parameters are the number of trials $n$ and the success probability $p$, and the support is $\{0, 1, \dots, n\}$.
+Here $`\binom{n}{k} = {}_n C_k = \frac{n!}{k!\,(n - k)!}`$ is the number of combinations of $k$ items chosen from $n$, called the **binomial coefficient**. The parameters are the number of trials $n$ and the success probability $p$, and the support is $\lbrace0, 1, \dots, n\rbrace$.
 
 The probabilities sum to 1, as the **binomial theorem** $(a + b)^n = \sum_{k=0}^{n} \binom{n}{k} a^k b^{n-k}$ with $a = p$ and $b = 1 - p$ shows.
 
-$$
-\sum_{k=0}^{n} \binom{n}{k} p^k (1 - p)^{n - k} = \{p + (1 - p)\}^n = 1^n = 1
-$$
+```math
+\sum_{k=0}^{n} \binom{n}{k} p^k (1 - p)^{n - k} = \lbrace p + (1 - p)\rbrace^n = 1^n = 1
+```
 
 The fact that each probability is a term of the binomial expansion is the origin of the name "binomial distribution."
 
@@ -249,33 +249,33 @@ As Figure 1 shows, for $p < 0.5$ the distribution is concentrated on the left wi
 
 By definition, the mean of a binomial random variable is:
 
-$$
+```math
 E(X) = \sum_{k=0}^{n} k \cdot P(X = k) = \sum_{k=0}^{n} k \cdot \binom{n}{k} p^k (1 - p)^{n - k}
-$$
+```
 
 This sum equals $np$. Using the identity $k \binom{n}{k} = n \binom{n-1}{k-1}$ (counting in two ways the choices of $k$ items together with one representative among them), and noting that the $k = 0$ term is 0,
 
-$$
+```math
 E(X) = np \sum_{k=1}^{n} \binom{n-1}{k-1} p^{k-1} (1 - p)^{n-k} = np \sum_{j=0}^{n-1} \binom{n-1}{j} p^{j} (1 - p)^{(n-1)-j} = np \cdot 1
-$$
+```
 
 holds. After the substitution $j = k - 1$ in the second step, the remaining sum is the total probability of $B(n - 1, p)$, which is 1.
 
-**An easier way.** In $n$ independent Bernoulli trials, let $X_k$ be the outcome (0 or 1) of the $k$th trial. The number of successes is then:
+**An easier way.** In $n$ independent Bernoulli trials, let $X_k$ be the outcome (0 or 1) of the $`k`$th trial. The number of successes is then:
 
-$$
+```math
 X \equiv X_1 + X_2 + \cdots + X_n
-$$
+```
 
-That is, a binomial random variable is a sum of Bernoulli random variables that "count the successes." From Section 3, $E(X_k) = p$ and $\mathrm{Var}(X_k) = E(X_k^2) - \{E(X_k)\}^2 = p - p^2 = p(1 - p)$. By Lecture 3, Section 5.4, the expected value of a sum is the sum of the expected values, and since the $X_k$ are independent, by Lecture 3, Section 7.3, the variance of the sum is the sum of the variances.
+That is, a binomial random variable is a sum of Bernoulli random variables that "count the successes." From Section 3, $E(X_k) = p$ and $\mathrm{Var}(X_k) = E(X_k^2) - \lbrace E(X_k)\rbrace^2 = p - p^2 = p(1 - p)$. By Lecture 3, Section 5.4, the expected value of a sum is the sum of the expected values, and since the $X_k$ are independent, by Lecture 3, Section 7.3, the variance of the sum is the sum of the variances.
 
-$$
+```math
 E(X) = \sum_{i=1}^{n} E(X_i) = \sum_{i=1}^{n} p = np
-$$
+```
 
-$$
+```math
 \mathrm{Var}(X) = \sum_{i=1}^{n} \mathrm{Var}(X_i) = \sum_{i=1}^{n} p(1 - p) = np(1 - p)
-$$
+```
 
 If $p$ is small, $1 - p \approx 1$, so $\mathrm{Var}(X) \approx np$. This approximation leads to the Poisson distribution in Section 6. The three distributions in Figure 1 have means 2, 5, 8 and variances 1.6, 2.5, 1.6.
 
@@ -292,11 +292,11 @@ If $p$ is small, $1 - p \approx 1$, so $\mathrm{Var}(X) \approx np$. This approx
 
 Typing `?dbinom` in the R console shows the help page for all four functions. The first argument `n` of `rbinom` is the number of random numbers to generate, not the number of trials; the number of trials is `size`.
 
-**Example: the number of correct guesses on a multiple-choice test.** If all 10 multiple-choice questions with four options each are answered at random, each question is correct with probability $1/4$ and the questions are independent, so the number of correct answers is $X \sim B(10, 0.25)$. The probability of exactly 3 correct answers is:
+**Example: the number of correct random guesses on multiple-choice questions.** If all 10 multiple-choice questions with four options each are answered at random, each question is correct with probability $1/4$ and the questions are independent, so the number of correct answers is $X \sim B(10, 0.25)$. The probability of exactly 3 correct answers is:
 
-$$
+```math
 P(X = 3) = \binom{10}{3} (0.25)^3 (0.75)^7 = 120 \times 0.015625 \times 0.1335 \approx 0.2503
-$$
+```
 
 The mean is $10 \times 0.25 = 2.5$ questions and the variance is $10 \times 0.25 \times 0.75 = 1.875$.
 
@@ -307,7 +307,7 @@ pbinom(2, 10, 0.25)                       # P(X <= 2)
 pbinom(5, 10, 0.25, lower.tail = FALSE)   # P(X > 5) = P(X >= 6)
 qbinom(0.5, 10, 0.25)                     # smallest x with F(x) >= 0.5
 set.seed(1)
-rbinom(5, 10, 0.25)                       # five simulated scores
+rbinom(5, 10, 0.25)                       # simulated numbers of correct answers for five people
 ```
 
 ```text
@@ -323,7 +323,7 @@ rbinom(5, 10, 0.25)                       # five simulated scores
 - The 0.2503 on the first line matches the hand computation. The second line lists all probabilities for $x = 0, \dots, 10$; the largest is 0.2816 at $x = 2$.
 - $P(X \le 2) \approx 0.5256$, so with probability over one half at most 2 questions are correct. The probability of 6 or more correct answers, $P(X \ge 6) = P(X > 5) \approx 0.0197$, is very small, about 2%.
 - `qbinom(0.5, 10, 0.25)` is 2, the smallest $x$ with $F(x) \ge 0.5$, because $F(1) \approx 0.2440 < 0.5$ and $F(2) \approx 0.5256 \ge 0.5$.
-- `rbinom(5, 10, 0.25)` simulates five people taking this test by guessing.
+- `rbinom(5, 10, 0.25)` simulates the numbers of correct answers when five people each guess on the 10 questions.
 
 ---
 
@@ -355,35 +355,35 @@ graph LR
 
 **Probability mass function.** There are $\binom{N}{n}$ ways to choose $n$ of $N$ items, and in random sampling without replacement all these samples are equally likely. Those with exactly $x$ successes are formed by choosing $x$ of the $r$ successes and $n - x$ of the $N - r$ failures, which can be done in $\binom{r}{x}\binom{N - r}{n - x}$ ways.
 
-$$
+```math
 f(x) = \frac{\dbinom{r}{x}\dbinom{N - r}{n - x}}{\dbinom{N}{n}}, \qquad \max(0,\ n - N + r) \le x \le \min(n,\ r)
-$$
+```
 
 The range of the support comes from three conditions. The successes in the sample cannot exceed the sample size, so $x \le n$, nor the number of successes in the population, so $x \le r$. Also, the number of failures in the sample, $n - x$, cannot exceed the number of failures in the population, $N - r$, so $x \ge n - (N - r)$. There are three parameters, $n$, $N$, and $r$.
 
 ### 5.2 Expected Value and Variance
 
-**Expected value.** Let $I_i$ be 1 if the $i$th item drawn is a success and 0 otherwise; then $X = I_1 + \cdots + I_n$. Even without replacement, if the earlier results are unknown, the $i$th item drawn is equally likely to be any of the $N$ items, so $P(I_i = 1) = r/N$. The additivity of expectation from Lecture 3 does not require independence, so:
+**Expected value.** Let $I_i$ be 1 if the $`i`$th item drawn is a success and 0 otherwise; then $X = I_1 + \cdots + I_n$. Even without replacement, if the earlier results are unknown, the $`i`$th item drawn is equally likely to be any of the $N$ items, so $P(I_i = 1) = r/N$. The additivity of expectation from Lecture 3 does not require independence, so:
 
-$$
+```math
 E(X) = n \times P(\text{success}) = n \times \frac{r}{N} = \frac{nr}{N}
-$$
+```
 
 **Variance.** The $I_i$ are not independent, so their variances cannot simply be added. Instead, first compute $E[X(X - 1)]$, which is easier than $E(X^2)$. Using the identity $x(x - 1)\binom{r}{x} = r(r - 1)\binom{r - 2}{x - 2}$:
 
-$$
+```math
 E[X(X - 1)] = \frac{r(r - 1)}{\binom{N}{n}} \sum_{x} \binom{r - 2}{x - 2}\binom{N - r}{n - x} = \frac{r(r - 1)\binom{N - 2}{n - 2}}{\binom{N}{n}} = \frac{nr}{N} \times \frac{(n - 1)(r - 1)}{N - 1}
-$$
+```
 
 The middle sum counts the ways to choose $n - 2$ items from $N - 2$ items ($r - 2$ successes and $N - r$ failures), split by the number of successes, so it equals $\binom{N - 2}{n - 2}$ (Vandermonde's identity). The last step uses $\binom{N - 2}{n - 2} / \binom{N}{n} = \frac{n(n - 1)}{N(N - 1)}$. Now $X^2 = X(X - 1) + X$, so
 
-$$
+```math
 \begin{aligned}
 \mathrm{Var}(X) &= E(X^2) - E(X)^2 = E[X(X - 1)] + E(X) - E(X)^2 \\
 &= \frac{nr}{N} \times \frac{(n - 1)(r - 1)}{N - 1} + \frac{nr}{N} - \Big(\frac{nr}{N}\Big)^2 \\
 &= n\,\frac{r}{N}\Big(1 - \frac{r}{N}\Big)\Big(\frac{N - n}{N - 1}\Big)
 \end{aligned}
-$$
+```
 
 holds. The last step factors out $\frac{nr}{N}$ and brings the bracket to a common denominator. The numerator of the bracket becomes $(n - 1)(r - 1)N + N(N - 1) - nr(N - 1) = N^2 - nN - rN + nr = (N - n)(N - r)$, so $\mathrm{Var}(X) = \frac{nr}{N} \cdot \frac{(N - n)(N - r)}{N(N - 1)}$, which equals the last line above.
 
@@ -391,9 +391,9 @@ holds. The last step factors out $\frac{nr}{N}$ and brings the bracket to a comm
 
 Writing the proportion of successes as $p = r/N$, the expected value and variance of the hypergeometric distribution become:
 
-$$
+```math
 E(X) = np, \qquad \mathrm{Var}(X) = n\,\frac{r}{N}\Big(1 - \frac{r}{N}\Big)\Big(\frac{N - n}{N - 1}\Big) = np(1 - p)\Big(\frac{N - n}{N - 1}\Big)
-$$
+```
 
 The expected value equals that of the binomial distribution $B(n, p)$, and the variance is the binomial variance multiplied by $\frac{N - n}{N - 1}$. This factor is called the **finite population correction factor**.
 
@@ -417,13 +417,13 @@ Figure 3 shows the case of drawing $n = 10$ items from $N = 50$. The correction 
 
 *Table 6. R functions for the hypergeometric distribution*
 
-> **Caution:** R's argument names differ from this lecture's symbols. `m` is the number of successes $r$ in the population, `n` is the number of **failures** $N - r$ in the population, and `k` is the sample size $n$. Hence probabilities of $HG(n, N, r)$ are computed with `dhyper(x, r, N - r, n)`. Note in particular that R's `n` is not the sample size.
+> **Caution:** R's argument names differ from the symbols of $HG(n, N, r)$. `m` is the number of successes $r$ in the population, `n` is the number of **failures** $N - r$ in the population, and `k` is the sample size $n$. Hence probabilities of $HG(n, N, r)$ are computed with `dhyper(x, r, N - r, n)`. Note in particular that R's `n` is not the sample size.
 
 **Example: inspecting defective bulbs.** A box of 12 bulbs contains 4 defective ones. When 3 bulbs are drawn without replacement, the number of defectives is $X \sim HG(3, 12, 4)$. The total number of samples is $\binom{12}{3} = 220$.
 
-$$
+```math
 P(X = 0) = \frac{\binom{4}{0}\binom{8}{3}}{220} = \frac{56}{220}, \quad P(X = 1) = \frac{\binom{4}{1}\binom{8}{2}}{220} = \frac{112}{220}, \quad P(X = 2) = \frac{\binom{4}{2}\binom{8}{1}}{220} = \frac{48}{220}, \quad P(X = 3) = \frac{\binom{4}{3}\binom{8}{0}}{220} = \frac{4}{220}
-$$
+```
 
 The mean is $3 \times 4/12 = 1$, and the variance is $3 \times \frac{1}{3} \times \frac{2}{3} \times \frac{12 - 3}{12 - 1} = \frac{2}{3} \times \frac{9}{11} = \frac{6}{11} \approx 0.545$.
 
@@ -444,7 +444,7 @@ dbinom(0:3, 3, 4/12)                      # binomial B(3, 1/3) for comparison
 [1] 0.29629630 0.44444444 0.22222222 0.03703704
 ```
 
-The first line equals $56/220$, $112/220$, $48/220$, $4/220$. The last line is the binomial distribution $B(3, 1/3)$ for drawing from the same box with replacement. Its variance $3 \times \frac{1}{3} \times \frac{2}{3} = \frac{2}{3}$ is larger than the hypergeometric $6/11$, which is also why the binomial puts more probability at both ends ($x = 0, 3$).
+The first line equals $56/220$, $112/220$, $48/220$, $4/220$. The last line is the binomial distribution $B(3, 1/3)$ for drawing from the same box with replacement. Its variance $3 \times \frac{1}{3} \times \frac{2}{3} = \frac{2}{3}$ is larger than the hypergeometric $6/11$, which is also why the binomial puts more probability at both ends ($`x = 0, 3`$).
 
 ---
 
@@ -458,16 +458,16 @@ The first line equals $56/220$, $112/220$, $48/220$, $4/220$. The last line is t
 
 The number of calls to a call center in one minute, the number of typos on a page, the number of flaws in one unit of a product, and the number of traffic accidents in a day are examples. There is one parameter, $\lambda$, and the support is the set of all nonnegative integers.
 
-The Poisson distribution resembles the binomial but is defined as a **limit**. Divide the unit into $n$ very small intervals, and let $p$ be the probability that the event occurs in each interval. If the intervals are small enough, two or more occurrences in one interval can be ignored, so the number of occurrences can be viewed as $B(n, p)$. Letting $n \to \infty$ while keeping the average number of occurrences $\lambda = np$ fixed (so $p = \lambda/n \to 0$):
+The Poisson distribution can be derived as a **limit** of the binomial. Divide the unit into $n$ very small intervals, and let $p$ be the probability that the event occurs in each interval. If the intervals are small enough, two or more occurrences in one interval can be ignored, so the number of occurrences can be viewed as $B(n, p)$. Letting $n \to \infty$ while keeping the average number of occurrences $\lambda = np$ fixed (so $`p = \lambda/n \to 0`$):
 
-$$
+```math
 \begin{aligned}
 \lim_{n \to \infty} \binom{n}{x} p^x (1 - p)^{n - x}
 &= \lim_{n \to \infty} \frac{n!}{x!\,(n - x)!} \Big(\frac{\lambda}{n}\Big)^x \Big(1 - \frac{\lambda}{n}\Big)^{n - x} \\
 &= \frac{\lambda^x}{x!} \lim_{n \to \infty} \frac{n(n - 1)\cdots(n - x + 1)}{n^x} \Big(1 - \frac{\lambda}{n}\Big)^{n} \Big(1 - \frac{\lambda}{n}\Big)^{-x} \\
 &= \frac{\lambda^x}{x!} \cdot 1 \cdot e^{-\lambda} \cdot 1 = \lambda^x \frac{e^{-\lambda}}{x!}
 \end{aligned}
-$$
+```
 
 The second line uses $\frac{n!}{(n - x)!} = n(n - 1)\cdots(n - x + 1)$ and $(\lambda/n)^x = \lambda^x / n^x$, and splits $(1 - \lambda/n)^{n - x}$ in two. The three limits are as follows.
 
@@ -481,33 +481,33 @@ The second line uses $\frac{n!}{(n - x)!} = n(n - 1)\cdots(n - x + 1)$ and $(\la
 
 **Total probability.** The Taylor series from calculus, $e^\lambda = \sum_{\ell=0}^{\infty} \frac{\lambda^\ell}{\ell!}$, shows that the probabilities sum to 1. Unlike a binomial random variable, a Poisson random variable has no upper limit and can take **arbitrarily large** integer values.
 
-$$
+```math
 \sum_{x=0}^{\infty} e^{-\lambda} \frac{\lambda^x}{x!} = e^{-\lambda} e^{\lambda} = 1
-$$
+```
 
 **Expected value.** The $x = 0$ term is 0, and $x / x! = 1/(x - 1)!$.
 
-$$
+```math
 E(X) = \sum_{x=0}^{\infty} x \cdot e^{-\lambda} \frac{\lambda^x}{x!} = \lambda \sum_{x=1}^{\infty} e^{-\lambda} \frac{\lambda^{x - 1}}{(x - 1)!} = \lambda \sum_{j=0}^{\infty} e^{-\lambda} \frac{\lambda^{j}}{j!} = \lambda
-$$
+```
 
 **Variance.** Compute $E[X(X - 1)]$ in the same way.
 
-$$
+```math
 E[X(X - 1)] = \sum_{x=2}^{\infty} x(x - 1)\, e^{-\lambda} \frac{\lambda^x}{x!} = \lambda^2 \sum_{x=2}^{\infty} e^{-\lambda} \frac{\lambda^{x - 2}}{(x - 2)!} = \lambda^2
-$$
+```
 
-$$
+```math
 \mathrm{Var}(X) = E[X(X - 1)] + E(X) - E(X)^2 = \lambda^2 + \lambda - \lambda^2 = \lambda
-$$
+```
 
 The Poisson distribution has **expected value and variance both equal to $\lambda$**. This agrees with the binomial, for which $E(X) = np = \lambda$ and $\mathrm{Var}(X) = np(1 - p) \approx np = \lambda$ when $p$ is small.
 
 **Cumulative distribution function.**
 
-$$
+```math
 F(k) = P(X \le k) = \sum_{\ell=0}^{k} e^{-\lambda} \frac{\lambda^\ell}{\ell!} = e^{-\lambda} \sum_{\ell=0}^{k} \frac{\lambda^\ell}{\ell!}
-$$
+```
 
 As it should be, $\lim_{k \to \infty} F(k) = e^{-\lambda} \sum_{\ell=0}^{\infty} \frac{\lambda^\ell}{\ell!} = e^{-\lambda} e^{\lambda} = 1$.
 
@@ -519,17 +519,17 @@ As Figure 4 shows, for small $\lambda$ the distribution is concentrated near 0 w
 
 ### 6.3 Computing with a Recurrence Relation
 
-Computing $e^{-\lambda} \lambda^k / k!$ directly makes $\lambda^k$ and $k!$ separately very large when $k$ is large. For example, $171!$ exceeds the largest double-precision number a computer can represent (about $1.8 \times 10^{308}$). A **stable and efficient** way to compute Poisson probabilities is a **recurrence relation** that uses the ratio of two consecutive probabilities.
+Computing $e^{-\lambda} \lambda^k / k!$ directly makes $\lambda^k$ and $k!$ separately very large when $k$ is large. For example, $171!$ exceeds the largest double-precision number a computer can represent (about $`1.8 \times 10^{308}`$). A **stable and efficient** way to compute Poisson probabilities is a **recurrence relation** that uses the ratio of two consecutive probabilities.
 
-$$
+```math
 P(X = k) = e^{-\lambda} \frac{\lambda^k}{k!}, \qquad P(X = k + 1) = e^{-\lambda} \frac{\lambda^{k+1}}{(k + 1)!}
-$$
+```
 
 Dividing the two gives $\frac{P(X = k + 1)}{P(X = k)} = \frac{\lambda}{k + 1}$, hence:
 
-$$
+```math
 P(X = 0) = e^{-\lambda}, \qquad P(X = k + 1) = \frac{\lambda}{k + 1} \cdot P(X = k) \quad (k = 0, 1, 2, \dots)
-$$
+```
 
 Each step multiplies by a moderate number $\lambda/(k + 1)$ only once, so no huge numbers appear. The ratio also reveals the shape of the distribution. The probabilities increase while $\lambda/(k + 1) > 1$, that is, while $k + 1 < \lambda$, and decrease afterward, so the most probable value (the mode) is the largest integer not exceeding $\lambda$, $\lfloor \lambda \rfloor$. If $\lambda$ is an integer, $P(X = \lambda) = P(X = \lambda - 1)$, and both values are modes.
 
@@ -558,9 +558,9 @@ The binomial distribution has $E(X) = np$ and $\mathrm{Var}(X) = np(1 - p)$, whi
 | Case | Distribution | $E(X)$ | $\mathrm{Var}(X)$ | $\sigma(X)$ |
 |:-----|:-----|:-----|:-----|:-----|
 | $n = 12$, $p = 0.5$ | Binomial | 6.0000 | 3.0000 | 1.7321 |
-| $n = 12$, $p = 0.5$ | Poisson ($\lambda = 6$) | 6.0000 | 6.0000 | 2.4495 |
+| $n = 12$, $p = 0.5$ | Poisson ($`\lambda = 6`$) | 6.0000 | 6.0000 | 2.4495 |
 | $n = 60$, $p = 0.1$ | Binomial | 6.0000 | 5.4000 | 2.3238 |
-| $n = 60$, $p = 0.1$ | Poisson ($\lambda = 6$) | 6.0000 | 6.0000 | 2.4495 |
+| $n = 60$, $p = 0.1$ | Poisson ($`\lambda = 6`$) | 6.0000 | 6.0000 | 2.4495 |
 
 *Table 7. Expected value, variance, and standard deviation of binomial and Poisson distributions with the same mean*
 
@@ -568,7 +568,7 @@ The binomial distribution has $E(X) = np$ and $\mathrm{Var}(X) = np(1 - p)$, whi
 
 *Figure 5. Comparison of the binomial distributions B(12, 0.5) and B(60, 0.1) with the Poisson distribution Poi(6), all with mean 6*
 
-With $p = 0.5$, the binomial variance (3) is half the Poisson variance (6), so the approximation fails. With $p = 0.1$, the variances 5.4 and 6 are close, and the two distributions nearly coincide, as on the right of Figure 5. The smaller $p$ is, the more accurate the approximation. The following is the case $n = 1000$, $p = 0.002$ ($\lambda = 2$).
+With $p = 0.5$, the binomial variance (3) is half the Poisson variance (6), so the approximation fails. With $p = 0.1$, the variances 5.4 and 6 are close, and the two distributions nearly coincide, as on the right of Figure 5. The smaller $p$ is, the more accurate the approximation. The following is the case $n = 1000$, $p = 0.002$ ($`\lambda = 2`$).
 
 ```r
 round(rbind(binom = dbinom(0:5, 1000, 0.002),
@@ -581,7 +581,7 @@ binom 0.13506 0.27067 0.27094 0.18063 0.09022 0.03602
 pois  0.13534 0.27067 0.27067 0.18045 0.09022 0.03609
 ```
 
-The two rows agree to three decimal places.
+The two rows differ by less than 0.0003 at every value.
 
 ![Figure 6. Comparison of the hypergeometric HG(10, 50, r), binomial B(10, r/50), and Poisson Poi(10r/50) distributions (r = 10, 25, 40)](../../images/Lec04_HG-Binomial-Poisson.png)
 
@@ -589,7 +589,7 @@ The two rows agree to three decimal places.
 
 Figure 6 adds the Poisson distribution with the same mean to the hypergeometric and binomial distributions of Section 5.3. On the left, where the success proportion is a small 0.2, the three distributions are similar, but at 0.5 and 0.8 the Poisson spreads much wider and even gives probability to values above 10 (the figure shows values up to 10 only). The Poisson approximation can be used only when successes are **rare**.
 
-> **Note:** **Overdispersion.** The Poisson distribution carries the strong constraint that its variance equals its mean. In real count data, the variance is often larger than the mean. For example, if the rate $\lambda$ itself differs from unit to unit, the data as a whole spread more widely than a single Poisson distribution. This phenomenon is called overdispersion; using the Poisson distribution then underestimates the variability, so models that allow the variance to exceed the mean, such as the negative binomial distribution (Section 8), are used instead [2].
+> **Note:** **Overdispersion.** The Poisson distribution carries the strong constraint that its variance equals its mean. In real count data, the variance is often larger than the mean. For example, if the rate $\lambda$ itself differs from unit to unit, the data as a whole spread more widely than a single Poisson distribution. This phenomenon is called overdispersion; using the Poisson distribution then underestimates the variability, so models that allow the variance to exceed the mean, such as the negative binomial distribution (Section 8), are used instead [4].
 
 ### 6.5 R Functions and an Example
 
@@ -602,15 +602,15 @@ Figure 6 adds the Poisson distribution with the same mean to the hypergeometric 
 
 *Table 8. R functions for the Poisson distribution*
 
-**Example: calls to a call center.** Suppose a call center receives on average 3 calls per minute and the number of calls follows a Poisson distribution ($X \sim Poi(3)$). The probabilities of no call in a minute, of at most 2 calls, and of 5 or more calls are:
+**Example: calls to a call center.** Suppose a call center receives on average 3 calls per minute and the number of calls follows a Poisson distribution ($`X \sim Poi(3)`$). The probabilities of no call in a minute, of at most 2 calls, and of 5 or more calls are:
 
-$$
+```math
 P(X = 0) = e^{-3} \approx 0.0498, \qquad P(X \le 2) = e^{-3}\Big(1 + 3 + \frac{3^2}{2!}\Big) = 8.5\,e^{-3} \approx 0.4232
-$$
+```
 
-$$
+```math
 P(X \ge 5) = 1 - P(X \le 4) \approx 0.1847
-$$
+```
 
 ```r
 dpois(0, 3)                               # P(X = 0)
@@ -641,13 +641,13 @@ Since `qpois(0.95, 3)` is 6, a capacity of 6 calls per minute handles every call
 
 > **Definition:** When independent trials with constant success probability $p$ are repeated, the distribution of **the number of trials until the first success**, $X$, is called the **geometric distribution**, written $X \sim G(p)$. Its probability mass function is $f(x) = (1 - p)^{x - 1} p$ $(x = 1, 2, \dots)$.
 
-$X = x$ means that the first $x - 1$ trials all fail and the $x$th succeeds. Because the trials are independent, we multiply the failure probability $1 - p$ $x - 1$ times and the success probability $p$ once. The probabilities form a geometric sequence $p, pq, pq^2, \dots$ ($q = 1 - p$), which gives the distribution its name. The parameter is $p$ $(0 < p \le 1)$, and the support is $\{1, 2, 3, \dots\}$.
+$X = x$ means that the first $x - 1$ trials all fail and the $`x`$th succeeds. Because the trials are independent, we multiply the failure probability $1 - p$ $x - 1$ times and the success probability $p$ once. The probabilities form a geometric sequence $p, pq, pq^2, \dots$ ($`q = 1 - p`$), which gives the distribution its name. The parameter is $p$ $(0 < p \le 1)$, and the support is $\lbrace1, 2, 3, \dots\rbrace$.
 
 **Cumulative distribution function.** Use the geometric sum $\sum_{j=0}^{x-1} q^j = \frac{1 - q^x}{1 - q}$.
 
-$$
+```math
 F(x) \equiv P(X \le x) = \sum_{y=1}^{x} (1 - p)^{y - 1} p = \frac{p\,[1 - (1 - p)^x]}{1 - (1 - p)} = 1 - (1 - p)^x \qquad (x = 1, 2, \dots)
-$$
+```
 
 The same result can be obtained more intuitively. $X > x$ means that the first $x$ trials all fail, so $P(X > x) = (1 - p)^x$ and $F(x) = 1 - P(X > x)$.
 
@@ -661,25 +661,25 @@ The geometric probability is largest at $x = 1$, where it equals $p$, and then s
 
 With $q = 1 - p$, the expected value and variance are:
 
-$$
+```math
 E(X) = \frac{1}{p}, \qquad \mathrm{Var}(X) = \frac{q}{p^2} = \frac{1 - p}{p^2}
-$$
+```
 
-**Derivation.** Differentiating the geometric series $\sum_{x=0}^{\infty} q^x = \frac{1}{1 - q}$ ($|q| < 1$) once and twice with respect to $q$ gives the following two formulas.
+**Derivation.** Differentiating the geometric series $\sum_{x=0}^{\infty} q^x = \frac{1}{1 - q}$ ($`|q| < 1`$) once and twice with respect to $q$ gives the following two formulas.
 
-$$
+```math
 \sum_{x=1}^{\infty} x\, q^{x - 1} = \frac{1}{(1 - q)^2}, \qquad \sum_{x=2}^{\infty} x(x - 1)\, q^{x - 2} = \frac{2}{(1 - q)^3}
-$$
+```
 
-These give $E(X)$ and $E[X(X - 1)]$ (note $1 - q = p$).
+These give $E(X)$ and $E[X(X - 1)]$ (note $`1 - q = p`$).
 
-$$
+```math
 E(X) = \sum_{x=1}^{\infty} x\, q^{x - 1} p = p \cdot \frac{1}{p^2} = \frac{1}{p}, \qquad E[X(X - 1)] = \sum_{x=2}^{\infty} x(x - 1)\, q^{x - 1} p = pq \cdot \frac{2}{p^3} = \frac{2q}{p^2}
-$$
+```
 
-$$
+```math
 \mathrm{Var}(X) = E[X(X - 1)] + E(X) - E(X)^2 = \frac{2q}{p^2} + \frac{1}{p} - \frac{1}{p^2} = \frac{2q + p - 1}{p^2} = \frac{q}{p^2}
-$$
+```
 
 In the last step, $p - 1 = -q$, so the numerator is $2q - q = q$. With success probability $p$, the first success comes after $1/p$ trials on average. For example, rolling a die until the first 6 takes 6 rolls on average.
 
@@ -687,15 +687,15 @@ In the last step, $p - 1 = -q$, so the numerator is $2q - q = q$. With success p
 
 The geometric distribution has the **memoryless property**. For nonnegative integers $s$ and $t$:
 
-$$
+```math
 P(X > s + t \mid X > s) = \frac{P(X > s + t)}{P(X > s)} = \frac{q^{s + t}}{q^s} = q^t = P(X > t)
-$$
+```
 
-In the first step, $\{X > s + t\}$ is contained in $\{X > s\}$, so their intersection is $\{X > s + t\}$. Given that $s$ failures have already occurred, the probability of $t$ more failures equals the probability of $t$ failures from the start. In other words, many past failures do not make a success on the next trial more likely. Because the trials are independent, past failures have no effect on the future.
+In the first step, $\lbrace X > s + t\rbrace$ is contained in $\lbrace X > s\rbrace$, so their intersection is $\lbrace X > s + t\rbrace$. Given that $s$ failures have already occurred, the probability of $t$ more failures equals the probability of $t$ failures from the start. In other words, many past failures do not make a success on the next trial more likely. Because the trials are independent, past failures have no effect on the future.
 
 ### 7.4 R Functions and an Example
 
-R's `dgeom(x, prob)` computes the PMF of **the number of failures before the first success**, $Y = X - 1$, namely $P(Y = y) = (1 - p)^y p$ $(y = 0, 1, 2, \dots)$ [1]. Probabilities for the number of trials $X$ are computed by shifting the value by one.
+R's `dgeom(x, prob)` computes the PMF of **the number of failures before the first success**, $Y = X - 1$, namely $P(Y = y) = (1 - p)^y p$ $(y = 0, 1, 2, \dots)$ [2]. Probabilities for the number of trials $X$ are computed by shifting the value by one.
 
 | Value computed ($X$ = number of trials) | R code |
 |:-----|:-----|
@@ -711,9 +711,9 @@ R's `dgeom(x, prob)` computes the PMF of **the number of failures before the fir
 
 **Example: the number of inspections until the first defective.** In a process with defect rate 0.05, products are inspected one by one; the number of products inspected until the first defective is $X \sim G(0.05)$.
 
-$$
+```math
 P(X = 10) = 0.95^9 \times 0.05 \approx 0.0315, \qquad P(X \le 10) = 1 - 0.95^{10} \approx 0.4013
-$$
+```
 
 The mean is $1/0.05 = 20$ products and the variance is $0.95 / 0.05^2 = 380$. By the memoryless property, given that the first 5 products were all good, the probability of needing more than 15 inspections equals the probability of needing more than 10 from the start: $P(X > 15 \mid X > 5) = P(X > 10) = 0.95^{10} \approx 0.5987$.
 
@@ -747,7 +747,7 @@ The third and fourth lines are the same 0.5987, confirming the memoryless proper
 
 ### 8.1 Probability Mass Function
 
-> **Definition:** When independent trials with constant success probability $p$ are repeated, the distribution of **the number of trials until the $r$th success**, $X$, is called the **negative binomial distribution**, written $X \sim NB(p, r)$. Its probability mass function is $f(x) = \binom{x - 1}{r - 1} p^r q^{x - r}$ $(x = r, r + 1, r + 2, \dots)$ with $q = 1 - p$.
+> **Definition:** When independent trials with constant success probability $p$ are repeated, the distribution of **the number of trials until the $`r`$th success**, $X$, is called the **negative binomial distribution**, written $X \sim NB(p, r)$. Its probability mass function is $f(x) = \binom{x - 1}{r - 1} p^r q^{x - r}$ $(x = r, r + 1, r + 2, \dots)$ with $q = 1 - p$.
 
 For $X = x$, both of the following conditions must hold.
 
@@ -760,32 +760,32 @@ Result    :  O   O   *   ...   O   *   O   ...   O   O     O     *
 
 *Figure 8. Structure of the outcomes with X = x in the negative binomial distribution, where the last trial x is the rth success*
 
-1. The last, $x$th trial must be a success, so that the success at that moment is exactly the $r$th.
+1. The last, $`x`$th trial must be a success, so that the success at that moment is exactly the $`r`$th.
 2. The first $x - 1$ trials must contain exactly $r - 1$ successes and $x - r$ failures. Their order is free, so there are $\binom{x - 1}{r - 1}$ ways to choose the $r - 1$ positions of the successes among $x - 1$, each with probability $p^{r - 1} q^{x - r}$.
 
-Multiplying by the probability $p$ of the last success gives $\binom{x - 1}{r - 1} p^{r - 1} q^{x - r} \cdot p = \binom{x - 1}{r - 1} p^r q^{x - r}$. The parameters are $p$ and $r$ ($r = 1, 2, \dots$), and the support is $\{r, r + 1, \dots\}$, because $r$ successes require at least $r$ trials.
+Multiplying by the probability $p$ of the last success gives $\binom{x - 1}{r - 1} p^{r - 1} q^{x - r} \cdot p = \binom{x - 1}{r - 1} p^r q^{x - r}$. The parameters are $p$ and $r$ ($`r = 1, 2, \dots`$), and the support is $\lbrace r, r + 1, \dots\rbrace$, because $r$ successes require at least $r$ trials.
 
 ### 8.2 Expected Value, Variance, and the Link to the Geometric Distribution
 
-Let $X_1$ be the number of trials until the first success, $X_2$ the number of trials after the first success until the second, and in general $X_i$ the number of trials after the $(i - 1)$th success until the $i$th. Since the trials are independent with the same success probability, each $X_i$ follows $G(p)$ and they are mutually independent. The total number of trials until the $r$th success is the sum of these waiting counts.
+Let $X_1$ be the number of trials until the first success, $X_2$ the number of trials after the first success until the second, and in general $X_i$ the number of trials after the $`(i - 1)`$th success until the $`i`$th. Since the trials are independent with the same success probability, each $X_i$ follows $G(p)$ and they are mutually independent. The total number of trials until the $`r`$th success is the sum of these waiting counts.
 
-$$
+```math
 X_1, X_2, \dots, X_r \overset{iid}{\sim} G(p) \ \Longrightarrow\ X \equiv \sum_{i=1}^{r} X_i \sim NB(p, r)
-$$
+```
 
 Here **iid** means independent and identically distributed. Substitute the results of Section 7.2 into the additivity of expectation and of variance for independent random variables (Lecture 3, Sections 5.4 and 7.3).
 
-$$
+```math
 E(X) = \sum_{i=1}^{r} E(X_i) = \frac{r}{p}, \qquad \mathrm{Var}(X) = \sum_{i=1}^{r} \mathrm{Var}(X_i) = \frac{rq}{p^2}
-$$
+```
 
 In particular, for $r = 1$, $NB(p, 1) = G(p)$: the geometric distribution is a special case of the negative binomial distribution.
 
-> **Note:** **Duality with the binomial distribution.** "The $r$th success occurs at or before trial $x$" is the same event as "the first $x$ trials contain at least $r$ successes." Hence if $X \sim NB(p, r)$ and $Y \sim B(x, p)$, then $P(X \le x) = P(Y \ge r)$ [3]. Cumulative negative binomial probabilities can be computed with the binomial distribution.
+> **Note:** **Duality with the binomial distribution.** "The $`r`$th success occurs at or before trial $x$" is the same event as "the first $x$ trials contain at least $r$ successes." Hence if $X \sim NB(p, r)$ and $Y \sim B(x, p)$, then $P(X \le x) = P(Y \ge r)$ [5]. Cumulative negative binomial probabilities can be computed with the binomial distribution.
 
 ### 8.3 R Functions and an Example
 
-R's `dnbinom(x, size, prob)` computes the PMF of **the number of failures before the `size`th success**, $Y = X - r$, namely $P(Y = y) = \binom{y + r - 1}{y} p^r q^y$ $(y = 0, 1, 2, \dots)$ [1]. Probabilities for the number of trials $X$ are computed by shifting by $r$.
+R's `dnbinom(x, size, prob)` computes the PMF of **the number of failures before the `size`th success**, $Y = X - r$, namely $P(Y = y) = \binom{y + r - 1}{y} p^r q^y$ $(y = 0, 1, 2, \dots)$ [3]. Probabilities for the number of trials $X$ are computed by shifting by $r$.
 
 | Value computed ($X$ = number of trials) | R code |
 |:-----|:-----|
@@ -797,7 +797,7 @@ R's `dnbinom(x, size, prob)` computes the PMF of **the number of failures before
 
 *Table 10. R computations for the negative binomial distribution defined by the number of trials*
 
-Since $\binom{x - 1}{r - 1} = \binom{x - 1}{x - r}$, substituting $y = x - r$ makes the two formulas equal. `dnbinom` can also take the mean number of failures `mu` $= r(1 - p)/p$ instead of `prob`; this form is used in models for overdispersed count data.
+Since $\binom{x - 1}{r - 1} = \binom{x - 1}{x - r}$, substituting $y = x - r$ makes the two formulas equal. `dnbinom` can also take the mean number of failures `mu` $= r(1 - p)/p$ instead of `prob`. The variance is then $\mu + \mu^2/r$, larger than the mean $\mu$, so this form is used in models for overdispersed count data [3].
 
 ![Figure 9. Probability mass functions of the negative binomial distributions NB(0.4, 1), NB(0.4, 2), and NB(0.4, 4)](../../images/Lec04_Negative-Binomial-PMF.png)
 
@@ -807,9 +807,9 @@ In Figure 9, the left panel with $r = 1$ is the geometric distribution $G(0.4)$.
 
 **Example: the number of inspections until the third defective.** In the process of Section 7.4 (defect rate 0.05), the number of products inspected until three defectives appear is $X \sim NB(0.05, 3)$. The mean is $3/0.05 = 60$ products and the variance is $3 \times 0.95 / 0.05^2 = 1140$. The probability that the third defective appears exactly at the 40th product is:
 
-$$
+```math
 P(X = 40) = \binom{39}{2} (0.05)^3 (0.95)^{37} = 741 \times 0.000125 \times 0.1499 \approx 0.0139
-$$
+```
 
 ```r
 dnbinom(40 - 3, size = 3, prob = 0.05)    # P(X = 40): 37 failures before the 3rd success
@@ -836,7 +836,7 @@ The second line, $P(X \le 40) \approx 0.3233$, equals the third line, "the proba
 
 ## 9. Relationships Among the Distributions
 
-The distributions of this lecture are not isolated; they are connected through special cases, sums, and limits.
+The distributions above are not isolated; they are connected through special cases, sums, and limits.
 
 ```mermaid
 graph LR
@@ -848,17 +848,17 @@ graph LR
     BI -->|"three or more outcomes"| MU["Multinomial"]
 ```
 
-*Figure 10. Relationships among the discrete distributions covered in this lecture*
+*Figure 10. Relationships among the seven discrete distributions and the multinomial distribution*
 
 - **Special cases:** $B(1, p)$ is the Bernoulli distribution, and $NB(p, 1)$ is the geometric distribution $G(p)$.
-- **Sums:** A sum of $n$ independent Bernoulli random variables follows the binomial distribution, and a sum of $r$ independent geometric random variables follows the negative binomial distribution.
+- **Sums:** A sum of $n$ independent Bernoulli random variables with a common success probability follows the binomial distribution, and a sum of $r$ independent geometric random variables with a common success probability follows the negative binomial distribution.
 - **Limits:** As the population grows, the hypergeometric distribution approaches the binomial (Section 5.3), and as $n \to \infty$ with $np = \lambda$ fixed, the binomial approaches the Poisson (Section 6.1).
 
-**Multinomial distribution.** The binomial distribution is the case of trials with two outcomes. For $n$ independent trials, each with $k$ outcomes ($k \ge 3$) of probabilities $p_1, \dots, p_k$ ($\sum p_i = 1$), the joint distribution of the counts $(X_1, \dots, X_k)$ of each outcome is called the **multinomial distribution** [3].
+**Multinomial distribution.** The binomial distribution is the case of trials with two outcomes. For $n$ independent trials, each with $k$ outcomes ($`k \ge 3`$) of probabilities $p_1, \dots, p_k$ ($`\sum p_i = 1`$), the joint distribution of the counts $(X_1, \dots, X_k)$ of each outcome is called the **multinomial distribution** [5].
 
-$$
+```math
 P(X_1 = x_1, \dots, X_k = x_k) = \frac{n!}{x_1!\, x_2! \cdots x_k!}\, p_1^{x_1} p_2^{x_2} \cdots p_k^{x_k}, \qquad x_1 + \cdots + x_k = n
-$$
+```
 
 For $k = 2$, $X_2 = n - X_1$, so it reduces to the binomial distribution. For example, the probability that six rolls of a die show each face exactly once is $\frac{6!}{1! \cdots 1!} (1/6)^6 = 720/46656 \approx 0.0154$. In R it is computed with `dmultinom()`.
 
@@ -872,7 +872,7 @@ factorial(6) / 6^6
 [1] 0.0154321
 ```
 
-Many more probability distributions are linked through special cases, transformations, and limits. ProbOnto [4] is a knowledge base collecting the definitions, characteristics, and re-parameterization formulas of more than 80 univariate and multivariate distributions, together with the relationships among them. Its relationship diagram shows each distribution as a box and relations such as special cases and limits as arrows, and the seven distributions of this lecture form a small part of that graph.
+Many more probability distributions are linked through special cases, transformations, and limits. ProbOnto [6] is a knowledge base collecting the definitions, characteristics, and re-parameterization formulas of more than 80 univariate and multivariate distributions, together with the relationships among them. Its relationship diagram shows each distribution as a box and relations such as special cases and limits as arrows, and the seven distributions above form a small part of that graph.
 
 | Distribution | PMF $f(x)$ | Support | $E(X)$ | $\mathrm{Var}(X)$ | R `d` function |
 |:-----|:-----|:-----|:-----|:-----|:-----|
@@ -896,13 +896,13 @@ The distributions that random variables follow in the following situations are:
 
 | Situation | Distribution | Reason |
 |:-----|:-----|:-----|
-| The number drawn at random from 1 to 45 | Discrete uniform ($n = 45$) | All 45 values have the same probability. |
+| The number drawn at random from 1 to 45 | Discrete uniform ($`n = 45`$) | All 45 values have the same probability. |
 | 1 if one coin toss shows heads, 0 if tails | Bernoulli $B(1, 0.5)$ | A single trial with two outcomes. |
 | The number of defectives among 50 randomly chosen products from a process with a 2% defect rate | Binomial $B(50, 0.02)$ | The number of successes in 50 independent trials with the same success probability. Since $p$ is small, it can also be approximated by $Poi(1)$. |
 | The number of hearts when 5 cards are drawn from 52 | Hypergeometric $HG(5, 52, 13)$ | Sampling without replacement from a finite population containing 13 hearts. |
 | The number of visits to a website in one hour | Poisson $Poi(\lambda)$ | The count of events that are rare for each of many users per unit time. |
 | The number of shots a player with free-throw success rate 0.7 takes until the first success | Geometric $G(0.7)$ | The number of trials until the first success. |
-| The number of shots the same player takes until the third success | Negative binomial $NB(0.7, 3)$ | The number of trials until the $r = 3$rd success. |
+| The number of shots the same player takes until the third success | Negative binomial $NB(0.7, 3)$ | The number of trials until the $`r = 3`$rd success. |
 
 *Table 12. Choosing a discrete distribution for each situation*
 
@@ -937,7 +937,7 @@ The distributions that random variables follow in the following situations are:
 | Poisson distribution | The count of rare events per unit. It is the limit of the binomial with $\lambda = np$ fixed, and $E(X) = \mathrm{Var}(X) = \lambda$. The recurrence $P(k + 1) = \frac{\lambda}{k + 1} P(k)$ computes it stably. |
 | Overdispersion | Real count data with variance larger than the mean. Models such as the negative binomial are used instead of the Poisson. |
 | Geometric distribution | The number of trials until the first success. $F(x) = 1 - (1 - p)^x$, $E(X) = 1/p$, $\mathrm{Var}(X) = q/p^2$, and it is memoryless. |
-| Negative binomial distribution | The number of trials until the $r$th success. $f(x) = \binom{x-1}{r-1} p^r q^{x-r}$; as a sum of $r$ independent geometric variables, $E(X) = r/p$ and $\mathrm{Var}(X) = rq/p^2$. |
+| Negative binomial distribution | The number of trials until the $`r`$th success. $f(x) = \binom{x-1}{r-1} p^r q^{x-r}$; as a sum of $r$ independent geometric variables, $E(X) = r/p$ and $\mathrm{Var}(X) = rq/p^2$. |
 | Parameterization in R | In `dhyper(x, r, N - r, n)`, `n` is the number of failures. `dgeom` and `dnbinom` count failures, so a number of trials $x$ is passed as `x - 1` or `x - r`. |
 | Relationships among distributions | $B(1, p)$ and $NB(p, 1)$ are special cases, the binomial and negative binomial are independent sums, and through limits the hypergeometric approaches the binomial and the binomial approaches the Poisson. |
 
@@ -1044,6 +1044,8 @@ The distributions that random variables follow in the following situations are:
 ## References
 
 1. R Core Team, "Distributions in the stats package," *R Documentation*. https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Distributions.html
-2. A. Agresti, *Categorical Data Analysis*, 3rd ed. Hoboken, NJ, USA: Wiley, 2013.
-3. S. M. Ross, *A First Course in Probability*, 10th ed. Pearson, 2019.
-4. M. J. Swat, P. Grenon, and S. Wimalaratne, "ProbOnto: ontology and knowledge base of probability distributions," *Bioinformatics*, vol. 32, no. 17, pp. 2719-2721, 2016.
+2. R Core Team, "The Geometric Distribution," *R Documentation*. https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Geometric.html
+3. R Core Team, "The Negative Binomial Distribution," *R Documentation*. https://stat.ethz.ch/R-manual/R-devel/library/stats/html/NegBinomial.html
+4. A. Agresti, *Categorical Data Analysis*, 3rd ed. Hoboken, NJ, USA: Wiley, 2013.
+5. S. M. Ross, *A First Course in Probability*, 10th ed. Pearson, 2019.
+6. M. J. Swat, P. Grenon, and S. Wimalaratne, "ProbOnto: ontology and knowledge base of probability distributions," *Bioinformatics*, vol. 32, no. 17, pp. 2719-2721, 2016.

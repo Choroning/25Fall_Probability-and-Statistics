@@ -53,11 +53,11 @@
 
 ## 1. Concepts of Two-Group Comparison
 
-This lecture covers methods for comparing two groups statistically. It summarizes the assumptions of the t-test, a parametric method, examines how to check one of those assumptions, normality, and the alternatives when normality fails (transformation and nonparametric tests), and then computes the Wilcoxon rank-sum test, the typical nonparametric test, and compares its performance with the t-test. The distinction between parametric and nonparametric methods was defined in Lecture 7, Section 1.1.
+The sections below cover methods for comparing two groups statistically. It summarizes the assumptions of the t-test, a parametric method, examines how to check one of those assumptions, normality, and the alternatives when normality fails (transformation and nonparametric tests), and then computes the Wilcoxon rank-sum test, the typical nonparametric test, and compares its performance with the t-test. The distinction between parametric and nonparametric methods was defined in Lecture 7, Section 1.1.
 
 ### 1.1 Basic Concepts of Hypothesis Testing
 
-A two-group comparison is built on the hypothesis testing of Lecture 6. The concepts used throughout this lecture are summarized again as follows.
+A two-group comparison is built on the hypothesis testing of Lecture 6. The concepts used throughout the sections below are summarized again as follows.
 
 | Concept | Meaning |
 |:-----|:-----|
@@ -142,9 +142,9 @@ The **two-sample t-test** makes the following four assumptions.
 
 In symbols, the assumptions say that the observations $x_i$ of the first group and $y_i$ of the second group follow the distributions below and are independent of each other.
 
-$$
+```math
 x_i \sim N(\mu_1, \sigma^2), \qquad y_i \sim N(\mu_2, \sigma^2), \qquad \text{the two samples are independent}
-$$
+```
 
 The two distributions may differ only in their means $\mu_1$ and $\mu_2$; the variance $\sigma^2$ is the same.
 
@@ -152,25 +152,25 @@ The two distributions may differ only in their means $\mu_1$ and $\mu_2$; the va
 
 The null hypothesis is that the two population means are equal.
 
-$$
+```math
 H_0: \mu_1 = \mu_2 \qquad \text{vs} \qquad H_1: \mu_1 \ne \mu_2
-$$
+```
 
 The test statistic is the difference between the two sample means divided by its standard error.
 
-$$
+```math
 t = \frac{\bar{X} - \bar{Y}}{s_p\sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}}} \sim t_{n_1+n_2-2} \quad \text{under } H_0
-$$
+```
 
 Here $\bar{X}$ and $\bar{Y}$ are the sample means of the two groups, and $s_p$ is the **pooled standard deviation**. Because the two groups are assumed to have the same variance, the **pooled variance**, which combines the information of both samples to estimate the common variance $\sigma^2$, is used.
 
-$$
+```math
 s_p^2 = \frac{\sum_{i=1}^{n_1}(x_i-\bar{x})^2 + \sum_{j=1}^{n_2}(y_j-\bar{y})^2}{n_1+n_2-2} = \frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}
-$$
+```
 
 The denominator is $n_1+n_2-2$ because estimating the two means $\bar{x}$ and $\bar{y}$ costs 2 degrees of freedom, and this value becomes the degrees of freedom of the t distribution. $s_1^2$ and $s_2^2$ are the sample variances of the two samples.
 
-**Decision making:** the p-value is computed from the t statistic and the t distribution with $n_1+n_2-2$ degrees of freedom. If the p-value is lower than the chosen significance level, the null hypothesis is rejected and the alternative hypothesis is selected. The same decision with a rejection region rejects in a two-sided test when $\vert t \vert > t_{\alpha/2,\, n_1+n_2-2}$.
+**Decision making:** the p-value is computed from the t statistic and the t distribution with $n_1+n_2-2$ degrees of freedom. If the p-value is lower than the chosen significance level, the null hypothesis is rejected and the alternative hypothesis is selected. The same decision with a rejection region rejects in a two-sided test when $`\vert t \vert > t_{\alpha/2,\, n_1+n_2-2}`$.
 
 ### 2.3 Populations and Samples
 
@@ -186,7 +186,7 @@ graph BT
 
 *Figure 3. The sample mean estimates the population mean, and the population mean summarizes the population*
 
-What the test wants to know is a property of the populations. The population means $\mu_1$ and $\mu_2$ summarize each population but are unknown, and all that can be observed are the sample means $\bar{X}_1$ and $\bar{X}_2$ computed from the samples. A sample mean carries information about the population mean but varies from sample to sample, so the two-sample t-test judges $\mu_1 \ne \mu_2$ by asking whether the difference between the two sample means is too large to arise from sampling chance alone.
+What the test wants to know is a property of the populations. The population means $\mu_1$ and $\mu_2$ summarize each population but are unknown, and all that can be observed are the sample means $`\bar{X}_1`$ and $`\bar{X}_2`$ computed from the samples. A sample mean carries information about the population mean but varies from sample to sample, so the two-sample t-test judges $\mu_1 \ne \mu_2$ by asking whether the difference between the two sample means is too large to arise from sampling chance alone.
 
 ### 2.4 R Example: p24 Levels in Two Dose Groups
 
@@ -254,9 +254,9 @@ The p-value 0.05696 is slightly above the significance level 0.05, so the null h
 
 When the two groups do not have the same variance, the pooled variance loses its meaning, so the **Welch t-test**, which uses the two sample variances separately, is used [1].
 
-$$
+```math
 t = \frac{\bar{X} - \bar{Y}}{\sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}}}, \qquad \nu = \frac{\left(\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}\right)^2}{\dfrac{(s_1^2/n_1)^2}{n_1-1} + \dfrac{(s_2^2/n_2)^2}{n_2-1}}
-$$
+```
 
 Under the null hypothesis this statistic approximately follows the t distribution with $\nu$ degrees of freedom, and $\nu$ is usually not an integer. The following code checks whether the variances are equal with the F test and performs the Welch t-test. When `var.equal` is not specified in `t.test()`, the Welch t-test is the default.
 
@@ -291,7 +291,7 @@ mean of x mean of y
 ```
 
 - The statistic of the F test is the ratio of the two sample variances, $s_1^2/s_2^2 = 73.156/214.011 = 0.342$, and its p-value is 0.1256, so there is no ground to reject the equal-variance assumption.
-- The t value of the Welch t-test is -2.034, the same as that of Student's t-test. With equal sample sizes ($n_1 = n_2 = n$), $s_p^2(2/n) = (s_1^2 + s_2^2)/n$, so the two standard errors coincide. Only the degrees of freedom shrink to $\nu = 14.509$, which raises the p-value slightly to 0.06065.
+- The t value of the Welch t-test is -2.034, the same as that of Student's t-test. With equal sample sizes ($`n_1 = n_2 = n`$), $s_p^2(2/n) = (s_1^2 + s_2^2)/n$, so the two standard errors coincide. Only the degrees of freedom shrink to $\nu = 14.509$, which raises the p-value slightly to 0.06065.
 
 > **Caution:** The two-stage procedure that first checks equal variances with the F test and then picks a t-test by the result does not control the overall type I error exactly. The F test itself is also very sensitive to non-normality. The common recommendation is therefore to use the Welch t-test from the start unless the variances are known to be equal.
 
@@ -308,15 +308,15 @@ When two values $x$ and $y$ are observed in pairs on the same subject, the **pai
 
 *Table 5. Data structure of paired samples*
 
-The values $x_i$ and $y_i$ of the same subject are not independent, but observations of different subjects ($x_i$ and $x_k$) must be independent. The assumptions and the test are as follows.
+The values $x_i$ and $y_i$ of the same subject are not independent, but observations of different subjects ($x_i$ and $`x_k`$) must be independent. The assumptions and the test are as follows.
 
-- The differences are independent and follow the same normal distribution: $d_i \stackrel{\text{iid}}{\sim} N(\mu_d, \sigma^2)$. iid stands for **independent and identically distributed**. When the number of pairs is large ($n > 30$), the normality of the differences matters less because of the central limit theorem.
+- The differences are independent and follow the same normal distribution: $d_i \stackrel{\text{iid}}{\sim} N(\mu_d, \sigma^2)$. iid stands for **independent and identically distributed**. When the number of pairs is large ($`n > 30`$), the normality of the differences matters less because of the central limit theorem.
 - The null hypothesis is $H_0: \mu_d = 0$, which is the same as $\mu_1 = \mu_2$.
 - The test statistic is the mean of the differences $\bar{d}$ divided by the standard error formed from the standard deviation of the differences $s_d$.
 
-$$
+```math
 t = \frac{\bar{d}}{s_d/\sqrt{n}} \sim t_{n-1} \quad \text{under } H_0
-$$
+```
 
 The paired t-test is the same as a one-sample t-test on the differences $d_i$. R's `sleep` data record the extra hours of sleep (`extra`, in hours) of 10 patients, each given two sleeping drugs; they are the data Student used in the paper that introduced the t distribution [2]. Each patient took both drugs, so the samples are paired.
 
@@ -392,7 +392,7 @@ qqnorm(ex4); qqline(ex4)           # normal Q-Q plot and reference line
 
 **Reading the box plot.** In R's box plot, the bottom and top of the box are 14.7 and 15.9, the medians of the lower and upper halves, and the thick line inside the box is the median $(15.0 + 15.5)/2 = 15.25$. The length of the box (the interquartile range) is $15.9 - 14.7 = 1.2$, and values more than $1.5 \times 1.2 = 1.8$ beyond the box (below 12.9 or above 17.7) are marked as outliers. So 11.4 is drawn separately as a point, and the lower whisker extends to 13.1, the smallest value within that range. The lower whisker is longer than the upper one and there is an outlier at the bottom, so the distribution is skewed to the left.
 
-**Reading the Q-Q plot.** The $i$th of the $n$ values sorted by size is paired with the quantile at a similar position in the standard normal distribution. For $n \le 10$, R's `qqnorm()` uses $\Phi^{-1}\{(i - 3/8)/(n + 1/4)\}$ as the theoretical quantile, which for these data gives -1.547, -1.000, -0.655, -0.375, -0.123, 0.123, 0.375, 0.655, 1.000, 1.547. `qqline()` is the reference line through the first and third quartiles of the sample and of the theoretical distribution. The points in the middle lie near the line, but the two smallest values (11.4, 13.1) are far below it. This means that the small values are smaller than a normal distribution would lead one to expect, which shows a distribution with a long left tail.
+**Reading the Q-Q plot.** The $`i`$th of the $n$ values sorted by size is paired with the quantile at a similar position in the standard normal distribution. For $n \le 10$, R's `qqnorm()` uses $\Phi^{-1}\lbrace(i - 3/8)/(n + 1/4)\rbrace$ as the theoretical quantile, which for these data gives -1.547, -1.000, -0.655, -0.375, -0.123, 0.123, 0.375, 0.655, 1.000, 1.547. `qqline()` is the reference line through the first and third quartiles of the sample and of the theoretical distribution. The points in the middle lie near the line, but the two smallest values (11.4, 13.1) are far below it. This means that the small values are smaller than a normal distribution would lead one to expect, which shows a distribution with a long left tail.
 
 > **Note:** The shape in which the points depart from the line reveals features of the distribution. If both ends depart outward from the line (the left end downward, the right end upward), the tails are heavier than those of the normal distribution; if the points form a convex curve (bending upward), the distribution is skewed to the right; and if they form a concave curve (bending downward), it is skewed to the left.
 
@@ -477,7 +477,7 @@ shapiro.test(log(y))$p.value                  # log transformation
 
 In the original data the mean (28.2) exceeds the median (22.0) and the maximum is 137, a long right tail, and the Shapiro-Wilk p-value of $1.4 \times 10^{-10}$ strongly rejects normality. In the left Q-Q plot of Figure 6 the points also form a convex curve. The square-root transformation reduces the skewness but its p-value of 0.00024 is still not enough, while after the log transformation the p-value is 0.988, the histogram is bell-shaped, and the Q-Q plot is a straight line.
 
-> **Caution:** When using a transformation, check the following. The logarithm and square root are undefined for values of 0 or below, so for data containing 0 a constant is added, as in $\log(y + 1)$. Also, a test done on the transformed scale is not a test about means on the original scale. For example, comparing the means of $\log y$ amounts to comparing geometric means (or ratios) on the original scale. Report the result stating on which scale the comparison was made.
+> **Caution:** When using a transformation, check the following. The logarithm is undefined for values of 0 or below and the square root for negative values, so before log-transforming data that contain 0 a constant is added, as in $\log(y + 1)$. Also, a test done on the transformed scale is not a test about means on the original scale. For example, comparing the means of $\log y$ amounts to comparing geometric means (or ratios) on the original scale. Report the result stating on which scale the comparison was made.
 
 ---
 
@@ -499,25 +499,25 @@ Because Mann and Whitney formulated the same test with a different statistic, it
 
 ### 4.2 The Test Statistic W
 
-Let the sizes of the two samples be $n_1$ and $n_2$, and the total size $N = n_1 + n_2$. If $R_1, \ldots, R_{n_1}$ are the ranks that the observations of the first sample (size $n_1$) receive in the pooled sample, the test statistic is their sum.
+Let the sizes of the two samples be $n_1$ and $n_2$, and the total size $N = n_1 + n_2$. If $R_1, \ldots, R_{n_1}$ are the ranks that the observations of the first sample (size $`n_1`$) receive in the pooled sample, the test statistic is their sum.
 
-$$
+```math
 W = \sum_{j=1}^{n_1} R_j
-$$
+```
 
 Under the null hypothesis, the mean and standard deviation of $W$ are as follows.
 
-$$
+```math
 \mu_W = \frac{n_1(N+1)}{2}, \qquad \sigma_W = \sqrt{\frac{n_1 n_2 (N+1)}{12}}
-$$
+```
 
 The mean can be understood as follows. The average of the ranks 1 to $N$ is $(N+1)/2$, and under the null hypothesis each observation of the first sample receives this rank on average, so the expected sum of $n_1$ ranks is $n_1(N+1)/2$. The standard deviation is that of the sum of $n_1$ ranks drawn without replacement from the ranks 1 to $N$.
 
 As the samples grow, the distribution of $W$ approaches the normal distribution, so the standardized $z$ below is judged against the standard normal distribution.
 
-$$
+```math
 z = \frac{W - \mu_W}{\sigma_W} = \frac{W - n_1(N+1)/2}{\sqrt{n_1 n_2 (N+1)/12}}
-$$
+```
 
 The formulas look complicated, but the computation has only three steps: rank the values, add up the ranks of one group, and standardize.
 
@@ -525,7 +525,7 @@ The formulas look complicated, but the computation has only three steps: rank th
 
 To find out whether even a few weeds reduce corn yield, corn was planted at the same rate in 8 small plots; in 4 plots chosen at random all weeds were removed, and in the other 4, three lamb's-quarter plants per meter of row were left [9].
 
-| Treatment | Yield |
+| Treatment | Yield (bushels per acre) |
 |:-----|:-----|
 | 0 weeds per meter | 166.7, 172.2, 165.0, 176.9 |
 | 3 weeds per meter | 158.6, 176.4, 153.1, 156.0 |
@@ -557,13 +557,13 @@ The two rank sums add up to $23 + 13 = 36 = 8 \times 9 / 2$, the sum of 1 to 8. 
 
 $N = 8$, $n_1 = 4$ (no weeds), $n_2 = 4$ (weeds), and the test statistic is the rank sum of the weed-free plots, $W = 23$.
 
-$$
+```math
 \mu_W = \frac{n_1(N+1)}{2} = \frac{4 \times 9}{2} = 18, \qquad \sigma_W = \sqrt{\frac{n_1 n_2 (N+1)}{12}} = \sqrt{\frac{4 \times 4 \times 9}{12}} = \sqrt{12} = 3.464
-$$
+```
 
-$$
+```math
 z = \frac{W - \mu_W}{\sigma_W} = \frac{23 - 18}{3.464} = 1.44, \qquad \text{p-value} = P(Z \ge 1.44) = 0.0749
-$$
+```
 
 Because the alternative is one-sided (larger for the weed-free side), the p-value is the right-tail probability of the standard normal distribution. The p-value 0.0749 is above 0.05, so the null hypothesis is not rejected at the 0.05 level. The weed-free plots tend to yield more, but 8 plots give too little evidence to distinguish this from chance.
 
@@ -636,19 +636,19 @@ The Wilcoxon rank-sum test has the following two issues.
 
 **Continuity correction.** $W$ is a discrete statistic that takes only integer values, yet it is approximated by the continuous normal distribution, which introduces error. The continuity correction treats the integer 23 as occupying the interval from 22.5 to 23.5 and computes $P(W \ge 23)$ as $P(W \ge 22.5)$ [9].
 
-$$
+```math
 z = \frac{22.5 - 18}{3.464} = 1.30, \qquad P(Z \ge 1.30) = 0.0968
-$$
+```
 
 The corrected 0.0968 is much closer to the exact value 0.1 than the uncorrected 0.0749. When the normal approximation is used, the continuity correction should therefore be applied, or the exact distribution should be used for small samples. R's `wilcox.test()` applies the continuity correction by default when it uses the normal approximation (`correct = TRUE`).
 
 **Ties in rank.** When several observations have the same value, a single rank cannot be assigned. In that case all of them receive the average of the ranks they occupy (the **average rank**, or midrank). For example, in 153, 155, 158, 158, 161, 164 the two 158s occupy the 3rd and 4th places, so both receive rank 3.5. With ties the exact distribution can no longer be used as is, and since ties reduce the variability of the ranks, $\sigma_W$ must be adjusted [10].
 
-$$
-\sigma_W^2 = \frac{n_1 n_2}{12}\left\{(N+1) - \frac{\sum_k (t_k^3 - t_k)}{N(N-1)}\right\}
-$$
+```math
+\sigma_W^2 = \frac{n_1 n_2}{12}\left\lbrace(N+1) - \frac{\sum_k (t_k^3 - t_k)}{N(N-1)}\right\rbrace
+```
 
-Here $t_k$ is the number of observations in the $k$th group of ties. The following code tests the case in which the first group is 153, 155, 158 and the second group is 158, 161, 164.
+Here $t_k$ is the number of observations in the $`k`$th group of ties. The following code tests the case in which the first group is 153, 155, 158 and the second group is 158, 161, 164.
 
 ```r
 a <- c(153, 155, 158)
@@ -670,7 +670,7 @@ Warning message:
 In wilcox.test.default(a, b) : cannot compute exact p-value with ties
 ```
 
-The warning means that the exact p-value cannot be computed because of the ties, so the normal approximation was used instead. Checking by hand, the rank sum of the first group is $W = 1 + 2 + 3.5 = 6.5$ and $\mu_W = 3 \times 7/2 = 10.5$. There is one group of ties of size 2, so $\sigma_W^2 = (9/12)\{7 - 6/30\} = 0.75 \times 6.8 = 5.1$ and $\sigma_W = 2.258$. With the continuity correction, $z = (6.5 - 10.5 + 0.5)/2.258 = -1.55$, and the two-sided p-value is $2 \times P(Z \le -1.55) = 0.1212$, matching R. R's `W = 0.5` is the Mann-Whitney statistic $6.5 - 3 \times 4/2 = 0.5$.
+The warning means that the exact p-value cannot be computed because of the ties, so the normal approximation was used instead. Checking by hand, the rank sum of the first group is $W = 1 + 2 + 3.5 = 6.5$ and $\mu_W = 3 \times 7/2 = 10.5$. There is one group of ties of size 2, so $\sigma_W^2 = (9/12)\lbrace7 - 6/30\rbrace = 0.75 \times 6.8 = 5.1$ and $\sigma_W = 2.258$. With the continuity correction, $z = (6.5 - 10.5 + 0.5)/2.258 = -1.55$, and the two-sided p-value is $2 \times P(Z \le -1.55) = 0.1212$, matching R. R's `W = 0.5` is the Mann-Whitney statistic $6.5 - 3 \times 4/2 = 0.5$.
 
 > **Caution:** The null hypothesis of the Wilcoxon rank-sum test is that the two distributions are the same. If the two distributions differ in shape or spread, the null hypothesis can be rejected even when the medians are equal, so interpreting the result as a difference in medians requires the assumption that the two distributions have similar shapes.
 
@@ -706,7 +706,7 @@ Warning messages:
   cannot compute exact p-value with zeroes
 ```
 
-The Shapiro-Wilk p-value of the differences is 0.033, so normality is doubtful, and with only 10 pairs the signed-rank test is the safer choice. Discarding the one zero difference leaves $n = 9$, and since all remaining differences are negative, $T^+ = V = 0$. $E(T^+) = 9 \times 10/4 = 22.5$, and the variance adjusted for the tie (1.3 appears twice among the $\vert d_i \vert$) is $9 \times 10 \times 19/24 - (2^3 - 2)/48 = 71.125$. With the continuity correction, $z = (0 - 22.5 + 0.5)/\sqrt{71.125} = -2.61$, and the two-sided p-value is 0.0091. As with the paired t-test, the two drugs are concluded to have different effects. The two warnings mean that the normal approximation was used instead of the exact distribution because of the ties and the zero difference.
+The Shapiro-Wilk p-value of the differences is 0.033, so normality is doubtful, and with only 10 pairs the signed-rank test is the safer choice. Discarding the one zero difference leaves $n = 9$, and since all remaining differences are negative, $T^+ = V = 0$. $E(T^+) = 9 \times 10/4 = 22.5$, and the variance adjusted for the tie (1.3 appears twice among the $`\vert d_i \vert`$) is $9 \times 10 \times 19/24 - (2^3 - 2)/48 = 71.125$. With the continuity correction, $z = (0 - 22.5 + 0.5)/\sqrt{71.125} = -2.61$, and the two-sided p-value is 0.0091. As with the paired t-test, the two drugs are concluded to have different effects. The two warnings mean that the normal approximation was used instead of the exact distribution because of the ties and the zero difference.
 
 ---
 
@@ -733,7 +733,7 @@ The histogram in Figure 7 shows a distribution in which about 40% of the values 
 
 The t-test does not reject the null hypothesis, but the Wilcoxon test rejects it strongly. The large values of the long right tail pull up the sample mean and also inflate the standard deviation, so the t statistic ends up near 0, whereas ranks are not affected by the size of large values and pick up well the fact that most values are below 35.
 
-> **Note:** The hypothesis $H_0: \mu = 35$ of this comparison concerns a single population, so the methods actually used are the one-sample t-test and the Wilcoxon signed-rank test (the procedure of Section 4.6 applied to $d_i = y_i - 35$). A rank sum cannot be negative, so the negative $W = -16845.5$ is a centered value: the signed-rank statistic $T^+$ minus its expected value $n(n+1)/4$ under the null hypothesis. The rank-sum test for two independent samples is compared with the two-sample t-test by simulation in Section 5.3.
+> **Note:** The hypothesis $H_0: \mu = 35$ of this comparison concerns a single population, so the methods actually used are the one-sample t-test and the Wilcoxon signed-rank test (the procedure of Section 4.6 applied to $`d_i = y_i - 35`$). A rank sum cannot be negative, so the negative $W = -16845.5$ is interpreted as a centered value: the signed-rank statistic $T^+$ minus its expected value $n(n+1)/4$ under the null hypothesis. The UNIVARIATE procedure of SAS also reports the signed-rank statistic centered in this way, as $S$ [11]. The rank-sum test for two independent samples is compared with the two-sample t-test by simulation in Section 5.3.
 
 ### 5.2 Comparison on Normal Data
 
@@ -818,8 +818,8 @@ skewed_shift 0.3305   0.7255
 ```
 
 - With no shift (`_null`), the rejection rates of both tests are 0.04-0.05, near the significance level 0.05. Both tests control the type I error well.
-- With a shift on normal data, the power is 0.708 for the t-test and 0.679 for the Wilcoxon test, slightly higher for the t-test. Under the normal distribution the asymptotic relative efficiency of the Wilcoxon test (the ratio of the sample sizes needed for the same power) is $3/\pi \approx 0.955$, so the Wilcoxon test needs only about 5% more observations than the t-test [11].
-- With a shift on skewed data, the power is 0.331 for the t-test and 0.726 for the Wilcoxon test, more than twice as high for the Wilcoxon test. The large values of the long tail inflate the standard error of the t-test. Over all continuous distributions, the asymptotic relative efficiency of the Wilcoxon test relative to the t-test never falls below 0.864, and for heavy-tailed distributions it can be much larger than 1 [11].
+- With a shift on normal data, the power is 0.708 for the t-test and 0.679 for the Wilcoxon test, slightly higher for the t-test. Under the normal distribution the asymptotic relative efficiency of the Wilcoxon test (the ratio of the sample sizes needed for the same power) is $3/\pi \approx 0.955$, so the Wilcoxon test needs only about 5% more observations than the t-test [12].
+- With a shift on skewed data, the power is 0.331 for the t-test and 0.726 for the Wilcoxon test, more than twice as high for the Wilcoxon test. The large values of the long tail inflate the standard error of the t-test. Over all continuous distributions, the asymptotic relative efficiency of the Wilcoxon test relative to the t-test never falls below 0.864, and for heavy-tailed distributions it can be much larger than 1 [12].
 
 > **Key Point:** When the data are normal, the Wilcoxon test loses only a little power relative to the t-test, and when the data are skewed or contain outliers, it can have much higher power than the t-test. This makes the Wilcoxon test a safe choice for small samples whose normality is doubtful.
 
@@ -966,4 +966,5 @@ The following table lists suitable tests for situations in two-group comparisons
 8. H. B. Mann and D. R. Whitney, "On a test of whether one of two random variables is stochastically larger than the other," *The Annals of Mathematical Statistics*, vol. 18, no. 1, pp. 50-60, 1947.
 9. D. S. Moore and G. P. McCabe, *Introduction to the Practice of Statistics*, 3rd ed. New York, NY, USA: W. H. Freeman, 1999, ch. 14.
 10. M. Hollander, D. A. Wolfe, and E. Chicken, *Nonparametric Statistical Methods*, 3rd ed. Hoboken, NJ, USA: Wiley, 2014.
-11. J. L. Hodges and E. L. Lehmann, "The efficiency of some nonparametric competitors of the t-test," *The Annals of Mathematical Statistics*, vol. 27, no. 2, pp. 324-335, 1956.
+11. SAS Institute Inc., "Tests for location," in *Base SAS 9.4 Procedures Guide: Statistical Procedures*, 5th ed. Cary, NC, USA: SAS Institute Inc., accessed Nov. 4, 2026. https://support.sas.com/documentation/cdl/en/procstat/70116/HTML/default/procstat_univariate_details17.htm
+12. J. L. Hodges and E. L. Lehmann, "The efficiency of some nonparametric competitors of the t-test," *The Annals of Mathematical Statistics*, vol. 27, no. 2, pp. 324-335, 1956.

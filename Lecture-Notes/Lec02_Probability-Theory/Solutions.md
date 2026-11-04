@@ -83,7 +83,7 @@ sum(A); sum(B); sum(C)
 - **$A \cap B$:** The pairs whose sum is even and at least 8: $(2,6), (3,5), (4,4)$ with sum 8, $(4,6), (5,5)$ with sum 10, and $(6,6)$ with sum 12.
 - **$A \cap C$:** Since $i + j = 2i + (j - i)$, the sum has the same parity as the difference $j - i$. Among the pairs with difference 0 or 1, those with an even sum are exactly those with difference 0, the 6 pairs of equal faces.
 - **$B \cap C$ and $A \cap B \cap C$:** The pairs with difference at most 1 and sum at least 8 are $(4,4), (4,5), (5,5), (5,6), (6,6)$, and those among them with an even sum are the equal pairs $(4,4), (5,5), (6,6)$.
-- **$B^c$ and $A \cap B^c$:** $B^c$ is the 12 pairs with sum at most 7 ($21 - 9 = 12$), and the 6 of them with an even sum (2, 4, 6) form $A \cap B^c$.
+- **$B^c$ and $A \cap B^c$:** $B^c$ is the 12 pairs with sum at most 7 ($`21 - 9 = 12`$), and the 6 of them with an even sum (2, 4, 6) form $A \cap B^c$.
 
 The following figure arranges the 21 outcomes in a table whose rows are the first face and columns the second face, and writes only the outcomes in events $A$, $B$, and $C$, from left to right. The shaded staircase cells are the positions with $i > j$; ignoring order, they duplicate other cells, so they are excluded from the sample space.
 
@@ -91,7 +91,7 @@ The following figure arranges the 21 outcomes in a table whose rows are the firs
 
 *Figure 1. Outcomes in events A, B, and C among the 21 outcomes of two dice (from left to right)*
 
-> **Note:** If event $C$ is read as "the difference between the two dice is less than 1", only the 6 pairs of equal faces, with difference 0, remain. This solution defines the event as "the difference is at most 1", which includes pairs with difference 1 such as $(1,2)$ and $(2,3)$, as above. Under the original reading, the pairs of equal faces all have even sums, so $A \cap C = C$ and $B \cap C = \{(4,4), (5,5), (6,6)\}$.
+> **Note:** If event $C$ is read literally as "the difference between the two dice is less than 1", only the 6 pairs of equal faces, with difference 0, remain. The third table of Figure 1, however, also contains pairs with difference 1 such as $(1,2)$ and $(2,3)$, so Exercise 1 defines event $C$ as "the difference is at most 1". Under the literal reading, the pairs of equal faces all have even sums, so $A \cap C = C$ and $B \cap C = \lbrace(4,4), (5,5), (6,6)\rbrace$.
 
 > **Caution:** The 21 outcomes above are convenient for listing the elements of events but are **not equally likely.** When dice are actually thrown, $(1,2)$ arises in two ways, the first die 1 and the second 2 or the reverse, so its probability is $2/36$, while $(1,1)$ has probability $1/36$. Probabilities must therefore be computed with the 36 equally likely ordered pairs. For example, computing $P(A)$ as $12/21 \approx 0.571$ is wrong.
 >
@@ -125,7 +125,7 @@ The following figure arranges the 21 outcomes in a table whose rows are the firs
 
 **Approach:** With heads as 1 and tails as 0, `sample(c(0, 1), size = n, replace = TRUE)` gives the results of $n$ tosses of a fair coin (`replace = TRUE` means sampling with replacement, so 0 and 1 are drawn with equal probability every time). The proportion of heads equals the mean of the 0s and 1s. The approach of the proportion to 1/2 can be seen in two ways ([Lecture 2, Section 2.2](Concepts_Lecture.md#22-relative-frequency-and-the-law-of-large-numbers)).
 
-- **(a) Running proportion:** Toss a coin 1000 times in one sequence and plot the proportion of heads up to each point, $\frac{1}{k}\sum_{i=1}^{k} x_i$ ($k = 1, \ldots, 1000$). `cumsum()` is the cumulative sum.
+- **(a) Running proportion:** Toss a coin 1000 times in one sequence and plot the proportion of heads up to each point, $\frac{1}{k}\sum_{i=1}^{k} x_i$ ($`k = 1, \ldots, 1000`$). `cumsum()` is the cumulative sum.
 - **(b) A new experiment for each number:** For each $k = 1, \ldots, 1000$, newly toss $k$ coins and compute the proportion of heads. `sapply()` collects the results of applying a function to each element of the vector `1:n`.
 
 **Code:**
@@ -192,7 +192,7 @@ sum(big) - 1e6 / 2             # heads minus expected heads after 10^6 tosses
 [1] 562
 ```
 
-At $10, 10^2, \ldots, 10^6$ tosses the proportion is 0.6, 0.61, 0.516, 0.51, 0.49912, and 0.500562, approaching 0.5. Yet the number of heads minus its expected value ($n/2$) actually grew, from 100 at $10^4$ tosses to 562 at $10^6$. The proportion converges not because the difference disappears, but because the difference grows much more slowly than $n$, so its effect on the proportion, such as $562/10^6$, becomes small. This is why the idea that an earlier imbalance is compensated by tails (the gambler's fallacy) is wrong.
+At $10, 10^2, \ldots, 10^6$ tosses the proportion is 0.6, 0.61, 0.516, 0.51, 0.49912, and 0.500562, approaching 0.5. Yet the number of heads minus its expected value ($`n/2`$) actually grew, from 100 at $10^4$ tosses to 562 at $10^6$. The proportion converges not because the difference disappears, but because the difference grows much more slowly than $n$, so its effect on the proportion, such as $562/10^6$, becomes small. This is why the idea that an earlier imbalance is compensated by tails (the gambler's fallacy) is wrong.
 
 ---
 
@@ -204,7 +204,7 @@ At $10, 10^2, \ldots, 10^6$ tosses the proportion is 0.6, 0.61, 0.516, 0.51, 0.4
 
 ### Solution
 
-**Approach:** Recording the results in the order of the tosses, the sample space is $\{HHHH, HHHT, HHTH, \ldots, TTTH, TTTT\}$, whose $\lvert S \rvert = 2^4 = 16$ outcomes are equally likely. Count the heads in each outcome and divide the number of outcomes meeting the condition by 16 (classical probability). The number of outcomes with exactly $k$ heads is $\binom{4}{k}$, the number of ways to choose the $k$ positions of the heads among the four.
+**Approach:** Recording the results in the order of the tosses, the sample space is $\lbrace HHHH, HHHT, HHTH, \ldots, TTTH, TTTT\rbrace$, whose $\lvert S \rvert = 2^4 = 16$ outcomes are equally likely. Count the heads in each outcome and divide the number of outcomes meeting the condition by 16 (classical probability). The number of outcomes with exactly $k$ heads is $\binom{4}{k}$, the number of ways to choose the $k$ positions of the heads among the four.
 
 **Code:**
 
@@ -241,7 +241,7 @@ heads
 - **(1) Two or more:** $\lvert A \rvert = \binom{4}{4} + \binom{4}{3} + \binom{4}{2} = 1 + 4 + 6 = 11$, so $P(A) = 11/16 = 0.6875$. Checking with the complement, $1 + 4 = 5$ outcomes have 0 or 1 head, so $1 - 5/16 = 11/16$.
 - **(2) Three or more:** $\binom{4}{4} + \binom{4}{3} = 1 + 4 = 5$, so the probability is $5/16 = 0.3125$.
 
-> **Note:** Strictly, the event that heads appears "more than two times" is the event of three or more heads, with probability $5/16$, but the computation $\binom{4}{4} + \binom{4}{3} + \binom{4}{2} = 11$ given with the same problem counts the event of two or more heads. The exercise is split into two questions to distinguish the two readings. "More than" excludes the number itself, while "or more" includes it.
+> **Note:** Strictly, the event that heads appears "more than two times" is the event of three or more heads, with probability $5/16$, but the computation $\binom{4}{4} + \binom{4}{3} + \binom{4}{2} = 11$ given with the same problem counts the event of two or more heads. The two questions of Exercise 3 correspond to these two readings. "More than" excludes the number itself, while "or more" includes it.
 
 ---
 
@@ -324,7 +324,7 @@ A       FALSE TRUE
 
 The size of each event is the sum of its regions. For example, $\lvert A \rvert = 106 + 329 + 16 + 124 = 575$, $\lvert A \cap B \rvert = 329 + 124 = 453$, and $\lvert A \cap C \rvert = 16 + 124 = 140$.
 
-> **Note:** If event $A$ is read strictly as "the sum of the numbers is 15" and event $B$ as "more than one die is 6", the numbers of outcomes are 140 and 171, respectively. The sizes 575 and 671 used in the computations of Exercises 5 and 6 correspond to "the sum is 15 or more" and "at least one die is 6", so this exercise defines the events that way.
+> **Note:** If event $A$ is read literally as "the sum of the numbers is 15" and events $B$ and $C$ as "more than one die is 6 (or 1)", the numbers of outcomes are 140, 171, and 171, respectively. The sizes 575 and 671 used in the computations of Exercises 5 and 6 correspond to "the sum is 15 or more" and "at least one die is 6 (or 1)", so Exercise 4 defines the events this way.
 
 ---
 
@@ -365,7 +365,7 @@ P(A) + P(B) + P(C) - P(A & B) - P(A & C) - P(B & C) + P(A & B & C)
 [1] 0.8842593
 ```
 
-With the counts from Exercise 4 ($\lvert A \rvert = 575$, $\lvert B \rvert = \lvert C \rvert = 671$, $\lvert A \cap B \rvert = 453$, $\lvert A \cap C \rvert = 140$, $\lvert B \cap C \rvert = 302$, $\lvert A \cap B \cap C \rvert = 124$), the addition rule gives the following.
+With the counts from Exercise 4 ($\lvert A \rvert = 575$, $\lvert B \rvert = \lvert C \rvert = 671$, $\lvert A \cap B \rvert = 453$, $\lvert A \cap C \rvert = 140$, $\lvert B \cap C \rvert = 302$, $`\lvert A \cap B \cap C \rvert = 124`$), the addition rule gives the following.
 
 1. $P(A \cup B) = P(A) + P(B) - P(A \cap B) = \dfrac{575 + 671 - 453}{1296} = \dfrac{793}{1296} \approx 0.6119$
 2. $P(A \cup C) = P(A) + P(C) - P(A \cap C) = \dfrac{575 + 671 - 140}{1296} = \dfrac{1106}{1296} \approx 0.8534$
@@ -428,7 +428,7 @@ Without any condition, the probability of a sum of 15 or more is $P(A) = 575/129
 
 ### Solution
 
-**Approach:** List the $6^5 = 7776$ ordered outcomes and check whether the definition of independence $P(A \cap B) = P(A)\, P(B)$ holds ([Lecture 2, Section 5.1](Concepts_Lecture.md#51-independence-of-two-events)). Comparing decimals can suffer from rounding error, so also check the integer equation $\lvert A \cap B \rvert \cdot N = \lvert A \rvert \cdot \lvert B \rvert$, obtained by multiplying both sides by $N^2$. The `intersect2()` used by the helper functions is not in base R, so define it.
+**Approach:** List the $6^5 = 7776$ ordered outcomes and check whether the definition of independence $`P(A \cap B) = P(A)\, P(B)`$ holds ([Lecture 2, Section 5.1](Concepts_Lecture.md#51-independence-of-two-events)). Comparing decimals can suffer from rounding error, so also check the integer equation $\lvert A \cap B \rvert \cdot N = \lvert A \rvert \cdot \lvert B \rvert$, obtained by multiplying both sides by $N^2$. The `intersect2()` used by the helper functions is not in base R, so define it.
 
 **Code:**
 
@@ -476,7 +476,7 @@ P(A|B) = 1275 / 2550 = 0.5
 
 - **$P(A) = 1/2$:** $3888 = 7776/2$ outcomes have an even sum. Whatever the sum of the first four faces, exactly three of the faces 1-6 of the last die make the total even.
 - **$P(B) = 2550/7776$:** By the inclusion-exclusion principle, $\lvert B \rvert = N - \lvert \text{no } 1 \rvert - \lvert \text{no } 6 \rvert + \lvert \text{neither } 1 \text{ nor } 6 \rvert = 7776 - 5^5 - 5^5 + 4^5 = 7776 - 3125 - 3125 + 1024 = 2550$.
-- **Independence:** $P(A \cap B) = 1275/7776 \approx 0.16397$ and $P(A)\, P(B) = 0.5 \times 0.32793 \approx 0.16397$ are equal. The integer equation also holds, $1275 \times 7776 = 9{,}914{,}400 = 3888 \times 2550$ (`TRUE`). In terms of conditional probability, $P(A \mid B) = 1275/2550 = 0.5 = P(A)$. Therefore **$A$ and $B$ are independent.**
+- **Independence:** $P(A \cap B) = 1275/7776 \approx 0.16397$ and $`P(A)\, P(B) = 0.5 \times 0.32793 \approx 0.16397`$ are equal. The integer equation also holds, $1275 \times 7776 = 9{,}914{,}400 = 3888 \times 2550$ (`TRUE`). In terms of conditional probability, $P(A \mid B) = 1275/2550 = 0.5 = P(A)$. Therefore **$A$ and $B$ are independent.**
 - **Helper functions:** Without a `by` argument, `merge(a, b)` joins rows that agree on all common columns (`d1`-`d5`) of the two data frames, so it returns the rows of the outcomes that belong to both events. `pprt2()` prints the number of rows divided by `n` as the probability, and `cprt2()` prints $\lvert A \cap B \rvert / \lvert B \rvert$. `cat()` prints values one after another without quotes, and `invisible()` returns a value without printing it.
 
 This independence can be explained by symmetry. Consider the map that changes every face $x$ to $7 - x$. It swaps 1 and 6, so an outcome in $B$ stays in $B$. Meanwhile the sum $s$ of the five faces becomes $35 - s$, and since 35 is odd, the parity of the sum flips. The map is therefore a one-to-one correspondence between $A \cap B$ and $A^c \cap B$, so the two sets have the same size and $\lvert A \cap B \rvert = \lvert B \rvert / 2$. In other words, learning that $B$ occurred tells nothing about the parity of the sum.
@@ -493,14 +493,14 @@ This independence can be explained by symmetry. Consider the map that changes ev
 
 **Approach:** Each product is produced on exactly one of the four lines, so the events of being produced on lines A, B, C, and D form a partition of the sample space (here A, B, C, and D are production lines, not the events of Exercise 4). The production ratios are the probabilities $P(A) = 0.2$ and so on, and the defective rates are the conditional probabilities $P(F \mid A) = 0.04$ and so on. Find $P(F)$ with the law of total probability ([Lecture 2, Section 6.2](Concepts_Lecture.md#62-partitions-and-the-general-form)).
 
-$$
+```math
 \begin{aligned}
 P(F) &= P(F \cap A) + P(F \cap B) + P(F \cap C) + P(F \cap D) \\
 &= P(A)P(F \mid A) + P(B)P(F \mid B) + P(C)P(F \mid C) + P(D)P(F \mid D) \\
 &= 0.2 \times 0.04 + 0.4 \times 0.02 + 0.3 \times 0.01 + 0.1 \times 0.05 \\
 &= 0.008 + 0.008 + 0.003 + 0.005 = 0.024
 \end{aligned}
-$$
+```
 
 In R, multiply two named vectors element by element and add the products. To confirm the theoretical value, also simulate the random production of one million products.
 
@@ -531,7 +531,7 @@ mean(isDefect)
 [1] 0.023912
 ```
 
-- **`prior * defect`:** R's arithmetic is element-wise, so $P(\text{line}) \times P(F \mid \text{line}) = P(\text{line} \cap F)$ is computed for each line, keeping the names A-D. The sum from `sum()`, $P(F) = 0.024$, is the result of the law of total probability. About 24 of every 1000 randomly sampled products are defective.
+- **`prior * defect`:** R's arithmetic is element-wise, so $P(\text{line}) \times P(F \mid \text{line}) = P(\text{line} \cap F)$ is computed for each line, keeping the names A-D. The sum from `sum()`, $P(F) = 0.024$, is the result of the law of total probability. On average, 24 of every 1000 randomly sampled products are defective.
 - **Simulation:** `sample(names(prior), ..., prob = prior)` draws the production line of each product according to the production ratios. `defect[line]` is the defective rate of each product's line, and the product is counted as defective if the uniform random number `runif(n)` between 0 and 1 is smaller than that rate, because a uniform random number is smaller than $p$ with probability $p$. The proportion of defective products among one million, 0.023912, is close to the theoretical value 0.024 (the law of large numbers).
 
 ---
@@ -546,14 +546,14 @@ mean(isDefect)
 
 **Approach:** The required values are the posterior probabilities $P(A \mid F)$ and so on of each line, given the information $F$ that the product is defective. By Bayes' theorem ([Lecture 2, Section 7.1](Concepts_Lecture.md#71-reversing-the-direction-of-conditioning)), divide the joint probability $P(\text{line} \cap F)$ of each line by $P(F) = 0.024$.
 
-$$
+```math
 \begin{aligned}
 P(A \mid F) &= \frac{P(A \cap F)}{P(F)} = \frac{0.2 \times 0.04}{0.024} = \frac{0.008}{0.024} = \frac{1}{3}, &
 P(B \mid F) &= \frac{0.4 \times 0.02}{0.024} = \frac{0.008}{0.024} = \frac{1}{3} \\
 P(C \mid F) &= \frac{0.3 \times 0.01}{0.024} = \frac{0.003}{0.024} = \frac{1}{8}, &
 P(D \mid F) &= \frac{0.1 \times 0.05}{0.024} = \frac{0.005}{0.024} = \frac{5}{24}
 \end{aligned}
-$$
+```
 
 **Code:**
 

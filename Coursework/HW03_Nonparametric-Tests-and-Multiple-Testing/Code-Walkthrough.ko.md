@@ -47,10 +47,10 @@
 
 *표 1. HW3 스크립트의 구성*
 
-스크립트는 자신이 있는 폴더를 기준으로 데이터 폴더를 찾으므로 RStudio의 Source 버튼이나 다음과 같은 `source()`로 실행한다. 이 방식은 [HW2 코드 총정리](../HW02_One-Sample-Z-Test/Code-Walkthrough.ko.md)의 2.2절에서 설명했다.
+스크립트는 자신이 있는 폴더를 기준으로 데이터 폴더를 찾으므로 `source()`로 실행한다. 이 방식은 [HW2 코드 총정리](../HW02_One-Sample-Z-Test/Code-Walkthrough.ko.md)의 2.2절에서 설명했다. 이 스크립트들은 `t_res`, `table(...)`, `head(...)`처럼 값만 적은 줄로 결과를 보여 주는데, `source()`는 기본 설정에서 이런 값을 출력하지 않고 `str()`과 `cat()`의 출력만 보여 준다. 이 문서의 출력을 모두 보려면 다음과 같이 `print.eval = TRUE`를 주거나, RStudio에서 Source with Echo(코드와 결과를 함께 출력)로 실행한다.
 
 ```r
-source("Coursework/HW03_Nonparametric-Tests-and-Multiple-Testing/Solution/Q1-2.R")
+source("Coursework/HW03_Nonparametric-Tests-and-Multiple-Testing/Solution/Q1-2.R", print.eval = TRUE)
 ```
 
 ---

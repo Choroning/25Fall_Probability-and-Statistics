@@ -37,7 +37,7 @@
 - **Classroom:** Room 7-315 (Mon, Wed)
 - **Class Format:** Lectures, discussions, practice, individual activities, quizzes, and Q&A.
 - **Course Description:** An elementary introduction to probability and statistics for computer scientists. Learning the concepts of probability and statistics, a key part of big data and artificial intelligence, is essential in preparing for the fourth industrial revolution, and the course covers the theory of statistical techniques for dealing with data produced in various places. Students learn the concepts of statistics from A to Z, from probability to data analysis, and implement the theory learned in the lectures directly in R (a statistical programming language) to apply their theoretical knowledge to real applications.
-- **Lectures:** Lectures use the slides uploaded on Blackboard and give opportunities to think about the academic issues raised during the lecture through Q&A. Students are highly recommended to review the relevant areas in advance according to the course schedule.
+- **Lectures:** Lectures use the lecture materials uploaded on Blackboard and give opportunities to think about the academic issues raised during the lecture through Q&A. Students are highly recommended to review the relevant areas in advance according to the course schedule.
 - **Practice:** Knowledge of a theory that one fully understands but cannot implement is useless, so the theory learned in class is implemented through R programming.
 - **Prerequisites:** The course is for second-year students and requires high school level mathematics. Any programming language (C, C++, C#, Java, Python, R, SAS, etc.) is helpful.
 - **Attendance:** Attendance is checked.
@@ -128,8 +128,8 @@
 
 | Type | Contents |
 |:-----|:-----|
-| Textbook | Lectures use the slides uploaded on Blackboard by the instructor instead of a designated textbook |
-| Lecture Slides | Chapter slides uploaded on Blackboard by the instructor (in English) |
+| Textbook | No designated textbook |
+| Lecture Slides | Chapter slides provided by the instructor (Blackboard, in English) |
 | Reference | A. J. Hayter, *Probability and Statistics for Engineers and Scientists*, 4th ed. Boston, MA, USA: Brooks/Cole, Cengage Learning, 2012. |
 | Reference | Forward-Looking Probability and Statistics (Kor. Version) |
 | Reference | D. Dalpiaz, *Applied Statistics with R*, 2020. [Online]. Available: http://daviddalpiaz.github.io/appliedstats/ |

@@ -56,7 +56,7 @@ source("Coursework/HW02_One-Sample-Z-Test/Solution/Q1.R")
 
 ## 2. 네 스크립트의 공통 부분
 
-네 스크립트의 앞부분 20여 줄은 같다. `Q1.R`의 1\~21행을 예로 든다.
+네 스크립트는 1\~5행의 헤더만 다르고 21행까지 같다. `Q1.R`의 1\~21행을 예로 든다.
 
 ### 2.1 패키지 준비
 
@@ -102,7 +102,7 @@ file_name <- "Data.txt"
 data <- fread(file_name)
 ```
 
-`fread()`는 data.table 패키지의 빠른 파일 읽기 함수로, 구분자(여기서는 탭)와 머리글 행을 스스로 판단해 `data.table` 객체를 돌려준다. `data.table`은 `data.frame`을 확장한 클래스여서 `data$sysBP`처럼 `$`로 열을 꺼낼 수 있다. 앞의 세 행은 다음과 같다.
+`fread()`는 data.table 패키지의 빠른 파일 읽기 함수로, 구분자(여기서는 탭)와 머리글 행을 스스로 판단해 `data.table` 객체를 돌려준다. `data.table`은 `data.frame`을 확장한 클래스여서 `data$sysBP`처럼 `$`로 열을 꺼낼 수 있다. `head(data, 3)`으로 출력한 앞의 세 행은 다음과 같으며, 화면 너비를 넘는 열은 아래쪽에 이어서 출력된다.
 
 ```text
          ID   Age Gender  Race Height_CM Weight_KG sysBP    HR Resting_SaO2
@@ -110,6 +110,11 @@ data <- fread(file_name)
 1: ID_00001  54.5      2     1     159.9        73   130    87           94
 2: ID_00002  62.3      2     1     162.6        86   170    81           94
 3: ID_00003  69.1      1     1     173.2        80   147    69           91
+     BMI HaveCough  FEV1   FVC Disease
+   <num>     <int> <num> <num>  <char>
+1: 28.55         0 112.3 114.6 Healthy
+2: 32.53         0  51.7  93.3 COVID19
+3: 26.67         0  59.3  77.0 COVID19
 ```
 
 과제 원본이 보인 `data.frame(fread("Data.txt", sep = "\t", head = T, stringsAsFactors = T))`는 결과를 일반 `data.frame`으로 바꾸고 문자열 열을 팩터로 만든다. 이 과제의 계산에는 두 방식의 차이가 없다.
@@ -149,7 +154,7 @@ p_value <- 2 * (1 - pnorm(abs(z_stat)))
 - 모평균 $\mu_0$, 모표준편차 $\sigma$, 유의수준 $\alpha$를 변수로 둔다.
 - `length()`는 표본 크기 $n = 8921$, `mean()`은 표본평균 $\bar{x} = 128.8486$을 준다.
 - `z_stat`은 $Z = (\bar{x} - \mu_0)/(\sigma/\sqrt{n})$을 그대로 옮긴 식이다.
-- `pnorm(q)`는 표준정규분포의 누적분포함수 $\Phi(q) = P(Z \le q)$이다. 양측 유의확률은 $\lvert z \rvert$보다 바깥쪽 두 꼬리의 넓이이므로 $2\{1 - \Phi(\lvert z \rvert)\}$이다.
+- `pnorm(q)`는 표준정규분포의 누적분포함수 $\Phi(q) = P(Z \le q)$이다. 양측 유의확률은 $\lvert z \rvert$보다 바깥쪽 두 꼬리의 넓이이므로 $2\lbrace1 - \Phi(\lvert z \rvert)\rbrace$이다.
 
 ```r
 # (3) Decision at 5% significance level
@@ -255,6 +260,12 @@ make_decision <- function(p_val, alpha, test_type) {
 `make_decision()`은 유의확률, 유의수준, 검정 이름을 받아 결정을 출력하는 함수이다. 같은 비교를 여러 번 하므로 함수로 묶어 중복을 없앴다. 스크립트는 유의수준 0.05에서 세 방향을, 0.10에서 양측 방향을 판정한다.
 
 ```text
+================ Analysis Result (Q3 & Q4) ================
+Population Mean (mu): 74.62
+Population SD (sigma): 3.3317 (Variance=11.1)
+Sample Size (n): 4834
+Sample Mean (x_bar): 74.7005
+-----------------------------------------------------------
 Test Statistic (Z): 1.6790
 -----------------------------------------------------------
 [1] Two-tailed P-value: 9.3156e-02

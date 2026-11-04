@@ -47,7 +47,7 @@ Exercises 1-8 are R problems that compute probabilities of the normal, chi-squar
 
 ## Exercise 3: Building a Standard Normal Table
 
-**Problem:** Like the normal tables printed at the back of school textbooks, build in R a 30-by-10 table of the cumulative probabilities $\Phi(z)$ for $z = 0.00, 0.01, \ldots, 2.99$, with $z$ up to the first decimal place in the rows (0, 0.1, ..., 2.9) and the second decimal place in the columns (0, 0.01, ..., 0.09), and print it to four decimal places.
+**Problem:** Like the normal tables printed at the back of statistics textbooks, build in R a 30-by-10 table of the cumulative probabilities $\Phi(z)$ for $z = 0.00, 0.01, \ldots, 2.99$, with $z$ up to the first decimal place in the rows (0, 0.1, ..., 2.9) and the second decimal place in the columns (0, 0.01, ..., 0.09), and print it to four decimal places.
 
 **[Solution](Solutions.md#exercise-3-building-a-standard-normal-table)**
 
