@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-10
 
 > **Learning Objectives:**
 > 1. Define sample spaces and events, and express complements, unions, and intersections of events as set operations
@@ -537,7 +537,7 @@ $P(C) = 0.012 + 0.014 = 0.026$, and the probabilities of the four end events add
 
 The condition can also be split into several cases instead of two ($F$ and $`F^c`$).
 
-> **Definition:** Events $B_1, B_2, \ldots, B_k$ form a **partition** of the sample space if they are mutually exclusive ($B_i \cap B_j = \emptyset$ whenever $`i \ne j`$) and their union is the whole sample space ($`B_1 \cup B_2 \cup \cdots \cup B_k = S`$). That is, the outcome of the experiment always belongs to exactly one of the $B_i$.
+> **Definition:** Events $B_1, B_2, \ldots, B_k$ are called a **partition** of the sample space if they are mutually exclusive ($B_i \cap B_j = \emptyset$ whenever $`i \ne j`$) and their union is the whole sample space ($`B_1 \cup B_2 \cup \cdots \cup B_k = S`$). That is, the outcome of the experiment always belongs to exactly one of the $B_i$.
 
 ![Figure 5. Events B1, ..., Bk partitioning the sample space and an event A lying across them](../../images/Lec02_p31.png)
 

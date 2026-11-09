@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-10
 
 > **Learning Objectives:**
 > 1. Define statistics, estimators, and unbiasedness, and show that the sample mean and sample variance are unbiased estimators
@@ -166,7 +166,7 @@ An example illustrates what a sampling distribution means. In the 1970s, the bod
 
 *Figure 1. Sample means computed from repeated samples of size 64 drawn from a population, and their distribution*
 
-> **Definition:** The standard deviation of an estimator is called its **standard error (SE)**. The standard error of the sample mean is $SE_{\bar{x}} = \sigma/\sqrt{n}$.
+> **Definition:** The standard deviation of an estimator is called the **standard error (SE)** of the estimator. The standard error of the sample mean is $SE_{\bar{x}} = \sigma/\sqrt{n}$.
 
 In the body weight example, $SE_{\bar{x}} = 40/\sqrt{64} = 5$. The sampling distribution of the sample mean is normal with mean 170 and standard error 5, so by the 68-95-99.7 rule of Lecture 5, Section 4.3, about 68% of sample means fall within $\mu \pm SE$, that is, between 165 and 175, and about 95% within $\mu \pm 2SE$, that is, between 160 and 180. The sampling distribution of a mean (SDM) thus describes how the sample mean behaves from sample to sample.
 
