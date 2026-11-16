@@ -2,12 +2,12 @@
 
 [Repository Guide](../../README.md) | [English](Assignment-Explanation.md) | [한국어](Assignment-Explanation.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-16
 
 > **Learning Objectives:**
-> 1. Apply the independent two-sample t-test and the Wilcoxon rank-sum test to compare two independent groups and interpret the results
+> 1. Compare two independent groups with one parametric and one nonparametric method and interpret the results
 > 2. Choose the more appropriate of the two tests based on normality, sample size, and the form of the data
-> 3. Build the null distribution of a newly defined test statistic by a permutation test and explain its limitations in comparison with established statistics
+> 3. Build the null distribution of a newly defined test statistic to carry out a test and explain its limitations in comparison with established statistics
 > 4. Explain the multiple testing problem that arises when thousands of hypotheses are tested at once and correct for it with the Bonferroni and Benjamini-Hochberg methods
 > 5. Describe what a list of statistically significant genes means, how it is used, and how far it can be trusted
 
@@ -18,10 +18,10 @@
 - [1. Assignment Structure and Data](#1-assignment-structure-and-data)
 - [2. Q1. Comparing Case Counts of Two Occupation Groups](#2-q1-comparing-case-counts-of-two-occupation-groups)
   - [2.1 Data Summary](#21-data-summary)
-  - [2.2 Parametric Method: Independent Two-Sample t-Test](#22-parametric-method-independent-two-sample-t-test)
-  - [2.3 Nonparametric Method: Wilcoxon Rank-Sum Test](#23-nonparametric-method-wilcoxon-rank-sum-test)
+  - [2.2 Parametric Method](#22-parametric-method)
+  - [2.3 Nonparametric Method](#23-nonparametric-method)
 - [3. Q2. Choosing the More Appropriate Test](#3-q2-choosing-the-more-appropriate-test)
-- [4. Q3. Permutation Test with the Seo Statistic](#4-q3-permutation-test-with-the-seo-statistic)
+- [4. Q3. A Test with the Seo Statistic](#4-q3-a-test-with-the-seo-statistic)
 - [5. Q4. Limitations of the Seo Statistic](#5-q4-limitations-of-the-seo-statistic)
 - [6. Q5. Gene-Wise Tests between the Cancer and Healthy Groups](#6-q5-gene-wise-tests-between-the-cancer-and-healthy-groups)
 - [7. Q6. Tests of Genes Related to Height](#7-q6-tests-of-genes-related-to-height)
@@ -40,6 +40,8 @@
 
 ## 1. Assignment Structure and Data
 
+> **Try It First:** This document contains the answers and solutions. Solve the problems in the [assignment handout](Original/Assignment.md) yourself before reading on.
+
 The assignment has two parts. Q1-Q4 cover parametric and nonparametric methods for comparing two groups in small samples (Lectures 6 and 8), and Q5-Q8 cover the problems of testing more than a thousand hypotheses on one data set (connected to choosing statistical methods in Lecture 7). Every conclusion must be stated with the terms null hypothesis, alternative hypothesis, reject, select, and significance level. A line-by-line explanation of the code is in the [HW3 Code Walkthrough](Code-Walkthrough.md).
 
 ```plaintext
@@ -49,14 +51,15 @@ Coursework/HW03_Nonparametric-Tests-and-Multiple-Testing/
 ├── Code-Walkthrough.ko.md
 ├── Code-Walkthrough.md
 ├── Original/
-│   └── HW3.docx                  # Assignment handout
+│   ├── Assignment.ko.md          # Assignment handout (problems)
+│   ├── Assignment.md
+│   └── HW3.docx                  # Distributed answer form
 ├── data/
 │   ├── Q1_Data.tsv               # Case counts and occupation groups of 18 institutions
 │   └── Q5_Data.tsv               # Disease, height, and 1,274 gene expression values of 72 people
 └── Solution/
     ├── Q1-2.R, Q3.R              # R code for Q1-Q4
-    ├── Q5.R, Q6.R, Q7.R          # R code for Q5-Q8
-    └── Assignment-Report.pdf     # Submitted report
+    └── Q5.R, Q6.R, Q7.R          # R code for Q5-Q8
 ```
 
 *Figure 1. Directory structure of HW3*
@@ -83,7 +86,7 @@ Coursework/HW03_Nonparametric-Tests-and-Multiple-Testing/
 
 The computer scientist group has both the larger mean and the larger median. The observations are small integers from 1 to 7, and only 7 of the 18 values are distinct, so there are many tied values.
 
-### 2.2 Parametric Method: Independent Two-Sample t-Test
+### 2.2 Parametric Method
 
 With $\mu_{CS}$ and $\mu_{ST}$ the population means of the two groups, the null hypothesis is $H_0: \mu_{CS} = \mu_{ST}$ (the two groups have the same mean number of cases) and the alternative is $H_1: \mu_{CS} \ne \mu_{ST}$ (they differ). The **independent two-sample t-test**, which assumes normal populations with equal variances, uses the **pooled variance** that combines the two sample variances.
 
@@ -97,7 +100,7 @@ t = \frac{\bar{x}_1 - \bar{x}_2}{s_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}} = \fra
 
 Under the null hypothesis, $t$ follows the t distribution with $n_1 + n_2 - 2 = 16$ degrees of freedom, and the two-sided p-value is $2P(T_{16} \ge 2.520) = 0.0227$. The p-value 0.0227 is smaller than the significance level 0.05, so the null hypothesis is rejected and the alternative that the mean numbers of cases of the two occupation groups differ is selected. The 95% confidence interval for the difference in means is (0.300, 3.478). The Welch t-test, which does not assume equal variances, gives the same conclusion with $t = 2.520$, 14.43 degrees of freedom, and a p-value of 0.0241.
 
-### 2.3 Nonparametric Method: Wilcoxon Rank-Sum Test
+### 2.3 Nonparametric Method
 
 The **Wilcoxon rank-sum test** (equivalent to the Mann-Whitney U test) uses the ranks in the combined sample instead of the values, so it does not assume normality. The null hypothesis is $H_0$: the two groups have the same distribution (the same location), and the alternative is $H_1$: one distribution is shifted up or down relative to the other (the locations differ).
 
@@ -155,7 +158,7 @@ In conclusion, at the 5% significance level the Wilcoxon rank-sum test does not 
 
 <br>
 
-## 4. Q3. Permutation Test with the Seo Statistic
+## 4. Q3. A Test with the Seo Statistic
 
 **Problem.** Using the new two-group statistic $\text{Seo-Stat} = \lvert \mathrm{Median}(A) - \mathrm{Median}(B) \rvert$ as the test statistic, test the same hypotheses as Q1 at the 10% significance level.
 
@@ -218,6 +221,8 @@ t = \frac{\bar{x}_1 - \bar{x}_2}{s_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}, \qqua
 | Possible values in these data | Nearly continuous | Dozens | Four: 0, 1, 2, 3 |
 
 *Table 5. Comparison of the t statistic, the Wilcoxon statistic, and the Seo statistic*
+
+The Seo statistic is intuitive to define and, because it uses medians instead of means, is less sensitive to outliers. As a statistic for testing a difference between two groups, however, it has the following limitations.
 
 - **Loss of information:** The median of a group of nine is determined by its fifth value alone. The other eight values matter only through being above or below the median, so for the same sample size the power is lower than that of statistics based on means or rank sums.
 - **No standardization:** The t statistic divides the difference by the standard error and measures "how many times the chance variation the difference is", whereas the Seo statistic is the raw difference in the original units. The same difference of 2 is common when the data are widely spread and rare when they are not, so the size of the statistic alone does not reveal the strength of evidence, and the null distribution must be rebuilt for every data set.
@@ -373,6 +378,7 @@ When every null hypothesis is true, p-values follow the uniform distribution on 
 - **Discovering biomarker candidates:** Genes of Q5 that pass a strict criterion, such as the 56 under Bonferroni, and show a large difference in group means become candidates for cancer diagnostic biomarkers. A test panel of a few genes is cheaper and faster than measuring the whole genome.
 - **Feature selection in machine learning:** As **filter feature selection**, which picks features for classification from thousands of variables in advance, it reduces the dimension of logistic regression, random forest, and neural network classifiers of cancer versus healthy and lowers the risk of overfitting.
 - **Mechanism research and drug targets:** Pathway analysis, which matches the list of significant genes against known biological pathways, builds hypotheses about disease mechanisms and selects drug target candidates for experimental validation.
+- **Growth research and personalized medicine:** If genes related to height were confirmed in an independent sample, they could serve as features of models that predict the risk of growth disorders or abnormal skeletal development, or as a basis for nutrition, exercise, and treatment strategies tailored to an individual's genetic information. The 12 genes of these data, however, do not survive correction, so they must be tested again on a larger sample before such use.
 - **Study design:** When no signal remains after correction, as in Q6, that is itself a result. It is grounds for judging whether a larger sample is needed, and it shows that using the 12 chance-significant genes as features would only add noise and harm a model.
 
 **Cautions in application.**

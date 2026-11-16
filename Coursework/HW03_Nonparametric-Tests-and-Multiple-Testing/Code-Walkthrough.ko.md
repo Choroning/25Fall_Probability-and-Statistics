@@ -2,12 +2,12 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Code-Walkthrough.md) | [한국어](Code-Walkthrough.ko.md)
 
-> **최종 수정일:** 2026-11-04
+> **최종 수정일:** 2026-11-16
 
 > **학습 목표:**
 > 1. `read.table()`로 탭 구분 데이터를 불러오고 `by()`, `boxplot()`, `qqnorm()`으로 집단별 분포를 살펴볼 수 있다
-> 2. `t.test()`, `wilcox.test()`, `shapiro.test()`, `cor.test()`의 인자와 출력을 읽을 수 있다
-> 3. `combn()`과 `apply()`로 모든 분할을 나열하는 정확한 순열 검정을 구현할 수 있다
+> 2. R의 가설검정 함수와 정규성 검정 함수의 인자와 출력을 읽을 수 있다
+> 3. `combn()`과 `apply()`로 새로 정의한 검정통계량의 검정을 구현할 수 있다
 > 4. 반복문으로 수천 개의 가설을 검정해 결과를 표로 모으고, `p.adjust()`로 다중 검정을 보정할 수 있다
 
 ---
@@ -19,11 +19,11 @@
 - [3. Q1-2.R: 두 집단의 비교](#3-q1-2r-두-집단의-비교)
   - [3.1 요약 통계와 상자 그림](#31-요약-통계와-상자-그림)
   - [3.2 정규성 점검](#32-정규성-점검)
-  - [3.3 독립 2표본 t 검정](#33-독립-2표본-t-검정)
-  - [3.4 Wilcoxon 순위합 검정](#34-wilcoxon-순위합-검정)
-- [4. Q3.R: Seo 통계량의 정확한 순열 검정](#4-q3r-seo-통계량의-정확한-순열-검정)
-- [5. Q5.R: 유전자별 Welch t 검정](#5-q5r-유전자별-welch-t-검정)
-- [6. Q6.R: 유전자별 상관 검정](#6-q6r-유전자별-상관-검정)
+  - [3.3 모수적 검정](#33-모수적-검정)
+  - [3.4 비모수적 검정](#34-비모수적-검정)
+- [4. Q3.R: Seo 통계량을 쓴 검정](#4-q3r-seo-통계량을-쓴-검정)
+- [5. Q5.R: 유전자별 집단 비교 검정](#5-q5r-유전자별-집단-비교-검정)
+- [6. Q6.R: 유전자와 키의 관련성 검정](#6-q6r-유전자와-키의-관련성-검정)
 - [7. Q7.R: 다중 검정 보정](#7-q7r-다중-검정-보정)
 - [8. 반복문을 sapply로 바꾸기](#8-반복문을-sapply로-바꾸기)
 - [요약](#요약)
@@ -35,14 +35,16 @@
 
 ## 1. 파일 구성과 실행 방법
 
+> **풀어 보기:** 이 문서는 작성한 코드 전체와 줄별 설명을 담고 있다. 먼저 [과제 안내문](Original/Assignment.ko.md)의 문제를 직접 풀어 본 뒤 읽는다.
+
 `Solution/`의 R 스크립트 다섯 개는 Q1\~Q7의 계산을 맡고, Q2, Q4, Q8은 이 결과를 해석하는 서술 문항이다. 문항의 통계적 해설은 [HW3 과제 해설](Assignment-Explanation.ko.md)에 있고, 이 문서는 코드를 처음부터 끝까지 읽는다.
 
 | 파일 | 데이터 | 하는 일 |
 |:-----|:-----|:-----|
-| `Q1-2.R` | `Q1_Data.tsv` | 요약 통계, 상자 그림, 정규성 점검, 합동 분산 t 검정, Wilcoxon 순위합 검정 |
-| `Q3.R` | `Q1_Data.tsv` | Seo 통계량과 48,620가지 분할의 정확한 순열 검정 |
-| `Q5.R` | `Q5_Data.tsv` | 1,274개 유전자의 Welch t 검정과 유의한 유전자 수 |
-| `Q6.R` | `Q5_Data.tsv` | 1,274개 유전자와 키의 Pearson 상관 검정 |
+| `Q1-2.R` | `Q1_Data.tsv` | 요약 통계, 상자 그림, 정규성 점검, Q1의 모수적 검정과 비모수적 검정 |
+| `Q3.R` | `Q1_Data.tsv` | Seo 통계량의 계산과 검정 |
+| `Q5.R` | `Q5_Data.tsv` | 1,274개 유전자의 집단 비교 검정과 유의한 유전자 수 |
+| `Q6.R` | `Q5_Data.tsv` | 1,274개 유전자와 키의 관련성 검정 |
 | `Q7.R` | `Q5_Data.tsv` | Q5의 검정을 다시 하고 Bonferroni, BH 보정 |
 
 *표 1. HW3 스크립트의 구성*
@@ -174,7 +176,7 @@ W = 0.90093, p-value = 0.2574
 
 전산학자 집단의 점들은 3과 6, 7에 몰려 계단 모양을 이루고 직선에서 크게 벗어난다. 이는 유의확률 0.0198로 정규성이 기각된 결과와 맞는다. 통계학자 집단은 4에 같은 값이 많지만 대체로 직선을 따른다. `data:  dd[x, ]`는 `by()`가 내부에서 나눈 자료의 이름이 그대로 출력된 것이다.
 
-### 3.3 독립 2표본 t 검정
+### 3.3 모수적 검정
 
 ```r
 t_res <- t.test(numCOVID ~ Job,
@@ -202,7 +204,7 @@ mean in group ComputerScientist      mean in group Statistician
 
 출력은 차례로 검정 이름, 검정통계량 $t$, 자유도 $n_1 + n_2 - 2 = 16$, 유의확률, 대립가설, 평균 차이의 95% 신뢰구간, 집단별 표본평균이다. 결과 객체 `t_res`에서 `t_res$statistic`, `t_res$p.value`, `t_res$conf.int`로 각 값을 꺼낼 수 있다.
 
-### 3.4 Wilcoxon 순위합 검정
+### 3.4 비모수적 검정
 
 ```r
 wil_res <- wilcox.test(numCOVID ~ Job,
@@ -231,7 +233,7 @@ alternative hypothesis: true location shift is not equal to 0
 
 <br>
 
-## 4. Q3.R: Seo 통계량의 정확한 순열 검정
+## 4. Q3.R: Seo 통계량을 쓴 검정
 
 ```r
 group_A <- "ComputerScientist"
@@ -290,7 +292,7 @@ and Select the Alternative hypothesis.
 
 <br>
 
-## 5. Q5.R: 유전자별 Welch t 검정
+## 5. Q5.R: 유전자별 집단 비교 검정
 
 ```r
 gene_cols <- grep("^Gene_", names(Q5_data), value = TRUE)
@@ -364,7 +366,7 @@ Number of significant genes at 1% significance level: 315
 
 <br>
 
-## 6. Q6.R: 유전자별 상관 검정
+## 6. Q6.R: 유전자와 키의 관련성 검정
 
 ```r
 for (i in seq_along(gene_cols)) {

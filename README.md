@@ -23,7 +23,7 @@ This repository archives lecture notes and coursework for the Probability and St
 ## 📝 About This Repository
 
 - `Lecture-Notes/` holds lecture notes that follow the order of the lecture slides (`Lec##`), with exercises and solutions for each unit.
-- `Coursework/` holds the assignment solutions and explanations and the lab code, with the assignment data in each item's `data/`.
+- `Coursework/` holds the assignment handouts, solutions, and explanations and the lab code, with the assignment data in each item's `data/`.
 - Every lecture note comes as an English (`.md`) and Korean (`.ko.md`) pair.
 - The R code files carry **Doxygen-style headers**.
 
@@ -63,7 +63,7 @@ An introduction to the foundations of probability and statistics for computer sc
 ```plaintext
 25Fall_Probability-and-Statistics
 ├── Lecture-Notes               Lecture notes and exercises by lecture slides
-├── Coursework                  Assignment solutions and explanations, lab code
+├── Coursework                  Assignment handouts, solutions and explanations, lab code
 ├── images                      Figures for all documents
 ├── Course-Information.ko.md    Course operations
 ├── Course-Information.md

@@ -2,12 +2,12 @@
 
 [Repository Guide](../../README.md) | [English](Code-Walkthrough.md) | [한국어](Code-Walkthrough.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-16
 
 > **Learning Objectives:**
 > 1. Load tab-separated data with `read.table()` and explore distributions by group with `by()`, `boxplot()`, and `qqnorm()`
-> 2. Read the arguments and outputs of `t.test()`, `wilcox.test()`, `shapiro.test()`, and `cor.test()`
-> 3. Implement an exact permutation test that enumerates every split with `combn()` and `apply()`
+> 2. Read the arguments and outputs of R's hypothesis test and normality test functions
+> 3. Implement a test of a newly defined test statistic with `combn()` and `apply()`
 > 4. Test thousands of hypotheses in a loop, collect the results in a table, and correct for multiple testing with `p.adjust()`
 
 ---
@@ -19,11 +19,11 @@
 - [3. Q1-2.R: Comparing Two Groups](#3-q1-2r-comparing-two-groups)
   - [3.1 Summary Statistics and Box Plot](#31-summary-statistics-and-box-plot)
   - [3.2 Checking Normality](#32-checking-normality)
-  - [3.3 Independent Two-Sample t-Test](#33-independent-two-sample-t-test)
-  - [3.4 Wilcoxon Rank-Sum Test](#34-wilcoxon-rank-sum-test)
-- [4. Q3.R: Exact Permutation Test with the Seo Statistic](#4-q3r-exact-permutation-test-with-the-seo-statistic)
-- [5. Q5.R: Gene-Wise Welch t-Tests](#5-q5r-gene-wise-welch-t-tests)
-- [6. Q6.R: Gene-Wise Correlation Tests](#6-q6r-gene-wise-correlation-tests)
+  - [3.3 Parametric Test](#33-parametric-test)
+  - [3.4 Nonparametric Test](#34-nonparametric-test)
+- [4. Q3.R: A Test with the Seo Statistic](#4-q3r-a-test-with-the-seo-statistic)
+- [5. Q5.R: Gene-Wise Group Comparison Tests](#5-q5r-gene-wise-group-comparison-tests)
+- [6. Q6.R: Gene-Wise Tests of Association with Height](#6-q6r-gene-wise-tests-of-association-with-height)
 - [7. Q7.R: Multiple Testing Correction](#7-q7r-multiple-testing-correction)
 - [8. Replacing the Loops with sapply](#8-replacing-the-loops-with-sapply)
 - [Summary](#summary)
@@ -35,14 +35,16 @@
 
 ## 1. Files and How to Run
 
+> **Try It First:** This document contains the complete code and line-by-line explanations. Solve the problems in the [assignment handout](Original/Assignment.md) yourself before reading on.
+
 The five R scripts in `Solution/` carry out the computations of Q1-Q7, and Q2, Q4, and Q8 are written questions that interpret these results. The statistical explanation of the problems is in the [HW3 Assignment Explanation](Assignment-Explanation.md), and this document reads the code from beginning to end.
 
 | File | Data | Task |
 |:-----|:-----|:-----|
-| `Q1-2.R` | `Q1_Data.tsv` | Summary statistics, box plot, normality checks, pooled t-test, Wilcoxon rank-sum test |
-| `Q3.R` | `Q1_Data.tsv` | Seo statistic and the exact permutation test over 48,620 splits |
-| `Q5.R` | `Q5_Data.tsv` | Welch t-tests of 1,274 genes and the number of significant genes |
-| `Q6.R` | `Q5_Data.tsv` | Pearson correlation tests between 1,274 genes and height |
+| `Q1-2.R` | `Q1_Data.tsv` | Summary statistics, box plot, normality checks, the parametric and nonparametric tests of Q1 |
+| `Q3.R` | `Q1_Data.tsv` | Computing the Seo statistic and testing with it |
+| `Q5.R` | `Q5_Data.tsv` | Group comparison tests of 1,274 genes and the number of significant genes |
+| `Q6.R` | `Q5_Data.tsv` | Tests of association between 1,274 genes and height |
 | `Q7.R` | `Q5_Data.tsv` | Repeats the Q5 tests and applies the Bonferroni and BH corrections |
 
 *Table 1. Structure of the HW3 scripts*
@@ -174,7 +176,7 @@ W = 0.90093, p-value = 0.2574
 
 The points of the computer scientist group cluster at 3 and at 6 and 7, forming steps that depart far from the line. This agrees with the rejection of normality at a p-value of 0.0198. The statistician group has many tied values at 4 but mostly follows the line. `data:  dd[x, ]` is the internal name of the data split by `by()`, printed as it is.
 
-### 3.3 Independent Two-Sample t-Test
+### 3.3 Parametric Test
 
 ```r
 t_res <- t.test(numCOVID ~ Job,
@@ -202,7 +204,7 @@ mean in group ComputerScientist      mean in group Statistician
 
 The output shows, in order, the name of the test, the test statistic $t$, the degrees of freedom $n_1 + n_2 - 2 = 16$, the p-value, the alternative hypothesis, the 95% confidence interval for the difference in means, and the sample mean of each group. Each value can be taken from the result object as `t_res$statistic`, `t_res$p.value`, and `t_res$conf.int`.
 
-### 3.4 Wilcoxon Rank-Sum Test
+### 3.4 Nonparametric Test
 
 ```r
 wil_res <- wilcox.test(numCOVID ~ Job,
@@ -231,7 +233,7 @@ alternative hypothesis: true location shift is not equal to 0
 
 <br>
 
-## 4. Q3.R: Exact Permutation Test with the Seo Statistic
+## 4. Q3.R: A Test with the Seo Statistic
 
 ```r
 group_A <- "ComputerScientist"
@@ -290,7 +292,7 @@ Printing `table(Seo_perm)` shows the null distribution as 29,750 zeros, 14,590 o
 
 <br>
 
-## 5. Q5.R: Gene-Wise Welch t-Tests
+## 5. Q5.R: Gene-Wise Group Comparison Tests
 
 ```r
 gene_cols <- grep("^Gene_", names(Q5_data), value = TRUE)
@@ -364,7 +366,7 @@ Number of significant genes at 1% significance level: 315
 
 <br>
 
-## 6. Q6.R: Gene-Wise Correlation Tests
+## 6. Q6.R: Gene-Wise Tests of Association with Height
 
 ```r
 for (i in seq_along(gene_cols)) {

@@ -23,7 +23,7 @@
 ## 📝 레포지토리 소개
 
 - `Lecture-Notes/`에는 강의자료의 순서(`Lec##`)를 따른 강의 노트와 단원별 연습 문제, 풀이가 있습니다.
-- `Coursework/`에는 과제 풀이와 해설, 실습 코드가 있으며, 과제 데이터는 각 항목의 `data/`에 있습니다.
+- `Coursework/`에는 과제 안내문과 풀이, 해설, 실습 코드가 있으며, 과제 데이터는 각 항목의 `data/`에 있습니다.
 - 모든 강의 노트는 영어(`.md`)와 한국어(`.ko.md`) 파일이 짝을 이룹니다.
 - R 코드 파일에는 **Doxygen 스타일 헤더**가 있습니다.
 
@@ -63,7 +63,7 @@
 ```plaintext
 25Fall_Probability-and-Statistics
 ├── Lecture-Notes               강의자료별 강의 노트와 연습 문제
-├── Coursework                  과제 풀이와 해설, 실습 코드
+├── Coursework                  과제 안내문, 풀이와 해설, 실습 코드
 ├── images                      모든 문서의 그림
 ├── Course-Information.ko.md    수업 운영 정보
 ├── Course-Information.md

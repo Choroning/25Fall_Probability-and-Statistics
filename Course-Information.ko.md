@@ -2,7 +2,7 @@
 
 [레포지토리 안내](README.ko.md) | [English](Course-Information.md) | [한국어](Course-Information.ko.md)
 
-> **최종 수정일:** 2026-11-04
+> **최종 수정일:** 2026-11-16
 
 ## 목차
 
@@ -118,7 +118,7 @@
   - `Chap7.StatisticalAnalysisSummary`: [Lec07](Lecture-Notes/Lec07_Statistical-Analysis/Concepts_Lecture.ko.md)
   - `Chap8.NonparametricTest`: [Lec08](Lecture-Notes/Lec08_Nonparametric-Approaches/Concepts_Lecture.ko.md)
 - 2주차(9/8) 수업의 R 실습 코드는 [`Coursework` 색인](Coursework/README.ko.md)에 있다.
-- HW1은 R 코드 없이 손으로 푸는 확률과 확률변수 문제였고, HW2와 HW3은 실제 데이터를 R로 분석하는 과제였다. 세 과제의 풀이와 해설도 `Coursework` 색인에 있다.
+- HW1은 R 코드 없이 손으로 푸는 확률과 확률변수 문제였고, HW2와 HW3은 실제 데이터를 R로 분석하는 과제였다. 세 과제의 안내문, 풀이와 해설도 `Coursework` 색인에 있다.
 
 ---
 

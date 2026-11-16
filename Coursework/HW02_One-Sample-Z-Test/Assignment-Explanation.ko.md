@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Assignment-Explanation.md) | [한국어](Assignment-Explanation.ko.md)
 
-> **최종 수정일:** 2026-11-04
+> **최종 수정일:** 2026-11-16
 
 > **학습 목표:**
 > 1. 모표준편차를 아는 경우 단일 표본 Z 검정의 검정통계량과 유의확률을 계산할 수 있다
@@ -36,6 +36,8 @@
 
 ## 1. 과제 구성과 데이터
 
+> **풀어 보기:** 이 문서는 정답과 풀이를 담고 있다. 먼저 [과제 안내문](Original/Assignment.ko.md)의 문제를 직접 풀어 본 뒤 읽는다.
+
 이 과제는 6강의 가설검정, 특히 모표준편차를 아는 경우의 **단일 표본 Z 검정**(one-sample Z-test)을 실제 임상 데이터에 R로 적용한다. 다섯 문항은 모두 알려진 모집단의 평균과 표본의 평균을 비교하며, 검정의 방향과 유의수준만 바뀐다. 코드의 줄 단위 설명은 [HW2 코드 총정리](Code-Walkthrough.ko.md)에 있다.
 
 ```plaintext
@@ -45,12 +47,13 @@ Coursework/HW02_One-Sample-Z-Test/
 ├── Code-Walkthrough.ko.md
 ├── Code-Walkthrough.md
 ├── Original/
-│   └── HW2.docx                  # 과제 원본 (답안 양식)
+│   ├── Assignment.ko.md          # 과제 안내문 (문제)
+│   ├── Assignment.md
+│   └── HW2.docx                  # 배포된 답안 양식
 ├── data/
 │   └── Data.txt                  # 8,921명의 임상 데이터 (탭 구분)
 └── Solution/
-    ├── Q1.R, Q2.R, Q3-4.R, Q5.R  # 문항별 R 코드
-    └── Assignment-Report.pdf     # 제출 보고서
+    └── Q1.R, Q2.R, Q3-4.R, Q5.R  # 문항별 R 코드
 ```
 
 *그림 1. HW2 과제의 디렉토리 구성*

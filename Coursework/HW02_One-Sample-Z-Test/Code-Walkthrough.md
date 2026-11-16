@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Code-Walkthrough.md) | [한국어](Code-Walkthrough.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-16
 
 > **Learning Objectives:**
 > 1. Load tab-separated data with `fread()` from data.table and extract columns and subsets
@@ -32,6 +32,8 @@
 <br>
 
 ## 1. Files and How to Run
+
+> **Try It First:** This document contains the complete code and line-by-line explanations. Solve the problems in the [assignment handout](Original/Assignment.md) yourself before reading on.
 
 Each of the four R scripts in `Solution/` performs one one-sample Z-test per problem. The statistical explanation of the problems is in the [HW2 Assignment Explanation](Assignment-Explanation.md), and this document reads the code from beginning to end.
 

@@ -2,14 +2,14 @@
 
 [Repository Guide](../../README.md) | [English](Assignment-Explanation.md) | [한국어](Assignment-Explanation.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-16
 
 > **Learning Objectives:**
 > 1. Find the unknown constants of a probability table from the properties of a probability distribution and an expectation condition
 > 2. Apply conditional probability, independence of events, and Bayes' theorem to problem situations
-> 3. Identify the Poisson, hypergeometric, and binomial distributions in a problem and find their probability mass functions, expected values, and variances
-> 4. Derive and use the formulas for linear transformations of expectation and variance and the identity $E[X^2] = \mathrm{Var}(X) + \mu^2$
-> 5. Build a joint cumulative distribution function from a joint probability mass function and distinguish uncorrelatedness from independence
+> 3. Identify the discrete probability distribution that fits a problem situation and find its probability mass function, expected value, and variance
+> 4. Use the formulas for linear transformations of expectation and variance, and judge from the definition of variance whether a relation between the expected square and the variance holds
+> 5. Find the joint cumulative distribution function and expectations from a joint probability mass function and decide whether two random variables are independent
 
 ---
 
@@ -26,9 +26,9 @@
   - [3.2 Q8. Intersection of Independent Events](#32-q8-intersection-of-independent-events)
   - [3.3 Q10. Meaning of Bayes' Theorem](#33-q10-meaning-of-bayes-theorem)
 - [4. Discrete Probability Distributions](#4-discrete-probability-distributions)
-  - [4.1 Q3. The Poisson Distribution](#41-q3-the-poisson-distribution)
-  - [4.2 Q5. The Hypergeometric Distribution](#42-q5-the-hypergeometric-distribution)
-  - [4.3 Q7. The Binomial Distribution and the Normal Approximation](#43-q7-the-binomial-distribution-and-the-normal-approximation)
+  - [4.1 Q3. The Number of Phone Calls in a Day](#41-q3-the-number-of-phone-calls-in-a-day)
+  - [4.2 Q5. Cans Taken out of a Refrigerator](#42-q5-cans-taken-out-of-a-refrigerator)
+  - [4.3 Q7. The Number of Games Won](#43-q7-the-number-of-games-won)
   - [4.4 Q9. Number of Trials from a Binomial Variance](#44-q9-number-of-trials-from-a-binomial-variance)
 - [5. Joint Distributions](#5-joint-distributions)
   - [5.1 Q12. The Joint Cumulative Distribution Function](#51-q12-the-joint-cumulative-distribution-function)
@@ -43,16 +43,18 @@
 
 ## 1. Assignment Structure
 
-The assignment consists of 14 problems solved by hand without R code and covers the basic laws of probability (Lecture 2), random variables, expectation, and variance (Lecture 3), discrete probability distributions (Lecture 4), and the normal approximation (Lecture 5). Problems with heavy computation (combinations, square roots, and so on) need not be carried to a final number, and showing the solution process precisely is what matters. This document groups the problems by topic and solves them.
+> **Try It First:** This document contains the answers and solutions. Solve the problems in the [assignment handout](Original/Assignment.md) yourself before reading on.
+
+The assignment consists of 14 problems solved by hand without R code and covers the basic laws of probability (Lecture 2), random variables, expectation, and variance (Lecture 3), discrete probability distributions (Lecture 4), and the normal distribution (Lecture 5). Problems with heavy computation (combinations, square roots, and so on) need not be carried to a final number, and showing the solution process precisely is what matters. This document groups the problems by topic and solves them.
 
 ```plaintext
 Coursework/HW01_Probability-and-Random-Variables/
 ├── Assignment-Explanation.ko.md
 ├── Assignment-Explanation.md
-├── Original/
-│   └── HW1.docx                  # Assignment handout
-└── Solution/
-    └── Assignment-Report.pdf     # Handwritten solution
+└── Original/
+    ├── Assignment.ko.md          # Assignment handout (problems)
+    ├── Assignment.md
+    └── HW1.docx                  # Distributed answer form
 ```
 
 *Figure 1. Directory structure of HW1*
@@ -61,8 +63,8 @@ Coursework/HW01_Probability-and-Random-Variables/
 |:-----|:-----|:-----|
 | Q1, Q4, Q6 | Probability tables, expectation, variance, linear transformations | Lecture 3 |
 | Q2, Q8, Q10 | Conditional probability, independence, Bayes' theorem | Lecture 2 |
-| Q3, Q5, Q7, Q9 | Poisson, hypergeometric, and binomial distributions, normal approximation | Lectures 4, 5 |
-| Q11 | Proof of the relation between $E[X^2]$ and the variance | Lecture 3 |
+| Q3, Q5, Q7, Q9 | Identifying discrete distributions, probability mass functions, expectation, variance | Lectures 4, 5 |
+| Q11 | Truth of a statement relating $E[X^2]$ and the variance | Lecture 3 |
 | Q12, Q13 | Joint cumulative distribution function, product of expectations, independence | Lecture 3 |
 | Q14 | Concept map of Lectures 2-5 | Lectures 2-5 |
 
@@ -239,7 +241,7 @@ Strictly speaking, the posterior probability is obtained not from the prior prob
 
 ## 4. Discrete Probability Distributions
 
-### 4.1 Q3. The Poisson Distribution
+### 4.1 Q3. The Number of Phone Calls in a Day
 
 **Problem.** A household receives an average of four phone calls per day. Find the probability that it receives exactly two calls tomorrow by answering, in order, the notation of the random variable, the probability mass function, $E(X)$, $\mathrm{Var}(X)$, and $P(X = 2)$.
 
@@ -257,7 +259,7 @@ Strictly speaking, the posterior probability is obtained not from the prior prob
 
 A characteristic of the Poisson distribution is that its mean and variance are both equal to $\lambda$.
 
-### 4.2 Q5. The Hypergeometric Distribution
+### 4.2 Q5. Cans Taken out of a Refrigerator
 
 **Problem.** A refrigerator holds nine cans of cola, three of them Pepsi and six Coca-Cola. When four cans are taken out, find the probability that three of them are Coca-Cola by answering, in order, the notation of the random variable, the probability mass function, $E(X)$, $\mathrm{Var}(X)$, and $P(X = 3)$.
 
@@ -275,7 +277,7 @@ A characteristic of the Poisson distribution is that its mean and variance are b
 
 Since there are only three Pepsi cans, drawing four cans always yields at least one Coca-Cola can. The range of $X$ is therefore from $\max(0, n - (N - r)) = 1$ to $\min(n, r) = 4$. The last factor of the variance, $\frac{N - n}{N - 1}$, is the **finite population correction factor**: with replacement, $X \sim B(4, \frac{2}{3})$ would have variance $4 \cdot \frac{2}{3} \cdot \frac{1}{3} = \frac{8}{9}$, and the factor reduces it to fit sampling without replacement.
 
-### 4.3 Q7. The Binomial Distribution and the Normal Approximation
+### 4.3 Q7. The Number of Games Won
 
 **Problem.** Seo wins on average three out of five games. To find the probability that Seo wins 70 of 100 games, answer the notation of the random variable, the probability mass function, $E(X)$, $\mathrm{Var}(X)$, and $P(X \ge 70)$.
 
@@ -438,6 +440,31 @@ mindmap
 *Figure 2. Concept map of Lectures 2-5*
 
 The approximation branch should be remembered together with the conditions that link the two distributions. The binomial distribution $B(n, p)$ is approximated by $N(np, np(1 - p))$ when $np \ge 5$ and $n(1 - p) \ge 5$ (Section 4.3), and by $Poi(np)$ when $n$ is large and $p$ is small.
+
+The representative formulas and descriptions attached to the nodes are as follows.
+
+| Branch | Concept | Formula and Description |
+|:-----|:-----|:-----|
+| Probability | Axioms of probability | $0 \le P(E) \le 1$, $P(S) = 1$, and the probability of mutually exclusive events is the sum of their probabilities |
+| Probability | Complement rule | $P(E^c) = 1 - P(E)$ |
+| Probability | Addition rule | $P(E \cup F) = P(E) + P(F) - P(E \cap F)$ |
+| Probability | Conditional probability | $P(E \mid F) = P(E \cap F) / P(F)$ |
+| Probability | Multiplication rule | $P(E \cap F) = P(E \mid F) P(F)$ |
+| Probability | Independent events | $P(E \cap F) = P(E) P(F)$ |
+| Random variables | Definition | A function that maps the outcomes of an experiment to real numbers |
+| Random variables | Discrete and continuous random variables | Distinguished by whether the values are countable (such as integers) or uncountable (an interval of real numbers) |
+| Random variables | Probability mass function | $p(x) = P(X = x)$, and the probabilities sum to 1 |
+| Random variables | Probability density function | The area under the curve is a probability, and the total area is 1 |
+| Random variables | Cumulative distribution function | $F(x) = P(X \le x)$, common to the discrete and continuous cases |
+| Measures of a distribution | Expected value | $E(X)$, the mean |
+| Measures of a distribution | Variance | $\mathrm{Var}(X) = E(X^2) - \lbrace E(X)\rbrace^2$, the spread of the distribution around the mean |
+| Measures of a distribution | Standard deviation | $\sigma(X) = \mathrm{Sd}(X) = \sqrt{\mathrm{Var}(X)}$ |
+| Measures of a distribution | Covariance | $\mathrm{Cov}(X, Y) = E(XY) - E(X)E(Y)$, the degree to which two variables vary together |
+| Major distributions | Discrete | Discrete uniform, Bernoulli $B(1, p)$, binomial $B(n, p)$, hypergeometric $HG(n, N, r)$, Poisson $Poi(\lambda)$ |
+| Major distributions | Continuous | Continuous uniform $U(a, b)$, normal $N(\mu, \sigma^2)$, standard normal $N(0, 1)$ |
+| Major distributions | Approximations to the binomial | The normal approximation is used when $n$ is large ($np \ge 5$, $`n(1 - p) \ge 5`$), and the Poisson approximation when $n$ is large and $p$ is small ($`\lambda = np`$) |
+
+*Table 10. Formulas and descriptions by branch of the mind map*
 
 ---
 

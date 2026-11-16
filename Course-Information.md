@@ -2,7 +2,7 @@
 
 [Repository Guide](README.md) | [English](Course-Information.md) | [한국어](Course-Information.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-16
 
 ## Table of Contents
 
@@ -118,7 +118,7 @@
   - `Chap7.StatisticalAnalysisSummary`: [Lec07](Lecture-Notes/Lec07_Statistical-Analysis/Concepts_Lecture.md)
   - `Chap8.NonparametricTest`: [Lec08](Lecture-Notes/Lec08_Nonparametric-Approaches/Concepts_Lecture.md)
 - The R practice code of the week 2 class (9/8) is in the [`Coursework` index](Coursework/README.md).
-- HW1 was a set of probability and random variable problems solved by hand without R code, and HW2 and HW3 were assignments analyzing real data with R. The solutions and explanations of the three assignments are also in the `Coursework` index.
+- HW1 was a set of probability and random variable problems solved by hand without R code, and HW2 and HW3 were assignments analyzing real data with R. The handouts, solutions, and explanations of the three assignments are also in the `Coursework` index.
 
 ---
 

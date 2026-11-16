@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Assignment-Explanation.md) | [한국어](Assignment-Explanation.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-16
 
 > **Learning Objectives:**
 > 1. Compute the test statistic and p-value of the one-sample Z-test when the population standard deviation is known
@@ -36,6 +36,8 @@
 
 ## 1. Assignment Structure and Data
 
+> **Try It First:** This document contains the answers and solutions. Solve the problems in the [assignment handout](Original/Assignment.md) yourself before reading on.
+
 The assignment applies the hypothesis testing of Lecture 6, in particular the **one-sample Z-test** with a known population standard deviation, to real clinical data in R. All five problems compare the mean of a sample with the known mean of a population, and only the direction of the test and the significance level change. A line-by-line explanation of the code is in the [HW2 Code Walkthrough](Code-Walkthrough.md).
 
 ```plaintext
@@ -45,12 +47,13 @@ Coursework/HW02_One-Sample-Z-Test/
 ├── Code-Walkthrough.ko.md
 ├── Code-Walkthrough.md
 ├── Original/
-│   └── HW2.docx                  # Assignment handout (answer template)
+│   ├── Assignment.ko.md          # Assignment handout (problems)
+│   ├── Assignment.md
+│   └── HW2.docx                  # Distributed answer form
 ├── data/
 │   └── Data.txt                  # Clinical data of 8,921 subjects (tab-separated)
 └── Solution/
-    ├── Q1.R, Q2.R, Q3-4.R, Q5.R  # R code for each problem
-    └── Assignment-Report.pdf     # Submitted report
+    └── Q1.R, Q2.R, Q3-4.R, Q5.R  # R code for each problem
 ```
 
 *Figure 1. Directory structure of HW2*
