@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-17
+> **Last Updated:** 2026-11-18
 
 > **Learning Objectives:**
 > 1. Distinguish the independent-sample and paired-sample ways of collecting data, and choose a test for a two-group comparison according to normality and sample size
@@ -32,7 +32,7 @@
   - [3.2 Goodness-of-Fit Tests](#32-goodness-of-fit-tests)
   - [3.3 Non-Normal Data: Transformation and Nonparametric Tests](#33-non-normal-data-transformation-and-nonparametric-tests)
 - [4. The Wilcoxon Rank-Sum Test](#4-the-wilcoxon-rank-sum-test)
-  - [4.1 Why Ranks, and the Hypotheses](#41-why-ranks-and-the-hypotheses)
+  - [4.1 Reasons for Using Ranks, and the Hypotheses](#41-reasons-for-using-ranks-and-the-hypotheses)
   - [4.2 The Test Statistic W](#42-the-test-statistic-w)
   - [4.3 Worked Example: Weeds and Corn Yield](#43-worked-example-weeds-and-corn-yield)
   - [4.4 The Exact Distribution and R's Output](#44-the-exact-distribution-and-rs-output)
@@ -485,7 +485,7 @@ In the original data the mean (28.2) exceeds the median (22.0) and the maximum i
 
 ## 4. The Wilcoxon Rank-Sum Test
 
-### 4.1 Why Ranks, and the Hypotheses
+### 4.1 Reasons for Using Ranks, and the Hypotheses
 
 The **Wilcoxon rank-sum test** is a nonparametric test that compares two independent samples when the samples are small or normality is doubtful [7]. The key idea is to use **ranks** instead of the observed values. The two samples are pooled, and the smallest value gets rank 1, the next 2, ..., and the largest $N$. If the two groups have the same distribution, an observation from either group is equally likely to receive any rank, so the ranks received by one group should look like ranks chosen at random from 1 to $N$. If one group collects the large ranks, that is evidence that its values are systematically larger.
 
