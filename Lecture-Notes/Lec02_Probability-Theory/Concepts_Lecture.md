@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-10
+> **Last Updated:** 2026-11-17
 
 > **Learning Objectives:**
 > 1. Define sample spaces and events, and express complements, unions, and intersections of events as set operations
@@ -58,7 +58,7 @@
 
 An experiment such as tossing a coin or rolling a die, which can be repeated under the same conditions and whose list of possible outcomes is known although the actual outcome cannot be predicted, is called a **random experiment**. Probability theory begins by representing the outcomes of a random experiment as a set.
 
-> **Definition:** The **sample space** is the set of all possible outcomes of an experiment and is denoted by $S$. Each element of $S$ is called an outcome or a **sample point**.
+> **Definition:** The **sample space** is the set of all possible outcomes of an experiment and is denoted by $S$. Each element of $S$ is called an outcome or a sample point.
 
 **Example 1 (one coin toss).** When we flip a coin once, the sample space is as follows.
 
@@ -407,7 +407,7 @@ P(A_1 \cap A_2 \cap A_3) = \frac{4}{52} \times \frac{3}{51} \times \frac{2}{50} 
 
 ### 5.1 Independence of Two Events
 
-> **Definition:** Two events $E$ and $F$ are **independent** if they satisfy the following. Two events that are not independent are called **dependent**.
+> **Definition:** Two events $E$ and $F$ are **independent** if they satisfy the following. Two events that are not independent are called dependent.
 
 ```math
 P(E \cap F) = P(E)\, P(F)

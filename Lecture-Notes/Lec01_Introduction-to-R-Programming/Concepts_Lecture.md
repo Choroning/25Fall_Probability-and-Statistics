@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-17
 
 > **Learning Objectives:**
 > 1. Install R and RStudio, and work with the RStudio panes, the working directory, and the workspace
@@ -437,7 +437,7 @@ The first line contains the string `"a"`, so all values become characters. The s
 
 The variables defined so far have been a single number or a sequence of values of one type. This is not enough for storing real data. The most common way of storing a dataset in R is a **data frame**.
 
-> **Definition:** A **data frame** is a tabular data structure whose rows represent **observations**, that is, individual cases, and whose columns represent the **variables** measured on each observation. The values within a column share one type, but different columns may have different types.
+> **Definition:** A **data frame** is a tabular data structure whose rows represent observations, that is, individual cases, and whose columns represent the variables measured on each observation. The values within a column share one type, but different columns may have different types.
 
 Data frames are particularly useful for datasets because they combine different types, such as numeric, character, logical, and factor (Section 7.4), into one object. For example, students' heights (numbers) and genders (categories) can be stored together in one table.
 

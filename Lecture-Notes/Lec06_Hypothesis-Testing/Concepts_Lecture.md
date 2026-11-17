@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-10
+> **Last Updated:** 2026-11-17
 
 > **Learning Objectives:**
 > 1. Define statistics, estimators, and unbiasedness, and show that the sample mean and sample variance are unbiased estimators
@@ -76,7 +76,11 @@ Up to Lecture 5, probabilities of events were computed for a known population di
 
 ### 1.1 Random Samples, Statistics, and Estimators
 
-> **Definition:** A **random sample** is a collection of random variables $X_1, \ldots, X_n$ that are independent and follow the same distribution. A **statistic** is a function of a random sample that does not involve any unknown parameter. An **estimator** is a statistic used to estimate an unknown parameter.
+> **Definition:** A **random sample** is a collection of random variables $X_1, \ldots, X_n$ that are independent and follow the same distribution.
+
+> **Definition:** A **statistic** is a function of a random sample that does not involve any unknown parameter.
+
+> **Definition:** An **estimator** is a statistic used to estimate an unknown parameter.
 
 A **parameter** is a fixed value, such as the population mean $\mu$ or the population variance $\sigma^2$, that determines the population distribution and is usually unknown. A statistic is a quantity that can be computed from the sample alone. For example, when $\mu$ is unknown, $\bar{X} - \mu$ is not a statistic. The two most basic estimators are the **sample mean**, which estimates the population mean, and the **sample variance**, which estimates the population variance.
 
@@ -88,7 +92,7 @@ An estimator is a random variable whose value changes from sample to sample, and
 
 ### 1.2 Unbiasedness
 
-> **Definition:** When the expected value of an estimator $\hat{\theta}$ equals the parameter it estimates, that is, $E(\hat{\theta}) = \theta$, $\hat{\theta}$ is called an **unbiased estimator**, and this property is called **unbiasedness**.
+> **Definition:** When the expected value of an estimator $\hat{\theta}$ equals the parameter it estimates, that is, $E(\hat{\theta}) = \theta$, $\hat{\theta}$ is called an **unbiased estimator**, and this property is called unbiasedness.
 
 Unbiasedness is the first requirement for a good estimator. It means that if samples of the same size are drawn repeatedly and the estimate is computed each time, the average of the estimates matches the true value, so the estimator does not systematically overestimate or underestimate. $E(\hat{\theta}) - \theta$ is called the **bias**.
 
@@ -618,10 +622,10 @@ The goal of a two-group comparison is to compare differences in population mean 
 
 ```mermaid
 graph BT
-    S1["Sample 1"] --> X1["Sample mean x̄₁"]
-    S2["Sample 2"] --> X2["Sample mean x̄₂"]
-    X1 -.->|"estimates"| M1["Population mean μ₁"]
-    X2 -.->|"estimates"| M2["Population mean μ₂"]
+    S1["Sample 1"] --> X1["Sample mean x̄1"]
+    S2["Sample 2"] --> X2["Sample mean x̄2"]
+    X1 -.->|"estimates"| M1["Population mean μ1"]
+    X2 -.->|"estimates"| M2["Population mean μ2"]
     M1 -.->|"describes"| P1["Population 1"]
     M2 -.->|"describes"| P2["Population 2"]
 ```

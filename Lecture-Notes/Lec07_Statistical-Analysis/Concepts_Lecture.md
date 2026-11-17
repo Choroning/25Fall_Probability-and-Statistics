@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-17
 
 > **Learning Objectives:**
 > 1. Choose a statistical method suited to the data by examining the level of measurement, the types of the dependent and independent variables, the independence of observations, and the assumptions of the model
@@ -75,7 +75,9 @@ To choose a method, one first needs to know what kind of values a variable takes
 
 Variables measured on the nominal or ordinal scale are called **categorical variables**, and variables on the interval or ratio scale are called **continuous variables** or numerical variables. A categorical variable with only two categories (alive and dead, treatment and control) is called a **binary variable**.
 
-> **Definition:** A **parametric method** assumes that the data follow a particular family of distributions (most often the normal distribution) and makes inferences about the parameters of that distribution (mean, variance, and so on). The t-test and analysis of variance are typical examples. A **nonparametric method** does not specify the form of the distribution and makes inferences only from properties that depend less on it, such as ranks, signs, and rearrangements of the data. The Wilcoxon test and the Kruskal-Wallis test are typical examples. Nonparametric methods make weaker assumptions, but when the assumptions of a parametric method do hold they can have slightly lower power (Lecture 8, Section 5).
+> **Definition:** A **parametric method** assumes that the data follow a particular family of distributions (most often the normal distribution) and makes inferences about the parameters of that distribution (mean, variance, and so on). The t-test and analysis of variance are typical examples.
+
+> **Definition:** A **nonparametric method** does not specify the form of the distribution and makes inferences only from properties that depend less on it, such as ranks, signs, and rearrangements of the data. The Wilcoxon test and the Kruskal-Wallis test are typical examples. Nonparametric methods make weaker assumptions, but when the assumptions of a parametric method do hold they can have slightly lower power (Lecture 8, Section 5).
 
 ### 1.2 Choosing by the Types of the Dependent and Independent Variables
 

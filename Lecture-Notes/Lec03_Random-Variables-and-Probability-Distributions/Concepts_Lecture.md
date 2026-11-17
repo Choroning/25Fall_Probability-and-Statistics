@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-17
 
 > **Learning Objectives:**
 > 1. Define a random variable as a function from the sample space to the real numbers, and distinguish discrete from continuous random variables
@@ -59,7 +59,9 @@ Lecture 2 showed how to assign probabilities to events in a sample space. In pra
 
 ### 1.1 A Function from the Sample Space to the Real Numbers
 
-> **Definition:** A **random variable** is a function $X : \mathcal{S} \to \mathbb{R}$ that assigns a real number $X(s)$ to each element (outcome) $s$ of the sample space $\mathcal{S}$. The assignment of probabilities to the values or value ranges that a random variable takes is called its **probability distribution**.
+> **Definition:** A **random variable** is a function $X : \mathcal{S} \to \mathbb{R}$ that assigns a real number $X(s)$ to each element (outcome) $s$ of the sample space $\mathcal{S}$.
+
+> **Definition:** The assignment of probabilities to the values or value ranges that a random variable takes is called the **probability distribution** of the random variable.
 
 Despite the word "variable" in its name, a random variable is a function. Its value is not chosen freely: once the outcome $s$ of the experiment is fixed, the value $X(s)$ is determined automatically. By convention, random variables are written with capital letters $X$, $Y$, and particular values they take with lowercase letters $x$, $y$.
 
@@ -108,7 +110,9 @@ When the sample space is clear, we often simply write $X$ instead of $X(s)$.
 
 Random variables are divided into two kinds according to the form of the values they take.
 
-> **Definition:** A **discrete random variable** is a random variable whose possible values are finite in number or countably infinite. A **continuous random variable** takes uncountably infinitely many values on an interval of real numbers; the probability at a single point is 0, and the probability of an interval is obtained by integrating a probability density function.
+> **Definition:** A **discrete random variable** is a random variable whose possible values are finite in number or countably infinite.
+
+> **Definition:** A **continuous random variable** takes uncountably infinitely many values on an interval of real numbers; the probability at a single point is 0, and the probability of an interval is obtained by integrating a probability density function.
 
 **Countably infinite** means infinite in a way that allows every element to be numbered 1st, 2nd, 3rd, and so on without omission. The set of natural numbers $\lbrace1, 2, 3, \dots\rbrace$ and the set of integers are examples. In contrast, an infinity that cannot be fully numbered by any method, such as the real numbers in the interval $[0, 1]$, is **uncountably infinite**.
 
@@ -427,7 +431,7 @@ In the third line, $p_X(x_i)$ does not depend on the sum over $j$, so it is take
 
 ### 5.1 Definition of the Expected Value
 
-> **Definition:** The **expected value** of a discrete random variable $X$ is $E(X) \equiv \sum_k x_k \cdot P(X = x_k) = \sum_k x_k \cdot p_X(x_k)$, where the sum runs over all values $x_k$ that $X$ takes. The expected value is also called the **mean** of $X$ and is written $\mu$ or $\mu_X$.
+> **Definition:** The **expected value** of a discrete random variable $X$ is $E(X) \equiv \sum_k x_k \cdot P(X = x_k) = \sum_k x_k \cdot p_X(x_k)$, where the sum runs over all values $x_k$ that $X$ takes. The expected value is also called the mean of $X$ and is written $\mu$ or $\mu_X$.
 
 The expected value is the **weighted average** of the values of $X$, weighted by their probabilities. If the same experiment is repeated independently a very large number of times, the average of the observations approaches the expected value.
 

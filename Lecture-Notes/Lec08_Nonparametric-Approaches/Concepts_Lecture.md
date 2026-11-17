@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-17
 
 > **Learning Objectives:**
 > 1. Distinguish the independent-sample and paired-sample ways of collecting data, and choose a test for a two-group comparison according to normality and sample size
@@ -176,10 +176,10 @@ The denominator is $n_1+n_2-2$ because estimating the two means $\bar{x}$ and $\
 
 ```mermaid
 graph BT
-    S1["Sample 1"] --> X1["Sample mean X̄₁"]
-    S2["Sample 2"] --> X2["Sample mean X̄₂"]
-    X1 -.->|"estimates μ₁"| M1["μ₁"]
-    X2 -.->|"estimates μ₂"| M2["μ₂"]
+    S1["Sample 1"] --> X1["Sample mean X̄1"]
+    S2["Sample 2"] --> X2["Sample mean X̄2"]
+    X1 -.->|"estimates μ1"| M1["μ1"]
+    X2 -.->|"estimates μ2"| M2["μ2"]
     M1 -.->|"summarizes population 1"| P1["Population 1"]
     M2 -.->|"summarizes population 2"| P2["Population 2"]
 ```

@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-17
 
 > **Learning Objectives:**
 > 1. Write the probability mass functions of the discrete uniform, Bernoulli, and binomial distributions and derive their expected values and variances
@@ -163,7 +163,9 @@ sample(1:6, 10, replace = TRUE)    # 10 simulated rolls of a die
 
 ## 3. Bernoulli Distribution
 
-> **Definition:** A trial with only two outcomes is called a **Bernoulli trial**. Calling one outcome success and the other failure, the random variable $X$ that equals 1 for success and 0 for failure satisfies $P(X = 1) = p$ and $P(X = 0) = 1 - p$; this distribution is called the **Bernoulli distribution**, written $X \sim B(1, p)$.
+> **Definition:** A trial with only two outcomes is called a **Bernoulli trial**.
+
+> **Definition:** Calling one outcome of a Bernoulli trial success and the other failure, the random variable $X$ that equals 1 for success and 0 for failure satisfies $P(X = 1) = p$ and $P(X = 0) = 1 - p$; this distribution is called the **Bernoulli distribution**, written $X \sim B(1, p)$.
 
 Tossing a coin (success if heads), winning or losing a game, whether a product is defective, and whether a patient recovers are examples of Bernoulli trials. The probability mass function can be written in one formula as $f(x) = p^x (1 - p)^{1 - x}$ $(x = 0, 1)$; substituting $x = 1$ gives $p$, and $x = 0$ gives $1 - p$. The parameter is the success probability $p$ $(0 \le p \le 1)$.
 
@@ -227,7 +229,7 @@ P(X = 5) = \binom{12}{5} \cdot p^5 \cdot (1 - p)^7
 
 The same reasoning applies to general $n$ and $k$.
 
-> **Definition:** The number of successes $X$ in $n$ independent Bernoulli trials with common success probability $p$ is called a **binomial random variable**, and its distribution the **binomial distribution**. It is written $X \sim B(n, p)$, and its probability mass function is $`P(X = k) = \binom{n}{k}\, p^k (1 - p)^{n - k}`$ $(k = 0, 1, \dots, n)$.
+> **Definition:** The number of successes $X$ in $n$ independent Bernoulli trials with common success probability $p$ is called a binomial random variable, and its distribution the **binomial distribution**. It is written $X \sim B(n, p)$, and its probability mass function is $`P(X = k) = \binom{n}{k}\, p^k (1 - p)^{n - k}`$ $(k = 0, 1, \dots, n)$.
 
 Here $`\binom{n}{k} = {}_n C_k = \frac{n!}{k!\,(n - k)!}`$ is the number of combinations of $k$ items chosen from $n$, called the **binomial coefficient**. The parameters are the number of trials $n$ and the success probability $p$, and the support is $\lbrace0, 1, \dots, n\rbrace$.
 
@@ -454,7 +456,7 @@ The first line equals $56/220$, $112/220$, $48/220$, $4/220$. The last line is t
 
 ### 6.1 The Poisson Distribution as a Limit of the Binomial
 
-> **Definition:** The distribution of the number of occurrences of a **rare** event in a fixed unit (of time, area, volume, length, and so on) is called the **Poisson distribution**. If $\lambda > 0$ is the average number of occurrences per unit, the probability mass function is $f(x) = \lambda^x \dfrac{e^{-\lambda}}{x!}$ $(x = 0, 1, 2, \dots)$, written $X \sim Poi(\lambda)$.
+> **Definition:** The distribution of the number of occurrences of a rare event in a fixed unit (of time, area, volume, length, and so on) is called the **Poisson distribution**. If $\lambda > 0$ is the average number of occurrences per unit, the probability mass function is $f(x) = \lambda^x \dfrac{e^{-\lambda}}{x!}$ $(x = 0, 1, 2, \dots)$, written $X \sim Poi(\lambda)$.
 
 The number of calls to a call center in one minute, the number of typos on a page, the number of flaws in one unit of a product, and the number of traffic accidents in a day are examples. There is one parameter, $\lambda$, and the support is the set of all nonnegative integers.
 

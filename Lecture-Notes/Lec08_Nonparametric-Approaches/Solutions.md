@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Solutions.md) | [한국어](Solutions.ko.md)
 
-> **Last Updated:** 2026-11-04
+> **Last Updated:** 2026-11-17
 
 ---
 
@@ -127,7 +127,7 @@ welch   8.407339 14.73901 5.278477e-07
 **Explanation:** The paired t-test is a one-sample t-test on the differences $d_i$ ([Lecture 8, Section 2.6](Concepts_Lecture.md#26-the-paired-t-test)).
 
 1. **Differences:** $d = (8, 5, -1, 6, 9, 3, 7, 4)$ with sum 41, so $\bar{d} = 41/8 = 5.125$.
-2. **Standard deviation:** the deviations $d_i - \bar{d}$ are $2.875, -0.125, -6.125, 0.875, 3.875, -2.125, 1.875, -1.125$, and their sum of squares is $8.266 + 0.016 + 37.516 + 0.766 + 15.016 + 4.516 + 3.516 + 1.266 = 70.875$. $s_d^2 = 70.875/7 = 10.125$ and $s_d = 3.182$.
+2. **Standard deviation:** the deviations $d_i - \bar{d}$ are $2.875, -0.125, -6.125, 0.875, 3.875, -2.125, 1.875, -1.125$, and their sum of squares is $8.265625 + 0.015625 + 37.515625 + 0.765625 + 15.015625 + 4.515625 + 3.515625 + 1.265625 = 70.875$. $s_d^2 = 70.875/7 = 10.125$ and $s_d = 3.182$.
 3. **Test statistic:** $t = \bar{d}/(s_d/\sqrt{n}) = 5.125/(3.182/\sqrt{8}) = 5.125/1.125 = 4.556$, with $n - 1 = 7$ degrees of freedom.
 
 ```r
