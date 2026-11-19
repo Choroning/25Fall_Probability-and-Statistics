@@ -2,7 +2,7 @@
 
 [Repository Guide](../../README.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **Last Updated:** 2026-11-17
+> **Last Updated:** 2026-11-19
 
 > **Learning Objectives:**
 > 1. Install R and RStudio, and work with the RStudio panes, the working directory, and the workspace
@@ -104,25 +104,13 @@ R is downloaded from **CRAN (the Comprehensive R Archive Network)**. CRAN is a w
 
 *Figure 1. Download links for R by operating system on the CRAN front page*
 
-The installation steps for each operating system are as follows.
-
-1. **Windows:** Click "Download R for Windows", choose "base", and click "Download R-x.y.z for Windows" (x.y.z is the version number) to download the installer (`.exe`). Run the installer and proceed with the default choices.
-2. **macOS:** Click "Download R for macOS". On an Apple silicon computer (M1 or a later chip), download and run the `.pkg` file labeled `arm64`; on an Intel computer, download and run the `.pkg` file labeled `x86_64`. The chip type is shown under "About This Mac" in the Apple menu.
-3. **Linux:** R is packaged for most Linux distributions, so install it with the distribution's package manager. On Ubuntu, for example, run `sudo apt install r-base`. If the version provided by the distribution is old, add the CRAN repository as the "Download R for Linux" page on CRAN explains, and then install.
-
-```bash
-# Ubuntu: install R from the distribution's package manager
-sudo apt update
-sudo apt install r-base
-```
-
-> **Note:** The wording and link names on the CRAN page change slightly over time. The former "Download R for (Mac) OS X" now reads "Download R for macOS". The procedure of choosing your operating system and downloading the latest installer stays the same.
+On Windows, download and run the installer (`.exe`) under base; on macOS, download and run the `.pkg` file for the chip (`arm64` for Apple silicon, `x86_64` for Intel); on Linux, install R with the distribution's package manager (for example, `sudo apt install r-base` on Ubuntu).
 
 ### 2.2 Installing RStudio
 
 **RStudio** is an integrated development environment for R (Section 3). The company that develops it, RStudio, PBC, renamed itself Posit (Posit Software, PBC) in 2022 [2]. RStudio Desktop is now downloaded from the download page in Posit's RStudio User Guide, [https://docs.posit.co/ide/user/download.html](https://docs.posit.co/ide/user/download.html) [3]. The former addresses `https://www.rstudio.com/products/rstudio/download/` and `https://posit.co/download/rstudio-desktop/` both lead to this user guide.
 
-RStudio comes as **RStudio Desktop**, which is installed and used on a personal computer, and **RStudio Server**, which is installed on a server and used through a web browser. The former download page split each of them into a free open-source license edition and a paid commercial license edition and showed four products: RStudio Desktop (open source), RStudio Desktop (commercial), RStudio Server (open source), and RStudio Server Pro (commercial); the commercial editions are now offered as RStudio Desktop Pro and Posit Workbench [2], [3]. The free open-source edition of RStudio Desktop is enough for self-study and for the exercises of this course. The download page detects the operating system of your computer and offers the matching installer (`.exe` for Windows, `.dmg` for macOS, `.deb` or `.rpm` for Linux). On Windows, run the installer; on macOS, open the `.dmg` file and drag the RStudio icon into the Applications folder.
+RStudio comes as **RStudio Desktop**, which is installed and used on a personal computer, and **RStudio Server**, which is installed on a server and used through a web browser. The former download page split each of them into a free open-source license edition and a paid commercial license edition and showed four products: RStudio Desktop (open source), RStudio Desktop (commercial), RStudio Server (open source), and RStudio Server Pro (commercial); the commercial editions are now offered as RStudio Desktop Pro and Posit Workbench [2], [3]. The free open-source edition of RStudio Desktop is enough for self-study and for the exercises of this course.
 
 ### 2.3 Checking the Installation
 

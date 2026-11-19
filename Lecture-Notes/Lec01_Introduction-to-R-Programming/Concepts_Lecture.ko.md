@@ -2,7 +2,7 @@
 
 [레포지토리 안내](../../README.ko.md) | [English](Concepts_Lecture.md) | [한국어](Concepts_Lecture.ko.md)
 
-> **최종 수정일:** 2026-11-17
+> **최종 수정일:** 2026-11-19
 
 > **학습 목표:**
 > 1. R과 RStudio를 설치하고, RStudio의 창 구성과 작업 디렉토리, 작업 공간을 다룰 수 있다
@@ -104,25 +104,13 @@ R은 **CRAN(Comprehensive R Archive Network)** 에서 내려받는다. CRAN은 R
 
 *그림 1. CRAN 첫 화면의 운영체제별 R 내려받기 링크*
 
-운영체제별 설치 절차는 다음과 같다.
-
-1. **Windows:** "Download R for Windows"를 누르고 "base"를 선택한 뒤 "Download R-x.y.z for Windows"(x.y.z는 버전 번호)를 눌러 설치 파일(`.exe`)을 내려받는다. 설치 파일을 실행하고 기본 선택을 그대로 둔 채 진행하면 된다.
-2. **macOS:** "Download R for macOS"를 누른 뒤, Apple silicon(M1 이후의 칩) 컴퓨터이면 `arm64`가 붙은 `.pkg` 파일을, Intel 칩 컴퓨터이면 `x86_64`가 붙은 `.pkg` 파일을 내려받아 실행한다. 칩의 종류는 Apple 메뉴의 "이 Mac에 관하여"에서 확인할 수 있다.
-3. **Linux:** R은 대부분의 Linux 배포판에 패키지로 들어 있으므로 배포판의 패키지 관리자로 설치한다. 예를 들어 Ubuntu에서는 `sudo apt install r-base`를 실행한다. 배포판이 제공하는 버전이 오래되었으면 CRAN의 "Download R for Linux" 페이지가 안내하는 대로 CRAN 저장소를 추가한 뒤 설치한다.
-
-```bash
-# Ubuntu: install R from the distribution's package manager
-sudo apt update
-sudo apt install r-base
-```
-
-> **참고:** CRAN 화면의 문구와 링크 이름은 시기에 따라 조금씩 바뀐다. 예전의 "Download R for (Mac) OS X"는 지금 "Download R for macOS"로 표시된다. 운영체제를 고르고 최신 버전의 설치 파일을 받는다는 절차는 같다.
+Windows는 base의 설치 파일(`.exe`)을, macOS는 칩에 맞는 `.pkg` 파일(Apple silicon은 `arm64`, Intel은 `x86_64`)을 내려받아 실행하고, Linux에서는 배포판의 패키지 관리자로 설치한다(예: Ubuntu의 `sudo apt install r-base`).
 
 ### 2.2 RStudio 설치
 
 **RStudio**는 R을 위한 통합 개발 환경(3절)이다. RStudio를 만든 회사 RStudio, PBC는 2022년에 이름을 Posit(Posit Software, PBC)으로 바꾸었다 [2]. 지금 RStudio Desktop은 Posit의 RStudio 사용자 설명서에 있는 내려받기 페이지 [https://docs.posit.co/ide/user/download.html](https://docs.posit.co/ide/user/download.html)에서 받는다 [3]. 예전 주소인 `https://www.rstudio.com/products/rstudio/download/`와 `https://posit.co/download/rstudio-desktop/` 두 곳은 모두 이 사용자 설명서로 연결된다.
 
-RStudio에는 개인 컴퓨터에 설치하여 쓰는 **RStudio Desktop**과, 서버에 설치하고 웹 브라우저로 접속하여 쓰는 **RStudio Server**가 있다. 예전 내려받기 페이지는 이 둘을 각각 무료인 오픈 소스 라이선스판과 유료인 상용 라이선스판으로 나누어 RStudio Desktop(오픈 소스), RStudio Desktop(상용), RStudio Server(오픈 소스), RStudio Server Pro(상용)의 네 제품을 보여 주었으며, 지금은 상용판이 RStudio Desktop Pro와 Posit Workbench라는 이름으로 제공된다 [2], [3]. 개인 학습과 이 과목의 실습에는 무료인 RStudio Desktop 오픈 소스판이면 충분하다. 내려받기 페이지는 접속한 컴퓨터의 운영체제를 알아보고 맞는 설치 파일(Windows는 `.exe`, macOS는 `.dmg`, Linux는 `.deb`나 `.rpm`)을 안내한다. Windows에서는 설치 파일을 실행하고, macOS에서는 `.dmg` 파일을 열어 RStudio 아이콘을 Applications 폴더로 끌어 넣는다.
+RStudio에는 개인 컴퓨터에 설치하여 쓰는 **RStudio Desktop**과, 서버에 설치하고 웹 브라우저로 접속하여 쓰는 **RStudio Server**가 있다. 예전 내려받기 페이지는 이 둘을 각각 무료인 오픈 소스 라이선스판과 유료인 상용 라이선스판으로 나누어 RStudio Desktop(오픈 소스), RStudio Desktop(상용), RStudio Server(오픈 소스), RStudio Server Pro(상용)의 네 제품을 보여 주었으며, 지금은 상용판이 RStudio Desktop Pro와 Posit Workbench라는 이름으로 제공된다 [2], [3]. 개인 학습과 이 과목의 실습에는 무료인 RStudio Desktop 오픈 소스판이면 충분하다.
 
 ### 2.3 설치 확인
 
